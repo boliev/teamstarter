@@ -1,0 +1,65 @@
+{% extends "@FOSUser/layout.html.twig" %}
+
+{% block fos_user_content %}
+    {% trans_default_domain 'FOSUserBundle' %}
+    <div id="registration-container">
+        <div class="row">
+            <div class="offset-md-2 col-md-5 elevator-speech">
+                <h1 class="text-white lh-condensed-ultra mb-3">TeamStarter</h1> - это сервис для подбора команды в условиях, когда у проекта нет финансирования. Это возможность найти не сотрудников, но партнеров-энтузиастов, готовых работать над проектом в качестве хобби, в свободное время, получая за работу полезный опыт, портфолио и профит в будущем.
+                <h2 class="text-white lh-condensed-ultra mb-3">TeamSterter для основателей проектов</h2>
+                <p>Лучший способ воплотить свои идеи. Ма поможем вам быстро и бесплатно собрать команду профессионало-энтузиастов для вашего проета. Все, что требуется от вас - интересный проект, которым не стыдно будет похвастаться.</p>
+                <h2 class="text-white lh-condensed-ultra mb-3">TeamSterter для специалистов</h2>
+                <p>Если вы ищите стартап в котором можно поучавствовать в свободное время, или хотите применить свои навыки на настоящих боевых проектах - TeamStarter это сервис, который предложит вам сотни интересных проектов, прошедьших ручную модерацию. </p>
+            </div>
+            <div class="col-md-3">
+                <div class="register-form">
+                    <form method="post" action="{{ path('fos_user_registration_register') }}">
+                        <div class="row justify-content-center">
+                            <div class="col-md-10">
+                                {{ form_label(form.email, null, {'label_attr': {'class': 'form-label'}}) }}
+                                {{ form_widget(form.email, {'attr': {'class': 'form-control input-block'}}) }}
+                                {{ form_errors(form.email)}}
+                                {{ form_label(form.plainPassword.first, null, {'label_attr': {'class': 'form-label'}}) }}
+                                {{ form_widget(form.plainPassword.first, {'attr': {'class': 'form-control input-block'}}) }}
+                                {{ form_errors(form.plainPassword.first)}}
+                                {{ form_label(form.plainPassword.second, null, {'label_attr': {'class': 'form-label'}}) }}
+                                {{ form_widget(form.plainPassword.second, {'attr': {'class': 'form-control input-block'}}) }}
+                                {{ form_errors(form.plainPassword.second)}}
+                                <input type="hidden" id="fos_user_registration_form_username" name="fos_user_registration_form[username]">
+                                {{ form_widget(form._token) }}
+                                <div class="bottom-submit">
+                                    <button type="submit" class="btn btn-primary btn-large btn-block">Sign up for TeamStarter</button>
+                                </div>
+                                <div class="privacy">
+                                    By clicking "Sign up for TeamStarter", you agree to our <a href="/terms/">terms of service</a> and <a href="/privacy/">privacy policy</a>. We’ll occasionally send you account related emails.
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock fos_user_content %}
+
+{% form_theme form _self %}
+
+{% block form_errors %}
+    {% spaceless %}
+        {% if errors|length > 0 %}
+                {% for error in errors %}
+                    <span class="error">{{ error.message }}</span>
+                {% endfor %}
+        {% endif %}
+    {% endspaceless %}
+{% endblock form_errors %}
+
+{% block javascripts %}
+    <script>
+        $(function () {
+            $("#fos_user_registration_form_email").change(function() {
+                $("#fos_user_registration_form_username").val($("#fos_user_registration_form_email").val());
+            })
+        })
+    </script>
+{% endblock %}

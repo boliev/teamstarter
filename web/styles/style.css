@@ -1,0 +1,58 @@
+
+div#main-container {
+    margin: 0px;
+    padding: 0px;
+}
+
+div#registration-container {
+    margin: 0px;
+    padding-top: 100px;
+    padding-bottom: 120px;
+    background-color: #2C3136;
+}
+
+.register-form {
+    border-radius: 5px;
+    background-color: #FAFBFC;
+    color: #596068;
+    padding: 20px 10px 50px 10px;
+}
+
+.register-form .form-label {
+    display: block;
+}
+
+.register-form .form-label {
+    margin-top: 10px;
+}
+
+.register-form .bottom-submit {
+    margin-top: 20px;
+}
+
+.register-form div.privacy {
+    text-align: center;
+    font-size: 13px;
+    padding: 5px;
+}
+
+#registration-container h1 {
+    font-size: 40px;
+}
+
+#registration-container h2 {
+    margin-top: 16px;
+    font-size: 28px;
+}
+
+#registration-container {
+    font-size: 18px;
+    font-weight: 300;
+    color: #AAACAF;
+}
+
+span.error {
+    color: #861825;
+    font-size: 13px;
+    padding: 5px;
+}
