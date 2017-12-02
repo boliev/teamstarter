@@ -7,7 +7,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Projects <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="#">{{ 'Projects'|trans }} <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Link</a>
@@ -24,12 +24,21 @@
                 </div>
             </li>
         </ul>
+        <span class="navbar-text mr-sm-2">{{ 'we_speak'|trans }}:</span>
         <ul class="navbar-nav mr-sm-2">
             <li class="nav-item">
-                <a class="nav-link" href="/login">Sign in</a>
+                <a class="nav-link locale-item" href="#null" onclick="changeLocale('en')"><img src="{{ asset('images/en.png') }}"></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/register">Sign up</a>
+                <a class="nav-link locale-item" href="#null" onclick="changeLocale('ru')"><img src="{{ asset('images/ru.png') }}"></a>
+            </li>
+        </ul>
+        <ul class="navbar-nav mr-sm-2">
+            <li class="nav-item">
+                <a class="nav-link" href="/login">{{ 'sign_in'|trans }}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/register">{{ 'sign_up'|trans }}</a>
             </li>
         </ul>
     </div>

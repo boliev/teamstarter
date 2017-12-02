@@ -1,15 +1,13 @@
 {% extends "@FOSUser/layout.html.twig" %}
-
 {% block fos_user_content %}
-    {% trans_default_domain 'FOSUserBundle' %}
     <div id="registration-container">
         <div class="row">
             <div class="offset-md-2 col-md-5 elevator-speech">
-                <h1 class="text-white lh-condensed-ultra mb-3">TeamStarter</h1> - это сервис для подбора команды в условиях, когда у проекта нет финансирования. Это возможность найти не сотрудников, но партнеров-энтузиастов, готовых работать над проектом в качестве хобби, в свободное время, получая за работу полезный опыт, портфолио и профит в будущем.
-                <h2 class="text-white lh-condensed-ultra mb-3">TeamSterter для основателей проектов</h2>
-                <p>Лучший способ воплотить свои идеи. Ма поможем вам быстро и бесплатно собрать команду профессионало-энтузиастов для вашего проета. Все, что требуется от вас - интересный проект, которым не стыдно будет похвастаться.</p>
-                <h2 class="text-white lh-condensed-ultra mb-3">TeamSterter для специалистов</h2>
-                <p>Если вы ищите стартап в котором можно поучавствовать в свободное время, или хотите применить свои навыки на настоящих боевых проектах - TeamStarter это сервис, который предложит вам сотни интересных проектов, прошедьших ручную модерацию. </p>
+                <h1 class="text-white lh-condensed-ultra mb-3">{{ 'ProjectTitle'|trans }}</h1> {{ 'registration.description'|trans }}
+                <h2 class="text-white lh-condensed-ultra mb-3">{{ 'registration.for_founders_title'|trans }}</h2>
+                <p>{{ 'registration.for_founders_description'|trans }}</p>
+                <h2 class="text-white lh-condensed-ultra mb-3">{{ 'registration.for_professionals_title'|trans }}</h2>
+                <p>{{ 'registration.for_professionals_description'|trans }} </p>
             </div>
             <div class="col-md-3">
                 <div class="register-form">
@@ -28,10 +26,10 @@
                                 <input type="hidden" id="fos_user_registration_form_username" name="fos_user_registration_form[username]">
                                 {{ form_widget(form._token) }}
                                 <div class="bottom-submit">
-                                    <button type="submit" class="btn btn-primary btn-large btn-block">Sign up for TeamStarter</button>
+                                    <button type="submit" class="btn btn-primary btn-large btn-block">{{ 'registration.signup'|trans }}</button>
                                 </div>
                                 <div class="privacy">
-                                    By clicking "Sign up for TeamStarter", you agree to our <a href="/terms/">terms of service</a> and <a href="/privacy/">privacy policy</a>. We’ll occasionally send you account related emails.
+                                    {{ 'registration.form_terms'|trans|raw }}
                                 </div>
                             </div>
                         </div>

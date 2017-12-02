@@ -56,3 +56,8 @@ span.error {
     font-size: 13px;
     padding: 5px;
 }
+
+.locale-item img {
+    width: 32px;
+    /*border: 1px solid #ffffff;*/
+}
