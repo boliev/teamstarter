@@ -75,6 +75,10 @@ fos_user:
     from_email:
         address: voff.web@gmail.com
         sender_name: TeamStarter
+    registration:
+        confirmation:
+            enabled: true
+            template: FOSUserBundle:Registration:email.txt.twig
 
 doctrine_migrations:
     dir_name: "%kernel.root_dir%/DoctrineMigrations"

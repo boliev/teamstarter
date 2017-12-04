@@ -11,3 +11,14 @@ registration:
     for_professionals_description: If you are looking for a startup in which you can take part in your free time, or want to apply your skills on real projects - TeamStarter is a service that will offer you hundreds of interesting projects that have been manually moderated.
     signup: Sign up for TeamStarter
     form_terms: By clicking "Sign up for TeamStarter", you agree to our <a href="/terms/">terms of service</a> and <a href="/privacy/">privacy policy</a>. We’ll occasionally send you account related emails.
+    email:
+        subject: 'Welcome %username%!'
+        message: |
+            Hello %username%!
+
+            To finish activating your TeamStarter account - please visit %confirmationUrl%
+
+            This link can only be used once to validate your account.
+
+            Regards,
+            TeamStarter.

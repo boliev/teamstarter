@@ -1,4 +1,7 @@
-
+body {
+    background-color: #2C3136;
+    color: #AAACAF;
+}
 div#main-container {
     margin: 0px;
     padding: 0px;
@@ -60,4 +63,16 @@ span.error {
 .locale-item img {
     width: 32px;
     /*border: 1px solid #ffffff;*/
+}
+
+.flash-success {
+    margin: 30px 10px 10px 10px;
+}
+
+.message {
+    margin-top: 10px;
+}
+
+.flash-success, .message {
+    text-align: center;
 }
