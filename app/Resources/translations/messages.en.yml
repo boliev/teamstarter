@@ -12,9 +12,9 @@ registration:
     signup: Sign up for TeamStarter
     form_terms: By clicking "Sign up for TeamStarter", you agree to our <a href="/terms/">terms of service</a> and <a href="/privacy/">privacy policy</a>. We’ll occasionally send you account related emails.
     email:
-        subject: 'Welcome %username%!'
+        subject: 'Welcome to TeamStarter'
         message: |
-            Hello %username%!
+            Hello!
 
             To finish activating your TeamStarter account - please visit %confirmationUrl%
 
