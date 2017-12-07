@@ -38,3 +38,7 @@ services:
 #            - "@translator.default"
 #        tags:
 #            - { name: kernel.event_listener, event: kernel.request }
+    app.form.registration:
+            class: AppBundle\Form\RegistrationType
+            tags:
+                - { name: form.type, alias: app_user_registration }

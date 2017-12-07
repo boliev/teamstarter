@@ -79,6 +79,8 @@ fos_user:
         confirmation:
             enabled: true
             template: FOSUserBundle:Registration:email.txt.twig
+        form:
+            type: AppBundle\Form\RegistrationType
 
 doctrine_migrations:
     dir_name: "%kernel.root_dir%/DoctrineMigrations"

@@ -19,22 +19,47 @@ class User extends BaseUser
      */
     protected $id;
 
-    public function __construct()
+    /**
+     * @var string
+     * @ORM\Column(type="string", name="first_name")
+     */
+    private $firstName;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", name="last_name")
+     */
+    private $lastName;
+
+    /**
+     * @return string
+     */
+    public function getFirstName(): ?string
     {
-        parent::__construct();
-        // your own logic
+        return $this->firstName;
     }
 
-    public function setEmail($email)
+    /**
+     * @param string $firstName
+     */
+    public function setFirstName(string $firstName)
     {
-        parent::setEmail($email);
-        $this->setUsername($email);
-
-        return $this;
+        $this->firstName = $firstName;
     }
 
-    public function setEmailCanonical($emailCanonical){
-        parent::setEmailCanonical($emailCanonical);
-        $this->usernameCanonical = $emailCanonical;
+    /**
+     * @return string
+     */
+    public function getLastName(): ?string
+    {
+        return $this->lastName;
+    }
+
+    /**
+     * @param string $lastName
+     */
+    public function setLastName(string $lastName)
+    {
+        $this->lastName = $lastName;
     }
 }

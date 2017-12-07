@@ -14,12 +14,22 @@
                     <form method="post" action="{{ path('fos_user_registration_register') }}">
                         <div class="row justify-content-center">
                             <div class="col-md-10">
+                                {{ form_label(form.firstName, 'registration.label_first_name'|trans, {'label_attr': {'class': 'form-label'}}) }}
+                                {{ form_widget(form.firstName, {'attr': {'class': 'form-control input-block'}}) }}
+                                {{ form_errors(form.firstName)}}
+
+                                {{ form_label(form.lastName, 'registration.label_last_name'|trans, {'label_attr': {'class': 'form-label'}}) }}
+                                {{ form_widget(form.lastName, {'attr': {'class': 'form-control input-block'}}) }}
+                                {{ form_errors(form.lastName)}}
+
                                 {{ form_label(form.email, null, {'label_attr': {'class': 'form-label'}}) }}
                                 {{ form_widget(form.email, {'attr': {'class': 'form-control input-block'}}) }}
                                 {{ form_errors(form.email)}}
+
                                 {{ form_label(form.plainPassword.first, null, {'label_attr': {'class': 'form-label'}}) }}
                                 {{ form_widget(form.plainPassword.first, {'attr': {'class': 'form-control input-block'}}) }}
                                 {{ form_errors(form.plainPassword.first)}}
+
                                 {{ form_label(form.plainPassword.second, null, {'label_attr': {'class': 'form-label'}}) }}
                                 {{ form_widget(form.plainPassword.second, {'attr': {'class': 'form-control input-block'}}) }}
                                 {{ form_errors(form.plainPassword.second)}}
