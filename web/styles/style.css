@@ -30,7 +30,7 @@ div#registration-container {
 }
 
 .register-form .bottom-submit {
-    margin-top: 20px;
+    margin-top: 4px;
 }
 
 .register-form div.privacy {
@@ -75,4 +75,10 @@ span.error {
 
 .flash-success, .message {
     text-align: center;
+}
+
+.register-form-sn-login a {
+    font-size: 40px;
+    padding-top: 5px;
+    color: #596068;
 }

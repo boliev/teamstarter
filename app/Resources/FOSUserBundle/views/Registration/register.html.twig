@@ -33,6 +33,9 @@
                                 {{ form_label(form.plainPassword.second, null, {'label_attr': {'class': 'form-label'}}) }}
                                 {{ form_widget(form.plainPassword.second, {'attr': {'class': 'form-control input-block'}}) }}
                                 {{ form_errors(form.plainPassword.second)}}
+                                <div class="container register-form-sn-login">
+                                    <a href="/connect/facebook" id="fb-root"><i class="fa fa-facebook-official" aria-hidden="true"></i></a>
+                                </div>
                                 <input type="hidden" id="fos_user_registration_form_username" name="fos_user_registration_form[username]">
                                 {{ form_widget(form._token) }}
                                 <div class="bottom-submit">

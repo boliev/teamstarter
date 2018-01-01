@@ -32,6 +32,13 @@ class User extends BaseUser
     private $lastName;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="facebook_id", type="string", nullable=true)
+     */
+    private $facebookId;
+
+    /**
      * @return string
      */
     public function getFirstName(): ?string
@@ -61,5 +68,21 @@ class User extends BaseUser
     public function setLastName(string $lastName)
     {
         $this->lastName = $lastName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFacebookId(): string
+    {
+        return $this->facebookId;
+    }
+
+    /**
+     * @param string $facebookId
+     */
+    public function setFacebookId(string $facebookId)
+    {
+        $this->facebookId = $facebookId;
     }
 }
