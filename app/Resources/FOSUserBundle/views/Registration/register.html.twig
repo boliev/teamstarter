@@ -34,7 +34,8 @@
                                 {{ form_widget(form.plainPassword.second, {'attr': {'class': 'form-control input-block'}}) }}
                                 {{ form_errors(form.plainPassword.second)}}
                                 <div class="container register-form-sn-login">
-                                    <a href="/connect/facebook" id="fb-root"><i class="fa fa-facebook-official" aria-hidden="true"></i></a>
+                                    {#<a href="{{ path('hwi_oauth_service_redirect', {'service': 'facebook' }) }}" alt="Sign in with Facebook">Sign in with Facebook</a>#}
+                                    <a href="/login/facebook" id="fb-root"><i class="fa fa-facebook-official" aria-hidden="true"></i></a>
                                 </div>
                                 <input type="hidden" id="fos_user_registration_form_username" name="fos_user_registration_form[username]">
                                 {{ form_widget(form._token) }}

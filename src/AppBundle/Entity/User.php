@@ -1,5 +1,4 @@
 <?php
-// src/AppBundle/Entity/User.php
 
 namespace AppBundle\Entity;
 
@@ -33,10 +32,21 @@ class User extends BaseUser
 
     /**
      * @var string
-     *
      * @ORM\Column(name="facebook_id", type="string", nullable=true)
      */
     private $facebookId;
+
+    /**
+     * @var string
+     * @ORM\Column(name="facebook_access_token", type="string", length=255, nullable=true)
+     */
+    protected $facebookAccessToken;
+
+    /**
+     * @var string
+     * @ORM\Column(name="profile_picture", type="string", length=255, nullable=true)
+     */
+    protected $profilePicture;
 
     /**
      * @return string
@@ -84,5 +94,37 @@ class User extends BaseUser
     public function setFacebookId(string $facebookId)
     {
         $this->facebookId = $facebookId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFacebookAccessToken(): string
+    {
+        return $this->facebookAccessToken;
+    }
+
+    /**
+     * @param string $facebookAccessToken
+     */
+    public function setFacebookAccessToken(string $facebookAccessToken)
+    {
+        $this->facebookAccessToken = $facebookAccessToken;
+    }
+
+    /**
+     * @return string
+     */
+    public function getProfilePicture(): string
+    {
+        return $this->profilePicture;
+    }
+
+    /**
+     * @param string $profilePicture
+     */
+    public function setProfilePicture(string $profilePicture)
+    {
+        $this->profilePicture = $profilePicture;
     }
 }

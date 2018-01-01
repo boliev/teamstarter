@@ -60,14 +60,6 @@ doctrine:
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
 
-# Swiftmailer Configuration
-swiftmailer:
-    transport: '%mailer_transport%'
-    host: '%mailer_host%'
-    username: '%mailer_user%'
-    password: '%mailer_password%'
-    spool: { type: memory }
-
 fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
@@ -97,3 +89,25 @@ swiftmailer:
     password: "%mailer_password%"
     auth_mode: "%mailer_auth_mode%"
     spool: { type: memory }
+
+hwi_oauth:
+    connect:
+        account_connector: my_user_provider
+    firewall_name: main
+    fosub:
+        username_iterations: 30
+        properties:
+            facebook: facebook_id
+#            google: google_id
+    resource_owners:
+        facebook:
+            type:                facebook
+            client_id:           "%facebook_client_id%"
+            client_secret:       "%facebook_secret%"
+            scope:               "public_profile,email"
+            infos_url:           "https://graph.facebook.com/v2.8/me?fields=first_name,last_name,name,email,picture.width(320)"
+#        google:
+#            type:                google
+#            client_id:           "%google_app_id%"
+#            client_secret:       "%google_app_secret%"
+#            scope:               "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile"
