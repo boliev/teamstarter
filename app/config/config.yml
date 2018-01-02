@@ -106,8 +106,8 @@ hwi_oauth:
             client_secret:       "%facebook_secret%"
             scope:               "public_profile,email"
             infos_url:           "https://graph.facebook.com/v2.8/me?fields=first_name,last_name,name,email,picture.width(320)"
-#        google:
-#            type:                google
-#            client_id:           "%google_app_id%"
-#            client_secret:       "%google_app_secret%"
-#            scope:               "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile"
+        google:
+            type:                google
+            client_id:           "%google_app_id%"
+            client_secret:       "%google_app_secret%"
+            scope:               "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile"
