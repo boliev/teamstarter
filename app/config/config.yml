@@ -111,3 +111,8 @@ hwi_oauth:
             client_id:           "%google_app_id%"
             client_secret:       "%google_app_secret%"
             scope:               "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile"
+        github:
+            type:                github
+            client_id:           "%github_client_id%"
+            client_secret:       "%github_secret%"
+            scope:               'read:user'
