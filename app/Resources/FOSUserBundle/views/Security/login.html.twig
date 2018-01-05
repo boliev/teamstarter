@@ -1,0 +1,45 @@
+{% extends "@FOSUser/layout.html.twig" %}
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+<div id="registration-container">
+    <div class="row">
+        <div class="col-md-4 offset-md-4">
+            <div class="register-form">
+                <div class="row justify-content-center">
+                    <div class="col-md-10">
+                        {% if error %}
+                            <div class="error">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                        {% endif %}
+
+                        <form action="{{ path("fos_user_security_check") }}" method="post">
+                            {% if csrf_token %}
+                                <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                            {% endif %}
+
+                            <label for="username" class="form-label">{{ 'security.login.username'|trans }}</label>
+                            <input type="text" class="form-control input-block" id="username" name="_username" value="{{ last_username }}" required="required" />
+
+                            <label for="password" class="form-label">{{ 'security.login.password'|trans }}</label>
+                            <input type="password" class="form-control input-block" id="password" name="_password" required="required" />
+
+                            <div class="login-remember-me">
+                                <input type="checkbox" class="login-remember-me" id="remember_me" name="_remember_me" value="on" />
+                                <label for="remember_me" class="form-label login-remember-me">{{ 'security.login.remember_me'|trans }}</label>
+                            </div>
+
+                            <div class="container register-form-sn-login">
+                                <a href="/login/facebook"><i class="fa fa-facebook-official" aria-hidden="true"></i></a>
+                                <a href="/login/google"><i class="fa fa-google" aria-hidden="true"></i></a>
+                                <a href="/login/github"><i class="fa fa-github" aria-hidden="true"></i></a>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-large btn-block" id="_submit" name="_submit">{{ 'security.login.submit'|trans }}</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock fos_user_content %}

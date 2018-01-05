@@ -60,6 +60,12 @@ span.error {
     padding: 5px;
 }
 
+div.error {
+    color: #861825;
+    font-size: 16px;
+    padding: 5px;
+}
+
 .locale-item img {
     width: 32px;
     /*border: 1px solid #ffffff;*/
@@ -77,8 +83,23 @@ span.error {
     text-align: center;
 }
 
+div.register-form-sn-login {
+    text-align: center;
+}
+
 .register-form-sn-login a {
     font-size: 40px;
     padding-top: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
     color: #596068;
+}
+
+.register-form  label.login-remember-me {
+    display: inline;
+}
+
+.register-form  div.login-remember-me {
+    padding-top: 3px;
+    font-size: 14px;
 }
