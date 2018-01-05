@@ -3,6 +3,8 @@ Projects: Проекты
 we_speak: Мы говорим по
 sign_in: Вход
 sign_up: Регистрация
+profile: Профиль
+logout: Выход
 registration:
     label_first_name: Имя
     label_last_name: Фамилия

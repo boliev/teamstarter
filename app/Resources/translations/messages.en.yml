@@ -3,6 +3,8 @@ Projects: Projects
 we_speak: We speak
 sign_in: Sign in
 sign_up: Sign up
+profile: Profile
+logout: Logout
 registration:
     label_first_name: First name
     label_last_name: Last name

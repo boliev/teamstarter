@@ -96,10 +96,30 @@ div.register-form-sn-login {
 }
 
 .register-form  label.login-remember-me {
+    height:64px;
+    line-height: 64px;
     display: inline;
 }
 
 .register-form  div.login-remember-me {
     padding-top: 3px;
     font-size: 14px;
+}
+
+li.menu-user-email {
+    /*display: table-cell;*/
+    /*vertical-align: middle;*/
+    /*height: 64px;*/
+    /*line-height: 64px;*/
+    /*padding-left: 10px;*/
+}
+
+li.avatar .placeholder {
+    height: 64px;
+    border-radius: 50%;
+}
+
+li.avatar .real {
+    height: 64px;
+    border-radius: 50%;
 }
