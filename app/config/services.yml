@@ -49,3 +49,10 @@ services:
                 - "@fos_user.user_manager"
                 - "@fos_user.util.token_generator.default"
                 - {facebook: facebookId, google: googleId, github: githubId}
+
+    admin.user:
+            class: AppBundle\Admin\UserAdmin
+            arguments: [~, AppBundle\Entity\User, ~]
+            tags:
+                - { name: sonata.admin, manager_type: orm, label: User, group: 'Users' }
+            public: true

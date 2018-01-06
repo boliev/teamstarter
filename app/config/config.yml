@@ -116,3 +116,10 @@ hwi_oauth:
             client_id:           "%github_client_id%"
             client_secret:       "%github_secret%"
             scope:               'read:user'
+sonata_block:
+    default_contexts: [cms]
+    blocks:
+        # enable the SonataAdminBundle block
+        sonata.admin.block.admin_list:
+            contexts: [admin]
+        # ...
