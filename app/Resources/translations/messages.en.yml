@@ -5,6 +5,7 @@ sign_in: Sign in
 sign_up: Sign up
 profile: Profile
 logout: Logout
+submit: Submit
 registration:
     label_first_name: First name
     label_last_name: Last name
@@ -26,3 +27,16 @@ registration:
 
             Regards,
             TeamStarter.
+specialization:
+    Other: Other
+    chose: Chose your specializations
+    you_can_choose: You can choose <span id="spec_more">%count%</span> more <span id="spec_more_specializations">specializations</span>
+    specializations: specializations
+    specialization: specialization
+    selected: Specializations selected
+    no_specializations_selected: You need to select at least one specialization
+    too_many_specializations_selected: Too many specializations
+    cant_find_specialization: Can't find specialization
+skill:
+    add: Add skills
+    add_hint: Add from 1 to 10 of your professional skills and arrange them in order of importance for you. The more accurately you specify the skills and their order, the sooner a suitable project will find you.

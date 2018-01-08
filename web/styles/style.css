@@ -14,7 +14,32 @@ div#registration-container {
     background-color: #2C3136;
 }
 
-.register-form {
+div.ts-form-container {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: #2C3136;
+}
+
+div.ts-form-container h2 {
+    margin-top: 10px;
+   font-size: 24px;
+    font-weight: normal;
+}
+
+div.ts-form-container .hint {
+    font-size: 14px;
+    font-weight: normal;
+}
+
+div.ts-form-container label.disabled {
+    color: #AAACAF;
+}
+
+div.ts-form-container button[type="submit"] {
+    margin-top: 10px;
+}
+
+.register-form, .ts-form {
     border-radius: 5px;
     background-color: #FAFBFC;
     color: #596068;
@@ -106,14 +131,6 @@ div.register-form-sn-login {
     font-size: 14px;
 }
 
-li.menu-user-email {
-    /*display: table-cell;*/
-    /*vertical-align: middle;*/
-    /*height: 64px;*/
-    /*line-height: 64px;*/
-    /*padding-left: 10px;*/
-}
-
 li.avatar .placeholder {
     height: 64px;
     border-radius: 50%;
@@ -122,4 +139,9 @@ li.avatar .placeholder {
 li.avatar .real {
     height: 64px;
     border-radius: 50%;
+}
+
+div.skill-input {
+    padding-top: 5px;
+    padding-bottom: 5px;
 }

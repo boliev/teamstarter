@@ -1,0 +1,88 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="row">
+    <div class="ts-form-container col-md-6 offset-md-3">
+        <div class="ts-form">
+            <div class="row">
+                <div class="col-md-10 offset-md-1">
+                    <form method="post" action="{{ path('specialization_form') }}">
+                        <h2>{{ 'specialization.chose' | trans }}</h2>
+                        <p class="hint" id="you_can_choose">{{ 'specialization.you_can_choose' | trans({'%count%':3}) | raw }}</p>
+                        <p class="hint" style="display:none" id="you_cant_choose_anymore">{{ 'specialization.selected' | trans }}</p>
+                        {% for specialization in specializations %}
+                            {% if loop.first %}
+                            <div class="row">
+                            {% endif %}
+                                <div class="col-md-4"><label class="form-check-label"><input type="checkbox" class="form-check-input specialization-checkbox" name="specializations[]" value="{{ specialization.id }}" {% if(userSpecialization[specialization.id]) is defined %} checked="checked" {% endif %} />{{ specialization.title }}</label></div>
+                                    {% if loop.index is divisible by(3) or loop.last %}
+                            </div>
+                                        {% if not loop.last %}
+                        <div class="row">
+                                        {% endif %}
+                                    {% endif %}
+                        {% endfor %}
+
+                        <h2>{{ 'skill.add' | trans }}</h2>
+                            <p class="hint">{{ 'skill.add_hint' | trans }}</p>
+                            {% for i in range(1, 9) %}
+                                <div class="row">
+                                    <div class="col-md-12 skill-input">
+                                        <input type="text" class="form-control skills-input" name="skill[{{ i }}]" value="{% if(userSkills[i-1]) is defined %} {{ userSkills[i-1].skill.title }} {% endif %}">
+                                    </div>
+                                </div>
+                            {% endfor %}
+                            <div class="row"><div class="col-md-4 offset-md-4"><button type="submit" class="btn btn-primary btn-large btn-block">{{ 'submit'|trans }}</button></div></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+
+        var options = {
+            url: "{{ path('ajax_skills') }}",
+            getValue: "name",
+            list: {
+                match: {
+                    enabled: true
+                }
+            },
+            theme: "square"
+        };
+
+        $(".skills-input").easyAutocomplete(options);
+
+        $(function(){
+            validateSpecialization();
+            $(".specialization-checkbox").change(validateSpecialization);
+        });
+
+        function validateSpecialization()
+        {
+            var count = $(".specialization-checkbox:checked").length;
+            if(count >= 3) {
+                $("#you_can_choose").hide();
+                $("#you_cant_choose_anymore").show();
+                $(".specialization-checkbox:not(:checked)").attr('disabled', 'disabled');
+                $(".specialization-checkbox:not(:checked)").parent('label').addClass('disabled');
+            } else {
+                var more = 3-parseInt(count);
+                $("#you_cant_choose_anymore").hide();
+                $("#you_can_choose").show();
+                $("#spec_more").text(more);
+                $(".specialization-checkbox").removeAttr('disabled');
+                $(".specialization-checkbox").parent('label').removeClass('disabled');
+                if(more == 1) {
+                    $("#spec_more_specializations").text("{{ 'specialization.specialization' | trans }}");
+                } else {
+                    $("#spec_more_specializations").text("{{ 'specialization.specializations' | trans }}");
+                }
+            }
+        }
+    </script>
+{% endblock %}
