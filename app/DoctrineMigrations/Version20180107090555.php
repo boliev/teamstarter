@@ -30,7 +30,9 @@ class Version20180107090555 extends AbstractMigration
           (12, "Sales"),
           (13, "Analytics"),
           (14, "Content"),
-          (15, "Other")'
+          (15, "Musician"),
+          (16, "Screenwriter"),
+          (1000, "Other")'
         );
     }
 
