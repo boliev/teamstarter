@@ -14,7 +14,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Translation\TranslatorInterface;
 
 class UserSpecializationController extends AbstractController
@@ -33,9 +32,6 @@ class UserSpecializationController extends AbstractController
     public function indexAction(Request $request, SkillService $skillService, EntityManagerInterface $em, TranslatorInterface $translator)
     {
         $user = $this->getUser();
-        if (!$user) {
-            throw new AccessDeniedException();
-        }
 
         if ($request->isMethod(Request::METHOD_POST)) {
             $specs = $request->request->get('specializations');
@@ -48,25 +44,25 @@ class UserSpecializationController extends AbstractController
                 $this->saveSkills($skills, $user, $skillService, $em);
                 $em->flush();
             }
-            if($request->get('_route') === 'specify_specialization_form') {
+            if ('specify_specialization_form' === $request->get('_route')) {
                 return $this->redirectToRoute('homepage');
             }
         }
 
-        $userSkills = $em->getRepository(UserSkills::class)->findBy(['user'=>$user]);
-        usort($userSkills, function(UserSkills $a, UserSkills $b){
+        $userSkills = $em->getRepository(UserSkills::class)->findBy(['user' => $user]);
+        usort($userSkills, function (UserSkills $a, UserSkills $b) {
             return $a->getPriority() <=> $b->getPriority();
         });
-        $userSpecializations = $em->getRepository(UserSpecializations::class)->findBy(['user'=>$user]);
+        $userSpecializations = $em->getRepository(UserSpecializations::class)->findBy(['user' => $user]);
         $us = [];
-        foreach($userSpecializations as $userSpecialization) {
+        foreach ($userSpecializations as $userSpecialization) {
             $us[$userSpecialization->getSpecialization()->getId()] = $userSpecialization;
         }
 
         return $this->render('user/specialization/index.html.twig', [
             'specializations' => $em->getRepository(Specialization::class)->findAll(),
             'userSkills' => $userSkills,
-            'userSpecialization' => $us
+            'userSpecialization' => $us,
         ]);
     }
 
@@ -93,8 +89,8 @@ class UserSpecializationController extends AbstractController
      */
     private function saveSpecializations(array $specs, User $user, EntityManagerInterface $em, TranslatorInterface $translator): void
     {
-        $userSpecializations = $em->getRepository(UserSpecializations::class)->findBy(['user'=>$user]);
-        foreach($userSpecializations as $userSpecialization) {
+        $userSpecializations = $em->getRepository(UserSpecializations::class)->findBy(['user' => $user]);
+        foreach ($userSpecializations as $userSpecialization) {
             $em->remove($userSpecialization);
         }
         $em->flush();
@@ -131,15 +127,15 @@ class UserSpecializationController extends AbstractController
 
     private function saveSkills(array $skills, User $user, SkillService $skillService, EntityManagerInterface $em): void
     {
-        $userSkills = $em->getRepository(UserSkills::class)->findBy(['user'=>$user]);
-        foreach($userSkills as $userSkill) {
+        $userSkills = $em->getRepository(UserSkills::class)->findBy(['user' => $user]);
+        foreach ($userSkills as $userSkill) {
             $em->remove($userSkill);
         }
         $em->flush();
 
         foreach ($skills as $priority => $skill) {
             $slug = $skillService->generateSlug($skill);
-            if(!$slug) {
+            if (!$slug) {
                 continue;
             }
 

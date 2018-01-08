@@ -79,6 +79,48 @@ class User extends BaseUser
     private $githubId;
 
     /**
+     * @var string
+     * @ORM\Column(name="country", type="string", length=3, nullable=true)
+     */
+    private $country;
+
+    /**
+     * @var string
+     * @ORM\Column(name="city", type="string", length=100, nullable=true)
+     */
+    private $city;
+
+    /**
+     * @var string
+     * @ORM\Column(name="like_to_do", type="text")
+     */
+    private $likeToDo;
+
+    /**
+     * @var string
+     * @ORM\Column(name="expectation", type="text")
+     */
+    private $expectation;
+
+    /**
+     * @var string
+     * @ORM\Column(name="experience", type="text")
+     */
+    private $experience;
+
+    /**
+     * @var string
+     * @ORM\Column(name="about", type="text")
+     */
+    private $about;
+
+    /**
+     * @var \DateTime
+     * @ORM\Column(name="about_form_skipped", type="datetime", nullable=false)
+     */
+    private $aboutFormSkipped;
+
+    /**
      * @return string
      */
     public function getFirstName(): ?string
@@ -236,5 +278,117 @@ class User extends BaseUser
     public function setGithubId(string $githubId)
     {
         $this->githubId = $githubId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCountry(): ?string
+    {
+        return $this->country;
+    }
+
+    /**
+     * @param string $country
+     */
+    public function setCountry(string $country)
+    {
+        $this->country = $country;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCity(): ?string
+    {
+        return $this->city;
+    }
+
+    /**
+     * @param string $city
+     */
+    public function setCity(string $city)
+    {
+        $this->city = $city;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAbout(): ?string
+    {
+        return $this->about;
+    }
+
+    /**
+     * @param string $about
+     */
+    public function setAbout(string $about)
+    {
+        $this->about = $about;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLikeToDo(): ?string
+    {
+        return $this->likeToDo;
+    }
+
+    /**
+     * @param string $likeToDo
+     */
+    public function setLikeToDo(string $likeToDo)
+    {
+        $this->likeToDo = $likeToDo;
+    }
+
+    /**
+     * @return string
+     */
+    public function getExpectation(): ?string
+    {
+        return $this->expectation;
+    }
+
+    /**
+     * @param string $expectation
+     */
+    public function setExpectation(string $expectation)
+    {
+        $this->expectation = $expectation;
+    }
+
+    /**
+     * @return string
+     */
+    public function getExperience(): ?string
+    {
+        return $this->experience;
+    }
+
+    /**
+     * @param string $experience
+     */
+    public function setExperience(string $experience)
+    {
+        $this->experience = $experience;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getAboutFormSkipped(): \DateTime
+    {
+        return $this->aboutFormSkipped;
+    }
+
+    /**
+     * @param \DateTime $aboutFormSkipped
+     */
+    public function setAboutFormSkipped(\DateTime $aboutFormSkipped)
+    {
+        $this->aboutFormSkipped = $aboutFormSkipped;
     }
 }

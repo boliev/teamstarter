@@ -35,7 +35,7 @@ div.ts-form-container label.disabled {
     color: #AAACAF;
 }
 
-div.ts-form-container button[type="submit"] {
+div.ts-form-container button {
     margin-top: 10px;
 }
 
@@ -46,11 +46,8 @@ div.ts-form-container button[type="submit"] {
     padding: 20px 10px 50px 10px;
 }
 
-.register-form .form-label {
+.register-form .form-label, .ts-form .form-label {
     display: block;
-}
-
-.register-form .form-label {
     margin-top: 10px;
 }
 
