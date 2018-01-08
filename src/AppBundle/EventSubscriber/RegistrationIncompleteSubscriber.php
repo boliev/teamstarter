@@ -13,7 +13,7 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 
 class RegistrationIncompleteSubscriber implements EventSubscriberInterface
 {
-    const SPECIALIZATION_ROUTE = 'specialization_form';
+    const SPECIALIZATION_ROUTE = 'specify_specialization_form';
     /**
      * @var EntityManagerInterface
      */
@@ -44,6 +44,9 @@ class RegistrationIncompleteSubscriber implements EventSubscriberInterface
 
     public function onKernelRequest(GetResponseEvent $event)
     {
+        if($event->getRequest()->isXmlHttpRequest()) {
+            return;
+        }
         if (self::SPECIALIZATION_ROUTE === $event->getRequest()->get('_route')) {
             return;
         }

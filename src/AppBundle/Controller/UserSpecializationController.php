@@ -20,7 +20,8 @@ use Symfony\Component\Translation\TranslatorInterface;
 class UserSpecializationController extends AbstractController
 {
     /**
-     * @Route("/user/specialization", name="specialization_form")
+     * @Route("/user/specialization", name="user_specialization_form")
+     * @Route("/specify/specialization", name="specify_specialization_form")
      *
      * @param Request                $request
      * @param SkillService           $skillService
@@ -46,6 +47,9 @@ class UserSpecializationController extends AbstractController
             if ($skills) {
                 $this->saveSkills($skills, $user, $skillService, $em);
                 $em->flush();
+            }
+            if($request->get('_route') === 'specify_specialization_form') {
+                return $this->redirectToRoute('homepage');
             }
         }
 
