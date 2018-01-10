@@ -17,7 +17,7 @@ class UserAboutType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('profilePicture', FileType::class, ['label'=> 'user.profile_picture', 'mapped' => false, 'required' => false])
+            ->add('profilePicture', FileType::class, ['label' => 'user.profile_picture', 'mapped' => false, 'required' => false])
             ->add('country', CountryType::class, ['label' => 'user.country', 'placeholder' => 'user.choose_country'])
             ->add('city', TextType::class, ['label' => 'user.city'])
             ->add('likeToDo', TextareaType::class, ['label' => 'user.like_to_do'])

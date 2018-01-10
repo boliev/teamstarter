@@ -27,9 +27,9 @@ class SkillsController extends AbstractController
 
         $skills = $this->getDoctrine()->getRepository(Skill::class)->findAll();
         $result = [];
-        foreach($skills as $skill) {
+        foreach ($skills as $skill) {
             $result[] = [
-                'name' => $skill->getTitle()
+                'name' => $skill->getTitle(),
             ];
         }
 

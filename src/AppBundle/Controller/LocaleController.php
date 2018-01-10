@@ -13,8 +13,8 @@ class LocaleController extends AbstractController
     /**
      * @Route("/locale/{locale}", name="locale_change")
      *
-     * @param string   $locale
-     * @param Request  $request
+     * @param string  $locale
+     * @param Request $request
      */
     public function changeLocaleAction(string $locale, Request $request)
     {

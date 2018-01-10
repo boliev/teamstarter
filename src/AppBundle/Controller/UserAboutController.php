@@ -7,8 +7,6 @@ use AppBundle\Form\UserAboutType;
 use AppBundle\Service\UserService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Filesystem\Filesystem;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
@@ -36,8 +34,8 @@ class UserAboutController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            /** @var UploadedFile $file */
-            if($form['profilePicture']->getData()) {
+            /* @var UploadedFile $file */
+            if ($form['profilePicture']->getData()) {
                 try {
                     $file = $userService->uploadAvatar($user, $form['profilePicture']->getData());
                     $user->setProfilePicture($file);
@@ -45,7 +43,6 @@ class UserAboutController extends AbstractController
                     $form->get('profilePicture')->addError(new FormError($e->getMessage()));
                 }
             }
-
 
             $em->persist($user);
             $em->flush();

@@ -77,5 +77,4 @@ class Skill
     {
         $this->slug = $slug;
     }
-
 }
