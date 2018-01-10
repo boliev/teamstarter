@@ -40,6 +40,7 @@
         "twig/twig": "^1.0||^2.0"
     },
     "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.10",
         "phpunit/phpunit": "^6.5",
         "sensio/generator-bundle": "^3.0",
         "symfony/phpunit-bridge": "^3.0"
