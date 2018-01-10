@@ -8,7 +8,18 @@
                     <div class="col-md-10 offset-md-1">
                         <h2>{{ 'user.about_title' | trans }}</h2>
                         <p class="hint">{{ 'user.about_skip' | trans }}</p>
-                        <form method="post" action="">
+                        <form method="post" action="" enctype="multipart/form-data">
+                            <div class="row">
+                            {% if (app.user.profilePicture) %}
+                                <div class="col-md-2 about-form-avatar"><img src="{{ app.user.profilePicture }}" /></div>
+                                <div class="col-md-10">
+                            {% else %}
+                                    <div class="col-md-12">
+                            {% endif %}
+                            {{ form_label(form.profilePicture, null, {'label_attr': {'class': 'form-label'}}) }}
+                            {{ form_widget(form.profilePicture, {'attr': {'class': 'form-control input-block about-form-avatar-input'}}) }}
+                            {{ form_errors(form.profilePicture, {'attr': {'class': 'error'}}) }}
+                            </div></div>
                             <div class="row"> <div class="col-md-12">
                             {{ form_label(form.country, null, {'label_attr': {'class': 'form-label'}}) }}
                             {{ form_widget(form.country, {'attr': {'class': 'form-control input-block'}}) }}
@@ -65,3 +76,13 @@
 
     </script>
 {% endblock %}
+
+{% block form_errors %}
+    {% spaceless %}
+        {% if errors|length > 0 %}
+                {% for error in errors %}
+                    <div class="error">{{ error.message }}</div>
+                {% endfor %}
+        {% endif %}
+    {% endspaceless %}
+{% endblock form_errors %}

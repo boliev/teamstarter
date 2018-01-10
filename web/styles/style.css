@@ -84,6 +84,12 @@ span.error {
 
 div.error {
     color: #861825;
+    font-size: 12px;
+    padding: 5px;
+}
+
+li.error {
+    color: #861825;
     font-size: 16px;
     padding: 5px;
 }
@@ -141,4 +147,15 @@ li.avatar .real {
 div.skill-input {
     padding-top: 5px;
     padding-bottom: 5px;
+}
+
+div.about-form-avatar img {
+    max-width: 85px;
+    border-radius: 50%;
+}
+
+.about-form-avatar-input {
+    border: 0px;
+    background-color: transparent;
+    padding-left: 0px;
 }

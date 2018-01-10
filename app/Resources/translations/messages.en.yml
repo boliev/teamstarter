@@ -51,3 +51,6 @@ user:
     expectation: What do you expect from a project
     experience: Describe your background
     about: Tell us about yourself
+    profile_picture: Profile Picture
+    avatar_max_size_exception: Maximum size of avatar must be {size}
+    avatar_extension_exception: Avatar must be image
