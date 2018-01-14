@@ -75,6 +75,8 @@ class RegistrationIncompleteSubscriber implements EventSubscriberInterface
         $userSpecializations = $this->em->getRepository(UserSpecializations::class)->findBy(['user' => $user]);
         if (count($userSpecializations) < 1) {
             $event->setResponse(new RedirectResponse($this->router->generate(self::SPECIALIZATION_ROUTE)));
+
+            return;
         }
 
         // About form
@@ -84,12 +86,16 @@ class RegistrationIncompleteSubscriber implements EventSubscriberInterface
 
         if (null === $user->getCountry() && $now > $skippedUntil) {
             $event->setResponse(new RedirectResponse($this->router->generate(self::ABOUT_ROUTE)));
+
+            return;
         }
 
         // Contacts
         $userContacts = $this->em->getRepository(UserContacts::class)->findBy(['user' => $user]);
         if (!count($userContacts)) {
             $event->setResponse(new RedirectResponse($this->router->generate(self::CONTACTS_ROUTE)));
+
+            return;
         }
     }
 

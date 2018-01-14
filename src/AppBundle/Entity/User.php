@@ -381,6 +381,10 @@ class User extends BaseUser
      */
     public function getAboutFormSkipped(): \DateTime
     {
+        if (null === $this->aboutFormSkipped) {
+            return new \DateTime('1970-01-01 01:01:01');
+        }
+
         return $this->aboutFormSkipped;
     }
 
