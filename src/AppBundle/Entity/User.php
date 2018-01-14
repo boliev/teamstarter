@@ -92,33 +92,39 @@ class User extends BaseUser
 
     /**
      * @var string
-     * @ORM\Column(name="like_to_do", type="text")
+     * @ORM\Column(name="like_to_do", type="text", nullable=true)
      */
     private $likeToDo;
 
     /**
      * @var string
-     * @ORM\Column(name="expectation", type="text")
+     * @ORM\Column(name="expectation", type="text", nullable=true)
      */
     private $expectation;
 
     /**
      * @var string
-     * @ORM\Column(name="experience", type="text")
+     * @ORM\Column(name="experience", type="text", nullable=true)
      */
     private $experience;
 
     /**
      * @var string
-     * @ORM\Column(name="about", type="text")
+     * @ORM\Column(name="about", type="text", nullable=true)
      */
     private $about;
 
     /**
      * @var \DateTime
-     * @ORM\Column(name="about_form_skipped", type="datetime", nullable=false)
+     * @ORM\Column(name="about_form_skipped", type="datetime", nullable=true)
      */
     private $aboutFormSkipped;
+
+    /**
+     * @var UserSkills[]
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\UserSkills", orphanRemoval=true, mappedBy="user")
+     */
+    private $userSkills;
 
     /**
      * @return string
