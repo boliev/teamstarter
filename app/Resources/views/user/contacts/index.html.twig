@@ -1,0 +1,181 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% set pm = constant('AppBundle\\Entity\\Contact::PERSONAL_MESSAGES') %}
+    {% set email = constant('AppBundle\\Entity\\Contact::EMAIL') %}
+    {% set phone = constant('AppBundle\\Entity\\Contact::PHONE') %}
+    {% set skype = constant('AppBundle\\Entity\\Contact::SKYPE') %}
+<div class="row">
+    <div class="ts-form-container col-md-6 offset-md-3">
+        <div class="ts-form">
+            <div class="row">
+                <div class="col-md-10 offset-md-1">
+                    <form method="post" action="">
+                        <h2>{{ 'contacts.form_title' | trans }}</h2>
+                        <p class="hint">{{ 'contacts.form_hint' | trans}}</p>
+
+                        {# PM #}
+                        <div class="contact-row">
+                            <h3>{{ 'contacts.personal_messages' | trans }}</h3>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label class="form-check-label contacts-form-checkbox">
+                                        <input type="checkbox" class="form-check-input is-enable" name="contacts[{{ pm }}][enabled]" value="1" {% if userContacts[pm] is defined or contactsIsClear  %} checked="checked" {% endif %} />
+                                        {{ 'contacts.enabled' | trans }}
+                                    </label>
+                                    <label class="form-check-label contacts-form-checkbox">
+                                        <input type="checkbox" class="form-check-input is-visible" name="contacts[{{ pm }}][visible]" value="1" {% if (serContacts[pm] is defined and userContacts[pm].visible) or contactsIsClear %} checked="checked" {% endif %} />
+                                        {{ 'contacts.visivle' | trans }}
+                                    </label>
+                                    <label class="form-check-label contacts-form-checkbox">
+                                        <input type="checkbox" class="form-check-input" name="contacts[{{ pm }}][prefered]" value="1" {% if (userContacts[pm] is defined and userContacts[pm].prefered) or contactsIsClear %} checked="checked" {% endif %} />
+                                        {{ 'contacts.prefered' | trans }}
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 skill-input">
+                                    <input type="text" class="form-control skills-input" name="contacts[{{ pm }}][additional]" value="{% if userContacts[pm] is defined %}{{ userContacts[pm].additional }}{%  endif %}" placeholder="{{ 'contacts.personal_messages_additional_info'|trans }}">
+                                </div>
+                            </div>
+                        </div>
+
+                        {# Email #}
+                        <div class="contact-row">
+                            <h3>{{ 'contacts.email' | trans }}</h3>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label class="form-check-label contacts-form-checkbox">
+                                        <input type="checkbox" class="form-check-input is-enable" name="contacts[{{ email }}][enabled]" value="1" {% if userContacts[email] is defined %} checked="checked" {% endif %} />{{ 'contacts.enabled' | trans }}
+                                    </label>
+                                    <label class="form-check-label contacts-form-checkbox">
+                                        <input type="checkbox" class="form-check-input is-visible" name="contacts[{{ email }}][visible]" value="1" {% if userContacts[email] is defined and userContacts[email].visible %} checked="checked" {% endif %} />{{ 'contacts.visivle' | trans }}
+                                    </label>
+                                    <label class="form-check-label contacts-form-checkbox">
+                                        <input type="checkbox" class="form-check-input" name="contacts[{{ email }}][prefered]" value="1" {% if userContacts[email] is defined and userContacts[email].prefered %} checked="checked" {% endif %} />{{ 'contacts.prefered' | trans }}
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 skill-input">
+                                    <input type="text" class="form-control skills-input" name="contacts[{{ email }}][number]" value="{% if userContacts[email] is defined %}{{ userContacts[email].number }}{%  endif %}" placeholder="{{ 'contacts.your_email'|trans }}">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 skill-input">
+                                    <input type="text" class="form-control skills-input" name="contacts[{{ email }}][additional]" value="{% if userContacts[email] is defined %}{{ userContacts[email].additional }}{%  endif %}" placeholder="{{ 'contacts.email_additional_info'|trans }}">
+                                </div>
+                            </div>
+                        </div>
+
+                        {# Phone #}
+                        <div class="contact-row">
+                            <h3>{{  'contacts.phone' | trans }}</h3>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label class="form-check-label contacts-form-checkbox">
+                                        <input type="checkbox" class="form-check-input is-enable" name="contacts[{{ phone }}][enabled]" value="1" {% if userContacts[phone] is defined %} checked="checked" {% endif %}  />{{ 'contacts.enabled' | trans }}
+                                    </label>
+                                    <label class="form-check-label contacts-form-checkbox">
+                                        <input type="checkbox" class="form-check-input is-visible" name="contacts[{{ phone }}][visible]" value="1" {% if userContacts[phone] is defined and userContacts[phone].visible %} checked="checked" {% endif %} />{{ 'contacts.visivle' | trans }}
+                                    </label>
+                                    <label class="form-check-label contacts-form-checkbox">
+                                        <input type="checkbox" class="form-check-input" name="contacts[{{ phone }}][prefered]" value="1" {% if userContacts[phone] is defined and userContacts[phone].prefered %} checked="checked" {% endif %} />{{ 'contacts.prefered' | trans }}
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 skill-input">
+                                    <input type="text" class="form-control skills-input" name="contacts[{{ phone }}][number]" value="{% if userContacts[phone] is defined %}{{ userContacts[phone].number }}{%  endif %}" placeholder="{{ 'contacts.your_phone'|trans }}">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 skill-input">
+                                    <input type="text" class="form-control skills-input" name="contacts[{{ phone }}][additional]" value="{% if userContacts[phone] is defined %}{{ userContacts[phone].number }}{%  endif %}" placeholder="{{ 'contacts.phone_additional_info'|trans }}">
+                                </div>
+                            </div>
+                        </div>
+
+                        {# Skype #}
+                        <div class="contact-row">
+                            <h3>{{ 'contacts.skype' | trans }}</h3>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label class="form-check-label contacts-form-checkbox">
+                                        <input type="checkbox" class="form-check-input is-enable" name="contacts[{{ skype }}][enabled]" value="1" {% if userContacts[skype] is defined %} checked="checked" {% endif %} />{{ 'contacts.enabled' | trans }}
+                                    </label>
+                                    <label class="form-check-label contacts-form-checkbox">
+                                        <input type="checkbox" class="form-check-input is-visible" name="contacts[{{ skype }}][visible]" value="1" {% if userContacts[skype] is defined and userContacts[skype].visible %} checked="checked" {% endif %} />{{ 'contacts.visivle' | trans }}
+                                    </label>
+                                    <label class="form-check-label contacts-form-checkbox">
+                                        <input type="checkbox" class="form-check-input" name="contacts[{{ skype }}][prefered]" value="1" {% if userContacts[skype] is defined and userContacts[skype].prefered %} checked="checked" {% endif %} />{{ 'contacts.prefered' | trans }}
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 skill-input">
+                                    <input type="text" class="form-control skills-input" name="contacts[{{ skype }}][number]" value="{% if userContacts[skype] is defined %}{{ userContacts[skype].number }}{%  endif %}" placeholder="{{ 'contacts.your_skype'|trans }}">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 skill-input">
+                                    <input type="text" class="form-control skills-input" name="contacts[{{ skype }}][additional]" value="{% if userContacts[skype] is defined %}{{ userContacts[skype].number }}{%  endif %}" placeholder="{{ 'contacts.skype_additional_info'|trans }}">
+                                </div>
+                            </div>
+                        </div>
+
+
+                            <div class="row"><div class="col-md-4 offset-md-4"><button type="submit" class="btn btn-primary btn-large btn-block">{{ 'submit'|trans }}</button></div></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $(function(){
+            checkContacts();
+            $('.is-enable').on('change', function(e){
+                e.preventDefault();
+                if($('.is-enable:checked').length < 1) {
+                    $(e.target).prop('checked', 'checked');
+                    return false;
+                }
+
+                checkContacts();
+            });
+
+            $('.is-visible').on('change', function(e){
+                e.preventDefault();
+                if($('.is-visible:checked').length < 1) {
+                    $(e.target).prop('checked', 'checked');
+                    return false;
+                }
+
+                checkContacts();
+            });
+        });
+
+        function checkContacts() {
+            $.each($(".contact-row"), function (i, row) {
+                if (!$(row).find('.is-enable').first().prop('checked')) {
+                    $.each($(row).find('input'), function (j, input) {
+                        if($(input).hasClass('is-enable')) {
+                            return true;
+                        }
+
+                        $(input).prop('disabled', 'disabled');
+                    });
+                } else {
+                    $.each($(row).find('input'), function (j, input) {
+                        $(input).removeAttr('disabled');
+                    });
+                }
+            });
+        }
+
+    </script>
+{% endblock %}

@@ -55,3 +55,21 @@ user:
     avatar_max_size_exception: Maximum size of avatar must be {size}
     avatar_extension_exception: Avatar must be image
     about_form_dkipped_at: About form skipped at
+contacts:
+    form_title: How potential partners can contact you?
+    form_hint: Your contact information can be seen only by the people you give access to
+    personal_messages: Personal Messages
+    email: Email
+    your_email: Your email
+    phone: Phone
+    your_phone: Your phone
+    skype: Skype
+    your_skype: Your Skype
+    personal_messages_additional_info: Personal messages additional info
+    email_additional_info: Email additional info
+    phone_additional_info: Phone additional info
+    skype_additional_info: Skype additional info
+    enabled: Enabled
+    visivle: Visible
+    prefered: Prefered
+    no_contact: there is no contact whith id {id}

@@ -26,6 +26,12 @@ div.ts-form-container h2 {
     font-weight: normal;
 }
 
+div.ts-form-container h3 {
+    margin-top: 10px;
+    font-size: 20px;
+    font-weight: normal;
+}
+
 div.ts-form-container .hint {
     font-size: 14px;
     font-weight: normal;
@@ -158,4 +164,8 @@ div.about-form-avatar img {
     border: 0px;
     background-color: transparent;
     padding-left: 0px;
+}
+
+label.contacts-form-checkbox {
+    padding-right: 10px;
 }

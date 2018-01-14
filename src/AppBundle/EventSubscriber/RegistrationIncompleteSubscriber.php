@@ -3,6 +3,7 @@
 namespace AppBundle\EventSubscriber;
 
 use AppBundle\Entity\User;
+use AppBundle\Entity\UserContacts;
 use AppBundle\Entity\UserSpecializations;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -18,6 +19,7 @@ class RegistrationIncompleteSubscriber implements EventSubscriberInterface
     const SPECIALIZATION_ROUTE = 'specify_specialization_form';
     const ABOUT_ROUTE = 'specify_about_form';
     const ABOUT_SKIP_ROUTE = 'specify_about_form_skip';
+    const CONTACTS_ROUTE = 'specify_contacts_form';
     /**
      * @var EntityManagerInterface
      */
@@ -54,15 +56,12 @@ class RegistrationIncompleteSubscriber implements EventSubscriberInterface
         $this->authorizationChecker = $authorizationChecker;
     }
 
+    /**
+     * @param GetResponseEvent $event
+     */
     public function onKernelRequest(GetResponseEvent $event)
     {
-        if ($event->getRequest()->isXmlHttpRequest()) {
-            return;
-        }
-        if (in_array($event->getRequest()->get('_route'), [self::ABOUT_ROUTE, self::SPECIALIZATION_ROUTE, self::ABOUT_SKIP_ROUTE])) {
-            return;
-        }
-        if (!$this->authorizationChecker->isGranted('IS_AUTHENTICATED_FULLY')) {
+        if (!$this->isNeeded($event)) {
             return;
         }
 
@@ -72,11 +71,13 @@ class RegistrationIncompleteSubscriber implements EventSubscriberInterface
             return;
         }
 
+        // Specializations
         $userSpecializations = $this->em->getRepository(UserSpecializations::class)->findBy(['user' => $user]);
         if (count($userSpecializations) < 1) {
             $event->setResponse(new RedirectResponse($this->router->generate(self::SPECIALIZATION_ROUTE)));
         }
 
+        // About form
         $now = new \DateTime();
         $diff = new \DateInterval('P7D');
         $skippedUntil = $user->getAboutFormSkipped()->add($diff);
@@ -84,13 +85,53 @@ class RegistrationIncompleteSubscriber implements EventSubscriberInterface
         if (null === $user->getCountry() && $now > $skippedUntil) {
             $event->setResponse(new RedirectResponse($this->router->generate(self::ABOUT_ROUTE)));
         }
+
+        // Contacts
+        $userContacts = $this->em->getRepository(UserContacts::class)->findBy(['user' => $user]);
+        if (!count($userContacts)) {
+            $event->setResponse(new RedirectResponse($this->router->generate(self::CONTACTS_ROUTE)));
+        }
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public static function getSubscribedEvents()
     {
         return array(
             // must be registered after the default Locale listener
             KernelEvents::REQUEST => array(array('onKernelRequest', 0)),
         );
+    }
+
+    /**
+     * @param GetResponseEvent $event
+     *
+     * @return bool
+     */
+    private function isNeeded(GetResponseEvent $event): bool
+    {
+        if ($event->getRequest()->isXmlHttpRequest()) {
+            return false;
+        }
+        if (in_array($event->getRequest()->get('_route'), [
+            self::ABOUT_ROUTE,
+            self::SPECIALIZATION_ROUTE,
+            self::ABOUT_SKIP_ROUTE,
+            self::CONTACTS_ROUTE,
+        ])) {
+            return false;
+        }
+
+        try {
+            $isLoggedIn = $this->authorizationChecker->isGranted('IS_AUTHENTICATED_FULLY');
+            if (!$isLoggedIn) {
+                return false;
+            }
+        } catch (\Exception $e) {
+            return false;
+        }
+
+        return true;
     }
 }
