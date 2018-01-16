@@ -43,6 +43,7 @@ skill:
     add_hint: Add from 1 to 10 of your professional skills and arrange them in order of importance for you. The more accurately you specify the skills and their order, the sooner a suitable project will find you.
 user:
     about_title: Tell us about yourself
+    about_menu_title: About you
     about_skip: You can skip this form, but the more information you enter about yourself, the greater the chance that potential partners will work with you
     about_skip_button: Skip form
     country: Country
