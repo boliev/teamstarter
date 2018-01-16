@@ -46,6 +46,8 @@ class UserSpecializationController extends AbstractController
             }
             if ('specify_specialization_form' === $request->get('_route')) {
                 return $this->redirectToRoute('homepage');
+            } else {
+                return $this->redirectToRoute($request->get('_route'));
             }
         }
 

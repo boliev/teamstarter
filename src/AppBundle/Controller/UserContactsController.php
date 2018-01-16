@@ -41,6 +41,8 @@ class UserContactsController extends AbstractController
 
             if ('specify_contacts_form' === $request->get('_route')) {
                 return $this->redirectToRoute('homepage');
+            } else {
+                return $this->redirectToRoute($request->get('_route'));
             }
         }
 

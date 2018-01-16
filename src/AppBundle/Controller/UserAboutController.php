@@ -49,6 +49,8 @@ class UserAboutController extends AbstractController
 
             if ('specify_about_form' === $request->get('_route')) {
                 return $this->redirectToRoute('homepage');
+            } else {
+                return $this->redirectToRoute($request->get('_route'));
             }
         }
 
