@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\Collection;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -121,10 +122,22 @@ class User extends BaseUser
     private $aboutFormSkipped;
 
     /**
-     * @var UserSkills[]
+     * @var Collection
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\UserSkills", orphanRemoval=true, mappedBy="user")
      */
     private $userSkills;
+
+    /**
+     * @var Collection
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\UserSpecializations", orphanRemoval=true, mappedBy="user")
+     */
+    private $userSpecializations;
+
+    /**
+     * @var Collection
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\UserContacts", orphanRemoval=true, mappedBy="user", cascade={"persist"})
+     */
+    private $userContacts;
 
     /**
      * @return string
@@ -400,5 +413,61 @@ class User extends BaseUser
     public function setAboutFormSkipped(\DateTime $aboutFormSkipped)
     {
         $this->aboutFormSkipped = $aboutFormSkipped;
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getUserSkills(): Collection
+    {
+        return $this->userSkills;
+    }
+
+    /**
+     * @param Collection $userSkills
+     */
+    public function setUserSkills(Collection $userSkills)
+    {
+        $this->userSkills = $userSkills;
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getUserSpecializations(): Collection
+    {
+        return $this->userSpecializations;
+    }
+
+    /**
+     * @param Collection $userSpecializations
+     */
+    public function setUserSpecializations(Collection $userSpecializations)
+    {
+        $this->userSpecializations = $userSpecializations;
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getUserContacts(): Collection
+    {
+        return $this->userContacts;
+    }
+
+    /**
+     * @param Collection $userContacts
+     */
+    public function setUserContacts(Collection $userContacts)
+    {
+        $this->userContacts = $userContacts;
+    }
+
+    /**
+     * @param UserContacts $userContact
+     */
+    public function addUserContact(UserContacts $userContact)
+    {
+        $this->userContacts->add($userContact);
     }
 }

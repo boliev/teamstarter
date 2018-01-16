@@ -55,8 +55,17 @@ services:
             $kernelRoot: "%kernel.root_dir%"
 
     admin.user:
-            class: AppBundle\Admin\UserAdmin
-            arguments: [~, AppBundle\Entity\User, ~]
-            tags:
-                - { name: sonata.admin, manager_type: orm, label: User, group: 'Users' }
-            public: true
+        class: AppBundle\Admin\UserAdmin
+        arguments: [~, AppBundle\Entity\User, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: User, group: 'Users' }
+        public: true
+
+    admin.user_contacts:
+        class: AppBundle\Admin\UserContactsAdmin
+        arguments: [~, AppBundle\Entity\UserContacts, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: UserContacts, group: 'Users', show_in_dashboard: false }
+        public: true
+
+

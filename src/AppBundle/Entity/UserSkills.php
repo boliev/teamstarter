@@ -99,4 +99,9 @@ class UserSkills
     {
         $this->priority = $priority;
     }
+
+    public function __toString()
+    {
+        return $this->getSkill()->getTitle();
+    }
 }

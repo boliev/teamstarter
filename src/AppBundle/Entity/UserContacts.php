@@ -87,9 +87,9 @@ class UserContacts
     }
 
     /**
-     * @return Contact
+     * @return null|Contact
      */
-    public function getContact(): Contact
+    public function getContact(): ?Contact
     {
         return $this->contact;
     }
@@ -129,7 +129,7 @@ class UserContacts
     /**
      * @param string $additional
      */
-    public function setAdditional(String $additional)
+    public function setAdditional(?String $additional)
     {
         $this->additional = $additional;
     }
@@ -164,5 +164,17 @@ class UserContacts
     public function setPrefered(bool $prefered)
     {
         $this->prefered = $prefered;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString(): string
+    {
+        if (null === $this->contact) {
+            return '';
+        }
+
+        return $this->contact->getName();
     }
 }

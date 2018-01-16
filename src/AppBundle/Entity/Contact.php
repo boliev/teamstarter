@@ -59,4 +59,12 @@ class Contact
     {
         $this->name = $name;
     }
+
+    /**
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return $this->getName();
+    }
 }

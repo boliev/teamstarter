@@ -78,4 +78,9 @@ class UserSpecializations
     {
         $this->specialization = $specialization;
     }
+
+    public function __toString()
+    {
+        return $this->getSpecialization()->getTitle();
+    }
 }

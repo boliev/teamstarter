@@ -3,6 +3,7 @@
 namespace AppBundle\Admin;
 
 use AppBundle\Entity\UserSkills;
+use AppBundle\Entity\UserSpecializations;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -23,7 +24,8 @@ class UserAdmin extends AbstractAdmin
             ->add('firstName', 'text', ['required' => false])
             ->add('lastName', 'text', ['required' => false])
             ->add('enabled', BooleanType::class, ['required' => false])
-            ->add('userSkills', EntityType::class, ['class' => UserSkills::class])
+            ->add('userSpecializations', EntityType::class, ['class' => UserSpecializations::class, 'multiple' => true, 'attr' => array('autocomplete' => 'off')])
+            ->add('userSkills', EntityType::class, ['class' => UserSkills::class, 'multiple' => true, 'attr' => array('autocomplete' => 'off')])
             ->add('country', CountryType::class, ['required' => false])
             ->add('city', TextType::class, ['required' => false])
             ->add('likeToDo', TextareaType::class, ['label' => 'user.like_to_do', 'required' => false])
@@ -31,6 +33,11 @@ class UserAdmin extends AbstractAdmin
             ->add('experience', TextareaType::class, ['label' => 'user.experience', 'required' => false])
             ->add('about', TextareaType::class, ['label' => 'user.about', 'required' => false])
             ->add('aboutFormSkipped', DateTimeType::class, ['label' => 'user.about_form_dkipped_at', 'required' => false])
+            ->add('userContacts', 'sonata_type_collection', ['label' => 'contacts.form_title'], [
+                'edit' => 'inline',
+                'inline' => 'table',
+                'sortable' => 'position',
+            ])
         ;
     }
 
