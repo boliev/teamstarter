@@ -46,9 +46,16 @@ user:
     about_menu_title: About you
     about_skip: You can skip this form, but the more information you enter about yourself, the greater the chance that potential partners will work with you
     about_skip_button: Skip form
+    about_profile: Profile
     country: Country
     choose_country: Select country
     city: City
+    first_name: First name
+    last_name: Last name
+    new_password: New password
+    old_password: Old password
+    old_password_required: Old password required
+    old_password_invalid: Old password is invalid
     like_to_do: What would you like to do
     expectation: What do you expect from a project
     experience: Describe your background
