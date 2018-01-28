@@ -10,6 +10,13 @@
                         <h2>{{ 'specialization.chose' | trans }}</h2>
                         <p class="hint" id="you_can_choose">{{ 'specialization.you_can_choose' | trans({'%count%':3}) | raw }}</p>
                         <p class="hint" style="display:none" id="you_cant_choose_anymore">{{ 'specialization.selected' | trans }}</p>
+
+                        {% for message in app.flashes('specialization-success') %}
+                            <div class="success-message">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+
                         {% for specialization in specializations %}
                             {% if loop.first %}
                             <div class="row">

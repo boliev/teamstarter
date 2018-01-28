@@ -169,3 +169,8 @@ div.about-form-avatar img {
 label.contacts-form-checkbox {
     padding-right: 10px;
 }
+
+.success-message {
+    color: #28a745;
+    padding-bottom: 10px;
+}

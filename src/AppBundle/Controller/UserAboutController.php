@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Translation\TranslatorInterface;
 
 class UserAboutController extends AbstractController
 {
@@ -21,10 +22,12 @@ class UserAboutController extends AbstractController
      *
      * @param Request                $request
      * @param EntityManagerInterface $em
+     * @param UserService            $userService
+     * @param TranslatorInterface    $translator
      *
      * @return Response
      */
-    public function indexAction(Request $request, EntityManagerInterface $em, UserService $userService)
+    public function indexAction(Request $request, EntityManagerInterface $em, UserService $userService, TranslatorInterface $translator)
     {
         /** @var User $user */
         $user = $this->getUser();
@@ -50,6 +53,8 @@ class UserAboutController extends AbstractController
             if ('specify_about_form' === $request->get('_route')) {
                 return $this->redirectToRoute('homepage');
             } else {
+                $this->addFlash('about-success', $translator->trans('user.about_form_success'));
+
                 return $this->redirectToRoute($request->get('_route'));
             }
         }

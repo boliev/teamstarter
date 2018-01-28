@@ -56,6 +56,8 @@ class UserProfilerController extends AbstractController
             $em->persist($user);
             $em->flush();
 
+            $this->addFlash('profile-success', $translator->trans('user.profile_form_success'));
+
             return $this->redirectToRoute($request->get('_route'));
         }
 

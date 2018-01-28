@@ -47,6 +47,8 @@ class UserSpecializationController extends AbstractController
             if ('specify_specialization_form' === $request->get('_route')) {
                 return $this->redirectToRoute('homepage');
             } else {
+                $this->addFlash('specialization-success', $translator->trans('specialization.form_success'));
+
                 return $this->redirectToRoute($request->get('_route'));
             }
         }

@@ -8,6 +8,13 @@
                     <div class="col-md-10 offset-md-1">
                         <h2>{{ 'user.about_title' | trans }}</h2>
                         <p class="hint">{{ 'user.about_skip' | trans }}</p>
+
+                        {% for message in app.flashes('about-success') %}
+                            <div class="success-message">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+
                         <form method="post" action="" enctype="multipart/form-data">
                             <div class="row">
                             {% if (app.user.profilePicture) %}
