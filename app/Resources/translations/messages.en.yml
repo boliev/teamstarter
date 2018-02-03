@@ -91,4 +91,6 @@ contacts:
 project:
     create: Create a project
     project_rules: Project rules
+    project_name: Project name
     agree_button: I agree with project rules
+    next_button: Proceed

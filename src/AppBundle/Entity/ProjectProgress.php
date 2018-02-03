@@ -10,6 +10,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class ProjectProgress
 {
+    const UNFINISHED = 1;
+    const FINISHED = 2;
+    const IN_REVIEW = 3;
+    const DECLINED = 4;
+    const PUBLISHED = 5;
     /**
      * @var int
      * @ORM\Id
