@@ -174,3 +174,15 @@ label.contacts-form-checkbox {
     color: #28a745;
     padding-bottom: 10px;
 }
+
+ul.project-rules {
+   margin-left: 0px;
+    margin-top: 20px;
+   padding-left: 0px;
+}
+
+ul.project-rules li {
+    font-size: 22px;
+    margin-bottom: 30px;
+    list-style-type: upper-roman;
+}

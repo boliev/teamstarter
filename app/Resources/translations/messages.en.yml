@@ -88,3 +88,7 @@ contacts:
     prefered: Prefered
     no_contact: there is no contact whith id {id}
     form_success: Contacts were saved!
+project:
+    create: Create a project
+    project_rules: Project rules
+    agree_button: I agree with project rules
