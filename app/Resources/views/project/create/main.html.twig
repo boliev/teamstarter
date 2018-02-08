@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="row">
+        <div class="ts-form-container col-md-6 offset-md-3">
+            <div class="ts-form">
+                <div class="row">
+                    <div class="col-md-10 offset-md-1">
+                        <h2>{{ 'project.main_info' | trans }}</h2>
+                        <form method="post" action="">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    {{ form_label(form.name, null, {'label_attr': {'class': 'form-label'}}) }}
+                                    {{ form_widget(form.name, {'attr': {'class': 'form-control input-block'}}) }}
+                                    {{ form_errors(form.name, {'attr': {'class': 'error'}}) }}
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    {{ form_label(form.status, null, {'label_attr': {'class': 'form-label'}}) }}
+                                    {{ form_widget(form.status, {'attr': {'class': 'form-control input-block'}}) }}
+                                    {{ form_errors(form.status, {'attr': {'class': 'error'}}) }}
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    {{ form_label(form.country, null, {'label_attr': {'class': 'form-label'}}) }}
+                                    {{ form_widget(form.country, {'attr': {'class': 'form-control input-block'}}) }}
+                                    {{ form_errors(form.country, {'attr': {'class': 'error'}}) }}
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    {{ form_label(form.city, null, {'label_attr': {'class': 'form-label'}}) }}
+                                    {{ form_widget(form.city, {'attr': {'class': 'form-control input-block'}}) }}
+                                    {{ form_errors(form.city, {'attr': {'class': 'error'}}) }}
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    {{ form_label(form.mission, null, {'label_attr': {'class': 'form-label'}}) }}
+                                    {{ form_widget(form.mission, {'attr': {'class': 'form-control input-block'}}) }}
+                                    {{ form_errors(form.mission, {'attr': {'class': 'error'}}) }}
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    {{ form_label(form.description, null, {'label_attr': {'class': 'form-label'}}) }}
+                                    {{ form_widget(form.description, {'attr': {'class': 'form-control input-block', 'rows': 10}}) }}
+                                    {{ form_errors(form.description, {'attr': {'class': 'error'}}) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 offset-md-4">
+                                    {{ form_row(form._token) }}
+                                    <button type="submit" class="btn btn-primary btn-block">{{ 'project.next_button'|trans }}</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

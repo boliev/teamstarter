@@ -20,6 +20,12 @@ class ProjectDoc
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $name;
+
+    /**
+     * @var string
      * @ORM\Column(type="string", length=255, nullable=false)
      */
     private $url;
@@ -49,7 +55,7 @@ class ProjectDoc
     /**
      * @return string
      */
-    public function getUrl(): string
+    public function getUrl(): ?string
     {
         return $this->url;
     }
@@ -76,5 +82,21 @@ class ProjectDoc
     public function setProject(Project $project)
     {
         $this->project = $project;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $name
+     */
+    public function setName(string $name)
+    {
+        $this->name = $name;
     }
 }

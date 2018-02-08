@@ -91,6 +91,19 @@ contacts:
 project:
     create: Create a project
     project_rules: Project rules
-    project_name: Project name
+    main_info: Project main information
+    docs: Project documentation
+    form_name: Name
+    form_status: Status
+    form_country: Country
+    form_country_placeholder: Chose country
+    form_city: City
+    form_status_placeholder: Chose status
+    form_mission: Mission
+    form_description: Description
     agree_button: I agree with project rules
     next_button: Proceed
+    back_button: Back
+    no_docs_button: I don't have any documentation
+    doc_name: Document name
+    doc_url: Document URL

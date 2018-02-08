@@ -26,6 +26,12 @@ class Project
     private $name;
 
     /**
+     * @var User
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="projects")
+     */
+    private $user;
+
+    /**
      * @var ProjectProgress
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\ProjectProgress", inversedBy="projects")
      */
@@ -102,7 +108,7 @@ class Project
     }
 
     /**
-     * @return string
+     * @return string | null
      */
     public function getName(): ?string
     {
@@ -134,9 +140,9 @@ class Project
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->description;
     }
@@ -150,9 +156,9 @@ class Project
     }
 
     /**
-     * @return string
+     * @return string | null
      */
-    public function getMission(): string
+    public function getMission(): ?string
     {
         return $this->mission;
     }
@@ -166,9 +172,9 @@ class Project
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getCountry(): string
+    public function getCountry(): ?string
     {
         return $this->country;
     }
@@ -182,9 +188,9 @@ class Project
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getCity(): string
+    public function getCity(): ?string
     {
         return $this->city;
     }
@@ -198,9 +204,9 @@ class Project
     }
 
     /**
-     * @return ProjectStatus
+     * @return ProjectStatus|null
      */
-    public function getStatus(): ProjectStatus
+    public function getStatus(): ?ProjectStatus
     {
         return $this->status;
     }
@@ -275,5 +281,21 @@ class Project
     public function setIsDeleted(bool $isDeleted)
     {
         $this->isDeleted = $isDeleted;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
     }
 }
