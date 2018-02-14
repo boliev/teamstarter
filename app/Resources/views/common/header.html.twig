@@ -1,0 +1,108 @@
+{% include 'common/mobile_header.html.twig' %}
+<header id="apus-header" class="site-header header-v2 hidden-sm hidden-xs">
+    <div id="apus-topbar" class="apus-topbar">
+        <div class="container">
+            <div class="topbar-inner clearfix">
+                <div class="pull-left contact-topbar-2">
+                    <aside id="text-7" class="widget widget_text">
+                        <div class="textwidget">
+                            <div class="contact">
+                           <span class="phone">
+                              Phone: (800) 154 2545 , 548 2457
+                           </span>
+                                <span class="email">
+                              Email : <a href="#">noanet@example.com</a>
+                           </span>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+                <div class="pull-right widget-social">
+                    <div id="apus_socials_widget-4" class=" widget_apus_socials_widget">
+                        <ul class="social list-unstyled list-inline bo-sicolor">
+                            <li>
+                                <a href="#" class="facebook">
+                                    <i class="fa fa-facebook bo-social-facebook">&nbsp;</i><span class="hidden">Facebook</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="twitter">
+                                    <i class="fa fa-twitter bo-social-twitter">&nbsp;</i><span class="hidden">Twitter</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="youtube">
+                                    <i class="fa fa-youtube bo-social-youtube">&nbsp;</i><span class="hidden">Youtube</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="linkedin">
+                                    <i class="fa fa-linkedin bo-social-linkedin">&nbsp;</i><span class="hidden">LinkedIn</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="header-main clearfix main-sticky-header-wrapper" style="height: 128px;">
+        <div class="main-sticky-header">
+            <div class="container">
+                <div class="header-inner">
+                    <div class="row">
+                        <!-- LOGO -->
+                        <div class="col-md-3">
+                            <div class="logo-in-theme pull-left">
+                                <div class="logo logo-theme">
+                                    <a href="/">
+                                        <img src="/assets/img/logo.png" alt="logo">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-9 p-static">
+                            <div class="main-menu pull-left">
+                                <nav data-duration="400" class="hidden-xs hidden-sm apus-megamenu slide animate navbar">
+                                    <div class="collapse navbar-collapse">
+                                        <ul id="primary-menu" class="nav navbar-nav megamenu">
+                                            <li><a href="/">Home</a></li>
+                                            <li><a href="blog-categories-2.html">Blog</a></li>
+                                            <li><a href="pricing.html">Pricing</a></li>
+                                            <li><a href="service.html">Our Services</a></li>
+                                            <li><a href="about.html">About us</a></li>
+                                            <li><a href="contact.html">Contact us</a></li>
+                                        </ul>
+
+                                    </div>
+                                </nav>
+                            </div>
+                            <div class="apus-search">
+                                <button type="button" class="button-show-search button-setting"><i class="mn-icon-52"></i></button>
+                            </div>
+                            <div class="setting-popup pull-right">
+                                <button id="myBtn" class="modal-btn-1 v-2"><i class="mn-icon-410"></i></button>
+
+                                <!-- The Modal -->
+                                {% include 'common/login_modal.html.twig' %}
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="full-top-search-form">
+                        <div class="apus-search-form">
+                            <form action="#" method="get">
+                                <div class="input-group">
+                                    <input type="text" placeholder="Search" name="s" class="apus-search form-control">
+                                    <button class="close-search-form" type="button">
+                                        <i class="mn-icon-4"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

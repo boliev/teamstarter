@@ -1,29 +1,66 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-        <link href="https://unpkg.com/basscss@8.0.2/css/basscss.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="/styles/style.css">
-        <link rel="stylesheet" href="{{ asset('js/EasyAutocomplete-1.3.5/easy-autocomplete.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('js/select2-4.0.5/css/select2.min.css') }}">
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-            {% include 'top_menu.html.twig' %}
-        <div class="container-fluid" id="main-container">
-            {% block body %}{% endblock %}
-        </div>
-        <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
-        <script src="https://use.fontawesome.com/6edd2827a2.js"></script>
-        <script src="{{ asset('js/EasyAutocomplete-1.3.5/jquery.easy-autocomplete.min.js') }}" ></script>
-        <script src="{{ asset('js/select2-4.0.5/js/select2.min.js') }}" ></script>
-        <script src="{{ asset('js/main.js') }}" ></script>
-        {% block javascripts %}{% endblock %}
-    </body>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>About us</title>
+    <meta name="description" content="Noanet- is a Ultimate Multipurpose Premium  HTML5 Responsive Templeate by webstrot Team. You can use this for anykind of multi-purpose Bussiness"/>
+    <meta name="keywords" content="Premium HTML5 Template"/>
+    <meta name="author" content="noanet"/>
+    <!-- Mobile Specific Meta -->
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+    <meta name="MobileOptimized" content="320"/>
+    <!-- css Library -->
+    <!-- boorstrap -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.min.css">
+    <!-- themify-icon.css -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/font-awesome.min.css">
+    <!-- owl-carousel -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/owl.theme.css">
+    <!-- Video-min -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/video.min.css">
+    <!-- animate.css -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/animate.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/font-monia.css">
+    <!-- menu style -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/menu.css">
+    <!-- style -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/template.css">
+    <!-- responsive.css -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/responsive.css">
+    <!-- space.css -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/space.css">
+    {% block stylesheets %}{% endblock %}
+</head>
+<!-- /end of head -->
+<body>
+{#<div id="preloader"></div>#}
+{% include 'common/header.html.twig' %}
+    {% block body %}{% endblock %}
+
+{% include 'common/footer.html.twig' %}
+
+<!-- End of footer
+============================================= -->
+<!--  Js Library -->
+<script type="text/javascript" src="/assets/js/jquery-2.1.4.min.js"></script>
+<!-- Include  for bootstrap -->
+<script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
+<!-- Include  for Owl-carousel -->
+<script type="text/javascript" src="/assets/js/owl.carousel.min.js"></script>
+<!-- Include  for magnific-popup -->
+<script type="text/javascript" src="/assets/js/jquery.magnific-popup.min.js"></script>
+<!-- Include for counter up -->
+<script type="text/javascript" src="/assets/js/waypoints.min.js"></script>
+<script type="text/javascript" src="/assets/js/jquery.counterup.min.js"></script>
+<!-- Include Apper Js -->
+<script type="text/javascript" src="/assets/js/jquery.isotope.min.js"></script>
+<!-- Include Apper Js -->
+<script type="text/javascript" src="/assets/js/wow.min.js"></script>
+<script type="text/javascript">new WOW().init();</script>
+<!-- Include script.js -->
+<script type="text/javascript" src="/assets/js/script.js"></script>
+{% block javascripts %}{% endblock %}
+</body>
 </html>

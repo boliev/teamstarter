@@ -1,0 +1,380 @@
+/* 
+FundMe - is a Premium HTML Responsive Templeate by HTMLmate Team. You can use this for anykind of Nonprofit website
+
+File:           CSS Base
+Version:        1.1
+Last change:     
+Author:        HTMLmate
+
+*/
+
+/*-------- css code for responsive layout  --------*/
+/*  To make Responsive
+---------------------------------------------------------------------- /
+*   1 - media screen and (max-width: 1199px)
+*   2 - media screen and (max-width: 991px)
+*   3 - media screen and (max-width: 767px)
+*   4 - media screen and (max-width: 680px)
+*   5 - media screen and (max-width: 480px)
+*
+---------------------------------------------------------------------- 
+
+
+/*  1 - media screen and (max-width: 1199px)
+------------------------------------------------------------------------------------------ */
+
+@media screen and (max-width: 991px) { 
+
+	.kc-pricing-tables.kc-pricing-layout-2 {
+		margin-bottom: 30px;
+	}
+	.partner-sllide-content .owl-controls {
+		display: none;
+	}
+	.contact-info .media {
+		width: 100%;
+	}
+	.our-news-section .meta {
+		margin-top: 15px;
+	}
+	.header-mobile .btn.offcanvas {
+		box-shadow: none;
+	}
+	.tp-bannertimer {
+		display: none;
+	}
+	.content-button a {
+		padding: 15px 25px 15px 35px;
+	}
+	.free-download-section.v-2 { 
+		background-size: cover;
+	}
+	.footer-area-v2-section .kc-elm.kc-css-555002.kc_col-sm-3.kc_column_inner.kc_col-sm-3 {
+		padding-left: 15px;
+	}
+	.widget-social .social > li {
+		margin-left: 3px;
+	}
+	.kc-title-wrap.left.lighting .kc_title:after {
+		display: none;
+	}
+	.who-we-are-section .section-content, .our-team-section .section-content {
+		padding-top: 40px;
+	}
+	.grid-20 {
+		width: 25.5%;
+		margin: .7%; 
+	}
+	.navbar-collapse {
+		border-bottom: 1px solid #ccc;
+
+	}
+}
+
+@media screen and (max-width: 767px) {  
+	.section-content {
+		padding: 60px 0px;
+	}
+	.kc-elm.kc-css-294644.kc-title-wrap.dark {
+		padding-bottom: 35px;
+	}
+	.container {
+		padding: 0px 30px;
+	}
+	.service-pic{
+		display: none;
+	}
+	.kc_counter_box {
+		margin-bottom: 55px;
+	}
+	.love-our-network-section .kc-elm.kc-css-294644.kc-title-wrap.dark {
+		padding-bottom: 40px;
+	}
+	.newslatter-section {
+		text-align: center;
+	}
+	.layout-blog article {
+		max-width: 390px;
+		padding-left: 15px;
+	}
+	.footer-area-section .search-form {
+		margin-top: 25px;
+		max-width: 300px;
+	}
+	.kc_text_block .intro .description {
+		padding: 20px 0 20px;
+	}
+	.acc-content-inner {
+		padding: 25px 10px;
+	}
+	.acc-btn {
+		padding: 10px 10px;
+	}
+	.your-plan-section {
+		background-size: cover;
+	}
+	.kc-elm.kc-css-835772.kc-pricing-tables.kc-pricing-layout-2.text-center.mddl {
+		position: relative;
+		top: 0;
+	}
+	.pricing-2-section .kc-elm.kc-css-835772.kc-pricing-tables.kc-pricing-layout-2 {
+		background-color: #f3f3f3;
+	}
+	.pricing-2-section .content-icon-image-header {
+		margin-bottom: 15px;
+	}
+	.instagram-widget .col-md-4{
+		float: left;
+	}
+	.contact-item.text-center.colmd3 {
+		margin-bottom: 25px;
+	}
+	.grid-20 {
+		width: 30.5%;
+		margin: .7%; 
+	}
+	.your-personal-section .p-img {
+		position: relative;
+		top: 0;
+	}
+}
+
+@media screen and (max-width: 680px) { 
+	.love-our-network-section .section-content {
+		padding-bottom: 35px;
+	}
+	.acc-container {
+		margin: 20px auto 0 auto;
+	} 
+	.section-content {
+		padding: 40px 0px;
+	}
+	.client-say-section .section-padding {
+		padding-bottom: 20px;
+	}
+	.faq-content {
+		padding-top: 15px;
+	}
+	.ques-form:after {
+		display: none;
+	}
+	.your-personal-section .kc-css-320356 p {
+		font-size: 30px;
+	}
+}
+
+@media screen and (max-width: 650px) {  
+	.active-mobile {
+		margin-left: 20px;
+	}
+	.bg-primary {
+		padding-left: 20px;
+	}
+	.welcome-area-section .section-content {
+		padding-bottom: 60px;
+	}
+	.padding-top-70 {
+		padding-top: 15px !important;
+	}
+	.gallery-area-section .btn-primary {
+		margin-left: 0;
+	}
+	.section-content-2 {
+		padding: 30px 0px;
+	}
+	.few-ques-asection .kc-elm.kc-css-522062.kc_text_block {
+		padding-bottom: 0px;
+	}
+	.why-choose-us .section-content {
+		padding: 0;
+	}
+	.footer-area-v2-section .section-content {
+		padding-bottom: 25px;
+	}
+}
+
+@media screen and (max-width: 420px)  {
+	.contact-info .phone {
+		font-size: 24px;
+	}
+	.kc_text_block .intro .title {
+		font-size: 24px;
+	}
+	.kc_text_block .intro .description {
+		padding: 20px 0 0px;
+	}
+	.media {
+		margin-top: 0px;
+	}
+	.section-content-2 {
+		padding: 35px 0px;
+	}
+	.service-section .kc-elm.kc-css-294644.kc-title-wrap.dark {
+		padding-bottom: 30px;
+	}
+	.kc_counter_box .counterup {
+		font-size: 30px;
+	}
+	.kc_counter_box h4 {
+		font-size: 16px;
+	}
+	.kc_counter_box .element-icon {
+		padding: 23px 23px 55px 48px;
+	}
+	.copy-right .widget {
+		float: left !important;
+	}
+	.kc-elm.kc-css-294644.kc-title-wrap.dark {
+		padding-bottom: 15px;
+	}
+	.love-our-network-section.v-2 .section-content {
+		padding: 40px 0px 0px;
+	}
+	.why-choose-us .feature-box {
+		padding-bottom: 20px;
+	}
+	.testimonial-slide-content .owl-controls, .who-we-are-slide-content .owl-controls {
+		position: relative !important;
+		margin-top: 20px;
+	}
+	.slider-name-des .name-client {
+		margin-top: 25px;
+	}
+	.newslatter-section.v-v2 .kc-elm.kc-css-154902.kc_text_block {
+		border-right: none;
+	}
+	.kc-css-46029 {
+		padding-left: 0;
+	}
+	.callto-action .title {
+		text-align: -webkit-auto;
+	}
+	.newslatter-section.v-v2 .kc-css-46029 p {
+		text-align: justify;
+	}
+	.newslatter-section.v-v2 .callto-action {
+		text-align: left;
+	}
+	
+	.footer-area-v2-section .kc-elm.kc-css-555002.kc_col-sm-3.kc_column_inner.kc_col-sm-3 {
+		padding-left: 0;
+	}
+	.why-choose-us .section-content {
+		padding: 35px 0px 0px;
+	}
+	.widget-newletter .input-group-btn .btn {
+		padding: 10px 30px;
+	}
+	.callto-action .btn {
+		padding: 15px 15px;
+	}
+	.footer-area-v2-section .section-content {
+		padding-bottom: 20px;
+	}
+	.free-download-section.v-2 .contact-info .media {
+		border-right: none;
+	}
+	.widget-features-box.style1 .fbox-content {
+		padding-top: 0px;
+	}
+	.video-tour-section {
+		display: none;
+	}
+	.partner-slide-section.v2 {
+		margin-top: 0px;
+	}
+	.blog-pagination .pagination li a.next-p  {
+		display: none;
+	}
+	.margin-top-40 {
+		margin-top: 0;
+	}
+	.margin-left-20 {
+		margin-left: 0;
+	}
+	.entry-meta {
+		margin: 0;
+	}
+	.apus-social-share {
+		display: none;
+	}
+	.grid-20 {
+		width: 98.5%;
+		margin: .7%; 
+	}
+
+	.fbox-img {
+		margin-bottom: 15px;
+	}
+	.feature-box-section .section-content {
+		padding-bottom: 0px;
+	}
+}
+
+@media screen and (max-width: 375px)  { 
+	.kc_counter_box .element-icon {
+		display: none;
+	} 
+	.blog-pagination .pagination li a {
+		margin-right: 5px; 
+	}
+}
+@media (max-width: 991px){
+	.lv_search_bar{
+    float: right;
+    width: auto;
+    text-align: center;
+    padding: 5px 15px;
+    color: #000000;
+    font-size: 16px;
+    cursor: pointer;
+}
+.lv_search_box{
+    position: absolute;
+    right: 15px;
+    top: 100%;
+    padding: 20px;
+    display: inline-block;
+    border-radius: 0px;
+    -webkit-box-shadow: 0px 2px 7px -3px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0px 2px 7px -3px rgba(0, 0, 0, 0.5);
+    -o-box-shadow: 0px 2px 7px -3px rgba(0, 0, 0, 0.5);
+    -ms-box-shadow: 0px 2px 7px -3px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 5px 8px -5px rgba(0, 0, 0, 0.5);
+    background-color: #ffffff;
+    display: none;
+    z-index: 1000;
+}
+.lv_search_box input{
+    float: left;
+    width: calc(100% - 45px);
+    padding: 0px 10px;
+    height: 45px;
+    border: 1px solid #e1e1e1;
+    border-right: 0px;
+}
+.lv_search_box button{
+    width: 45px;
+    height: 45px;
+    border: 1px solid #e1e1e1;
+    border-left: none;
+    background-color: #ffffff;
+    text-align: center;
+    padding: 0px;
+	-webkit-transition: all 0.5s;
+	-o-transition: all 0.5s;
+	-ms-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+	transition: all 0.5s;
+}
+.lv_search_box button:hover{
+	color:#ffffff;
+	background:#42a5f5;
+	border-color:#6e65de;
+	-webkit-transition: all 0.5s;
+	-o-transition: all 0.5s;
+	-ms-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+	transition: all 0.5s;
+}
+}

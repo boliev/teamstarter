@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="row">
+        <div class="ts-form-container col-md-6 offset-md-3">
+            <div class="ts-form">
+                <div class="row">
+                    <div class="col-md-10 offset-md-1">
+                        <h2>{{ 'project.project_rules' | trans }}</h2>
+                        {{ rulesText | raw}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 offset-md-4">
+                        <button type="button" onclick="window.location.href='{{ path('project_create_name') }}'" class="btn btn-primary btn-large">{{ 'project.agree_button'|trans }}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
