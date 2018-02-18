@@ -1,53 +1,56 @@
 {% extends "@FOSUser/layout.html.twig" %}
 {% block fos_user_content %}
-    <div id="registration-container">
-        <div class="row">
-            <div class="offset-md-2 col-md-5 elevator-speech">
-                <h1 class="text-white lh-condensed-ultra mb-3">{{ 'ProjectTitle'|trans }}</h1> {{ 'registration.description'|trans }}
-                <h2 class="text-white lh-condensed-ultra mb-3">{{ 'registration.for_founders_title'|trans }}</h2>
-                <p>{{ 'registration.for_founders_description'|trans }}</p>
-                <h2 class="text-white lh-condensed-ultra mb-3">{{ 'registration.for_professionals_title'|trans }}</h2>
-                <p>{{ 'registration.for_professionals_description'|trans }} </p>
-            </div>
-            <div class="col-md-3">
-                <div class="register-form">
-                    <form method="post" action="{{ path('fos_user_registration_register') }}">
-                        <div class="row justify-content-center">
-                            <div class="col-md-10">
-                                {{ form_label(form.firstName, 'registration.label_first_name'|trans, {'label_attr': {'class': 'form-label'}}) }}
-                                {{ form_widget(form.firstName, {'attr': {'class': 'form-control input-block'}}) }}
-                                {{ form_errors(form.firstName)}}
+    <div class ="container">
+        <div class="row section-content-2">
 
-                                {{ form_label(form.lastName, 'registration.label_last_name'|trans, {'label_attr': {'class': 'form-label'}}) }}
-                                {{ form_widget(form.lastName, {'attr': {'class': 'form-control input-block'}}) }}
-                                {{ form_errors(form.lastName)}}
+            <div class="form-section">
+                <div class="col-sm-8 col-sm-offset-2">
 
-                                {{ form_label(form.email, null, {'label_attr': {'class': 'form-label'}}) }}
-                                {{ form_widget(form.email, {'attr': {'class': 'form-control input-block'}}) }}
-                                {{ form_errors(form.email)}}
-
-                                {{ form_label(form.plainPassword.first, null, {'label_attr': {'class': 'form-label'}}) }}
-                                {{ form_widget(form.plainPassword.first, {'attr': {'class': 'form-control input-block'}}) }}
-                                {{ form_errors(form.plainPassword.first)}}
-
-                                {{ form_label(form.plainPassword.second, null, {'label_attr': {'class': 'form-label'}}) }}
-                                {{ form_widget(form.plainPassword.second, {'attr': {'class': 'form-control input-block'}}) }}
-                                {{ form_errors(form.plainPassword.second)}}
-                                <div class="container register-form-sn-login">
-                                    <a href="/login/facebook"><i class="fa fa-facebook-official" aria-hidden="true"></i></a>
-                                    <a href="/login/google"><i class="fa fa-google" aria-hidden="true"></i></a>
-                                    <a href="/login/github"><i class="fa fa-github" aria-hidden="true"></i></a>
-                                </div>
-                                <input type="hidden" id="fos_user_registration_form_username" name="fos_user_registration_form[username]">
-                                {{ form_widget(form._token) }}
-                                <div class="bottom-submit">
-                                    <button type="submit" class="btn btn-primary btn-large btn-block">{{ 'registration.signup'|trans }}</button>
-                                </div>
-                                <div class="privacy">
-                                    {{ 'registration.form_terms'|trans|raw }}
-                                </div>
-                            </div>
+                    <div class="kc-elm kc-css-839835 kc-title-wrap  left dark">
+                        <div class="title-wrapper">
+                            <h3 class="kc_title"><span>Sign</span> Up</h3>
                         </div>
+                    </div>
+
+                    <form method="post" action="{{ path('fos_user_registration_register') }}">
+
+                        <div class="form-group">
+                            {{ form_widget(form.firstName, {'attr': {'class': 'margin-bottom-10 margin-top-20', 'placeholder': 'registration.label_first_name'}}) }}
+                            {{ form_errors(form.firstName)}}
+                        </div>
+
+                        <div class="form-group">
+                            {{ form_widget(form.lastName, {'attr': {'class': 'margin-bottom-10', 'placeholder': 'registration.label_last_name'}}) }}
+                            {{ form_errors(form.lastName)}}
+                        </div>
+
+                        <div class="form-group">
+                            {{ form_widget(form.email, {'attr': {'class': 'margin-bottom-10', 'placeholder':   'registration.label_email' | trans }}) }}
+                            {{ form_errors(form.email)}}
+                        </div>
+
+                        <div class="form-group">
+                            {{ form_widget(form.plainPassword.first, {'attr': {'class': 'margin-bottom-10', 'placeholder': 'registration.label_fassword_first' | trans}}) }}
+                            {{ form_errors(form.plainPassword.first)}}
+                        </div>
+                        <div class="form-group">
+                            {{ form_widget(form.plainPassword.second, {'attr': {'class': 'margin-bottom-10', 'placeholder': 'registration.label_fassword_second' | trans}}) }}
+                            {{ form_errors(form.plainPassword.second)}}
+                        </div>
+                        <div class="register-form-sn-login text-center">
+                            <a href="/login/facebook"><i class="fa fa-facebook-official" aria-hidden="true"></i></a>
+                            <a href="/login/google"><i class="fa fa-google" aria-hidden="true"></i></a>
+                            <a href="/login/github"><i class="fa fa-github" aria-hidden="true"></i></a>
+                        </div>
+                        <input type="hidden" id="fos_user_registration_form_username" name="fos_user_registration_form[username]">
+                        {{ form_widget(form._token) }}
+
+                        <p><input type="submit" value="{{ 'registration.signup'|trans }}" class="wpcf7-form-control wpcf7-submit btn btn-primary btn-outline"><span class="ajax-loader"></span></p>
+
+                        <div class="privacy text-center">
+                            {{ 'registration.form_terms'|trans|raw }}
+                        </div>
+
                     </form>
                 </div>
             </div>

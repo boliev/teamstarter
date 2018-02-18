@@ -9,6 +9,9 @@ submit: Submit
 registration:
     label_first_name: First name
     label_last_name: Last name
+    label_email: Email
+    label_fassword_first: Password
+    label_fassword_second: Repeat password
     description: It's a service to build your team when you don't have investors. It is an opportunity to find not employees but fellow enthusiasts, who can work for your project as a hobby, in their spare time, gaining useful experience, portfolio and profit in the future.
     for_founders_title: TeamStarter for project founders
     for_founders_description: The best way to translate your idea into reality. We help you to assemble your team as soon as possible and totally free. All you need is an interesting and perspective project.

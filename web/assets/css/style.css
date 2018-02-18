@@ -1448,9 +1448,107 @@ span.close-1 {
 	display: none;
 }
 
-div.modal-login-social a {
+span.error {
+	color: red;
+	font-size: 12px;
+}
+
+div.modal-login-social a, div.register-form-sn-login a {
 	font-size: 40px;
 	padding-right: 5px;
 	padding-left: 5px;
-	color: #42a5f5;
+	/*color: #42a5f5;*/
+}
+
+.form-section textarea,
+.form-section input:not(.btn), .form-section select {
+	width: 100%;
+	max-width: 100%;
+	background: #fafafa;
+	border: none;
+	margin: 0 0 30px;
+	padding: 10px 30px;
+	font-size: 16px;
+	border-radius: 50px;
+	-webkit-border-radius: 50px;
+	-moz-border-radius: 50px;
+	-ms-border-radius: 50px;
+	-o-border-radius: 50px;
+	-webkit-transition: all 0.3s ease-in-out 0s;
+	-o-transition: all 0.3s ease-in-out 0s;
+	transition: all 0.3s ease-in-out 0s;
+	font-style: italic;
+	color: #666666;
+}
+.form-section textarea {
+	max-height: 170px;
+	margin: 0;
+	padding-top: 25px;
+	border-radius: 25px;
+	-webkit-border-radius: 25px;
+	-moz-border-radius: 25px;
+	-ms-border-radius: 25px;
+	-o-border-radius: 25px;
+	margin-bottom: 10px;
+}
+.form-section input.btn {
+	background: #42a5f5;
+	color: #ffffff;
+	border: none;
+	padding: 10px 55px;
+	margin: 0 auto;
+	text-align: center;
+	display: block;
+}
+.form-section input.btn:hover {
+	background: #42a5f5;
+}
+.form-section select {
+	border: none;
+	outline: none;
+	display: inline-block;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	cursor: pointer;
+	position: relative;
+}
+.form-section select:after {
+	content: '<>';
+	font: 11px "Consolas", monospace;
+	color: #aaa;
+	-webkit-transform: rotate(90deg);
+	-moz-transform: rotate(90deg);
+	-ms-transform: rotate(90deg);
+	transform: rotate(90deg);
+	right: 8px;
+	top: 2px;
+	padding: 0 0 2px;
+	border-bottom: 1px solid #ddd;
+	position: absolute;
+	pointer-events: none;
+}
+.form-section select:before {
+	content: '';
+	right: 6px;
+	top: 0px;
+	width: 20px;
+	height: 20px;
+	background: #f8f8f8;
+	position: absolute;
+	pointer-events: none;
+	display: block;
+}
+
+.btn-left .form-section input.btn {
+	margin: 0;
+}
+
+.privacy {
+	font-size: 11px;
+}
+
+.flash-success, .message {
+	text-align: center;
+	margin: 10px;
 }
