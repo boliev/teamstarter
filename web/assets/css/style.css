@@ -1552,3 +1552,32 @@ div.modal-login-social a, div.register-form-sn-login a {
 	text-align: center;
 	margin: 10px;
 }
+
+.form-section input[type="checkbox"] {
+	width: auto;
+	margin-right: 10px;
+}
+
+.form-section label {
+	font-weight: normal;
+}
+.form-section label.disabled {
+	color: #AAACAF;
+}
+
+.easy-autocomplete-container {
+	margin-top: -30px;
+}
+
+.form-section .hint {
+	font-style: italic;
+	color: #666666;
+	font-family: Lato;
+	font-size: 16px;
+	font-weight: 400;
+	border-top: 1px dashed #e1e1e1;
+	border-bottom: 1px dashed #e1e1e1;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	margin-bottom: 15px;
+}

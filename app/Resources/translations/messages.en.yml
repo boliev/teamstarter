@@ -32,7 +32,7 @@ registration:
             TeamStarter.
 specialization:
     Other: Other
-    chose: Chose your specializations
+    chose: <span>Chose your</span> specializations
     you_can_choose: You can choose <span id="spec_more">%count%</span> more <span id="spec_more_specializations">specializations</span>
     specializations: specializations
     specialization: specialization
@@ -44,7 +44,7 @@ specialization:
     form_success: Specializations & skills were saved!
 
 skill:
-    add: Add skills
+    add: <span>Add your</span> skills
     add_hint: Add from 1 to 10 of your professional skills and arrange them in order of importance for you. The more accurately you specify the skills and their order, the sooner a suitable project will find you.
 user:
     about_title: Tell us about yourself

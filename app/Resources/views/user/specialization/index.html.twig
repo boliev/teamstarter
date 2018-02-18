@@ -1,13 +1,17 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<div class="row">
-    <div class="ts-form-container col-md-6 offset-md-3">
-        <div class="ts-form">
-            <div class="row">
-                <div class="col-md-10 offset-md-1">
+    <div class ="container">
+        <div class="row section-content-2">
+
+            <div class="form-section">
+                <div class="col-sm-8 col-sm-offset-2">
                     <form method="post" action="">
-                        <h2>{{ 'specialization.chose' | trans }}</h2>
+                        <div class="kc-elm kc-title-wrap  left dark">
+                            <div class="title-wrapper">
+                                <h3 class="kc_title">{{ 'specialization.chose' | trans | raw }}</h3>
+                            </div>
+                        </div>
                         <p class="hint" id="you_can_choose">{{ 'specialization.you_can_choose' | trans({'%count%':3}) | raw }}</p>
                         <p class="hint" style="display:none" id="you_cant_choose_anymore">{{ 'specialization.selected' | trans }}</p>
 
@@ -30,22 +34,25 @@
                                     {% endif %}
                         {% endfor %}
 
-                        <h2>{{ 'skill.add' | trans }}</h2>
+                            <div class="kc-elm kc-title-wrap  left dark">
+                                <div class="title-wrapper">
+                                    <h3 class="kc_title">{{ 'skill.add' | trans | raw }}</h3>
+                                </div>
+                            </div>
                             <p class="hint">{{ 'skill.add_hint' | trans }}</p>
                             {% for i in range(1, 9) %}
                                 <div class="row">
                                     <div class="col-md-12 skill-input">
-                                        <input type="text" class="form-control skills-input" name="skill[{{ i }}]" value="{% if(userSkills[i-1]) is defined %} {{ userSkills[i-1].skill.title }} {% endif %}">
+                                        <input type="text" class="skills-input" name="skill[{{ i }}]" value="{% if(userSkills[i-1]) is defined %} {{ userSkills[i-1].skill.title }} {% endif %}">
                                     </div>
                                 </div>
                             {% endfor %}
-                            <div class="row"><div class="col-md-4 offset-md-4"><button type="submit" class="btn btn-primary btn-large btn-block">{{ 'submit'|trans }}</button></div></div>
+                            <p><input type="submit" class="wpcf7-form-control wpcf7-submit btn btn-primary btn-outline" value="{{ 'submit'|trans }}"></p>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-</div>
 {% endblock %}
 
 {% block javascripts %}
