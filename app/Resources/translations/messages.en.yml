@@ -47,7 +47,7 @@ skill:
     add: <span>Add your</span> skills
     add_hint: Add from 1 to 10 of your professional skills and arrange them in order of importance for you. The more accurately you specify the skills and their order, the sooner a suitable project will find you.
 user:
-    about_title: Tell us about yourself
+    about_title: <span>Tell us about</span> yourself
     about_menu_title: About you
     about_skip: You can skip this form, but the more information you enter about yourself, the greater the chance that potential partners will work with you
     about_skip_button: Skip form
@@ -65,7 +65,7 @@ user:
     expectation: What do you expect from a project
     experience: Describe your background
     about: Tell us about yourself
-    profile_picture: Profile Picture
+    profile_picture: Upload a profile picture
     avatar_max_size_exception: Maximum size of avatar must be {size}
     avatar_extension_exception: Avatar must be image
     about_form_dkipped_at: About form skipped at

@@ -1581,3 +1581,58 @@ div.modal-login-social a, div.register-form-sn-login a {
 	padding-bottom: 10px;
 	margin-bottom: 15px;
 }
+
+.qq-uploader {
+	min-height: auto;
+	max-height: none;
+	overflow-y: auto;
+	width: inherit;
+	border-radius: 0px;
+	background: none;
+	border: none;
+	padding: 0px;
+	margin-top: 31px;
+}
+
+.qq-upload-button {
+	width: auto;
+	margin-bottom: 0px;
+ 	background: none;
+	border-radius: 0px;
+ 	border: none;
+ 	box-shadow: none;
+	outline: none;
+}
+
+.qq-upload-list li {
+	background: none;
+}
+
+.about-form-avatar img {
+	margin: 10px;
+	border-radius: 50%;
+	height: 100px;
+}
+
+.about-form-avatar {
+	height: 120px;
+}
+
+.qq-upload-list li.qq-upload-fail {
+	background-color: transparent;
+	border-top: none;
+	border-bottom: none;
+	color: red;
+}
+
+.qq-upload-list li.qq-upload-success {
+	display: none;
+}
+
+.form-section input.btn {
+	display: inline;
+}
+
+.form-bottom {
+	text-align: center;
+}

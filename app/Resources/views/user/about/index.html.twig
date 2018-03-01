@@ -1,13 +1,20 @@
 {% extends 'base.html.twig' %}
 {% form_theme form _self %}
 {% block body %}
-    <div class="row">
-        <div class="ts-form-container col-md-6 offset-md-3">
-            <div class="ts-form">
-                <div class="row">
-                    <div class="col-md-10 offset-md-1">
-                        <h2>{{ 'user.about_title' | trans }}</h2>
+    <div class ="container">
+        <div class="row section-content-2">
+
+            <div class="form-section">
+                <div class="col-sm-8 col-sm-offset-2">
+                    <form method="post" action="">
+                        <div class="kc-elm kc-title-wrap  left dark">
+                            <div class="title-wrapper">
+                                <h3 class="kc_title">{{ 'user.about_title' | trans | raw }}</h3>
+                            </div>
+                        </div>
+
                         <p class="hint">{{ 'user.about_skip' | trans }}</p>
+
 
                         {% for message in app.flashes('about-success') %}
                             <div class="success-message">
@@ -15,62 +22,57 @@
                             </div>
                         {% endfor %}
 
-                        <form method="post" action="" enctype="multipart/form-data">
-                            <div class="row">
-                            {% if (app.user.profilePicture) %}
-                                <div class="col-md-2 about-form-avatar"><img src="{{ app.user.profilePicture }}" /></div>
-                                <div class="col-md-10">
-                            {% else %}
-                                    <div class="col-md-12">
-                            {% endif %}
-                            {{ form_label(form.profilePicture, null, {'label_attr': {'class': 'form-label'}}) }}
-                            {{ form_widget(form.profilePicture, {'attr': {'class': 'form-control input-block about-form-avatar-input'}}) }}
-                            {{ form_errors(form.profilePicture, {'attr': {'class': 'error'}}) }}
-                            </div></div>
-                            <div class="row"> <div class="col-md-12">
-                            {{ form_label(form.country, null, {'label_attr': {'class': 'form-label'}}) }}
-                            {{ form_widget(form.country, {'attr': {'class': 'form-control input-block'}}) }}
-                            {{ form_errors(form.country)}}
-                            </div></div>
-                            <div class="row"> <div class="col-md-12">
-                            {{ form_label(form.city, null, {'label_attr': {'class': 'form-label'}}) }}
-                            {{ form_widget(form.city, {'attr': {'class': 'form-control input-block'}}) }}
-                            {{ form_errors(form.city)}}
-                            </div></div>
-                            <div class="row"> <div class="col-md-12">
-                            {{ form_label(form.likeToDo, null, {'label_attr': {'class': 'form-label'}}) }}
-                            {{ form_widget(form.likeToDo, {'attr': {'class': 'form-control input-block'}}) }}
-                            {{ form_errors(form.likeToDo)}}
-                            </div></div>
-                            <div class="row"> <div class="col-md-12">
-                            {{ form_label(form.expectation, null, {'label_attr': {'class': 'form-label'}}) }}
-                            {{ form_widget(form.expectation, {'attr': {'class': 'form-control input-block'}}) }}
-                            {{ form_errors(form.expectation)}}
-                                </div></div>
-                            <div class="row"> <div class="col-md-12">
-                            {{ form_label(form.experience, null, {'label_attr': {'class': 'form-label'}}) }}
-                            {{ form_widget(form.experience, {'attr': {'class': 'form-control input-block'}}) }}
-                            {{ form_errors(form.experience)}}
-                                </div></div>
-                            <div class="row"> <div class="col-md-12">
-                            {{ form_label(form.about, null, {'label_attr': {'class': 'form-label'}}) }}
-                            {{ form_widget(form.about, {'attr': {'class': 'form-control input-block'}}) }}
-                            {{ form_errors(form.about)}}
-                                </div></div>
-                            <div class="row">
-                                <div class="col-md-4 offset-md-4">
-                                    {{ form_row(form._token) }}
-                                    {% if app.request.get('_route') == 'specify_about_form' %}
-                                        <button type="submit" class="btn btn-primary btn-large">{{ 'submit'|trans }}</button>
-                                        <button type="button" class="btn btn-default btn-warning" onclick="window.location.href = '{{ path('specify_about_form_skip') }}'">{{ 'user.about_skip_button'|trans }}</button>
-                                    {% else %}
-                                        <button type="submit" class="btn btn-primary btn-large btn-block">{{ 'submit'|trans }}</button>
-                                    {% endif %}
-                                </div>
-                            </div>
 
-                        </form>
-                    </div>
+                        <div class="row"><div class="col-md-3 about-form-avatar">
+                        {% if (app.user.profilePicture) %}
+                        <img id="about-form-avatar" src="{{ app.user.profilePicture }}" />
+
+                        {% else %}
+                            <img id="about-form-avatar" src="{{ asset('images/avatar_placeholder.jpg') }}" />
+                        {% endif %}
+                            </div>
+                        <div class="col-md-9">
+                            <div id="fine-uploader">
+
+                            </div>
+                        </div></div>
+                        <div class="row"> <div class="col-md-12">
+                        {{ form_widget(form.country, {'attr': {'class': 'input-block'}}) }}
+                        {{ form_errors(form.country)}}
+                                {#{{ form_row('form.country') }}#}
+                        </div></div>
+                        <div class="row"> <div class="col-md-12">
+                        {{ form_widget(form.city, {'attr': {'class': 'input-block', 'placeholder': 'user.city'}}) }}
+                        {{ form_errors(form.city)}}
+                        </div></div>
+                        <div class="row"> <div class="col-md-12">
+                        {{ form_widget(form.likeToDo, {'attr': {'class': 'input-block', 'placeholder': 'user.like_to_do'}}) }}
+                        {{ form_errors(form.likeToDo)}}
+                        </div></div>
+                        <div class="row"> <div class="col-md-12">
+                        {{ form_widget(form.expectation, {'attr': {'class': 'input-block', 'placeholder': 'user.expectation'}}) }}
+                        {{ form_errors(form.expectation)}}
+                            </div></div>
+                        <div class="row"> <div class="col-md-12">
+                        {{ form_widget(form.experience, {'attr': {'class': 'input-block', 'placeholder': 'user.experience'}}) }}
+                        {{ form_errors(form.experience)}}
+                            </div></div>
+                        <div class="row"> <div class="col-md-12">
+                        {{ form_widget(form.about, {'attr': {'class': 'input-block', 'placeholder': 'user.about'}}) }}
+                        {{ form_errors(form.about)}}
+                            </div></div>
+                        <div class="row">
+                            <div class="col-md-offset-2 col-md-8 form-bottom">
+                                {{ form_row(form._token) }}
+                                {% if app.request.get('_route') == 'specify_about_form' %}
+                                    <input type="submit" class="btn btn-primary btn-large" value="{{ 'submit'|trans }}">
+                                    <input type="button" class="btn btn-default btn-warning" onclick="window.location.href = '{{ path('specify_about_form_skip') }}'" value="{{ 'user.about_skip_button'|trans }}">
+                                {% else %}
+                                    <input type="submit" class="btn btn-primary btn-large btn-block" value="{{ 'submit'|trans }}">
+                                {% endif %}
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -79,8 +81,47 @@
 
 {% block javascripts %}
     <script>
+        $(function(){
+            $("#fine-uploader").fineUploader({
+                debug: true,
+                request: {
+                    endpoint: '{{ path('specify_about_upload_avatar') }}'
+                },
+                callbacks: {
+                    onUpload: function () {
+                        $(".qq-upload-fail").remove();
+                    },
+                    onComplete: function(id, name, response) {
+                        if(response.hasOwnProperty('picture')) {
+                            console.log(response['picture']);
+                            $('#about-form-avatar').attr('src', response['picture']);
+                        }
+                    }
+                }
+            });
+        });
+    </script>
 
+    <script type="text/template" id="qq-template">
+        <div class="qq-uploader-selector qq-uploader" qq-drop-area-text="">
 
+            <div class="qq-upload-button-selector qq-upload-button">
+                <input type="button" value="{{ 'user.profile_picture' | trans }}" class="btn btn-primary btn-outline">
+            </div>
+            <span class="qq-drop-processing-selector qq-drop-processing">
+                <span>Processing dropped files...</span>
+                <span class="qq-drop-processing-spinner-selector qq-drop-processing-spinner"></span>
+            </span>
+            <ul class="qq-upload-list-selector qq-upload-list" aria-live="polite" aria-relevant="additions removals">
+                <li>
+                    <div class="qq-progress-bar-container-selector">
+                        <div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-progress-bar-selector qq-progress-bar"></div>
+                    </div>
+                    <span class="qq-upload-spinner-selector qq-upload-spinner"></span>
+                    <span role="status" class="qq-upload-status-text-selector qq-upload-status-text"></span>
+                </li>
+            </ul>
+        </div>
     </script>
 {% endblock %}
 
