@@ -134,12 +134,6 @@ class User extends BaseUser
     private $userSpecializations;
 
     /**
-     * @var Collection
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\UserContacts", orphanRemoval=true, mappedBy="user", cascade={"persist"})
-     */
-    private $userContacts;
-
-    /**
      * @return string
      */
     public function getFirstName(): ?string
@@ -445,29 +439,5 @@ class User extends BaseUser
     public function setUserSpecializations(Collection $userSpecializations)
     {
         $this->userSpecializations = $userSpecializations;
-    }
-
-    /**
-     * @return Collection
-     */
-    public function getUserContacts(): Collection
-    {
-        return $this->userContacts;
-    }
-
-    /**
-     * @param Collection $userContacts
-     */
-    public function setUserContacts(Collection $userContacts)
-    {
-        $this->userContacts = $userContacts;
-    }
-
-    /**
-     * @param UserContacts $userContact
-     */
-    public function addUserContact(UserContacts $userContact)
-    {
-        $this->userContacts->add($userContact);
     }
 }

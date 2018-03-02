@@ -3,7 +3,6 @@
 namespace AppBundle\EventSubscriber;
 
 use AppBundle\Entity\User;
-use AppBundle\Entity\UserContacts;
 use AppBundle\Entity\UserSpecializations;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -86,14 +85,6 @@ class RegistrationIncompleteSubscriber implements EventSubscriberInterface
 
         if (null === $user->getCountry() && $now > $skippedUntil) {
             $event->setResponse(new RedirectResponse($this->router->generate(self::ABOUT_ROUTE)));
-
-            return;
-        }
-
-        // Contacts
-        $userContacts = $this->em->getRepository(UserContacts::class)->findBy(['user' => $user]);
-        if (!count($userContacts)) {
-            $event->setResponse(new RedirectResponse($this->router->generate(self::CONTACTS_ROUTE)));
 
             return;
         }
