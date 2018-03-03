@@ -1636,3 +1636,13 @@ div.modal-login-social a, div.register-form-sn-login a {
 .form-bottom {
 	text-align: center;
 }
+
+.top-login-links li {
+	float: left;
+	list-style: none;
+	padding: 10px 0px 0px 10px;
+}
+
+.top-login-links li a {
+	color: #ffffff;
+}

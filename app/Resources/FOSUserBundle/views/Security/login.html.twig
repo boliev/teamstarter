@@ -2,44 +2,56 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 {% block fos_user_content %}
-<div id="registration-container">
-    <div class="row">
-        <div class="col-md-4 offset-md-4">
-            <div class="register-form">
-                <div class="row justify-content-center">
-                    <div class="col-md-10">
-                        {% if error %}
-                            <div class="error">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    <div class ="container">
+        <div class="row section-content-2">
+
+            <div class="form-section">
+                <div class="col-sm-6 col-sm-offset-3">
+
+                    <div class="kc-elm kc-css-839835 kc-title-wrap  left dark">
+                        <div class="title-wrapper">
+                            <h3 class="kc_title"><span>Sign</span> In</h3>
+                        </div>
+                    </div>
+
+                    {% if error %}
+                        <div class="error">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    {% endif %}
+
+                    <form action="{{ path("fos_user_security_check") }}" method="post">
+                        {% if csrf_token %}
+                            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
                         {% endif %}
 
-                        <form action="{{ path("fos_user_security_check") }}" method="post">
-                            {% if csrf_token %}
-                                <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
-                            {% endif %}
+                        <div class="form-group margin-top-15">
+                            <input autocomplete="off" type="text" placeholder="{{ 'security.login.username'|trans }}" name="_username" class="margin-bottom-10" id="username_or_email">
+                        </div>
+                        <div class="form-group margin-bottom-1">
+                            <input name="_password" type="password" placeholder="{{ 'security.login.password'|trans }}" class="margin-bottom-1 password required" id="login_password">
+                        </div>
 
-                            <label for="username" class="form-label">{{ 'security.login.username'|trans }}</label>
-                            <input type="text" class="form-control input-block" id="username" name="_username" value="{{ last_username }}" required="required" />
-
-                            <label for="password" class="form-label">{{ 'security.login.password'|trans }}</label>
-                            <input type="password" class="form-control input-block" id="password" name="_password" required="required" />
-
-                            <div class="login-remember-me">
-                                <input type="checkbox" class="login-remember-me" id="remember_me" name="_remember_me" value="on" />
+                        <div class="row">
+                            <div class="login-remember-me col-sm-4 padding-top-16 padding-left-18">
+                                <input type="checkbox" class="login-remember-me margin-bottom-1" id="remember_me" name="_remember_me" value="on" />
                                 <label for="remember_me" class="form-label login-remember-me">{{ 'security.login.remember_me'|trans }}</label>
                             </div>
 
-                            <div class="container register-form-sn-login">
+                            <div class="login-remember-me col-sm-4 padding-top-16 padding-left-18">
+
+                                <a href="{{ path('fos_user_resetting_request') }}">Lost your password?</a>
+                            </div>
+
+                            <div class="register-form-sn-login text-right col-sm-4">
                                 <a href="/login/facebook"><i class="fa fa-facebook-official" aria-hidden="true"></i></a>
                                 <a href="/login/google"><i class="fa fa-google" aria-hidden="true"></i></a>
                                 <a href="/login/github"><i class="fa fa-github" aria-hidden="true"></i></a>
                             </div>
-
-                            <button type="submit" class="btn btn-primary btn-large btn-block" id="_submit" name="_submit">{{ 'security.login.submit'|trans }}</button>
-                        </form>
-                    </div>
+                        </div>
+                        <p class="text-center"><input type="submit" value="{{ 'security.login.submit'|trans }}" class="wpcf7-form-control wpcf7-submit btn btn-primary btn-outline"><span class="ajax-loader"></span></p>
+                        {#<button type="submit" class="btn btn-primary btn-large btn-block" id="_submit" name="_submit">{{ 'security.login.submit'|trans }}</button>#}
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-</div>
 {% endblock fos_user_content %}
