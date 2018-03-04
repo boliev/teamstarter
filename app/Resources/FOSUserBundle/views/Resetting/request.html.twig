@@ -1,0 +1,30 @@
+{% extends "@FOSUser/layout.html.twig" %}
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+<div class ="container">
+    <div class="row margin-top-15">
+
+        <div class="form-section">
+            <div class="col-sm-8 col-sm-offset-2">
+
+                <div class="kc-elm kc-css-839835 kc-title-wrap  left dark">
+                    <div class="title-wrapper">
+                        <h3 class="kc_title"><span>Reset</span> Password</h3>
+                    </div>
+                </div>
+
+                <form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
+                    <div class="form-group margin-top-15">
+                        <input type="text" placeholder="{{ 'resetting.request.username'|trans }}" name="username" class="margin-bottom-10" id="username">
+                    </div>
+                    <p class="text-center margin-bottom-45">
+                        <input type="submit" value="{{ 'resetting.request.submit'|trans }}" class="wpcf7-form-control wpcf7-submit btn btn-primary btn-outline">
+                        <span class="ajax-loader"></span>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock fos_user_content %}

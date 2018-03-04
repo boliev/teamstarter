@@ -1,0 +1,12 @@
+{% block subject %}
+{%- autoescape false -%}
+{{ 'user.lost_password_email.subject'|trans({'%username%': user.username}) }}
+{%- endautoescape -%}
+{% endblock %}
+
+{% block body_text %}
+{% autoescape false %}
+{{ 'user.lost_password_email.message'|trans({'%username%': user.firstName, '%confirmationUrl%': confirmationUrl}) }}
+{% endautoescape %}
+{% endblock %}
+{% block body_html %}{% endblock %}

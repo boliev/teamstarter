@@ -73,6 +73,15 @@ user:
     about_form_success: All changes were saved!
     bad_credentials: Bad credentials
     lost_password: Lost Your Password?
+    lost_password_email:
+        subject: 'Reset Password'
+        message: |
+            Hello %username%!
+
+            To reset your password - please visit %confirmationUrl%
+
+            Regards,
+            TeamStarter Team.
 contacts:
     menu_title: Contacts
     form_title: How potential partners can contact you?

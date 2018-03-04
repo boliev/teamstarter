@@ -1,0 +1,52 @@
+{% extends "@FOSUser/layout.html.twig" %}
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+<div class ="container">
+    <div class="row margin-top-15">
+
+        <div class="form-section">
+            <div class="col-sm-8 col-sm-offset-2">
+
+                <div class="kc-title-wrap left dark  margin-bottom-15px">
+                    <div class="title-wrapper margin-bottom-15">
+                        <h3 class="kc_title"><span>Reset</span> Password</h3>
+                    </div>
+                </div>
+
+                {{ form_start(form, { 'action': path('fos_user_resetting_reset', {'token': token}), 'attr': { 'class': 'fos_user_resetting_reset' } }) }}
+
+                <div class="row"> <div class="col-md-12  form-group">
+                    {{ form_widget(form.plainPassword.first, {'attr': {'class': 'input-block', 'placeholder': 'form.new_password'}}) }}
+                    {{ form_errors(form.plainPassword.first)}}
+                </div></div>
+
+                <div class="row"> <div class="col-md-12 form-group">
+                        {{ form_widget(form.plainPassword.second, {'attr': {'class': 'input-block', 'placeholder': 'form.new_password_confirmation'}}) }}
+                        {{ form_errors(form.plainPassword.second)}}
+                    </div></div>
+
+                <p class="text-center margin-bottom-45">
+                    {{ form_widget(form._token) }}
+                    {{ form_errors(form._token)}}
+                    <input type="submit" value="{{ 'resetting.request.submit'|trans }}" class="btn btn-primary btn-outline">
+                </p>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+    {{ form_end(form) }}
+{% endblock fos_user_content %}
+
+{% form_theme form _self %}
+{% block form_errors %}
+    {% spaceless %}
+        {% if errors|length > 0 %}
+            {% for error in errors %}
+                <span class="error">{{ error.message }}</span>
+            {% endfor %}
+        {% endif %}
+    {% endspaceless %}
+{% endblock form_errors %}
