@@ -68,8 +68,9 @@ user:
     experience: Describe your background
     about: Tell us about yourself
     profile_picture: Upload a profile picture
-    avatar_max_size_exception: Maximum size of avatar must be {size}
-    avatar_extension_exception: Avatar must be image
+    avatar_max_size_exception: Maximum size of avatar must be {size} MB
+    avatar_max_size_hint: Only images, {size} MB max
+    avatar_extension_exception: Avatar must be an image
     about_form_dkipped_at: About form skipped at
     profile_form_success: Profile changes were saved!
     about_form_success: All changes were saved!

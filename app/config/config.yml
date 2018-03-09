@@ -39,6 +39,9 @@ twig:
     strict_variables: '%kernel.debug%'
     globals:
         avatart_placeholder: '%avatart_placeholder%'
+        avatar_max_size: %avatar_max_size%
+        fineUploader:
+            debug: 'true'
 
 # Doctrine Configuration
 doctrine:

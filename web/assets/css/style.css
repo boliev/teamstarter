@@ -1585,6 +1585,15 @@ div.modal-login-social a, div.register-form-sn-login a {
 	padding-bottom: 10px;
 	margin-bottom: 15px;
 }
+.form-section .upload-field-hint {
+	font-style: italic;
+	color: #666666;
+	font-family: Lato;
+	font-size: 14px;
+	font-weight: 400;
+	padding-left: 10px;
+
+}
 
 .qq-uploader {
 	min-height: auto;

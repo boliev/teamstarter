@@ -21,29 +21,39 @@ class UserService
     private $translator;
 
     /**
+     * @var int
+     */
+    private $avatarMaxSize;
+
+    /**
      * UserService constructor.
      *
      * @param TranslatorInterface $translator
      * @param string              $kernelRoot
+     * @param int                 $avatarMaxSize
      */
-    public function __construct(TranslatorInterface $translator, string $kernelRoot)
+    public function __construct(TranslatorInterface $translator, string $kernelRoot, int $avatarMaxSize)
     {
         $this->kernelRoot = $kernelRoot;
         $this->translator = $translator;
+        $this->avatarMaxSize = $avatarMaxSize;
     }
 
     /**
-     * @param User         $user
-     * @param UploadedFile $avatar
+     * @param User  $user
+     * @param array $uploadedFileSource
      *
      * @return string
      *
      * @throws FileLoaderLoadException
+     *
+     * @internal param UploadedFile $avatar
      */
-    public function uploadAvatar(User $user, UploadedFile $avatar): string
+    public function uploadAvatar(User $user, array $uploadedFileSource): string
     {
-        if (2000000 < $avatar->getClientSize()) {
-            throw new FileLoaderLoadException($this->translator->trans('user.avatar_max_size_exception', ['2 MB']));
+        $avatar = new UploadedFile($uploadedFileSource['tmp_name'], $uploadedFileSource['name'], mime_content_type($uploadedFileSource['tmp_name']), $uploadedFileSource['size']);
+        if ($this->avatarMaxSize < $avatar->getClientSize()) {
+            throw new FileLoaderLoadException($this->translator->trans('user.avatar_max_size_exception', ['{size}' => round(($this->avatarMaxSize / 1000000), 1)]));
         }
 
         $extension = $avatar->guessClientExtension();

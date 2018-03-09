@@ -98,24 +98,18 @@ class UserAboutController extends AbstractController
         /** @var User $user */
         $user = $this->getUser();
 
-        if ($request->request->get('qqfilename')) {
+        if (isset($_FILES['qqfile'])) {
             try {
-                $uploadedFile = new UploadedFile($_FILES['qqfile']['tmp_name'], $_FILES['qqfile']['name'], mime_content_type($_FILES['qqfile']['tmp_name']));
-                $file = $userService->uploadAvatar($user, $uploadedFile);
+                $file = $userService->uploadAvatar($user, $_FILES['qqfile']);
                 $user->setProfilePicture($file);
             } catch (\Exception $e) {
-//                    $form->get('profilePicture')->addError(new FormError($e->getMessage()));
-                return new JsonResponse($e->getMessage(), 400);
+                return new JsonResponse(['error' => $e->getMessage()], 400);
             }
 
             $em->persist($user);
             $em->flush();
 
-            return new JsonResponse(['success' => true, 'picture' => $user->getProfilePicture()]);
+            return new JsonResponse(['success' => true, 'picture' => $user->getProfilePicture().'?'.mt_rand(0, 5000)]);
         }
-
-//        return $this->render('user/about/index.html.twig', [
-//            'form' => $form->createView(),
-//        ]);
     }
 }

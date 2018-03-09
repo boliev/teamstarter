@@ -35,6 +35,7 @@
                             <div id="fine-uploader">
 
                             </div>
+                            <p class="upload-field-hint">{{ 'user.avatar_max_size_hint' | trans({'{size}': avatar_max_size/1000000}) }}</p>
                         </div></div>
                         <div class="row"> <div class="col-md-12 form-group">
                         {{ form_widget(form.country, {'attr': {'class': 'input-block'}}) }}
@@ -83,7 +84,11 @@
     <script>
         $(function(){
             $("#fine-uploader").fineUploader({
-                debug: true,
+                debug: {{ fineUploader.debug }},
+                failedUploadTextDisplay: {
+                    mode: 'custom',
+                    responseProperty: 'error',
+                },
                 request: {
                     endpoint: '{{ path('specify_about_upload_avatar') }}'
                 },
@@ -93,7 +98,6 @@
                     },
                     onComplete: function(id, name, response) {
                         if(response.hasOwnProperty('picture')) {
-                            console.log(response['picture']);
                             $('#about-form-avatar').attr('src', response['picture']);
                         }
                     }

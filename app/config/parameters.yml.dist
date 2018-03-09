@@ -27,4 +27,5 @@ parameters:
     github_client_id: ""
     github_secret: ""
 
-    avatart_placeholder: images/avatar_placeholder.jpg
+    avatart_placeholder: /images/avatar_placeholder.jpg
+    avatar_max_size: 2000000

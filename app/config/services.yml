@@ -53,6 +53,7 @@ services:
     AppBundle\Service\UserService:
         arguments:
             $kernelRoot: "%kernel.root_dir%"
+            $avatarMaxSize: "%avatar_max_size%"
 
     admin.user:
         class: AppBundle\Admin\UserAdmin
