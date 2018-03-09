@@ -108,7 +108,7 @@ project:
     create: Create a project
     menu_create: Create a project
     project_rules: <span>Project</span> rules
-    main_info: Project main information
+    main_info: <span>Project</span> main information
     docs: Project documentation
     form_name: Name
     form_status: Status
