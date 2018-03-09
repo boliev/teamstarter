@@ -44,6 +44,11 @@ class UserProfilerController extends AbstractController
 
                     return $this->renderProfileForm($form);
                 }
+                if ($form['newPassword']->getData() !== $form['newPasswordRepeat']->getData()) {
+                    $form->get('newPasswordRepeat')->addError(new FormError($translator->trans('user.repeat_password_invalid')));
+
+                    return $this->renderProfileForm($form);
+                }
                 if (!$encoder->isPasswordValid($user, $form['oldPassword']->getData())) {
                     $form->get('oldPassword')->addError(new FormError($translator->trans('user.old_password_invalid')));
 

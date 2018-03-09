@@ -38,6 +38,7 @@ class UserProfileType extends AbstractType
             ->add('firstName', TextType::class, ['label' => 'user.first_name'])
             ->add('lastName', TextType::class, ['label' => 'user.last_name'])
             ->add('newPassword', PasswordType::class, ['label' => 'user.new_password', 'mapped' => false, 'required' => false])
+            ->add('newPasswordRepeat', PasswordType::class, ['label' => 'user.new_password_repeat', 'mapped' => false, 'required' => false])
             ->add('oldPassword', PasswordType::class, ['label' => 'user.old_password', 'mapped' => false, 'required' => false])
             ->add('submit', SubmitType::class, ['label' => 'submit'])
         ;

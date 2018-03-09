@@ -1448,7 +1448,7 @@ span.close-1 {
 	display: none;
 }
 
-span.error {
+span.error, div.error {
 	color: red;
 	font-size: 12px;
 }
@@ -1457,7 +1457,6 @@ div.modal-login-social a, div.register-form-sn-login a {
 	font-size: 40px;
 	padding-right: 5px;
 	padding-left: 5px;
-	/*color: #42a5f5;*/
 }
 
 .form-section textarea,
@@ -1668,4 +1667,10 @@ div.modal-login-social a, div.register-form-sn-login a {
 	background-color: #42a5f5 !important;
 	color: #ffffff !important;
 	border-color: #42a5f5 !important;
+}
+.success-message {
+	font-size: 20px;
+	text-align: center;
+	padding: 20px;
+	color: green;
 }
