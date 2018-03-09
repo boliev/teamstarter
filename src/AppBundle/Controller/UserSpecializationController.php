@@ -35,7 +35,13 @@ class UserSpecializationController extends AbstractController
 
         if ($request->isMethod(Request::METHOD_POST)) {
             $specs = $request->request->get('specializations');
-            $this->checkSpecializations($specs, $translator);
+            try {
+                $this->checkSpecializations($specs, $translator);
+            } catch (\Exception $e) {
+                $this->addFlash('specialization-errors', $e->getMessage());
+
+                return $this->redirectToRoute($request->get('_route'));
+            }
             $this->saveSpecializations($specs, $user, $em, $translator);
             $em->flush();
 
@@ -71,10 +77,10 @@ class UserSpecializationController extends AbstractController
     }
 
     /**
-     * @param array               $specs
+     * @param array|null          $specs
      * @param TranslatorInterface $translator
      */
-    private function checkSpecializations(array $specs, TranslatorInterface $translator): void
+    private function checkSpecializations(array $specs = null, TranslatorInterface $translator): void
     {
         if (!$specs) {
             throw new BadRequestHttpException($translator->trans('specialization.no_specializations_selected'));

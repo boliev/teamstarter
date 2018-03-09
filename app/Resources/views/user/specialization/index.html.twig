@@ -21,6 +21,14 @@
                             </div>
                         {% endfor %}
 
+                        {% for message in app.flashes('specialization-errors') %}
+                            <div class="error margin-bottom-10">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+
+
+
                         {% for specialization in specializations %}
                             {% if loop.first %}
                             <div class="row">
