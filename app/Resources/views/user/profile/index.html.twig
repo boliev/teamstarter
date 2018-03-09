@@ -12,6 +12,8 @@
                         </div>
                     </div>
 
+                    <p class="hint">{{ 'user.new_password_form_hint' | trans }}</p>
+
                     {% for message in app.flashes('profile-success') %}
                         <div class="success-message">
                             {{ message }}
@@ -32,6 +34,7 @@
                                 {{ form_errors(form.lastName)}}
                             </div>
                         </div>
+
                         <div class="row">
                             <div class="col-md-12 form-group">
                                 {{ form_widget(form.newPassword, {'attr': {'class': 'input-block', 'placeholder': 'user.new_password'}}) }}

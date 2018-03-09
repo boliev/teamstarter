@@ -57,6 +57,7 @@ user:
     city: City
     first_name: First name
     last_name: Last name
+    new_password_form_hint: Leave the password fields blank if you don't want to change your password
     new_password: New password
     new_password_repeat: Repeat new password
     old_password: Old password
