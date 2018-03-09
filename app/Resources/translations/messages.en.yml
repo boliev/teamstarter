@@ -40,7 +40,7 @@ specialization:
     no_specializations_selected: You need to select at least one specialization
     too_many_specializations_selected: Too many specializations
     cant_find_specialization: Can't find specialization
-    menu_title: Specializations & skills
+    menu_title: Specializations
     form_success: Specializations & skills were saved!
 
 skill:

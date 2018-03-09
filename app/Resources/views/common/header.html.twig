@@ -13,8 +13,24 @@
                     </aside>
                 </div>
                 <div class="pull-right widget-social">
-                    <ul class="top-login-links">
-
+                    <ul class="top-user-menu">
+                        {% if app.user %}
+                                <li><img id="top-menu-avatar" src="{% if app.user.profilePicture %} {{ app.user.profilePicture }} {% else %}{{ asset(avatart_placeholder) }}{% endif %}" /></li>
+                                <li>
+                                    <div class="dropdown show">
+                                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        {{ app.user.fullName }}
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-item" href="{{ path('user_profile_form') }}">{{ 'profile' | trans }}</a>
+                                            <a class="dropdown-item" href="{{ path('user_about_form') }}">{{ 'user.about_menu_title' | trans }}</a>
+                                            <a class="dropdown-item" href="{{ path('user_specialization_form') }}">{{ 'specialization.menu_title' | trans }}</a>
+                                        </div>
+                                    </div>
+                                </li>
+                        {% else %}
+                            <button id="myBtn" class="modal-btn-1"><i class="mn-icon-410"></i> Login</button>
+                        {% endif %}
                     </ul>
                 </div>
             </div>
@@ -55,8 +71,6 @@
                                 <button type="button" class="button-show-search button-setting"><i class="mn-icon-52"></i></button>
                             </div>
                             <div class="setting-popup pull-right">
-                                <button id="myBtn" class="modal-btn-1 v-2"><i class="mn-icon-410"></i></button>
-
                                 <!-- The Modal -->
                                 {% include 'common/login_modal.html.twig' %}
 

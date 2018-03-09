@@ -440,4 +440,9 @@ class User extends BaseUser
     {
         $this->userSpecializations = $userSpecializations;
     }
+
+    public function getFullName()
+    {
+        return $this->getFirstName().' '.$this->getLastName();
+    }
 }

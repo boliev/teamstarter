@@ -28,7 +28,7 @@
                         <img id="about-form-avatar" src="{{ app.user.profilePicture }}" />
 
                         {% else %}
-                            <img id="about-form-avatar" src="{{ asset('images/avatar_placeholder.jpg') }}" />
+                            <img id="about-form-avatar" src="{{ asset(avatart_placeholder) }}" />
                         {% endif %}
                             </div>
                         <div class="col-md-9">
@@ -36,28 +36,28 @@
 
                             </div>
                         </div></div>
-                        <div class="row"> <div class="col-md-12">
+                        <div class="row"> <div class="col-md-12 form-group">
                         {{ form_widget(form.country, {'attr': {'class': 'input-block'}}) }}
                         {{ form_errors(form.country)}}
                                 {#{{ form_row('form.country') }}#}
                         </div></div>
-                        <div class="row"> <div class="col-md-12">
+                        <div class="row"> <div class="col-md-12 form-group">
                         {{ form_widget(form.city, {'attr': {'class': 'input-block', 'placeholder': 'user.city'}}) }}
                         {{ form_errors(form.city)}}
                         </div></div>
-                        <div class="row"> <div class="col-md-12">
+                        <div class="row"> <div class="col-md-12 form-group">
                         {{ form_widget(form.likeToDo, {'attr': {'class': 'input-block', 'placeholder': 'user.like_to_do'}}) }}
                         {{ form_errors(form.likeToDo)}}
                         </div></div>
-                        <div class="row"> <div class="col-md-12">
+                        <div class="row"> <div class="col-md-12 form-group">
                         {{ form_widget(form.expectation, {'attr': {'class': 'input-block', 'placeholder': 'user.expectation'}}) }}
                         {{ form_errors(form.expectation)}}
                             </div></div>
-                        <div class="row"> <div class="col-md-12">
+                        <div class="row"> <div class="col-md-12 form-group">
                         {{ form_widget(form.experience, {'attr': {'class': 'input-block', 'placeholder': 'user.experience'}}) }}
                         {{ form_errors(form.experience)}}
                             </div></div>
-                        <div class="row"> <div class="col-md-12">
+                        <div class="row"> <div class="col-md-12 form-group">
                         {{ form_widget(form.about, {'attr': {'class': 'input-block', 'placeholder': 'user.about'}}) }}
                         {{ form_errors(form.about)}}
                             </div></div>

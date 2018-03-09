@@ -37,6 +37,8 @@ framework:
 twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
+    globals:
+        avatart_placeholder: '%avatart_placeholder%'
 
 # Doctrine Configuration
 doctrine:

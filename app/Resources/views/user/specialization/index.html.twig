@@ -35,7 +35,7 @@
                         {% endfor %}
 
                             <div class="kc-elm kc-title-wrap  left dark">
-                                <div class="title-wrapper">
+                                <div class="title-wrapper margin-top-25">
                                     <h3 class="kc_title">{{ 'skill.add' | trans | raw }}</h3>
                                 </div>
                             </div>
@@ -43,7 +43,7 @@
                             {% for i in range(1, 9) %}
                                 <div class="row">
                                     <div class="col-md-12 skill-input">
-                                        <input type="text" class="skills-input" name="skill[{{ i }}]" value="{% if(userSkills[i-1]) is defined %} {{ userSkills[i-1].skill.title }} {% endif %}">
+                                        <input type="text" class="skills-input margin-bottom-25" name="skill[{{ i }}]" value="{% if(userSkills[i-1]) is defined %} {{ userSkills[i-1].skill.title }} {% endif %}">
                                     </div>
                                 </div>
                             {% endfor %}

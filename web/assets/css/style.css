@@ -1489,7 +1489,6 @@ div.modal-login-social a, div.register-form-sn-login a {
 	-moz-border-radius: 25px;
 	-ms-border-radius: 25px;
 	-o-border-radius: 25px;
-	margin-bottom: 10px;
 }
 .form-section input.btn {
 	background: #42a5f5;
@@ -1637,12 +1636,36 @@ div.modal-login-social a, div.register-form-sn-login a {
 	text-align: center;
 }
 
-.top-login-links li {
+.top-user-menu li {
 	float: left;
 	list-style: none;
 	padding: 10px 0px 0px 10px;
 }
 
-.top-login-links li a {
+.top-user-menu li a {
 	color: #ffffff;
+}
+
+#top-menu-avatar {
+	height: 40px;
+	border-radius: 50%;
+	margin-top: -9px;
+}
+
+.top-user-menu .dropdown .btn {
+	padding-top: 0px;
+	padding-bottom: 0px;
+	padding-left: 5px;
+}
+
+.top-user-menu .dropdown-menu a.dropdown-item {
+	color: #000;
+	display: block;
+	padding: 10px 20px;
+	touch-action: manipulation;
+}
+.top-user-menu .dropdown-menu a.dropdown-item:hover {
+	background-color: #42a5f5 !important;
+	color: #ffffff !important;
+	border-color: #42a5f5 !important;
 }
