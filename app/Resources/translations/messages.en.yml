@@ -106,7 +106,8 @@ contacts:
     form_success: Contacts were saved!
 project:
     create: Create a project
-    project_rules: Project rules
+    menu_create: Create a project
+    project_rules: <span>Project</span> rules
     main_info: Project main information
     docs: Project documentation
     form_name: Name

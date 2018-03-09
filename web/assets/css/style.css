@@ -1674,3 +1674,16 @@ div.modal-login-social a, div.register-form-sn-login a {
 	padding: 20px;
 	color: green;
 }
+
+.project-rules li {
+	padding: 16px 0px;
+	font-size: 15px;
+}
+
+.project-rules li:before {
+	content: "\e914";
+	font-family: "monia";
+	padding-right: 16px;
+	color: #42a5f5;
+	vertical-align: middle;
+}
