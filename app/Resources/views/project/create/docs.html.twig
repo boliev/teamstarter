@@ -1,51 +1,50 @@
 {% extends 'base.html.twig' %}
 {% form_theme form _self %}
 {% block body %}
-    <div class="row">
-        <div class="ts-form-container col-md-6 offset-md-3">
-            <div class="ts-form">
-                <div class="row">
-                    <div class="col-md-10 offset-md-1">
-                        <h2>{{ 'project.main_info' | trans }}</h2>
-                        <form method="post" action="">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <a href="#null">{{ 'project.no_docs_button'|trans }}</a>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    {{ form_label(form.name, null, {'label_attr': {'class': 'form-label'}}) }}
-                                    {{ form_widget(form.name, {'attr': {'class': 'form-control input-block'}}) }}
-                                    {{ form_errors(form.name, {'attr': {'class': 'error'}}) }}
-                                </div>
-                            </div>
+    <div class ="container">
+        <div class="row section-content-2">
 
-                            <div class="row">
-                                <div class="col-md-12">
-                                    {{ form_label(form.url, null, {'label_attr': {'class': 'form-label'}}) }}
-                                    {{ form_widget(form.url, {'attr': {'class': 'form-control input-block'}}) }}
-                                    {{ form_errors(form.url, {'attr': {'class': 'error'}}) }}
-                                </div>
+            <div class="form-section">
+                <div class="col-sm-8 col-sm-offset-2">
+                    <form method="post" action="">
+                        <div class="kc-elm kc-title-wrap  left dark">
+                            <div class="title-wrapper">
+                                <h3 class="kc_title">{{ 'project.docs' | trans | raw }}</h3>
                             </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12 center-block margin-bottom-15">
+                                <a href="#null">{{ 'project.no_docs_button'|trans }}</a>
+                            </div>
+                        </div>
 
 
-                            <div class="row">
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                {{ form_widget(form.name, {'attr': {'class': 'input-block', 'placeholder': 'project.doc_name'}}) }}
+                                {{ form_errors(form.name)}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                {{ form_widget(form.url, {'attr': {'class': 'input-block', 'placeholder': 'project.doc_url'}}) }}
+                                {{ form_errors(form.url)}}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-offset-2 col-md-8 form-bottom">
                                 {{ form_row(form._token) }}
-                                <div class="col-md-4 offset-md-2">
-                                    <button type="button" onclick="window.location.href='{{ path('project_edit_name', {'project': project.id}) }}'" class="btn btn-primary btn-block">{{ 'project.back_button'|trans }}</button>
-                                </div>
-                                <div class="col-md-4">
-                                    <button type="submit" class="btn btn-primary btn-block">{{ 'project.next_button'|trans }}</button>
-                                </div>
-
+                                <input type="button" class="btn btn-default btn-warning" onclick="window.location.href = '{{ path('project_edit_name', {'project': project.id}) }}'" value="{{ 'project.back_button'|trans }}">
+                                <input type="submit" class="btn btn-primary btn-large" value="{{ 'project.next_button'|trans }}">
                             </div>
+                        </div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 {% endblock %}
 
 {% block form_errors %}

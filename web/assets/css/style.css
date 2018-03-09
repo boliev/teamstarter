@@ -533,6 +533,9 @@ Start of our news question
 	color: #fff;
 	padding: 10px 30px;
 }
+a {
+	color: #42a5f5;
+}
 .entry-title:hover a {
 	color: #42a5f5;
 } 
@@ -1538,6 +1541,9 @@ div.modal-login-social a, div.register-form-sn-login a {
 	display: block;
 }
 
+.form-section a {
+
+}
 .btn-left .form-section input.btn {
 	margin: 0;
 }
