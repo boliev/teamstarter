@@ -75,6 +75,12 @@ class Project
 
     /**
      * @var Collection
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\ProjectOpenVacancy", mappedBy="project")
+     */
+    private $openVacancies;
+
+    /**
+     * @var Collection
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\ProjectProgress", mappedBy="project")
      */
     private $demos;
@@ -297,5 +303,21 @@ class Project
     public function setUser($user)
     {
         $this->user = $user;
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getOpenVacancies(): Collection
+    {
+        return $this->openVacancies;
+    }
+
+    /**
+     * @param Collection $openVacancies
+     */
+    public function setOpenVacancies(Collection $openVacancies)
+    {
+        $this->openVacancies = $openVacancies;
     }
 }

@@ -96,7 +96,7 @@ class ProjectCreateController extends AbstractController
             $em->persist($doc);
             $em->flush();
 
-            return $this->redirectToRoute('project_edit_docs', ['project' => $project->getId()]);
+            return $this->redirectToRoute('project_edit_open_vacancies_list', ['project' => $project->getId()]);
         }
 
         return $this->render(':project/create:docs.html.twig', [

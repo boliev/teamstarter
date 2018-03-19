@@ -5,11 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\SpecializationRepository")
  * @ORM\Table(name="specialization")
  */
 class Specialization
 {
+    const ID_OTHER = 1000;
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -53,5 +54,10 @@ class Specialization
     public function setTitle(string $title)
     {
         $this->title = $title;
+    }
+
+    public function __toString()
+    {
+        return $this->getTitle();
     }
 }

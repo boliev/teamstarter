@@ -6,6 +6,7 @@ sign_up: Sign up
 profile: Profile
 logout: Logout
 submit: Submit
+cancel: Cancel
 registration:
     label_first_name: First name
     label_last_name: Last name
@@ -111,6 +112,18 @@ project:
     menu_create: Create a project
     project_rules: <span>Project</span> rules
     main_info: <span>Project</span> main information
+    open_vacancies: <span>Project</span> open vacancies
+    open_vacancies_edit_link: Edit
+    add_vacancy: + Add vacancy
+    add_vacancy_page_title_add: <span>Add</span> vacancy
+    add_vacancy_page_title_edit: <span>Edit</span> vacancy
+    add_vacancy_name: Title
+    add_vacancy_specialization: Specialization
+    add_vacancy_chose_specialization: Chose a specialization
+    add_vacancy_submit_add: Add vacancy
+    add_vacancy_submit_edit: Edit vacancy
+    add_vacancy_success_add: New vacancy was successfully added
+    add_vacancy_success_edit: Vacancy was successfully changed
     docs: <span>Project</span> documentation
     form_name: Name
     form_status: Status

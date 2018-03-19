@@ -55,6 +55,12 @@ services:
             $kernelRoot: "%kernel.root_dir%"
             $avatarMaxSize: "%avatar_max_size%"
 
+    repository.specialization:
+        class: AppBundle\Repository\SpecializationRepository
+        factory: ['@doctrine.orm.default_entity_manager', getRepository]
+        arguments:
+            - AppBundle\Entity\Specialization
+
     admin.user:
         class: AppBundle\Admin\UserAdmin
         arguments: [~, AppBundle\Entity\User, ~]

@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class ="container">
+        <div class="row section-content-2">
+
+            <div class="form-section">
+                <div class="col-sm-8 col-sm-offset-2">
+                    <form method="post" action="">
+                        <div class="kc-elm kc-title-wrap  left dark">
+                            <div class="title-wrapper">
+                                {% if app.request.get('_route') == 'project_edit_open_vacancies_edit' %}
+                                    <h3 class="kc_title">{{ 'project.add_vacancy_page_title_edit' | trans | raw }}</h3>
+                                {% else %}
+                                    <h3 class="kc_title">{{ 'project.add_vacancy_page_title_add' | trans | raw }}</h3>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                {{ form_widget(form.name, {'attr': {'class': 'input-block', 'placeholder': 'project.add_vacancy_name'}}) }}
+                                {{ form_errors(form.name)}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                {{ form_widget(form.specialization, {'attr': {'class': 'input-block', 'placeholder': 'project.add_vacancy_specialization'}}) }}
+                                {{ form_errors(form.specialization)}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                {{ form_widget(form.description, {'attr': {'class': 'input-block', 'placeholder': 'project.form_description', 'rows': '12'}}) }}
+                                {{ form_errors(form.description)}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-offset-2 col-md-8 form-bottom">
+                                {{ form_row(form._token) }}
+                                <input type="button" class="btn btn-default btn-warning" onclick="window.location.href = '{{ path('project_edit_open_vacancies_list', {'project': project.id}) }}'" value="{{ 'cancel'|trans }}">
+                                {% if app.request.get('_route') == 'project_edit_open_vacancies_edit' %}
+                                    <input type="submit" class="btn btn-primary btn-large" value="{{ 'project.add_vacancy_submit_edit'|trans }}">
+                                {% else %}
+                                    <input type="submit" class="btn btn-primary btn-large" value="{{ 'project.add_vacancy_submit_add'|trans }}">
+                                {% endif %}
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block form_errors %}
+    {% spaceless %}
+        {% if errors|length > 0 %}
+            {% for error in errors %}
+                <div class="error">{{ error.message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endspaceless %}
+{% endblock form_errors %}

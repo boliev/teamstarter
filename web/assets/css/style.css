@@ -533,12 +533,15 @@ Start of our news question
 	color: #fff;
 	padding: 10px 30px;
 }
-a {
+a, a:visited {
 	color: #42a5f5;
 }
 .entry-title:hover a {
 	color: #42a5f5;
-} 
+}
+a:hover {
+	color: #222222;
+}
 .acc-container {
 	/* width:90%; */
 	margin: 35px auto 0 auto;
@@ -1701,4 +1704,27 @@ div.modal-login-social a, div.register-form-sn-login a {
 	padding-right: 16px;
 	color: #42a5f5;
 	vertical-align: middle;
+}
+
+.vacancy-list {
+	border-bottom: 1px dashed #e1e1e1;
+	padding-bottom: 10px;
+	padding-top: 10px;
+ }
+
+.toggle-on.btn, .toggle-off.btn {
+	padding-left: 0px !important;
+	padding-right: 0px !important;
+	text-align: center;
+	background-color: #286090;
+	webkit-box-shadow: none;
+	box-shadow: none;
+}
+
+.toggle-on.btn {
+	background-color: #42a5f5;
+}
+
+.toggle-off.btn {
+	background-color: #e6e6e6;
 }
