@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -47,6 +48,12 @@ class ProjectOpenVacancy
      * @ORM\Column(type="boolean", nullable=false, options={"default": true})
      */
     private $vacant = true;
+
+    /**
+     * @var Collection
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\ProjectOpenVacancySkills", mappedBy="vacancy")
+     */
+    private $skills;
 
     /**
      * @return int
@@ -142,5 +149,21 @@ class ProjectOpenVacancy
     public function setVacant(bool $vacant)
     {
         $this->vacant = $vacant;
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getSkills(): Collection
+    {
+        return $this->skills;
+    }
+
+    /**
+     * @param Skill $skills
+     */
+    public function setSkills(Skill $skills)
+    {
+        $this->skills = $skills;
     }
 }

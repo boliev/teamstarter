@@ -119,41 +119,16 @@ class UserSpecializationController extends AbstractController
     }
 
     /**
-     * @param string                 $skill
-     * @param string                 $slug
+     * @param array                  $skills
+     * @param User                   $user
+     * @param SkillService           $skillService
      * @param EntityManagerInterface $em
-     *
-     * @return Skill
      */
-    private function createSkill(string $skill, string $slug, EntityManagerInterface $em): Skill
-    {
-        $skillEntity = new Skill();
-        $skillEntity->setSlug($slug);
-        $skillEntity->setTitle($skill);
-        $em->persist($skillEntity);
-
-        return $skillEntity;
-    }
-
     private function saveSkills(array $skills, User $user, SkillService $skillService, EntityManagerInterface $em): void
     {
-        $userSkills = $em->getRepository(UserSkills::class)->findBy(['user' => $user]);
-        foreach ($userSkills as $userSkill) {
-            $em->remove($userSkill);
-        }
-        $em->flush();
-
+        $skillService->cleanSkillsForUser($user);
         foreach ($skills as $priority => $skill) {
-            $slug = $skillService->generateSlug($skill);
-            if (!$slug) {
-                continue;
-            }
-
-            $skillEntity = $em->getRepository(Skill::class)->findOneBy(['slug' => $slug]);
-            if (!$skillEntity) {
-                $skillEntity = $this->createSkill($skill, $slug, $em);
-            }
-
+            $skillEntity = $skillService->getOrCreateSkill($skill);
             $userSkill = new UserSkills();
             $userSkill->setUser($user);
             $userSkill->setSkill($skillEntity);

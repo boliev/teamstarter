@@ -30,6 +30,13 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12 form-group">
+                                {{ form_widget(form.skills, {'attr': {'class': 'input-block'}}) }}
+                                {{ form_errors(form.skills)}}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12 form-group">
                                 {{ form_widget(form.description, {'attr': {'class': 'input-block', 'placeholder': 'project.form_description', 'rows': '12'}}) }}
                                 {{ form_errors(form.description)}}
                             </div>
@@ -51,6 +58,37 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $(function(){
+            var tagInput = $('#open_vacancy_skills');
+            tagInput.tagsinput();
+            {% for vacancySkill in vacancy.getSkills %}
+            tagInput.tagsinput('add', "{{ vacancySkill.skill.title }}");
+            {% endfor %}
+            addTagsPlaceholderIfNeeded(tagInput.tagsinput('items'));
+
+            tagInput.on('itemAdded', function(event) {
+                addTagsPlaceholderIfNeeded(tagInput.tagsinput('items'));
+            });
+            tagInput.on('itemRemoved', function(event) {
+                addTagsPlaceholderIfNeeded(tagInput.tagsinput('items'));
+            });
+        });
+
+        function addTagsPlaceholderIfNeeded(tags)
+        {
+            var tagInput = $('#open_vacancy_skills');
+            if(tags.length) {
+                tagInput.tagsinput('input').removeAttr('placeholder');
+            } else {
+                tagInput.tagsinput('input').attr('placeholder', 'Skills separated by commas');
+            }
+
+        }
+    </script>
 {% endblock %}
 
 {% block form_errors %}

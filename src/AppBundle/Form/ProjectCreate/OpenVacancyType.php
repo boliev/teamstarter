@@ -41,6 +41,7 @@ class OpenVacancyType extends AbstractType
                 'class' => Specialization::class,
                 'choices' => $this->specializationRepository->getListForSelect(),
                 'placeholder' => 'project.add_vacancy_chose_specialization', ])
-            ->add('description', TextareaType::class, ['label' => 'project.form_description']);
+            ->add('description', TextareaType::class, ['label' => 'project.form_description'])
+            ->add('skills', TextType::class, ['label' => 'project.form_description', 'mapped' => false, 'required' => false]);
     }
 }

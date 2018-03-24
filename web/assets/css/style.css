@@ -1728,3 +1728,22 @@ div.modal-login-social a, div.register-form-sn-login a {
 .toggle-off.btn {
 	background-color: #e6e6e6;
 }
+
+.form-section div.bootstrap-tagsinput input{
+	width: 230px;
+	border: none;
+	padding: 0px 10px;
+}
+
+div.bootstrap-tagsinput {
+	width: 100%;
+	background: #fafafa;
+	border-radius: 50px;
+	-webkit-border-radius: 50px;
+	-moz-border-radius: 50px;
+	-ms-border-radius: 50px;
+	-o-border-radius: 50px;
+	border: none;
+	padding: 10px 20px;
+	box-shadow: none;
+}
