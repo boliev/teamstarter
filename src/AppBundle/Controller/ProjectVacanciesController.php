@@ -61,7 +61,7 @@ class ProjectVacanciesController extends Controller
             $this->redirectToRoute('homepage');
         }
 
-        if (!$vacancy) {
+        if (!$vacancy || 'project_edit_open_vacancies_add' === $request->get('_route')) {
             $vacancy = new ProjectOpenVacancy();
             $vacancy->setProject($project);
         }
