@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -54,6 +55,11 @@ class ProjectOpenVacancy
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\ProjectOpenVacancySkills", mappedBy="vacancy")
      */
     private $skills;
+
+    public function __construct()
+    {
+        $this->skills = new ArrayCollection();
+    }
 
     /**
      * @return int

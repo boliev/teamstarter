@@ -1747,3 +1747,7 @@ div.bootstrap-tagsinput {
 	padding: 10px 20px;
 	box-shadow: none;
 }
+
+.bootstrap-tagsinput .tag {
+	background-color: #42a5f5;
+}

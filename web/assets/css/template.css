@@ -3612,13 +3612,7 @@ ul.style-ul li span {
 .btn:hover{
 	color:#fff;
 }
-strong{
-	color:#fff;
-	font-size:20px;
-	position:relative;
-	top:3px;
-}
-/* 4. layout */
+ 4. layout
 /*------------------------------------*\
     Topbar
     \*------------------------------------*/

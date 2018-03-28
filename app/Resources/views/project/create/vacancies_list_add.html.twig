@@ -31,6 +31,7 @@
                         <div class="row">
                             <div class="col-md-12 form-group">
                                 {{ form_widget(form.skills, {'attr': {'class': 'input-block'}}) }}
+                                {#{{ form_widget(form.skills, {'attr': {'class': 'input-block', 'data-after-select': 'console.log("dd")'}}) }}#}
                                 {{ form_errors(form.skills)}}
                             </div>
                         </div>
@@ -64,17 +65,35 @@
     <script>
         $(function(){
             var tagInput = $('#open_vacancy_skills');
-            tagInput.tagsinput();
-            {% for vacancySkill in vacancy.getSkills %}
-            tagInput.tagsinput('add', "{{ vacancySkill.skill.title }}");
-            {% endfor %}
-            addTagsPlaceholderIfNeeded(tagInput.tagsinput('items'));
 
-            tagInput.on('itemAdded', function(event) {
+            $.get('{{ path('ajax_skills') }}', function(data){
+                var autocomplete = [];
+                for (key in data) {
+                    autocomplete.push(data[key].name);
+                }
+                tagInput.tagsinput({
+                    typeahead: {
+                        source: autocomplete,
+                        name: 'name',
+                        displayKey: 'name',
+                        valueKey: 'name',
+                        afterSelect: function(item) {
+                            tagInput.tagsinput('input').val('');
+                        }
+                    }
+                });
+
+                {% for vacancySkill in vacancy.getSkills %}
+                    tagInput.tagsinput('add', "{{ vacancySkill.skill.title }}");
+                {% endfor %}
                 addTagsPlaceholderIfNeeded(tagInput.tagsinput('items'));
-            });
-            tagInput.on('itemRemoved', function(event) {
-                addTagsPlaceholderIfNeeded(tagInput.tagsinput('items'));
+
+                tagInput.on('itemAdded', function(event) {
+                    addTagsPlaceholderIfNeeded(tagInput.tagsinput('items'));
+                });
+                tagInput.on('itemRemoved', function(event) {
+                    addTagsPlaceholderIfNeeded(tagInput.tagsinput('items'));
+                });
             });
         });
 
