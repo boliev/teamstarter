@@ -109,11 +109,13 @@ contacts:
     form_success: Contacts were saved!
 project:
     create: Create a project
+    my_projects: My projects
     menu_create: Create a project
     project_rules: <span>Project</span> rules
     main_info: <span>Project</span> main information
     open_vacancies: <span>Project</span> open vacancies
-    open_vacancies_edit_link: Edit
+    my_list: <span>My</span> projects
+    edit_link: Edit
     add_vacancy: + Add vacancy
     add_vacancy_page_title_add: <span>Add</span> vacancy
     add_vacancy_page_title_edit: <span>Edit</span> vacancy

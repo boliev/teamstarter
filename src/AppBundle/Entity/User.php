@@ -134,6 +134,12 @@ class User extends BaseUser
     private $userSpecializations;
 
     /**
+     * @var Collection
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Project", orphanRemoval=true, mappedBy="user")
+     */
+    private $projects;
+
+    /**
      * @return string
      */
     public function getFirstName(): ?string
@@ -444,5 +450,21 @@ class User extends BaseUser
     public function getFullName()
     {
         return $this->getFirstName().' '.$this->getLastName();
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getProjects(): Collection
+    {
+        return $this->projects;
+    }
+
+    /**
+     * @param Collection $projects
+     */
+    public function setProjects(Collection $projects)
+    {
+        $this->projects = $projects;
     }
 }

@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class ="container">
+        <div class="row section-content-2">
+
+            <div class="form-section">
+                <div class="col-sm-8 col-sm-offset-2">
+                    <div class="kc-elm kc-title-wrap  left dark">
+                        <div class="title-wrapper">
+                            <h3 class="kc_title">{{ 'project.my_list' | trans | raw }}</h3>
+                        </div>
+                    </div>
+
+                    {% for message in app.flashes('add-project-success') %}
+                        <div class="success-message">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+
+                    {% for project in projectsList %}
+
+                        <div class="row vacancy-list">
+                            <div class="col-sm-6">
+                                {{ project.name }}
+                            </div>
+                            <div class="col-sm-3">
+                                {{ project.progress }}
+                            </div>
+                            <div class="col-sm-1">
+                                <a href="{{ path('project_edit_name', {'project': project.id}) }}">{{ 'project.edit_link' | trans }}</a>
+                            </div>
+
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
