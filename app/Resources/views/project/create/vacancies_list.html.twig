@@ -31,7 +31,7 @@
                                     <input type="checkbox" class="vacancy-status-toggle" data-id="{{ vacancy.id }}" data-toggle="toggle" data-on="Open" data-off="Closed" {% if vacancy.vacant %}checked="checked"{% endif %}>
                                 </div>
                                 <div class="col-sm-1">
-                                    <a href="{{ path('project_edit_open_vacancies_edit', {'project': project.id, 'vacancy': vacancy.id}) }}">{{ 'project.open_vacancies_edit_link' | trans }}</a>
+                                    <a href="{{ path('project_edit_open_vacancies_edit', {'project': project.id, 'vacancy': vacancy.id}) }}">{{ 'project.edit_link' | trans }}</a>
                                 </div>
 
                             </div>
