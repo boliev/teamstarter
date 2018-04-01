@@ -114,6 +114,10 @@ project:
     project_rules: <span>Project</span> rules
     main_info: <span>Project</span> main information
     open_vacancies: <span>Project</span> open vacancies
+    screenshots: <span>Project</span> screenshots
+    add_screenshot: + Add a screenshot
+    screen_max_size_exception: Maximum size of screenshot must be {size} MB
+    screen_extension_exception: Screen must be an image
     my_list: <span>My</span> projects
     edit_link: Edit
     add_vacancy: + Add vacancy

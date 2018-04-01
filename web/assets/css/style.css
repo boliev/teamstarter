@@ -1751,3 +1751,35 @@ div.bootstrap-tagsinput {
 .bootstrap-tagsinput .tag {
 	background-color: #42a5f5;
 }
+
+.qq-gallery.qq-uploader-screens {
+	position:relative;
+	min-height:200px;
+	max-height:490px;
+	overflow-y:hidden;
+	width:inherit;
+	border-radius:6px;
+	border:1px dashed #ccc;
+	background-color:#fafafa;
+	padding:20px
+}
+
+.qq-gallery.qq-uploader-screens:before {
+	content:attr(qq-drop-area-text) " ";
+	position:absolute;
+	font-size:200%;
+	left:0;
+	width:100%;
+	text-align:center;
+	top:45%;
+	opacity:.25
+}
+
+.qq-gallery.qq-uploader-screens .qq-upload-button {
+	color: #42a5f5;
+}
+
+.project-screenshots img{
+	height: 100px;
+	margin: 5px;
+}

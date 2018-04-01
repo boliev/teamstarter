@@ -20,9 +20,9 @@ class ProjectScreen
 
     /**
      * @var string
-     * @ORM\Column(name="profile_picture", type="string", length=255, nullable=true)
+     * @ORM\Column(name="screenshot", type="string", length=255, nullable=true)
      */
-    private $picture;
+    private $screenshot;
 
     /**
      * @var Project
@@ -49,17 +49,17 @@ class ProjectScreen
     /**
      * @return string
      */
-    public function getPicture(): string
+    public function getScreenshot(): string
     {
-        return $this->picture;
+        return $this->screenshot;
     }
 
     /**
-     * @param string $picture
+     * @param string $screenshot
      */
-    public function setPicture(string $picture)
+    public function setScreenshot(string $screenshot)
     {
-        $this->picture = $picture;
+        $this->screenshot = $screenshot;
     }
 
     /**

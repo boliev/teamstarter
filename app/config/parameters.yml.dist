@@ -29,3 +29,4 @@ parameters:
 
     avatart_placeholder: /images/avatar_placeholder.jpg
     avatar_max_size: 2000000
+    project_screen_max_size: 2000000

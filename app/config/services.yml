@@ -55,6 +55,11 @@ services:
             $kernelRoot: "%kernel.root_dir%"
             $avatarMaxSize: "%avatar_max_size%"
 
+    AppBundle\Service\ProjectService:
+        arguments:
+            $kernelRoot: "%kernel.root_dir%"
+            $screenMaxSize: "%project_screen_max_size%"
+
     repository.specialization:
         class: AppBundle\Repository\SpecializationRepository
         factory: ['@doctrine.orm.default_entity_manager', getRepository]
