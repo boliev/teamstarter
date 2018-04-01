@@ -15,7 +15,7 @@
                         <div class="row margin-top-20">
                             <div class="col-md-12 project-screenshots">
                                 {% for screen in project.screens %}
-                                    <img src="{{ screen.screenshot }}" />
+                                    <a href="{{ screen.screenshot }}" data-lightbox="{{ project.name }}"><img src="{{ screen.screenshot }}"/></a>
                                 {% endfor %}
                             </div>
                         </div>
@@ -59,7 +59,7 @@
                 onComplete: function(id, name, response) {
                     if(response.hasOwnProperty('picture')) {
 //                       console.log(response['picture']);
-                        $(".project-screenshots").append('<img src="'+response['picture']+'" />')
+                        $(".project-screenshots").append('<a href="'+response['picture']+'" data-lightbox="{{ project.name }}"><img src="'+response['picture']+'"/></a>');
                     }
                 }
             }
