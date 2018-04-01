@@ -15,7 +15,15 @@
                         <div class="row margin-top-20">
                             <div class="col-md-12 project-screenshots">
                                 {% for screen in project.screens %}
-                                    <a href="{{ screen.screenshot }}" data-lightbox="{{ project.name }}"><img src="{{ screen.screenshot }}"/></a>
+                                    <div class="hovereffect">
+                                        <img class="img-responsive img-screens-gallery" src="{{ screen.screenshot }}" alt="">
+                                        <div class="overlay">
+                                            <p class="icon-links text-center">
+                                                <a href="{{ screen.screenshot }}" data-lightbox="{{ project.name }}"><i class="fas fa-search-plus"></i></a>
+                                                <a href="#"><i class="fas fa-trash-alt"></i></a>
+                                            </p>
+                                        </div>
+                                    </div>
                                 {% endfor %}
                             </div>
                         </div>
