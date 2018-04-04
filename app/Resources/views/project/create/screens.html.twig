@@ -15,12 +15,12 @@
                         <div class="row margin-top-20">
                             <div class="col-md-12 project-screenshots">
                                 {% for screen in project.screens %}
-                                    <div class="hovereffect">
+                                    <div class="hovereffect" id="screen-{{ screen.id }}">
                                         <img class="img-responsive img-screens-gallery" src="{{ screen.screenshot }}" alt="">
                                         <div class="overlay">
                                             <p class="icon-links text-center">
                                                 <a href="{{ screen.screenshot }}" data-lightbox="{{ project.name }}"><i class="fas fa-search-plus"></i></a>
-                                                <a href="#"><i class="fas fa-trash-alt"></i></a>
+                                                <a href="#null" onclick="deleteScreen({{ screen.id }})"><i class="fas fa-trash-alt"></i></a>
                                             </p>
                                         </div>
                                     </div>
@@ -66,13 +66,28 @@
                 },
                 onComplete: function(id, name, response) {
                     if(response.hasOwnProperty('picture')) {
-//                       console.log(response['picture']);
-                        $(".project-screenshots").append('<a href="'+response['picture']+'" data-lightbox="{{ project.name }}"><img src="'+response['picture']+'"/></a>');
+                        $(".project-screenshots").append('<div class="hovereffect" id="screen-'+response['screenId']+'">\n' +
+                            '                                        <img class="img-responsive img-screens-gallery" src="'+response['picture']+'" alt="">\n' +
+                            '                                        <div class="overlay">\n' +
+                            '                                            <p class="icon-links text-center">\n' +
+                            '                                                <a href="'+response['picture']+'" data-lightbox="{{ project.name }}"><i class="fas fa-search-plus"></i></a>\n' +
+                            '                                                <a href="#null" onclick="deleteScreen('+response['screenId']+')"><i class="fas fa-trash-alt"></i></a>\n' +
+                            '                                            </p>\n' +
+                            '                                        </div>\n' +
+                            '                                    </div>');
+
                     }
                 }
             }
         })
     });
+
+    function deleteScreen(screenId)
+    {
+        $.post( "/project/edit/delete-screen/"+screenId, function( data ) {
+            $("#screen-"+screenId).remove();
+        });
+    }
 </script>
 
     <script type="text/template" id="qq-template">

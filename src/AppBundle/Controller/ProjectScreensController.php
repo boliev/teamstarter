@@ -23,7 +23,7 @@ class ProjectScreensController extends Controller
      *
      * @return Response
      */
-    public function vacanciesList(Project $project, Request $request)
+    public function screensList(Project $project, Request $request)
     {
         if ($project->getUser()->getId() !== $this->getUser()->getId()) {
             $this->redirectToRoute('homepage');
@@ -43,7 +43,7 @@ class ProjectScreensController extends Controller
      *
      * @return Response
      */
-    public function uploadProfileAction(Project $project, EntityManagerInterface $em, ProjectService $projectService)
+    public function uploadScreenAction(Project $project, EntityManagerInterface $em, ProjectService $projectService)
     {
         /** @var User $user */
         $user = $this->getUser();
@@ -64,7 +64,30 @@ class ProjectScreensController extends Controller
             $em->persist($projectScreen);
             $em->flush();
 
-            return new JsonResponse(['success' => true, 'picture' => $file.'?'.mt_rand(0, 5000)]);
+            return new JsonResponse(['success' => true, 'picture' => $file.'?'.mt_rand(0, 5000), 'screenId' => $projectScreen->getId()]);
         }
+    }
+
+    /**
+     * @Route("/project/edit/delete-screen/{screen}", name="project_edit_delete_screen", methods="POST")
+     *
+     * @param ProjectScreen          $screen
+     * @param EntityManagerInterface $em
+     * @param ProjectService         $projectService
+     *
+     * @return Response
+     */
+    public function deleteScreenAction(ProjectScreen $screen, EntityManagerInterface $em, ProjectService $projectService)
+    {
+        /** @var User $user */
+        $user = $this->getUser();
+        $project = $screen->getProject();
+        if ($project->getUser()->getId() !== $user->getId()) {
+            $this->redirectToRoute('homepage');
+        }
+
+        $projectService->removeScreen($screen);
+
+        return new JsonResponse();
     }
 }

@@ -3,6 +3,8 @@
 namespace AppBundle\Service;
 
 use AppBundle\Entity\Project;
+use AppBundle\Entity\ProjectScreen;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Config\Exception\FileLoaderLoadException;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -26,17 +28,28 @@ class ProjectService
     private $screenMaxSize;
 
     /**
+     * @var EntityManagerInterface
+     */
+    private $entityManager;
+
+    /**
      * UserService constructor.
      *
-     * @param TranslatorInterface $translator
-     * @param string              $kernelRoot
-     * @param int                 $screenMaxSize
+     * @param TranslatorInterface    $translator
+     * @param EntityManagerInterface $entityManager
+     * @param string                 $kernelRoot
+     * @param int                    $screenMaxSize
      */
-    public function __construct(TranslatorInterface $translator, string $kernelRoot, int $screenMaxSize)
-    {
+    public function __construct(
+        TranslatorInterface $translator,
+        EntityManagerInterface $entityManager,
+        string $kernelRoot,
+        int $screenMaxSize
+    ) {
         $this->kernelRoot = $kernelRoot;
         $this->translator = $translator;
         $this->screenMaxSize = $screenMaxSize;
+        $this->entityManager = $entityManager;
     }
 
     /**
@@ -61,13 +74,28 @@ class ProjectService
             throw new FileLoaderLoadException($this->translator->trans('project.screen_extension_exception'));
         }
 
-        $fs = $this->getFS();
         $dir = substr(md5($project->getId()), 0, 2);
 
         $screenName = $project->getId().time().'.'.$extension;
         $screen->move($this->kernelRoot.'/../web/screens/'.$dir.'/', $screenName);
 
         return '/screens/'.$dir.'/'.$screenName;
+    }
+
+    /**
+     * @param ProjectScreen $screen
+     *
+     * @return bool
+     */
+    public function removeScreen(ProjectScreen $screen): bool
+    {
+        $filename = $this->kernelRoot.'/../web/screens/'.$screen->getScreenshot();
+        $fs = $this->getFS();
+        $fs->remove($filename);
+        $this->entityManager->remove($screen);
+        $this->entityManager->flush();
+
+        return true;
     }
 
     /**
