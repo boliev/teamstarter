@@ -32,6 +32,30 @@ framework:
     assets: ~
     php_errors:
         log: true
+    workflows:
+        project_flow:
+            type: 'state_machine'
+            marking_store:
+                type: 'single_state'
+                arguments:
+                    - 'progressStatus'
+            supports:
+                - AppBundle\Entity\Project
+            places:
+                - Unfinished
+                - InReview
+                - Declined
+                - Published
+            transitions:
+                to_review:
+                    from: Unfinished
+                    to:   InReview
+                publish:
+                    from: InReview
+                    to:   Published
+                decline:
+                    from: InReview
+                    to:   Declined
 
 # Twig Configuration
 twig:

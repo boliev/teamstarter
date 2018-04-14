@@ -11,6 +11,10 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Project
 {
+    const STATUS_UNFINISHED = 'Unfinished';
+    const STATUS_INREVIW = 'InReview';
+    const STATUS_DECLINED = 'Declined';
+    const STATUS_PUBLISHED = 'Published';
     /**
      * @var int
      * @ORM\Id
@@ -32,10 +36,10 @@ class Project
     private $user;
 
     /**
-     * @var ProjectProgress
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\ProjectProgress", inversedBy="projects")
+     * @var string
+     * @ORM\Column(type="string", length=255, nullable=false, options={"default": "Unfinished"})
      */
-    private $progress;
+    private $progressStatus;
 
     /**
      * @var string
@@ -81,7 +85,7 @@ class Project
 
     /**
      * @var Collection
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\ProjectProgress", mappedBy="project")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\ProjectDemo", mappedBy="project")
      */
     private $demos;
 
@@ -127,22 +131,6 @@ class Project
     public function setName(string $name)
     {
         $this->name = $name;
-    }
-
-    /**
-     * @return ProjectProgress
-     */
-    public function getProgress(): ProjectProgress
-    {
-        return $this->progress;
-    }
-
-    /**
-     * @param ProjectProgress $progress
-     */
-    public function setProgress(ProjectProgress $progress)
-    {
-        $this->progress = $progress;
     }
 
     /**
@@ -319,5 +307,21 @@ class Project
     public function setOpenVacancies(Collection $openVacancies)
     {
         $this->openVacancies = $openVacancies;
+    }
+
+    /**
+     * @return string
+     */
+    public function getProgressStatus(): string
+    {
+        return $this->progressStatus;
+    }
+
+    /**
+     * @param string $progressStatus
+     */
+    public function setProgressStatus(string $progressStatus)
+    {
+        $this->progressStatus = $progressStatus;
     }
 }

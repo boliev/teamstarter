@@ -24,7 +24,7 @@
                                 {{ project.name }}
                             </div>
                             <div class="col-sm-3">
-                                {{ project.progress }}
+                                {{ project.progressStatus | trans }}
                             </div>
                             <div class="col-sm-1">
                                 <a href="{{ path('project_edit_name', {'project': project.id}) }}">{{ 'project.edit_link' | trans }}</a>

@@ -4,24 +4,23 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Project;
 use AppBundle\Entity\ProjectDoc;
-use AppBundle\Entity\ProjectProgress;
 use AppBundle\Form\ProjectCreate\DocType;
 use AppBundle\Form\ProjectCreate\MainInfoType;
+use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Workflow\Registry;
 
 class ProjectCreateController extends AbstractController
 {
     /**
      * @Route("/project/create/rules/", name="project_create_rules")
      *
-     * @param Request $request
-     *
      * @return Response
      */
-    public function rulesAction(Request $request)
+    public function rulesAction()
     {
         $rulesText = $this->renderView('texts/en/project_rules.html.twig');
 
@@ -44,8 +43,6 @@ class ProjectCreateController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         if (!$project) {
             $project = new Project();
-            $progress = $em->getRepository(ProjectProgress::class)->find(ProjectProgress::UNFINISHED);
-            $project->setProgress($progress);
             $project->setUser($this->getUser());
         }
 
@@ -103,5 +100,35 @@ class ProjectCreateController extends AbstractController
             'form' => $form->createView(),
             'project' => $project,
         ]);
+    }
+
+    /**
+     * @Route("/project/edit/{project}/finish/", name="project_edit_finish")
+     *
+     * @param Project                $project
+     * @param Registry               $registry
+     * @param EntityManagerInterface $entityManager
+     *
+     * @return Response
+     *
+     * @internal param Request $request
+     */
+    public function finishAction(
+        Project $project,
+        Registry $registry,
+        EntityManagerInterface $entityManager
+    ) {
+        if ($project->getUser()->getId() !== $this->getUser()->getId()) {
+            $this->redirectToRoute('homepage');
+        }
+
+        $workflow = $registry->get($project, 'project_flow');
+        if ($workflow->can($project, 'to_review')) {
+            $workflow->apply($project, 'to_review');
+        }
+        $entityManager->persist($project);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('user_projects_list');
     }
 }

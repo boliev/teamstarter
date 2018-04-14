@@ -7,6 +7,10 @@ profile: Profile
 logout: Logout
 submit: Submit
 cancel: Cancel
+Unfinished: Unfinished
+InReview: In review
+Declined: Declined
+Published: Published
 registration:
     label_first_name: First name
     label_last_name: Last name
