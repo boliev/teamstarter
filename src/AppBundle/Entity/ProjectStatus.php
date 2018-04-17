@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -23,6 +24,12 @@ class ProjectStatus
      * @ORM\Column(type="string", length=255, nullable=false)
      */
     private $name;
+
+    /**
+     * @var Collection
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Project", mappedBy="status")
+     */
+    private $projects;
 
     /**
      * @return int
@@ -59,5 +66,21 @@ class ProjectStatus
     public function __toString()
     {
         return $this->name;
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getProjects(): Collection
+    {
+        return $this->projects;
+    }
+
+    /**
+     * @param Collection $projects
+     */
+    public function setProjects(Collection $projects)
+    {
+        $this->projects = $projects;
     }
 }

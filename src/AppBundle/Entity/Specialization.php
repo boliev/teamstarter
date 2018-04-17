@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -23,6 +24,12 @@ class Specialization
      * @ORM\Column(type="string", length=255, nullable=false)
      */
     private $title;
+
+    /**
+     * @var Collection
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\UserSpecializations", mappedBy="specialization")
+     */
+    private $userSpecializations;
 
     /**
      * @return int
@@ -59,5 +66,21 @@ class Specialization
     public function __toString()
     {
         return $this->getTitle();
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getUserSpecializations(): Collection
+    {
+        return $this->userSpecializations;
+    }
+
+    /**
+     * @param Collection $userSpecializations
+     */
+    public function setUserSpecializations(Collection $userSpecializations)
+    {
+        $this->userSpecializations = $userSpecializations;
     }
 }

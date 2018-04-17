@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -29,6 +30,12 @@ class Skill
      * @ORM\Column(type="string", length=255, nullable=false)
      */
     private $title;
+
+    /**
+     * @var Collection
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\UserSkills", mappedBy="skill")
+     */
+    private $userSkills;
 
     /**
      * @return mixed
@@ -76,5 +83,21 @@ class Skill
     public function setSlug(string $slug)
     {
         $this->slug = $slug;
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getUserSkills(): Collection
+    {
+        return $this->userSkills;
+    }
+
+    /**
+     * @param Collection $userSkills
+     */
+    public function setUserSkills(Collection $userSkills)
+    {
+        $this->userSkills = $userSkills;
     }
 }
