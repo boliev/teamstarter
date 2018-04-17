@@ -7,6 +7,7 @@ imports:
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: en
+    container.autowiring.strict_mode: true
 
 framework:
     #esi: ~
@@ -63,7 +64,7 @@ twig:
     strict_variables: '%kernel.debug%'
     globals:
         avatart_placeholder: '%avatart_placeholder%'
-        avatar_max_size: %avatar_max_size%
+        avatar_max_size: '%avatar_max_size%'
         fineUploader:
             debug: 'true'
 
@@ -145,10 +146,3 @@ hwi_oauth:
             client_id:           "%github_client_id%"
             client_secret:       "%github_secret%"
             scope:               'read:user'
-sonata_block:
-    default_contexts: [cms]
-    blocks:
-        # enable the SonataAdminBundle block
-        sonata.admin.block.admin_list:
-            contexts: [admin]
-        # ...

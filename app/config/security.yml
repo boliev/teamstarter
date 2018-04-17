@@ -36,8 +36,10 @@ security:
                 failure_path:      /login
                 oauth_user_provider:
                     service: my_user_provider
+                provider: fos_userbundle
             logout:       true
             anonymous:    true
+            logout_on_user_change: true
             # activate different ways to authenticate
 
             # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate

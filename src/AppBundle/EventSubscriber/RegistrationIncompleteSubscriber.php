@@ -10,6 +10,7 @@ use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Routing\Router;
+use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
@@ -44,10 +45,10 @@ class RegistrationIncompleteSubscriber implements EventSubscriberInterface
      *
      * @param EntityManagerInterface        $em
      * @param TokenStorageInterface         $tokenStorage
-     * @param Router                        $router
+     * @param RouterInterface               $router
      * @param AuthorizationCheckerInterface $authorizationChecker
      */
-    public function __construct(EntityManagerInterface $em, TokenStorageInterface $tokenStorage, Router $router, AuthorizationCheckerInterface $authorizationChecker)
+    public function __construct(EntityManagerInterface $em, TokenStorageInterface $tokenStorage, RouterInterface $router, AuthorizationCheckerInterface $authorizationChecker)
     {
         $this->em = $em;
         $this->tokenStorage = $tokenStorage;
