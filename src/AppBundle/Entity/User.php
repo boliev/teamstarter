@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity
  * @ORM\Table(name="user")
+ * @ORM\HasLifecycleCallbacks()
  */
 class User extends BaseUser
 {
@@ -138,6 +139,27 @@ class User extends BaseUser
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Project", orphanRemoval=true, mappedBy="user")
      */
     private $projects;
+
+    /**
+     * @var \DateTime
+     * @ORM\Column(type="datetime")
+     */
+    private $createddAt;
+
+    /**
+     * @var \DateTime
+     * @ORM\Column(type="datetime")
+     */
+    private $updatedAt;
+
+    /**
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     */
+    public function updatedTimestamps(): void
+    {
+        $this->setUpdatedAt(new \DateTime('now'));
+    }
 
     /**
      * @return string
@@ -466,5 +488,37 @@ class User extends BaseUser
     public function setProjects(Collection $projects)
     {
         $this->projects = $projects;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getCreateddAt(): \DateTime
+    {
+        return $this->createddAt;
+    }
+
+    /**
+     * @param \DateTime $createddAt
+     */
+    public function setCreateddAt(\DateTime $createddAt)
+    {
+        $this->createddAt = $createddAt;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * @param mixed $updatedAt
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
     }
 }
