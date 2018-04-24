@@ -38,7 +38,7 @@ class ProjectCreateController extends AbstractController
      *
      * @return Response
      */
-    public function mainAction(Project $project = null, Request $request)
+    public function mainAction(Project $project = null, Request $request, Registry $registry)
     {
         $em = $this->getDoctrine()->getManager();
         if (!$project) {

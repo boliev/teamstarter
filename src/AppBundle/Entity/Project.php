@@ -101,6 +101,11 @@ class Project
      */
     private $isDeleted = false;
 
+    public function __construct()
+    {
+        $this->progressStatus = 'Unfinished';
+    }
+
     /**
      * @return int
      */
