@@ -20,12 +20,17 @@
                     {% for project in projectsList %}
 
                         <div class="row vacancy-list">
-                            <div class="col-sm-6">
+                            <div class="col-sm-4">
                                 {{ project.name }}
                             </div>
-                            <div class="col-sm-3">
+                            <div class="col-sm-2">
                                 {{ project.progressStatus | trans }}
                             </div>
+
+                            <div class="col-sm-3">
+                                {{ project.createdAt|date('Y-m-d h:m') }}
+                            </div>
+
                             <div class="col-sm-1">
                                 <a href="{{ path('project_edit_name', {'project': project.id}) }}">{{ 'project.edit_link' | trans }}</a>
                             </div>

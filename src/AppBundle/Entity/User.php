@@ -137,6 +137,7 @@ class User extends BaseUser
     /**
      * @var Collection
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Project", orphanRemoval=true, mappedBy="user")
+     * @ORM\OrderBy({"createdAt" = "DESC"})
      */
     private $projects;
 
