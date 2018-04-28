@@ -66,4 +66,8 @@ services:
         arguments:
             - AppBundle\Entity\Specialization
 
+    AppBundle\EventSubscriber\ProjectToReviewSubscriber:
+        arguments:
+            $fromEmailAddress: '%from_email%'
+
 

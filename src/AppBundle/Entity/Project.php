@@ -120,6 +120,7 @@ class Project
     public function __construct()
     {
         $this->progressStatus = 'Unfinished';
+        $this->setCreatedAt(new \DateTime('now'));
     }
 
     /**
@@ -308,7 +309,7 @@ class Project
     }
 
     /**
-     * @return mixed
+     * @return User
      */
     public function getUser()
     {
@@ -316,7 +317,7 @@ class Project
     }
 
     /**
-     * @param mixed $user
+     * @param User $user
      */
     public function setUser($user)
     {

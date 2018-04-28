@@ -8,6 +8,7 @@ imports:
 parameters:
     locale: en
     container.autowiring.strict_mode: true
+    from_email: 'voff.web@gmail.com'
 
 framework:
     #esi: ~
@@ -95,7 +96,7 @@ fos_user:
     firewall_name: main
     user_class: AppBundle\Entity\User
     from_email:
-        address: voff.web@gmail.com
+        address: '%from_email%'
         sender_name: TeamStarter
     registration:
         confirmation:
@@ -118,6 +119,7 @@ swiftmailer:
     username: "%mailer_user%"
     password: "%mailer_password%"
     auth_mode: "%mailer_auth_mode%"
+    port: "%mailer_port%"
     spool: { type: memory }
 
 hwi_oauth:

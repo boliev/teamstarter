@@ -144,13 +144,21 @@ class User extends BaseUser
      * @var \DateTime
      * @ORM\Column(type="datetime")
      */
-    private $createddAt;
+    private $createdAt;
 
     /**
      * @var \DateTime
      * @ORM\Column(type="datetime")
      */
     private $updatedAt;
+
+    /**
+     * User constructor.
+     */
+    public function __construct()
+    {
+        $this->setCreatedAt(new \DateTime('now'));
+    }
 
     /**
      * @ORM\PrePersist
@@ -493,17 +501,17 @@ class User extends BaseUser
     /**
      * @return \DateTime
      */
-    public function getCreateddAt(): \DateTime
+    public function getCreatedAt(): \DateTime
     {
-        return $this->createddAt;
+        return $this->createdAt;
     }
 
     /**
-     * @param \DateTime $createddAt
+     * @param \DateTime $createdAt
      */
-    public function setCreateddAt(\DateTime $createddAt)
+    public function setCreatedAt(\DateTime $createdAt)
     {
-        $this->createddAt = $createddAt;
+        $this->createdAt = $createdAt;
     }
 
     /**
