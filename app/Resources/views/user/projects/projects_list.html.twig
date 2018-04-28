@@ -24,7 +24,7 @@
                                 {{ project.name }}
                             </div>
                             <div class="col-sm-2">
-                                {{ project.progressStatus | trans }}
+                                <span class="alert project-list-status-{{ project.progressStatus }}">{{ project.progressStatus | trans }}</span>
                             </div>
 
                             <div class="col-sm-3">

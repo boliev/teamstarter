@@ -1902,3 +1902,32 @@ div.project-screenshots .hovereffect:hover p.icon-links a:first-child {
 	-webkit-transition-delay: 0.2s;
 	transition-delay: 0.2s;
 }
+
+span.project-list-status-InReview {
+	padding:2px 5px;
+	color: #8a6d3b;
+	background-color: #fcf8e3;
+	border-color: #faebcc;
+}
+
+span.project-list-status-Published {
+	padding:2px 5px;
+	color: #3c763d;
+	background-color: #dff0d8;
+	border-color: #d6e9c6;
+}
+
+span.project-list-status-Declined {
+	padding:2px 5px;
+	color: #a94442;
+	background-color: #f2dede;
+	border-color: #ebccd1;
+}
+
+span.project-list-status-Unfinished {
+	padding:2px 5px;
+	color: #222;
+	background-color: #fff;
+	border-color: #fff;
+}
+
