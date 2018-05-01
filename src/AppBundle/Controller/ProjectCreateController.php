@@ -11,6 +11,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Translation\TranslatorInterface;
 use Symfony\Component\Workflow\Registry;
 
 class ProjectCreateController extends AbstractController
@@ -108,15 +109,15 @@ class ProjectCreateController extends AbstractController
      * @param Project                $project
      * @param Registry               $registry
      * @param EntityManagerInterface $entityManager
+     * @param TranslatorInterface    $translator
      *
      * @return Response
-     *
-     * @internal param Request $request
      */
     public function finishAction(
         Project $project,
         Registry $registry,
-        EntityManagerInterface $entityManager
+        EntityManagerInterface $entityManager,
+        TranslatorInterface $translator
     ) {
         if ($project->getUser()->getId() !== $this->getUser()->getId()) {
             $this->redirectToRoute('homepage');
@@ -125,6 +126,8 @@ class ProjectCreateController extends AbstractController
         $workflow = $registry->get($project, 'project_flow');
         if ($workflow->can($project, 'to_review')) {
             $workflow->apply($project, 'to_review');
+        } else {
+            $this->addFlash('project-saved', $translator->trans('project.saved'));
         }
         $entityManager->persist($project);
         $entityManager->flush();
