@@ -145,6 +145,7 @@ project:
     form_description: Description
     agree_button: I agree with project rules
     next_button: Proceed
+    finish_button: Finish
     back_button: Back
     no_docs_button: I don't have any documentation
     doc_name: Document name
