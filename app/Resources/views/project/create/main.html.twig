@@ -30,6 +30,12 @@
                                 {{ form_errors(form.country)}}
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                {{ form_widget(form.city, {'attr': {'class': 'input-block', 'placeholder': 'project.form_city'}}) }}
+                                {{ form_errors(form.city)}}
+                            </div>
+                        </div>
                          <div class="row">
                             <div class="col-md-12 form-group">
                                 {{ form_widget(form.mission, {'attr': {'class': 'input-block', 'placeholder': 'project.form_mission'}}) }}
