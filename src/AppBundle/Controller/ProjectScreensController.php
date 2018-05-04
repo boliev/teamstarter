@@ -10,23 +10,27 @@ use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Translation\TranslatorInterface;
 
 class ProjectScreensController extends Controller
 {
     /**
      * @Route("/project/edit/{project}/screens/", name="project_edit_screens")
      *
-     * @param Project $project
-     * @param Request $request
+     * @param Project             $project
+     * @param TranslatorInterface $translator
      *
      * @return Response
      */
-    public function screensList(Project $project, Request $request)
+    public function screensList(Project $project, TranslatorInterface $translator)
     {
         if ($project->getUser()->getId() !== $this->getUser()->getId()) {
             $this->redirectToRoute('homepage');
+        }
+
+        if (Project::STATUS_PUBLISHED === $project->getProgressStatus()) {
+            $this->addFlash('project-warning', $translator->trans('project.re_moderation_warning'));
         }
 
         return $this->render(':project/create:screens.html.twig', [
@@ -63,6 +67,7 @@ class ProjectScreensController extends Controller
 
             $em->persist($projectScreen);
             $em->flush();
+            $projectService->reModerateIfNeeded($project);
 
             return new JsonResponse(['success' => true, 'picture' => $file.'?'.mt_rand(0, 5000), 'screenId' => $projectScreen->getId()]);
         }

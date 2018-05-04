@@ -3,16 +3,13 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Project;
-use AppBundle\Entity\ProjectDoc;
-use AppBundle\Form\ProjectCreate\DocType;
 use AppBundle\Form\ProjectCreate\MainInfoType;
-use Doctrine\ORM\EntityManagerInterface;
+use AppBundle\Service\ProjectService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Translation\TranslatorInterface;
-use Symfony\Component\Workflow\Registry;
 
 class ProjectCreateController extends AbstractController
 {
@@ -34,13 +31,19 @@ class ProjectCreateController extends AbstractController
      * @Route("/project/create/main/", name="project_create_name")
      * @Route("/project/edit/{project}/main/", name="project_edit_name")
      *
-     * @param Project|null $project
-     * @param Request      $request
+     * @param Project|null        $project
+     * @param Request             $request
+     * @param TranslatorInterface $translator
+     * @param ProjectService      $projectService
      *
      * @return Response
      */
-    public function mainAction(Project $project = null, Request $request, Registry $registry)
-    {
+    public function mainAction(
+        Project $project = null,
+        Request $request,
+        TranslatorInterface $translator,
+        ProjectService $projectService
+    ) {
         $em = $this->getDoctrine()->getManager();
         if (!$project) {
             $project = new Project();
@@ -56,8 +59,13 @@ class ProjectCreateController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $em->persist($project);
             $em->flush();
+            $projectService->reModerateIfNeeded($project);
 
             return $this->redirectToRoute('project_edit_open_vacancies_list', ['project' => $project->getId()]);
+        }
+
+        if (Project::STATUS_PUBLISHED === $project->getProgressStatus()) {
+            $this->addFlash('project-warning', $translator->trans('project.re_moderation_warning'));
         }
 
         return $this->render(':project/create:main.html.twig', [
@@ -66,71 +74,26 @@ class ProjectCreateController extends AbstractController
     }
 
     /**
-     * @Route("/project/edit/{project}/docs/", name="project_edit_docs")
-     *
-     * @param Project $project
-     * @param Request $request
-     *
-     * @return Response
-     */
-    public function docsAction(Project $project, Request $request)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        if ($project->getUser()->getId() !== $this->getUser()->getId()) {
-            $this->redirectToRoute('homepage');
-        }
-
-        $doc = $project->getDocs()->first();
-        if (!$doc) {
-            $doc = new ProjectDoc();
-            $doc->setProject($project);
-        }
-
-        $form = $this->createForm(DocType::class, $doc);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em->persist($doc);
-            $em->flush();
-
-            return $this->redirectToRoute('project_edit_open_vacancies_list', ['project' => $project->getId()]);
-        }
-
-        return $this->render(':project/create:docs.html.twig', [
-            'form' => $form->createView(),
-            'project' => $project,
-        ]);
-    }
-
-    /**
      * @Route("/project/edit/{project}/finish/", name="project_edit_finish")
      *
-     * @param Project                $project
-     * @param Registry               $registry
-     * @param EntityManagerInterface $entityManager
-     * @param TranslatorInterface    $translator
+     * @param Project             $project
+     * @param ProjectService      $projectService
+     * @param TranslatorInterface $translator
      *
      * @return Response
      */
     public function finishAction(
         Project $project,
-        Registry $registry,
-        EntityManagerInterface $entityManager,
+        ProjectService $projectService,
         TranslatorInterface $translator
     ) {
         if ($project->getUser()->getId() !== $this->getUser()->getId()) {
             $this->redirectToRoute('homepage');
         }
 
-        $workflow = $registry->get($project, 'project_flow');
-        if ($workflow->can($project, 'to_review')) {
-            $workflow->apply($project, 'to_review');
-        } else {
+        if (!$projectService->sendToModerate($project)) {
             $this->addFlash('project-saved', $translator->trans('project.saved'));
         }
-        $entityManager->persist($project);
-        $entityManager->flush();
 
         return $this->redirectToRoute('user_projects_list');
     }

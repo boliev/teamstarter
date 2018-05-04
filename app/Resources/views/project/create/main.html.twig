@@ -12,6 +12,10 @@
                             </div>
                         </div>
 
+                        {% for message in app.flashes('project-warning') %}
+                            <div class="warning-message margin-bottom-10">{{ message }}</div>
+                        {% endfor %}
+
                         <div class="row">
                             <div class="col-md-12 form-group">
                                 {{ form_widget(form.name, {'attr': {'class': 'input-block', 'placeholder': 'project.form_name'}}) }}

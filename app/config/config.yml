@@ -44,20 +44,23 @@ framework:
             supports:
                 - AppBundle\Entity\Project
             places:
-                - Unfinished
-                - InReview
-                - Declined
-                - Published
+                - !php/const AppBundle\Entity\Project::STATUS_UNFINISHED
+                - !php/const AppBundle\Entity\Project::STATUS_INREVIW
+                - !php/const AppBundle\Entity\Project::STATUS_DECLINED
+                - !php/const AppBundle\Entity\Project::STATUS_PUBLISHED
             transitions:
                 to_review:
-                    from: Unfinished
-                    to:   InReview
+                    from: !php/const AppBundle\Entity\Project::STATUS_UNFINISHED
+                    to:   !php/const AppBundle\Entity\Project::STATUS_INREVIW
                 publish:
-                    from: InReview
-                    to:   Published
+                    from: !php/const AppBundle\Entity\Project::STATUS_INREVIW
+                    to:   !php/const AppBundle\Entity\Project::STATUS_PUBLISHED
+                re_moderate:
+                    from: !php/const AppBundle\Entity\Project::STATUS_PUBLISHED
+                    to:   !php/const AppBundle\Entity\Project::STATUS_INREVIW
                 decline:
-                    from: InReview
-                    to:   Declined
+                    from: !php/const AppBundle\Entity\Project::STATUS_INREVIW
+                    to:   !php/const AppBundle\Entity\Project::STATUS_DECLINED
 
 # Twig Configuration
 twig:

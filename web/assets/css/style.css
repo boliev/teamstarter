@@ -1693,6 +1693,15 @@ div.modal-login-social a, div.register-form-sn-login a {
 	color: green;
 }
 
+.warning-message {
+	font-size: 20px;
+	text-align: center;
+	padding: 20px;
+	color: #8a6d3b;
+	background-color: #fcf8e3;
+	border-color: #faebcc;
+}
+
 .project-rules li {
 	padding: 16px 0px;
 	font-size: 15px;

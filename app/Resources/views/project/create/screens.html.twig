@@ -12,6 +12,10 @@
                             </div>
                         </div>
 
+                        {% for message in app.flashes('project-warning') %}
+                            <div class="warning-message margin-bottom-10">{{ message }}</div>
+                        {% endfor %}
+
                         <div class="row margin-top-20">
                             <div class="col-md-12 project-screenshots">
                                 {% for screen in project.screens %}

@@ -6,6 +6,7 @@ use AppBundle\Entity\Project;
 use AppBundle\Entity\ProjectOpenVacancy;
 use AppBundle\Entity\ProjectOpenVacancySkills;
 use AppBundle\Form\ProjectCreate\OpenVacancyType;
+use AppBundle\Service\ProjectService;
 use AppBundle\Service\SkillService;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -19,15 +20,19 @@ class ProjectVacanciesController extends Controller
     /**
      * @Route("/project/edit/{project}/open-vacancies/", name="project_edit_open_vacancies_list")
      *
-     * @param Project $project
-     * @param Request $request
+     * @param Project             $project
+     * @param TranslatorInterface $translator
      *
      * @return Response
      */
-    public function vacanciesList(Project $project, Request $request)
+    public function vacanciesList(Project $project, TranslatorInterface $translator)
     {
         if ($project->getUser()->getId() !== $this->getUser()->getId()) {
             $this->redirectToRoute('homepage');
+        }
+
+        if (Project::STATUS_PUBLISHED === $project->getProgressStatus()) {
+            $this->addFlash('project-warning', $translator->trans('project.re_moderation_warning'));
         }
 
         return $this->render(':project/create:vacancies_list.html.twig', [
@@ -46,6 +51,7 @@ class ProjectVacanciesController extends Controller
      * @param TranslatorInterface    $translator
      * @param EntityManagerInterface $entityManager
      * @param SkillService           $skillService
+     * @param ProjectService         $projectService
      *
      * @return Response
      */
@@ -55,7 +61,8 @@ class ProjectVacanciesController extends Controller
         Request $request,
         TranslatorInterface $translator,
         EntityManagerInterface $entityManager,
-        SkillService $skillService
+        SkillService $skillService,
+        ProjectService $projectService
     ) {
         if ($project->getUser()->getId() !== $this->getUser()->getId()) {
             $this->redirectToRoute('homepage');
@@ -75,6 +82,7 @@ class ProjectVacanciesController extends Controller
 
             $skills = explode(',', $form->get('skills')->getData());
             $this->saveSkills($skills, $vacancy, $skillService, $entityManager);
+            $projectService->reModerateIfNeeded($project);
 
             if ('project_edit_open_vacancies_add' === $request->get('_route')) {
                 $message = $translator->trans('project.add_vacancy_success_add');

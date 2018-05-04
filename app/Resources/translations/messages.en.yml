@@ -151,6 +151,7 @@ project:
     doc_name: Document name
     doc_url: Document URL
     saved: Project saved!
+    re_moderation_warning: After editing the project will be sent to re-moderation and for some time will be unavailable in the system
     submit_success: Thank you for submitting your project! After manual reviewing it will be added to the system. We will inform you by email!
     submit_success_email:
         subject: Thank you for submitting your project!
@@ -158,6 +159,16 @@ project:
             <p>Hello %username%!</p>
             <p>Thank you for submitting your project!</p>
             <p>After manual reviewing it will be added to the system. We will inform you by email!</p>
+            <br /><br />
+            <p>Regards,<br />
+            TeamStarter Team.</p>
+    edit_success: Thank you for editing your project! After manual reviewing it will be back in the system. We will inform you by email!
+    edit_success_email:
+        subject:  Thank you for editing your project!
+        message: |
+            <p>Hello %username%!</p>
+            <p>Thank you for editting your project!</p>
+            <p>After manual reviewing it will be back in the system. We will inform you by email!</p>
             <br /><br />
             <p>Regards,<br />
             TeamStarter Team.</p>

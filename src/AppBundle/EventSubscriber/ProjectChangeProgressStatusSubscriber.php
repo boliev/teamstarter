@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Component\Translation\TranslatorInterface;
 use Symfony\Component\Workflow\Event\Event;
 
-class ProjectToReviewSubscriber implements EventSubscriberInterface
+class ProjectChangeProgressStatusSubscriber implements EventSubscriberInterface
 {
     /**
      * @var \Swift_Mailer
@@ -70,12 +70,31 @@ class ProjectToReviewSubscriber implements EventSubscriberInterface
     }
 
     /**
+     * @param Event $event
+     */
+    public function onReModerate(Event $event)
+    {
+        /** @var Project $project */
+        $project = $event->getSubject();
+        $user = $project->getUser();
+
+        $message = (new \Swift_Message($this->translator->trans('project.edit_success_email.subject')))
+            ->setFrom($this->fromEmailAddress)
+            ->setTo($user->getEmail())
+            ->setBody($this->translator->trans('project.edit_success_email.message', ['%username%' => $user->getFullName()]), 'text/html');
+
+        $this->mailer->send($message);
+        $this->flashBag->add('project-saved', $this->translator->trans('project.edit_success'));
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function getSubscribedEvents()
     {
         return array(
             'workflow.project_flow.completed.to_review' => 'onReview',
+            'workflow.project_flow.completed.re_moderate' => 'onReModerate',
         );
     }
 }

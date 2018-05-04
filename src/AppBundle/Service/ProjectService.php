@@ -9,6 +9,7 @@ use Symfony\Component\Config\Exception\FileLoaderLoadException;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Component\Workflow\Registry;
 
 class ProjectService
 {
@@ -33,16 +34,23 @@ class ProjectService
     private $entityManager;
 
     /**
+     * @var Registry
+     */
+    private $workflowRegistry;
+
+    /**
      * UserService constructor.
      *
      * @param TranslatorInterface    $translator
      * @param EntityManagerInterface $entityManager
+     * @param Registry               $workflowRegistry
      * @param string                 $kernelRoot
      * @param int                    $screenMaxSize
      */
     public function __construct(
         TranslatorInterface $translator,
         EntityManagerInterface $entityManager,
+        Registry $workflowRegistry,
         string $kernelRoot,
         int $screenMaxSize
     ) {
@@ -50,6 +58,7 @@ class ProjectService
         $this->translator = $translator;
         $this->screenMaxSize = $screenMaxSize;
         $this->entityManager = $entityManager;
+        $this->workflowRegistry = $workflowRegistry;
     }
 
     /**
@@ -96,6 +105,49 @@ class ProjectService
         $this->entityManager->flush();
 
         return true;
+    }
+
+    /**
+     * @param Project $project
+     *
+     * @return bool
+     */
+    public function reModerateIfNeeded(Project $project): bool
+    {
+        $workflow = $this->workflowRegistry->get($project, 'project_flow');
+        if ($workflow->can($project, 're_moderate')) {
+            $workflow->apply($project, 're_moderate');
+            $this->entityManager->persist($project);
+            $this->entityManager->flush();
+
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * @param Project $project
+     *
+     * @return bool
+     */
+    public function sendToModerate(Project $project)
+    {
+        $workflow = $this->workflowRegistry->get($project, 'project_flow');
+
+        if ($this->reModerateIfNeeded($project)) {
+            return true;
+        }
+
+        if ($workflow->can($project, 'to_review')) {
+            $workflow->apply($project, 'to_review');
+            $this->entityManager->persist($project);
+            $this->entityManager->flush();
+
+            return true;
+        }
+
+        return false;
     }
 
     /**
