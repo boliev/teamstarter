@@ -47,15 +47,14 @@
                                     <h3 class="kc_title">{{ 'skill.add' | trans | raw }}</h3>
                                 </div>
                             </div>
+
                             <p class="hint">{{ 'skill.add_hint' | trans }}</p>
-                            {% for i in range(1, 9) %}
-                                <div class="row">
-                                    <div class="col-md-12 skill-input">
-                                        <input type="text" class="skills-input margin-bottom-25" name="skill[{{ i }}]" value="{% if(userSkills[i-1]) is defined %} {{ userSkills[i-1].skill.title }} {% endif %}">
-                                    </div>
+                            <div class="row">
+                                <div class="col-md-12 skill-input">
+                                    <input type="text" name="skills" id="user-specializations-skills" class="input-block">
                                 </div>
-                            {% endfor %}
-                            <p class="text-center"><input type="submit" class="wpcf7-form-control wpcf7-submit btn btn-primary btn-outline" value="{{ 'submit'|trans }}"></p>
+                            </div>
+                            <p class="text-center margin-top-15"><input type="submit" class="wpcf7-form-control wpcf7-submit btn btn-primary btn-outline" value="{{ 'submit'|trans }}"></p>
                     </form>
                 </div>
             </div>
@@ -65,19 +64,50 @@
 
 {% block javascripts %}
     <script>
+        $(function(){
+            var tagInput = $('#user-specializations-skills');
 
-        var options = {
-            url: "{{ path('ajax_skills') }}",
-            getValue: "name",
-            list: {
-                match: {
-                    enabled: true
+            $.get('{{ path('ajax_skills') }}', function(data){
+                var autocomplete = [];
+                for (key in data) {
+                    autocomplete.push(data[key].name);
                 }
-            },
-            theme: "square"
-        };
+                tagInput.tagsinput({
+                    typeahead: {
+                        source: autocomplete,
+                        name: 'name',
+                        displayKey: 'name',
+                        valueKey: 'name',
+                        afterSelect: function(item) {
+                            tagInput.tagsinput('input').val('');
+                        }
+                    }
+                });
 
-        $(".skills-input").easyAutocomplete(options);
+                {% for userSkill in userSkills %}
+                tagInput.tagsinput('add', "{{ userSkill.skill.title }}");
+                {% endfor %}
+                addTagsPlaceholderIfNeeded(tagInput.tagsinput('items'));
+
+                tagInput.on('itemAdded', function(event) {
+                    addTagsPlaceholderIfNeeded(tagInput.tagsinput('items'));
+                });
+                tagInput.on('itemRemoved', function(event) {
+                    addTagsPlaceholderIfNeeded(tagInput.tagsinput('items'));
+                });
+            });
+        });
+
+        function addTagsPlaceholderIfNeeded(tags)
+        {
+            var tagInput = $('#user-specializations-skills');
+            if(tags.length) {
+                tagInput.tagsinput('input').removeAttr('placeholder');
+            } else {
+                tagInput.tagsinput('input').attr('placeholder', '{{ 'skill.input_hint' | trans }}');
+            }
+
+        }
 
         $(function(){
             validateSpecialization();

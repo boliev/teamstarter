@@ -2,7 +2,6 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Skill;
 use AppBundle\Entity\Specialization;
 use AppBundle\Entity\User;
 use AppBundle\Entity\UserSkills;
@@ -45,11 +44,9 @@ class UserSpecializationController extends AbstractController
             $this->saveSpecializations($specs, $user, $em, $translator);
             $em->flush();
 
-            $skills = $request->request->get('skill');
-            if ($skills) {
-                $this->saveSkills($skills, $user, $skillService, $em);
-                $em->flush();
-            }
+            $skills = explode(',', $request->request->get('skills'));
+            $this->saveSkills($skills, $user, $skillService, $em);
+
             if ('specify_specialization_form' === $request->get('_route')) {
                 return $this->redirectToRoute('homepage');
             } else {
@@ -134,6 +131,7 @@ class UserSpecializationController extends AbstractController
             $userSkill->setSkill($skillEntity);
             $userSkill->setPriority($priority);
             $em->persist($userSkill);
+            $em->flush();
         }
     }
 }

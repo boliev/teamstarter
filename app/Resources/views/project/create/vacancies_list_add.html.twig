@@ -31,7 +31,6 @@
                         <div class="row">
                             <div class="col-md-12 form-group">
                                 {{ form_widget(form.skills, {'attr': {'class': 'input-block'}}) }}
-                                {#{{ form_widget(form.skills, {'attr': {'class': 'input-block', 'data-after-select': 'console.log("dd")'}}) }}#}
                                 {{ form_errors(form.skills)}}
                             </div>
                         </div>
@@ -103,7 +102,7 @@
             if(tags.length) {
                 tagInput.tagsinput('input').removeAttr('placeholder');
             } else {
-                tagInput.tagsinput('input').attr('placeholder', 'Skills separated by commas');
+                tagInput.tagsinput('input').attr('placeholder', '{{ 'skill.input_hint' | trans }}');
             }
 
         }

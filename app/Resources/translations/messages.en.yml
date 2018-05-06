@@ -47,10 +47,12 @@ specialization:
     cant_find_specialization: Can't find specialization
     menu_title: Specializations
     form_success: Specializations & skills were saved!
+    skills_hint: Skills separated by commas
 
 skill:
     add: <span>Add your</span> skills
-    add_hint: Add from 1 to 10 of your professional skills and arrange them in order of importance for you. The more accurately you specify the skills and their order, the sooner a suitable project will find you.
+    add_hint: Add your professional skills and arrange them in order of importance for you. The more accurately you specify the skills and their order, the sooner a suitable project will find you.
+    input_hint: Skills separated by commas
 user:
     about_title: <span>Tell us about</span> yourself
     about_menu_title: About you
