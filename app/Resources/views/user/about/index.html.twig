@@ -63,13 +63,13 @@
                         {{ form_errors(form.about)}}
                             </div></div>
                         <div class="row">
-                            <div class="col-md-offset-4 col-md-4 form-bottom">
+                            <div class="col-md-12 form-bottom">
                                 {{ form_row(form._token) }}
                                 {% if app.request.get('_route') == 'specify_about_form' %}
                                     <input type="submit" class="btn btn-primary btn-large" value="{{ 'submit'|trans }}">
                                     <input type="button" class="btn btn-default btn-warning" onclick="window.location.href = '{{ path('specify_about_form_skip') }}'" value="{{ 'user.about_skip_button'|trans }}">
                                 {% else %}
-                                    <input type="submit" class="btn btn-primary btn-large btn-block" value="{{ 'submit'|trans }}">
+                                    <input type="submit" class="btn btn-primary btn-large" value="{{ 'submit'|trans }}">
                                 {% endif %}
                             </div>
                         </div>
