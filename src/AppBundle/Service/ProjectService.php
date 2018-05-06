@@ -114,16 +114,7 @@ class ProjectService
      */
     public function reModerateIfNeeded(Project $project): bool
     {
-        $workflow = $this->workflowRegistry->get($project, 'project_flow');
-        if ($workflow->can($project, 're_moderate')) {
-            $workflow->apply($project, 're_moderate');
-            $this->entityManager->persist($project);
-            $this->entityManager->flush();
-
-            return true;
-        }
-
-        return false;
+        return $this->applyStatus($project, 're_moderate');
     }
 
     /**
@@ -133,14 +124,45 @@ class ProjectService
      */
     public function sendToModerate(Project $project)
     {
-        $workflow = $this->workflowRegistry->get($project, 'project_flow');
-
         if ($this->reModerateIfNeeded($project)) {
             return true;
         }
 
-        if ($workflow->can($project, 'to_review')) {
-            $workflow->apply($project, 'to_review');
+        return $this->applyStatus($project, 'to_review');
+    }
+
+    /**
+     * @param Project $project
+     *
+     * @return bool
+     */
+    public function close(Project $project)
+    {
+        return $this->applyStatus($project, 'close');
+    }
+
+    /**
+     * @param Project $project
+     *
+     * @return bool
+     */
+    public function reOpen(Project $project)
+    {
+        return $this->applyStatus($project, 're_open');
+    }
+
+    /**
+     * @param Project $project
+     * @param string  $status
+     *
+     * @return bool
+     */
+    private function applyStatus(Project $project, string $status)
+    {
+        $workflow = $this->workflowRegistry->get($project, 'project_flow');
+
+        if ($workflow->can($project, $status)) {
+            $workflow->apply($project, $status);
             $this->entityManager->persist($project);
             $this->entityManager->flush();
 

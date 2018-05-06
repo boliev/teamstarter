@@ -48,6 +48,7 @@ framework:
                 - !php/const AppBundle\Entity\Project::STATUS_INREVIW
                 - !php/const AppBundle\Entity\Project::STATUS_DECLINED
                 - !php/const AppBundle\Entity\Project::STATUS_PUBLISHED
+                - !php/const AppBundle\Entity\Project::STATUS_CLOSED
             transitions:
                 to_review:
                     from: !php/const AppBundle\Entity\Project::STATUS_UNFINISHED
@@ -61,6 +62,13 @@ framework:
                 decline:
                     from: !php/const AppBundle\Entity\Project::STATUS_INREVIW
                     to:   !php/const AppBundle\Entity\Project::STATUS_DECLINED
+                close:
+                    from: !php/const AppBundle\Entity\Project::STATUS_PUBLISHED
+                    to:   !php/const AppBundle\Entity\Project::STATUS_CLOSED
+                re_open:
+                    from: !php/const AppBundle\Entity\Project::STATUS_CLOSED
+                    to:   !php/const AppBundle\Entity\Project::STATUS_INREVIW
+
 
 # Twig Configuration
 twig:

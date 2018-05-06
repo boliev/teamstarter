@@ -1940,3 +1940,7 @@ span.project-list-status-Unfinished {
 	border-color: #fff;
 }
 
+.table-list-actions {
+	padding: 0px 10px;
+}
+

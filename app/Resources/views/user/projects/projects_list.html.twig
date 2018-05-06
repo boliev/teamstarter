@@ -20,19 +20,26 @@
                     {% for project in projectsList %}
 
                         <div class="row vacancy-list">
-                            <div class="col-sm-4">
+                            <div class="col-sm-5">
                                 {{ project.name }}
                             </div>
                             <div class="col-sm-2">
                                 <span class="alert project-list-status-{{ project.progressStatus }}">{{ project.progressStatus | trans }}</span>
                             </div>
 
-                            <div class="col-sm-3">
-                                {{ project.createdAt|date('Y-m-d h:m') }}
+                            <div class="col-sm-2">
+                                {{ project.createdAt|date('Y-m-d') }}
                             </div>
 
-                            <div class="col-sm-1">
-                                <a href="{{ path('project_edit_name', {'project': project.id}) }}">{{ 'project.edit_link' | trans }}</a>
+                            <div class="col-sm-3">
+                                <a class="table-list-actions" href="{{ path('project_edit_name', {'project': project.id}) }}">{{ 'project.edit_link' | trans }}</a>
+                                {% if project.progressStatus == constant('AppBundle\\Entity\\Project::STATUS_PUBLISHED') %}
+                                    <a class="table-list-actions" href="{{ path('project_edit_close', {'project': project.id}) }}">{{ 'project.close_link' | trans }}</a>
+                                {% endif %}
+                                {% if project.progressStatus == constant('AppBundle\\Entity\\Project::STATUS_CLOSED') %}
+                                    <a class="table-list-actions" href="{{ path('project_edit_reopen', {'project': project.id}) }}">{{ 'project.open_link' | trans }}</a>
+                                {% endif %}
+
                             </div>
 
                         </div>

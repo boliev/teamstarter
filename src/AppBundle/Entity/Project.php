@@ -16,6 +16,7 @@ class Project
     const STATUS_INREVIW = 'InReview';
     const STATUS_DECLINED = 'Declined';
     const STATUS_PUBLISHED = 'Published';
+    const STATUS_CLOSED = 'Closed';
     /**
      * @var int
      * @ORM\Id

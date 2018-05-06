@@ -124,6 +124,8 @@ project:
     screen_extension_exception: Screen must be an image
     my_list: <span>My</span> projects
     edit_link: Edit
+    close_link: Close
+    open_link: Open
     add_vacancy: + Add new role
     add_vacancy_page_title_add: <span>Add</span> new role
     add_vacancy_page_title_edit: <span>Edit</span> role
@@ -150,7 +152,8 @@ project:
     no_docs_button: I don't have any documentation
     doc_name: Document name
     doc_url: Document URL
-    saved: Project saved!
+    saved: Project saved
+    closed: Project closed
     re_moderation_warning: After editing the project will be sent to re-moderation and for some time will be unavailable in the system
     submit_success: Thank you for submitting your project! After manual reviewing it will be added to the system. We will inform you by email!
     submit_success_email:

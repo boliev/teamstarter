@@ -97,4 +97,45 @@ class ProjectCreateController extends AbstractController
 
         return $this->redirectToRoute('user_projects_list');
     }
+
+    /**
+     * @Route("/project/edit/{project}/close/", name="project_edit_close")
+     *
+     * @param Project             $project
+     * @param ProjectService      $projectService
+     * @param TranslatorInterface $translator
+     *
+     * @return Response
+     */
+    public function closeAction(Project $project, ProjectService $projectService, TranslatorInterface $translator)
+    {
+        if ($project->getUser()->getId() !== $this->getUser()->getId()) {
+            $this->redirectToRoute('homepage');
+        }
+
+        $projectService->close($project);
+
+        $this->addFlash('project-saved', $translator->trans('project.closed'));
+
+        return $this->redirectToRoute('user_projects_list');
+    }
+
+    /**
+     * @Route("/project/edit/{project}/reopen/", name="project_edit_reopen")
+     *
+     * @param Project        $project
+     * @param ProjectService $projectService
+     *
+     * @return Response
+     */
+    public function reopenAction(Project $project, ProjectService $projectService)
+    {
+        if ($project->getUser()->getId() !== $this->getUser()->getId()) {
+            $this->redirectToRoute('homepage');
+        }
+
+        $projectService->reOpen($project);
+
+        return $this->redirectToRoute('user_projects_list');
+    }
 }

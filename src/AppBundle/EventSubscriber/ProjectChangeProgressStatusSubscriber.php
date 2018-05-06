@@ -95,6 +95,7 @@ class ProjectChangeProgressStatusSubscriber implements EventSubscriberInterface
         return array(
             'workflow.project_flow.completed.to_review' => 'onReview',
             'workflow.project_flow.completed.re_moderate' => 'onReModerate',
+            'workflow.project_flow.completed.re_open' => 'onReModerate',
         );
     }
 }
