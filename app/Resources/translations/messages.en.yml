@@ -136,6 +136,8 @@ project:
     add_vacancy_submit_edit: Edit role
     add_vacancy_success_add: New role was successfully added
     add_vacancy_success_edit: Role was successfully changed
+    add_vacancy_success_close: Role was successfully closed
+    add_vacancy_success_open: Role was successfully opened
     docs: <span>Project</span> documentation
     form_name: Name
     form_status: Status

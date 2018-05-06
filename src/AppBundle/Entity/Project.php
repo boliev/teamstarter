@@ -82,6 +82,7 @@ class Project
     /**
      * @var Collection
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\ProjectOpenVacancy", mappedBy="project")
+     * @ORM\OrderBy({"id" = "DESC"})
      */
     private $openVacancies;
 

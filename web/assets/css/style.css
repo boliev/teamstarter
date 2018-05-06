@@ -1721,23 +1721,6 @@ div.modal-login-social a, div.register-form-sn-login a {
 	padding-top: 10px;
  }
 
-.toggle-on.btn, .toggle-off.btn {
-	padding-left: 0px !important;
-	padding-right: 0px !important;
-	text-align: center;
-	background-color: #286090;
-	webkit-box-shadow: none;
-	box-shadow: none;
-}
-
-.toggle-on.btn {
-	background-color: #42a5f5;
-}
-
-.toggle-off.btn {
-	background-color: #e6e6e6;
-}
-
 .form-section div.bootstrap-tagsinput input{
 	width: 230px;
 	border: none;
@@ -1942,5 +1925,9 @@ span.project-list-status-Unfinished {
 
 .table-list-actions {
 	padding: 0px 10px;
+}
+
+.inactive-row {
+	color: #AAACAF;
 }
 

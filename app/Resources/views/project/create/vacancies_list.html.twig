@@ -24,18 +24,20 @@
 
                         {% for vacancy in vacanciesList %}
 
-                            <div class="row vacancy-list">
+                            <div class="row vacancy-list {% if not vacancy.isVacant %} inactive-row {% endif %}">
                                 <div class="col-sm-6">
                                     {{ vacancy.name }}
                                 </div>
                                 <div class="col-sm-3">
                                     {{ vacancy.specialization.title }}
                                 </div>
-                                <div class="col-sm-2">
-                                    <input type="checkbox" class="vacancy-status-toggle" data-id="{{ vacancy.id }}" data-toggle="toggle" data-on="Open" data-off="Closed" {% if vacancy.vacant %}checked="checked"{% endif %}>
-                                </div>
-                                <div class="col-sm-1">
-                                    <a href="{{ path('project_edit_open_vacancies_edit', {'project': project.id, 'vacancy': vacancy.id}) }}">{{ 'project.edit_link' | trans }}</a>
+                                <div class="col-sm-3">
+                                    <a class="table-list-actions" href="{{ path('project_edit_open_vacancies_edit', {'project': project.id, 'vacancy': vacancy.id}) }}">{{ 'project.edit_link' | trans }}</a>
+                                    {% if vacancy.isVacant %}
+                                        <a class="table-list-actions" href="{{ path('project_vacancy_edit_close', {'vacancy': vacancy.id}) }}">{{ 'project.close_link' | trans }}</a>
+                                    {% else %}
+                                        <a class="table-list-actions" href="{{ path('project_vacancy_edit_open', {'vacancy': vacancy.id}) }}">{{ 'project.open_link' | trans }}</a>
+                                    {% endif %}
                                 </div>
 
                             </div>
@@ -57,20 +59,4 @@
             </div>
         </div>
     </div>
-{% endblock %}
-
-{% block javascripts %}
-<script>
-    $(function() {
-        $('.vacancy-status-toggle').change(function() {
-            var id = $(this).data('id');
-            var checked = 0;
-            if($(this).is(':checked')) {
-                checked = 1;
-            }
-            $.post('/api/v1/vacancy/'+id+'/set-status', {status: checked})
-
-        });
-    });
-</script>
 {% endblock %}

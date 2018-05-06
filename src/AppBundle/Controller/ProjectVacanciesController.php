@@ -102,6 +102,54 @@ class ProjectVacanciesController extends Controller
     }
 
     /**
+     * @Route("/project/open-vacancies/edit/{vacancy}/close", name="project_vacancy_edit_close")
+     *
+     * @param ProjectOpenVacancy     $vacancy
+     * @param EntityManagerInterface $entityManager
+     * @param TranslatorInterface    $translator
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function closeAction(ProjectOpenVacancy $vacancy, EntityManagerInterface $entityManager, TranslatorInterface $translator)
+    {
+        if ($vacancy->getProject()->getUser()->getId() !== $this->getUser()->getId()) {
+            $this->redirectToRoute('homepage');
+        }
+
+        $vacancy->setVacant(false);
+        $entityManager->persist($vacancy);
+        $entityManager->flush();
+
+        $this->addFlash('add-vacancy-success', $translator->trans('project.add_vacancy_success_close'));
+
+        return $this->redirectToRoute('project_edit_open_vacancies_list', ['project' => $vacancy->getProject()->getId()]);
+    }
+
+    /**
+     * @Route("/project/open-vacancies/edit/{vacancy}/open", name="project_vacancy_edit_open")
+     *
+     * @param ProjectOpenVacancy     $vacancy
+     * @param EntityManagerInterface $entityManager
+     * @param TranslatorInterface    $translator
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function openAction(ProjectOpenVacancy $vacancy, EntityManagerInterface $entityManager, TranslatorInterface $translator)
+    {
+        if ($vacancy->getProject()->getUser()->getId() !== $this->getUser()->getId()) {
+            $this->redirectToRoute('homepage');
+        }
+
+        $vacancy->setVacant(true);
+        $entityManager->persist($vacancy);
+        $entityManager->flush();
+
+        $this->addFlash('add-vacancy-success', $translator->trans('project.add_vacancy_success_open'));
+
+        return $this->redirectToRoute('project_edit_open_vacancies_list', ['project' => $vacancy->getProject()->getId()]);
+    }
+
+    /**
      * @param array                  $skills
      * @param ProjectOpenVacancy     $vacancy
      * @param SkillService           $skillService
