@@ -179,3 +179,5 @@ project:
             <br /><br />
             <p>Regards,<br />
             TeamStarter Team.</p>
+    list: Open <span>Projects</span>
+    list_menu_item: Projects

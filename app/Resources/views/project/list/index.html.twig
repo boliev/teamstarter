@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class ="container">
+        <div class="row section-content-2">
+
+            <div class="col-sm-8 col-sm-offset-2">
+                <div class="kc-elm kc-title-wrap  left dark">
+                    <div class="title-wrapper">
+                        <h3 class="kc_title">{{ 'project.list' | trans | raw }}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+            {% for project in projects %}
+
+                <article class="post">
+                    <div class="entry-content">
+                        <div class="entry-meta">
+                            <div class="info">
+                                <div class="row"><div class="col-sm-12"><h4 class="entry-title"><a href="#">{{ project.name }}</a></h4></div></div>
+                            </div>
+                        </div>
+                        <div class="info-bottom">
+                            <div class="info-description">{{ project.mission }}</div>
+                        </div>
+                    </div>
+                </article>
+            {% endfor %}
+    </div>
+{% endblock %}

@@ -539,6 +539,10 @@ a, a:visited {
 .entry-title:hover a {
 	color: #42a5f5;
 }
+
+.entry-title a {
+	color: #222222;
+}
 a:hover {
 	color: #222222;
 }
@@ -1186,7 +1190,7 @@ button.btn.btn-primary.text-capitalize.active {
 }
 .blog-page-side-bar .post-list .entry-title, .style-chess .entry-title, 
 #faq-blog .post-list .entry-title, .style-chess .entry-title {
-	font-weight: 600;
+	font-weight: 500;
 	font-size: 14px;
 	margin: 0;
 }
