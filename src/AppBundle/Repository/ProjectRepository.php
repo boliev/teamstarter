@@ -14,7 +14,9 @@ class ProjectRepository extends EntityRepository
     public function getPublished()
     {
         return $this->createQueryBuilder('p')
+            ->innerJoin('p.openVacancies', 'ov')
             ->where('p.progressStatus = :publishedStatus')
+            ->andWhere('ov.vacant = true')
             ->setParameter('publishedStatus', Project::STATUS_PUBLISHED)
             ->getQuery()
             ->getResult();

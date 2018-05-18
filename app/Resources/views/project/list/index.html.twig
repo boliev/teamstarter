@@ -15,14 +15,31 @@
             {% for project in projects %}
 
                 <article class="post">
+
+
+
+
+
                     <div class="entry-content">
                         <div class="entry-meta">
                             <div class="info">
+                                <div class="meta margin-top-1">
+                                    <span class="date"><i class="mn-icon-1130"></i>{{ project.createdAt|date('F d, Y') }}</span>
+                                    <span class="date"><i class="fas fa-user-tie"></i>{{ project.user.getFullName() }}</span>
+                                    <span><i class="mn-icon-132"></i>{{ project.status.name }}</span>
+                                    {% if project.screens | length > 0 %}<span><i class="far fa-image"></i>Screenshots</span>{% endif %}
+                                </div>
                                 <div class="row"><div class="col-sm-12"><h4 class="entry-title"><a href="#">{{ project.name }}</a></h4></div></div>
                             </div>
                         </div>
                         <div class="info-bottom">
                             <div class="info-description">{{ project.mission }}</div>
+                            <div class="info-description">
+                                <ul class="projects-list-roles">
+                                    {% for role in project.openVacancies %}
+                                        <li><i class="fas fa-door-open"></i>{{ role.name }}</li>
+                                    {% endfor %}
+                                </ul><div style="clear: both"></div></div>
                         </div>
                     </div>
                 </article>

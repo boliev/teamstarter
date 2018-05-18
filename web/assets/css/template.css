@@ -7030,7 +7030,7 @@ ul.style-ul li span {
     }
 
     .post {
-      padding: 40px 0;
+      padding: 25px 0;
       margin: 0;
       border-bottom: 1px dashed #e1e1e1;
     }
@@ -7039,9 +7039,7 @@ ul.style-ul li span {
         padding: 35px 0;
       }
     }
-    .post .entry-content .info .meta {
-      padding: 30px 0 10px;
-    }
+
     .post .entry-content .info .meta i {
       font-size: 21px;
       color: #42a5f5;

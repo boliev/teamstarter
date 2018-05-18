@@ -166,9 +166,9 @@ class ProjectOpenVacancy
     }
 
     /**
-     * @param Skill $skills
+     * @param Collection $skills
      */
-    public function setSkills(Skill $skills)
+    public function setSkills(Collection $skills)
     {
         $this->skills = $skills;
     }

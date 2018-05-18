@@ -1934,4 +1934,30 @@ span.project-list-status-Unfinished {
 .inactive-row {
 	color: #AAACAF;
 }
+ul.projects-list-roles {
+	float: left;
+	/*padding-left: 10px;*/
+}
+
+ul.projects-list-roles li {
+	float: left;
+	padding: 0px 20px 0px 0px;
+	font-style: italic;
+	color: #666666;
+	font-family: Lato;
+	font-size: 16px;
+	font-weight: 400;
+}
+
+ul.projects-list-roles li .fas {
+	margin-right: 5px;
+}
+
+.info-description {
+	margin-top: 10px;
+}
+
+article.post {
+	padding: 35px 20px;
+}
 
