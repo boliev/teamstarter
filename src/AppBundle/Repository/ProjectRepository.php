@@ -18,6 +18,7 @@ class ProjectRepository extends EntityRepository
             ->where('p.progressStatus = :publishedStatus')
             ->andWhere('ov.vacant = true')
             ->setParameter('publishedStatus', Project::STATUS_PUBLISHED)
+            ->orderBy('p.createdAt', 'DESC')
             ->getQuery()
             ->getResult();
     }
