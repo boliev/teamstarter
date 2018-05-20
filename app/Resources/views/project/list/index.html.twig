@@ -12,7 +12,7 @@
             </div>
         </div>
 
-            {% for project in projects %}
+            {% for project in pagination %}
 
                 <article class="post">
                     <div class="entry-content">
@@ -39,5 +39,9 @@
                     </div>
                 </article>
             {% endfor %}
+
+        <div class="navigation">
+            {{ knp_pagination_render(pagination) }}
+        </div>
     </div>
 {% endblock %}

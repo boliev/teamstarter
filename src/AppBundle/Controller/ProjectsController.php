@@ -11,19 +11,26 @@ use Symfony\Component\HttpFoundation\Response;
 class ProjectsController extends Controller
 {
     /**
-     * @Route("/projects", name="projects_list")
+     * @Route("/projects/{page}", name="projects_list", defaults={"page": 1})
      *
      * @param EntityManagerInterface $entityManager
+     * @param int                    $page
      *
      * @return Response
      */
-    public function indexAction(EntityManagerInterface $entityManager)
+    public function indexActionEntityManagerInterface(EntityManagerInterface $entityManager, int $page = 1)
     {
         $projectRepository = $entityManager->getRepository(Project::class);
-        $projects = $projectRepository->getPublished();
+        $projects = $projectRepository->getPublishedQuery();
+
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $projects,
+            $page
+        );
 
         return $this->render('project/list/index.html.twig', [
-            'projects' => $projects,
+            'pagination' => $pagination,
         ]);
     }
 }

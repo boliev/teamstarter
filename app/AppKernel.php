@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
             new Http\HttplugBundle\HttplugBundle(),
             new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
+            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new AppBundle\AppBundle(),
         ];
 

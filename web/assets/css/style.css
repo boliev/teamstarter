@@ -1119,23 +1119,26 @@ button.btn.btn-primary.text-capitalize.active {
 	color: #fff;
 	padding: 10px 15px;
 }
-.blog-pagination .pagination li a {
+.pagination li a {
 	margin-right: 20px;
-	border-radius: 100%;
+	border-radius: 100% !important;
 	height: 45px;
 	width: 45px;
 	line-height: 30px;
 	box-shadow: 0 0 1px 1px rgba(222, 222, 222, 0.5);
 	transition: .3s all ease-in-out;
 }
-.blog-pagination .pagination li a.next-p {
+.pagination li a.next-p {
 	width: 105px;
 	border-radius: 25px;
 }
-.blog-pagination .pagination li a:hover,
-.blog-pagination .pagination  a.active {
+.pagination li a:hover,
+.pagination  a.active {
 	background-color: #42a5f5;
 	color: #fff;
+}
+.pagination li:first-child {
+	border-radius: 100% !important;
 }
 .blog-catergoy-2-section .post .entry-content .info-bottom .btn {
 	height: 40px;

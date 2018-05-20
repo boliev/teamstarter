@@ -3,15 +3,14 @@
 namespace AppBundle\Repository;
 
 use AppBundle\Entity\Project;
-use AppBundle\Entity\Specialization;
 use Doctrine\ORM\EntityRepository;
 
 class ProjectRepository extends EntityRepository
 {
     /**
-     * @return Specialization[]
+     * @return \Doctrine\ORM\Query
      */
-    public function getPublished()
+    public function getPublishedQuery()
     {
         return $this->createQueryBuilder('p')
             ->innerJoin('p.openVacancies', 'ov')
@@ -19,7 +18,6 @@ class ProjectRepository extends EntityRepository
             ->andWhere('ov.vacant = true')
             ->setParameter('publishedStatus', Project::STATUS_PUBLISHED)
             ->orderBy('p.createdAt', 'DESC')
-            ->getQuery()
-            ->getResult();
+            ->getQuery();
     }
 }
