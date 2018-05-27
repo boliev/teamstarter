@@ -1964,3 +1964,13 @@ article.post {
 	padding: 35px 20px;
 }
 
+.projects-search-input {
+	border: 1px solid #666666 !important;
+}
+
+.projects-search-button {
+	padding: 0px;
+	margin-top: 0px;
+	font-size: 30px;
+	color: #222222;
+}

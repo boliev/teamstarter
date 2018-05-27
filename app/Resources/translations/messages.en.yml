@@ -11,6 +11,7 @@ Unfinished: Unfinished
 InReview: In review
 Declined: Declined
 Published: Published
+search_placeholder: Search...
 registration:
     label_first_name: First name
     label_last_name: Last name
