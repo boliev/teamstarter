@@ -173,3 +173,25 @@ knp_paginator:
         pagination: 'common/pagination.html.twig'    # sliding pagination controls template
         sortable: '@KnpPaginator/Pagination/sortable_link.html.twig' # sort link template
         filtration: '@KnpPaginator/Pagination/filtration.html.twig'  # filters template
+
+fos_elastica:
+    clients:
+        default: { host: "%elastic_host%", port: "%elastic_port%" }
+    indexes:
+        projects:
+              index_name: projects_%kernel.environment%
+              types:
+                  projects:
+                      properties:
+                          name: ~
+                          description: ~
+                          mission: ~
+                          country: ~
+                          city: ~
+                          progress_status: ~
+                      persistence:
+                          # the driver can be orm, mongodb or phpcr
+                          driver: orm
+                          model: AppBundle\Entity\Project
+                          provider: ~
+                          finder: ~
