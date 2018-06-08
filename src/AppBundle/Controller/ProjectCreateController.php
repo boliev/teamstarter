@@ -61,7 +61,7 @@ class ProjectCreateController extends AbstractController
             $em->flush();
             $projectService->reModerateIfNeeded($project);
 
-            return $this->redirectToRoute('project_edit_open_vacancies_list', ['project' => $project->getId()]);
+            return $this->redirectToRoute('project_edit_open_roles_list', ['project' => $project->getId()]);
         }
 
         if (Project::STATUS_PUBLISHED === $project->getProgressStatus()) {

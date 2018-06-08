@@ -8,7 +8,7 @@
                     <form method="post" action="">
                         <div class="kc-elm kc-title-wrap  left dark">
                             <div class="title-wrapper">
-                                <h3 class="kc_title">{{ 'project.open_vacancies' | trans | raw }}</h3>
+                                <h3 class="kc_title">{{ 'project.open_roles' | trans | raw }}</h3>
                             </div>
                         </div>
 
@@ -16,27 +16,27 @@
                             <div class="warning-message margin-bottom-10">{{ message }}</div>
                         {% endfor %}
 
-                        {% for message in app.flashes('add-vacancy-success') %}
+                        {% for message in app.flashes('add-role-success') %}
                             <div class="success-message">
                                 {{ message }}
                             </div>
                         {% endfor %}
 
-                        {% for vacancy in vacanciesList %}
+                        {% for role in rolesList %}
 
-                            <div class="row vacancy-list {% if not vacancy.isVacant %} inactive-row {% endif %}">
+                            <div class="row role-list {% if not role.isVacant %} inactive-row {% endif %}">
                                 <div class="col-sm-6">
-                                    {{ vacancy.name }}
+                                    {{ role.name }}
                                 </div>
                                 <div class="col-sm-3">
-                                    {{ vacancy.specialization.title }}
+                                    {{ role.specialization.title }}
                                 </div>
                                 <div class="col-sm-3">
-                                    <a class="table-list-actions" href="{{ path('project_edit_open_vacancies_edit', {'project': project.id, 'vacancy': vacancy.id}) }}">{{ 'project.edit_link' | trans }}</a>
-                                    {% if vacancy.isVacant %}
-                                        <a class="table-list-actions" href="{{ path('project_vacancy_edit_close', {'vacancy': vacancy.id}) }}">{{ 'project.close_link' | trans }}</a>
+                                    <a class="table-list-actions" href="{{ path('project_edit_open_roles_edit', {'project': project.id, 'role': role.id}) }}">{{ 'project.edit_link' | trans }}</a>
+                                    {% if role.isVacant %}
+                                        <a class="table-list-actions" href="{{ path('project_role_edit_close', {'role': role.id}) }}">{{ 'project.close_link' | trans }}</a>
                                     {% else %}
-                                        <a class="table-list-actions" href="{{ path('project_vacancy_edit_open', {'vacancy': vacancy.id}) }}">{{ 'project.open_link' | trans }}</a>
+                                        <a class="table-list-actions" href="{{ path('project_role_edit_open', {'role': role.id}) }}">{{ 'project.open_link' | trans }}</a>
                                     {% endif %}
                                 </div>
 
@@ -45,7 +45,7 @@
 
                         <div class="row">
                             <div class="col-sm-12 text-center margin-top-25">
-                                <a href="{{ path('project_edit_open_vacancies_add', {'project': project.id}) }}">{{ 'project.add_vacancy' | trans }}</a>
+                                <a href="{{ path('project_edit_open_roles_add', {'project': project.id}) }}">{{ 'project.add_role' | trans }}</a>
                             </div>
                         </div>
                         <div class="row">

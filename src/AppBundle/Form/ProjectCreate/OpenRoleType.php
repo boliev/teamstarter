@@ -11,7 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 
-class OpenVacancyType extends AbstractType
+class OpenRoleType extends AbstractType
 {
     /**
      * @var SpecializationRepository
@@ -19,7 +19,7 @@ class OpenVacancyType extends AbstractType
     private $specializationRepository;
 
     /**
-     * OpenVacancyType constructor.
+     * OpenRoleType constructor.
      *
      * @param SpecializationRepository $specializationRepository
      */
@@ -35,12 +35,12 @@ class OpenVacancyType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', TextType::class, ['label' => 'project.add_vacancy_name'])
+            ->add('name', TextType::class, ['label' => 'project.add_role_name'])
             ->add('specialization', EntityType::class, [
-                'label' => 'project.add_vacancy_specialization',
+                'label' => 'project.add_role_specialization',
                 'class' => Specialization::class,
                 'choices' => $this->specializationRepository->getListForSelect(),
-                'placeholder' => 'project.add_vacancy_chose_specialization', ])
+                'placeholder' => 'project.add_role_chose_specialization', ])
             ->add('description', TextareaType::class, ['label' => 'project.form_description'])
             ->add('skills', TextType::class, ['label' => 'project.form_description', 'mapped' => false, 'required' => false]);
     }
