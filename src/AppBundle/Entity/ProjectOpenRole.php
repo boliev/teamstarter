@@ -8,9 +8,9 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="project_open_vacancies")
+ * @ORM\Table(name="project_open_roles")
  */
-class ProjectOpenVacancy
+class ProjectOpenRole
 {
     /**
      * @var int
@@ -22,7 +22,7 @@ class ProjectOpenVacancy
 
     /**
      * @var Project
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Project", inversedBy="openVacancies")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Project", inversedBy="openRoles")
      */
     private $project;
 
@@ -52,7 +52,7 @@ class ProjectOpenVacancy
 
     /**
      * @var Collection
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\ProjectOpenVacancySkills", mappedBy="vacancy")
+     * @ORM\OneToMany(targetEntity="ProjectOpenRoleSkills", mappedBy="role")
      */
     private $skills;
 

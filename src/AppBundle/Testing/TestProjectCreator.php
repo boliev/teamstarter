@@ -3,8 +3,8 @@
 namespace AppBundle\Testing;
 
 use AppBundle\Entity\Project;
-use AppBundle\Entity\ProjectOpenVacancy;
-use AppBundle\Entity\ProjectOpenVacancySkills;
+use AppBundle\Entity\ProjectOpenRole;
+use AppBundle\Entity\ProjectOpenRoleSkills;
 use AppBundle\Entity\ProjectScreen;
 use AppBundle\Entity\Skill;
 use AppBundle\Entity\Specialization;
@@ -105,7 +105,7 @@ class TestProjectCreator
     /**
      * @param Project $project
      *
-     * @return ProjectOpenVacancy
+     * @return ProjectOpenRole
      */
     private function createRole(Project $project)
     {
@@ -114,7 +114,7 @@ class TestProjectCreator
         shuffle($skills);
         /** @var Specialization $specialization */
         $specialization = $specializations[array_rand($specializations)];
-        $role = new ProjectOpenVacancy();
+        $role = new ProjectOpenRole();
         $roleNamesBegins = ['Need', 'Wanted', 'I wanna the best', 'Give me', 'Where is my', 'Ninja', 'Super-puper'];
         $roleNamesEndings = ['fast', 'please', 'for work', 'for slavery', 'for free', '!'];
         shuffle($roleNamesBegins);
@@ -128,11 +128,11 @@ class TestProjectCreator
         $skillsCount = rand(0, 10);
         for ($i = 0; $i < $skillsCount; ++$i) {
             $skill = array_pop($skills);
-            $projectOpenVacancySkill = new ProjectOpenVacancySkills();
-            $projectOpenVacancySkill->setVacancy($role);
-            $projectOpenVacancySkill->setSkill($skill);
-            $projectOpenVacancySkill->setPriority($i);
-            $this->entityManager->persist($projectOpenVacancySkill);
+            $projectOpenRoleSkills = new ProjectOpenRoleSkills();
+            $projectOpenRoleSkills->setOpenRole($role);
+            $projectOpenRoleSkills->setSkill($skill);
+            $projectOpenRoleSkills->setPriority($i);
+            $this->entityManager->persist($projectOpenRoleSkills);
         }
         $this->entityManager->persist($role);
 

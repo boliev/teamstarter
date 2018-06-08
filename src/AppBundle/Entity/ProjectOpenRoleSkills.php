@@ -6,9 +6,9 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="project_open_vacancy_skills")
+ * @ORM\Table(name="project_open_role_skills")
  */
-class ProjectOpenVacancySkills
+class ProjectOpenRoleSkills
 {
     /**
      * @var int
@@ -19,14 +19,14 @@ class ProjectOpenVacancySkills
     private $id;
 
     /**
-     * @var ProjectOpenVacancy
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\ProjectOpenVacancy", inversedBy="skills")
+     * @var ProjectOpenRole
+     * @ORM\ManyToOne(targetEntity="ProjectOpenRole", inversedBy="skills")
      */
-    private $vacancy;
+    private $openRole;
 
     /**
      * @var Skill
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Skill", inversedBy="projectOpenVacancySkills")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Skill", inversedBy="projectOpenRoleSkills")
      */
     private $skill;
 
@@ -53,19 +53,19 @@ class ProjectOpenVacancySkills
     }
 
     /**
-     * @return ProjectOpenVacancy
+     * @return ProjectOpenRole
      */
-    public function getVacancy(): ProjectOpenVacancy
+    public function getOpenRole(): ProjectOpenRole
     {
-        return $this->vacancy;
+        return $this->openRole;
     }
 
     /**
-     * @param ProjectOpenVacancy $vacancy
+     * @param ProjectOpenRole $openRole
      */
-    public function setVacancy(ProjectOpenVacancy $vacancy)
+    public function setOpenRole(ProjectOpenRole $openRole)
     {
-        $this->vacancy = $vacancy;
+        $this->openRole = $openRole;
     }
 
     /**

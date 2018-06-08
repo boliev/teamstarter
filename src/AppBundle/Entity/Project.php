@@ -75,16 +75,10 @@ class Project
 
     /**
      * @var Collection
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\ProjectDoc", mappedBy="project")
-     */
-    private $docs;
-
-    /**
-     * @var Collection
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\ProjectOpenVacancy", mappedBy="project")
+     * @ORM\OneToMany(targetEntity="ProjectOpenRole", mappedBy="project")
      * @ORM\OrderBy({"id" = "DESC"})
      */
-    private $openVacancies;
+    private $openRoles;
 
     /**
      * @var Collection
@@ -329,17 +323,17 @@ class Project
     /**
      * @return Collection
      */
-    public function getOpenVacancies(): Collection
+    public function getOpenRoles(): ?Collection
     {
-        return $this->openVacancies;
+        return $this->openRoles;
     }
 
     /**
-     * @param Collection $openVacancies
+     * @param Collection $openRoles
      */
-    public function setOpenVacancies(Collection $openVacancies)
+    public function setOpenRoles(Collection $openRoles)
     {
-        $this->openVacancies = $openVacancies;
+        $this->openRoles = $openRoles;
     }
 
     /**

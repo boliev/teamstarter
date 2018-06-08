@@ -70,9 +70,4 @@ services:
         arguments:
             $fromEmailAddress: '%from_email%'
 
-    acme.listener.custom_property:
-        class: AppBundle\EventListener\IndexingPropertiesListener
-        tags:
-            - { name: kernel.event_subscriber }
-
 

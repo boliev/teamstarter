@@ -2,8 +2,8 @@
 
 namespace AppBundle\Service;
 
-use AppBundle\Entity\ProjectOpenVacancy;
-use AppBundle\Entity\ProjectOpenVacancySkills;
+use AppBundle\Entity\ProjectOpenRole;
+use AppBundle\Entity\ProjectOpenRoleSkills;
 use AppBundle\Entity\Skill;
 use AppBundle\Entity\User;
 use AppBundle\Entity\UserSkills;
@@ -53,7 +53,7 @@ class SkillService
             $skillEntity->setSlug($slug);
             $skillEntity->setTitle($name);
             $this->entityManager->persist($skillEntity);
-            $this->entityManager->flush($skillEntity);
+            $this->entityManager->flush();
         }
 
         return $skillEntity;
@@ -72,14 +72,14 @@ class SkillService
     }
 
     /**
-     * @param ProjectOpenVacancy $vacancy
+     * @param ProjectOpenRole $role
      */
-    public function cleanSkillsForProjectOpenVacancy(ProjectOpenVacancy $vacancy)
+    public function cleanSkillsForProjectOpenRole(ProjectOpenRole $role)
     {
-        $vacancySkills = $this->entityManager->getRepository(ProjectOpenVacancySkills::class)
-            ->findBy(['vacancy' => $vacancy]);
-        foreach ($vacancySkills as $vacancySkill) {
-            $this->entityManager->remove($vacancySkill);
+        $roleSkills = $this->entityManager->getRepository(ProjectOpenRoleSkills::class)
+            ->findBy(['openRole' => $role]);
+        foreach ($roleSkills as $roleSkill) {
+            $this->entityManager->remove($roleSkill);
         }
         $this->entityManager->flush();
     }

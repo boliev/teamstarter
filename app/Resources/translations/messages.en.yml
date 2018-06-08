@@ -120,7 +120,7 @@ project:
     menu_create: Create a project
     project_rules: <span>Project</span> rules
     main_info: <span>Project</span> main information
-    open_vacancies: <span>Project</span> open roles
+    open_roles: <span>Project</span> open roles
     screenshots: <span>Project</span> screenshots
     add_screenshot: + Add a screenshot
     screen_max_size_exception: Maximum size of screenshot must be {size} MB
@@ -129,18 +129,19 @@ project:
     edit_link: Edit
     close_link: Close
     open_link: Open
-    add_vacancy: + Add new role
-    add_vacancy_page_title_add: <span>Add</span> new role
-    add_vacancy_page_title_edit: <span>Edit</span> role
-    add_vacancy_name: Title
-    add_vacancy_specialization: Specialization
-    add_vacancy_chose_specialization: Chose a specialization
-    add_vacancy_submit_add: Add role
-    add_vacancy_submit_edit: Edit role
-    add_vacancy_success_add: New role was successfully added
-    add_vacancy_success_edit: Role was successfully changed
-    add_vacancy_success_close: Role was successfully closed
-    add_vacancy_success_open: Role was successfully opened
+    add_role: + Add new role
+    add_role_page_title_add: <span>Add</span> new role
+    add_role_page_title_edit: <span>Edit</span> role
+    add_role_name: Title
+    add_role_specialization: Specialization
+    add_role_chose_specialization: Chose a specialization
+    add_role_submit_add: Add role
+    add_role_submit_edit: Edit role
+    add_role_success_add: New role was successfully added
+    add_role_success_edit: Role was successfully changed
+    add_role_success_close: Role was successfully closed
+    add_role_success_open: Role was successfully opened
+    add_role_success_open: Role was successfully opened
     docs: <span>Project</span> documentation
     form_name: Name
     form_status: Status

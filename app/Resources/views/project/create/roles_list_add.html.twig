@@ -8,23 +8,23 @@
                     <form method="post" action="">
                         <div class="kc-elm kc-title-wrap  left dark">
                             <div class="title-wrapper">
-                                {% if app.request.get('_route') == 'project_edit_open_vacancies_edit' %}
-                                    <h3 class="kc_title">{{ 'project.add_vacancy_page_title_edit' | trans | raw }}</h3>
+                                {% if app.request.get('_route') == 'project_edit_open_roles_edit' %}
+                                    <h3 class="kc_title">{{ 'project.add_role_page_title_edit' | trans | raw }}</h3>
                                 {% else %}
-                                    <h3 class="kc_title">{{ 'project.add_vacancy_page_title_add' | trans | raw }}</h3>
+                                    <h3 class="kc_title">{{ 'project.add_role_page_title_add' | trans | raw }}</h3>
                                 {% endif %}
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-md-12 form-group">
-                                {{ form_widget(form.name, {'attr': {'class': 'input-block', 'placeholder': 'project.add_vacancy_name'}}) }}
+                                {{ form_widget(form.name, {'attr': {'class': 'input-block', 'placeholder': 'project.add_role_name'}}) }}
                                 {{ form_errors(form.name)}}
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12 form-group">
-                                {{ form_widget(form.specialization, {'attr': {'class': 'input-block', 'placeholder': 'project.add_vacancy_specialization'}}) }}
+                                {{ form_widget(form.specialization, {'attr': {'class': 'input-block', 'placeholder': 'project.add_role_specialization'}}) }}
                                 {{ form_errors(form.specialization)}}
                             </div>
                         </div>
@@ -44,11 +44,11 @@
                         <div class="row">
                             <div class="col-md-offset-2 col-md-8 form-bottom">
                                 {{ form_row(form._token) }}
-                                <input type="button" class="btn btn-default btn-warning" onclick="window.location.href = '{{ path('project_edit_open_vacancies_list', {'project': project.id}) }}'" value="{{ 'cancel'|trans }}">
-                                {% if app.request.get('_route') == 'project_edit_open_vacancies_edit' %}
-                                    <input type="submit" class="btn btn-primary btn-large" value="{{ 'project.add_vacancy_submit_edit'|trans }}">
+                                <input type="button" class="btn btn-default btn-warning" onclick="window.location.href = '{{ path('project_edit_open_roles_list', {'project': project.id}) }}'" value="{{ 'cancel'|trans }}">
+                                {% if app.request.get('_route') == 'project_edit_open_roles_edit' %}
+                                    <input type="submit" class="btn btn-primary btn-large" value="{{ 'project.add_role_submit_edit'|trans }}">
                                 {% else %}
-                                    <input type="submit" class="btn btn-primary btn-large" value="{{ 'project.add_vacancy_submit_add'|trans }}">
+                                    <input type="submit" class="btn btn-primary btn-large" value="{{ 'project.add_role_submit_add'|trans }}">
                                 {% endif %}
                             </div>
                         </div>
@@ -63,7 +63,7 @@
 {% block javascripts %}
     <script>
         $(function(){
-            var tagInput = $('#open_vacancy_skills');
+            var tagInput = $('#open_role_skills');
 
             $.get('{{ path('ajax_skills') }}', function(data){
                 var autocomplete = [];
@@ -82,8 +82,8 @@
                     }
                 });
 
-                {% for vacancySkill in vacancy.getSkills %}
-                    tagInput.tagsinput('add', "{{ vacancySkill.skill.title }}");
+                {% for roleSkill in role.getSkills %}
+                    tagInput.tagsinput('add', "{{ roleSkill.skill.title }}");
                 {% endfor %}
                 addTagsPlaceholderIfNeeded(tagInput.tagsinput('items'));
 
@@ -98,7 +98,7 @@
 
         function addTagsPlaceholderIfNeeded(tags)
         {
-            var tagInput = $('#open_vacancy_skills');
+            var tagInput = $('#open_role_skills');
             if(tags.length) {
                 tagInput.tagsinput('input').removeAttr('placeholder');
             } else {
