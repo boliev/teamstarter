@@ -68,10 +68,9 @@ FROM (
          setweight(to_tsvector(coalesce(string_agg(s2.title, ' '),'')), 'C')
            AS search_str
        FROM projects pr
-       LEFT JOIN project_open_roles por on pr.id = por.project_id
+       LEFT JOIN project_open_roles por on pr.id = por.project_id AND por.vacant=true
        LEFT JOIN project_open_role_skills skill on por.id = skill.open_role_id
        LEFT JOIN skill s2 on skill.skill_id = s2.id
-       WHERE por.vacant = true 
        GROUP BY pr.id
      ) AS srch
      WHERE srch.id = p.id
