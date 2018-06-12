@@ -47,6 +47,10 @@ task('build', function () {
     run('cd {{release_path}} && build');
 });
 
+task('search:index', function () {
+    run('cd {{release_path}} && bin/console projects:index --env=prod');
+});
+
 task('disk_free', function () {
     $df = run('df -h /');
     writeln($df);
