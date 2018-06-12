@@ -56,7 +56,7 @@ class Project
     private $mission;
 
     /**
-     * @var string
+     * @var string|null
      * @ORM\Column(name="country", type="string", length=3, nullable=true)
      */
     private $country;
@@ -109,6 +109,12 @@ class Project
      * @ORM\Column(type="datetime")
      */
     private $updatedAt;
+
+    /**
+     * @var string
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $search;
 
     /**
      * Project constructor.
@@ -203,7 +209,7 @@ class Project
     /**
      * @param string $country
      */
-    public function setCountry(string $country)
+    public function setCountry(?string $country)
     {
         $this->country = $country;
     }
@@ -238,22 +244,6 @@ class Project
     public function setStatus(ProjectStatus $status)
     {
         $this->status = $status;
-    }
-
-    /**
-     * @return Collection
-     */
-    public function getDocs(): Collection
-    {
-        return $this->docs;
-    }
-
-    /**
-     * @param Collection $docs
-     */
-    public function setDocs(Collection $docs)
-    {
-        $this->docs = $docs;
     }
 
     /**
@@ -382,5 +372,13 @@ class Project
     public function setUpdatedAt(\DateTime $updatedAt)
     {
         $this->updatedAt = $updatedAt;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSearch(): ?string
+    {
+        return $this->search;
     }
 }

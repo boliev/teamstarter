@@ -104,49 +104,49 @@ class ProjectRolesController extends Controller
     /**
      * @Route("/project/open-roles/edit/{role}/close", name="project_role_edit_close")
      *
-     * @param ProjectOpenRole        $projectOpenRole
+     * @param ProjectOpenRole        $role
      * @param EntityManagerInterface $entityManager
      * @param TranslatorInterface    $translator
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function closeAction(ProjectOpenRole $projectOpenRole, EntityManagerInterface $entityManager, TranslatorInterface $translator)
+    public function closeAction(ProjectOpenRole $role, EntityManagerInterface $entityManager, TranslatorInterface $translator)
     {
-        if ($projectOpenRole->getProject()->getUser()->getId() !== $this->getUser()->getId()) {
+        if ($role->getProject()->getUser()->getId() !== $this->getUser()->getId()) {
             $this->redirectToRoute('homepage');
         }
 
-        $projectOpenRole->setVacant(false);
-        $entityManager->persist($projectOpenRole);
+        $role->setVacant(false);
+        $entityManager->persist($role);
         $entityManager->flush();
 
         $this->addFlash('add-role-success', $translator->trans('project.add_role_success_close'));
 
-        return $this->redirectToRoute('project_edit_open_roles_list', ['project' => $projectOpenRole->getProject()->getId()]);
+        return $this->redirectToRoute('project_edit_open_roles_list', ['project' => $role->getProject()->getId()]);
     }
 
     /**
      * @Route("/project/open-roles/edit/{role}/open", name="project_role_edit_open")
      *
-     * @param ProjectOpenRole        $projectOpenRole
+     * @param ProjectOpenRole        $role
      * @param EntityManagerInterface $entityManager
      * @param TranslatorInterface    $translator
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function openAction(ProjectOpenRole $projectOpenRole, EntityManagerInterface $entityManager, TranslatorInterface $translator)
+    public function openAction(ProjectOpenRole $role, EntityManagerInterface $entityManager, TranslatorInterface $translator)
     {
-        if ($projectOpenRole->getProject()->getUser()->getId() !== $this->getUser()->getId()) {
+        if ($role->getProject()->getUser()->getId() !== $this->getUser()->getId()) {
             $this->redirectToRoute('homepage');
         }
 
-        $projectOpenRole->setVacant(true);
-        $entityManager->persist($projectOpenRole);
+        $role->setVacant(true);
+        $entityManager->persist($role);
         $entityManager->flush();
 
         $this->addFlash('add-role-success', $translator->trans('project.add_role_success_open'));
 
-        return $this->redirectToRoute('project_edit_open_roles_list', ['project' => $projectOpenRole->getProject()->getId()]);
+        return $this->redirectToRoute('project_edit_open_roles_list', ['project' => $role->getProject()->getId()]);
     }
 
     /**
