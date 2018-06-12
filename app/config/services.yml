@@ -29,15 +29,6 @@ services:
         public: true
         tags: ['controller.service_arguments']
 
-    # add more services, or override services that need manual wiring
-    # AppBundle\Service\ExampleService:
-    #     arguments:
-    #         $someArgument: 'some_value'
-#    AppBundle\EventListener\LocaleListener:
-#        parameters:
-#            - "@translator.default"
-#        tags:
-#            - { name: kernel.event_listener, event: kernel.request }
     app.form.registration:
             class: AppBundle\Form\RegistrationType
             tags:
@@ -49,6 +40,11 @@ services:
             - "@fos_user.user_manager"
             - "@fos_user.util.token_generator.default"
             - {facebook: facebookId, google: googleId, github: githubId}
+
+    search.project_indexer:
+        class: AppBundle\Search\ProjectIndexer\PostgresIndexer
+
+    AppBundle\Search\ProjectIndexer\ProjectIndexerInterface: '@search.project_indexer'
 
     AppBundle\Service\UserService:
         arguments:
@@ -69,5 +65,10 @@ services:
     AppBundle\EventSubscriber\ProjectChangeProgressStatusSubscriber:
         arguments:
             $fromEmailAddress: '%from_email%'
+
+    AppBundle\EventSubscriber\ProjectSearchIndexerSubscriber:
+        tags:
+            - { name: doctrine.event_subscriber, event: postPersist }
+            - { name: doctrine.event_subscriber, event: postUpdate }
 
 

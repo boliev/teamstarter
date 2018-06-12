@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Project;
 use AppBundle\Form\ProjectCreate\MainInfoType;
 use AppBundle\Service\ProjectService;
+use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,20 +32,21 @@ class ProjectCreateController extends AbstractController
      * @Route("/project/create/main/", name="project_create_name")
      * @Route("/project/edit/{project}/main/", name="project_edit_name")
      *
-     * @param Project|null        $project
-     * @param Request             $request
-     * @param TranslatorInterface $translator
-     * @param ProjectService      $projectService
+     * @param Project|null           $project
+     * @param Request                $request
+     * @param EntityManagerInterface $em
+     * @param TranslatorInterface    $translator
+     * @param ProjectService         $projectService
      *
      * @return Response
      */
     public function mainAction(
         Project $project = null,
         Request $request,
+        EntityManagerInterface $em,
         TranslatorInterface $translator,
         ProjectService $projectService
     ) {
-        $em = $this->getDoctrine()->getManager();
         if (!$project) {
             $project = new Project();
             $project->setUser($this->getUser());
