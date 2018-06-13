@@ -46,6 +46,11 @@ services:
 
     AppBundle\Search\ProjectIndexer\ProjectIndexerInterface: '@search.project_indexer'
 
+    search.project_searcher:
+        class: AppBundle\Search\ProjectSearcher\PostgresSearcher
+
+    AppBundle\Search\ProjectSearcher\ProjectSearcherInterface: '@search.project_searcher'
+
     AppBundle\Service\UserService:
         arguments:
             $kernelRoot: "%kernel.root_dir%"
