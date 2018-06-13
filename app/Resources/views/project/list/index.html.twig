@@ -14,12 +14,14 @@
 
         <div class="form-section">
             <div class="row ">
-                <div class=" col-md-offset-1 col-md-8 form-group">
-                    <input type="text" placeholder="{{ 'search_placeholder' | trans }}" class="input-block projects-search-input">
-                </div>
-                <div class="col-md-2 margin-left-1 padding-left-1">
-                    <a href="#null" class="projects-search-button"><i class="fas fa-search"></i></a>
-                </div>
+                <form name="search-form" id="search-form" method="get" action="{{ path('projects_list') }}">
+                    <div class=" col-md-offset-1 col-md-8 form-group">
+                        <input type="text" name="query" placeholder="{{ 'search_placeholder' | trans }}" class="input-block projects-search-input" value="{% if searchQuery %}{{ searchQuery }}{% endif %}">
+                    </div>
+                    <div class="col-md-2 margin-left-1 padding-left-1">
+                        <a href="#null" onclick="$('#search-form').submit()" class="projects-search-button"><i class="fas fa-search"></i></a>
+                    </div>
+                </form>
             </div>
         </div>
 

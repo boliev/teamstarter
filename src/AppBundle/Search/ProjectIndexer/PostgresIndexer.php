@@ -64,8 +64,9 @@ SET search = srch.search_str
 FROM (
        SELECT pr.id,
          setweight(to_tsvector(coalesce(pr.name,'')), 'A') ||
-         setweight(to_tsvector(coalesce(pr.description,'')), 'B') ||
-         setweight(to_tsvector(coalesce(string_agg(s2.title, ' '),'')), 'C')
+         setweight(to_tsvector(coalesce(pr.mission,'')), 'B') ||
+         setweight(to_tsvector(coalesce(pr.description,'')), 'C') ||
+         setweight(to_tsvector(coalesce(string_agg(s2.title, ' '),'')), 'D')
            AS search_str
        FROM projects pr
        LEFT JOIN project_open_roles por on pr.id = por.project_id AND por.vacant=true

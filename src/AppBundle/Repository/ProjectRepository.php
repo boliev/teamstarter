@@ -8,16 +8,24 @@ use Doctrine\ORM\EntityRepository;
 class ProjectRepository extends EntityRepository
 {
     /**
+     * @param array|null $ids
+     *
      * @return \Doctrine\ORM\Query
      */
-    public function getPublishedQuery()
+    public function getPublishedQuery(?array $ids = null)
     {
-        return $this->createQueryBuilder('p')
+        $query = $this->createQueryBuilder('p')
             ->innerJoin('p.openRoles', 'ov')
             ->where('p.progressStatus = :publishedStatus')
             ->andWhere('ov.vacant = true')
             ->setParameter('publishedStatus', Project::STATUS_PUBLISHED)
-            ->orderBy('p.createdAt', 'DESC')
-            ->getQuery();
+            ->orderBy('p.createdAt', 'DESC');
+
+        if (null !== $ids) {
+            $query = $query->andWhere('p.id in (:ids)')
+                ->setParameter(':ids', $ids);
+        }
+
+        return $query->getQuery();
     }
 }

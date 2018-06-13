@@ -52,7 +52,7 @@ class ProjectOpenRole
 
     /**
      * @var Collection
-     * @ORM\OneToMany(targetEntity="ProjectOpenRoleSkills", mappedBy="role")
+     * @ORM\OneToMany(targetEntity="ProjectOpenRoleSkills", mappedBy="openRole")
      */
     private $skills;
 
