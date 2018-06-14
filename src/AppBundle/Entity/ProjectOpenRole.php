@@ -28,7 +28,7 @@ class ProjectOpenRole
 
     /**
      * @var Specialization
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Specialization", inversedBy="projects")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Specialization", inversedBy="projectOpenRoles")
      */
     private $specialization;
 

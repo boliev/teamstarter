@@ -1974,3 +1974,8 @@ article.post {
 	font-size: 30px;
 	color: #222222;
 }
+
+.no-projects-found {
+	text-align: center;
+	margin: 20px 0px;
+}
