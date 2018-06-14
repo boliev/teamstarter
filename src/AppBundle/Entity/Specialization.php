@@ -32,6 +32,12 @@ class Specialization
     private $userSpecializations;
 
     /**
+     * @var Collection
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\ProjectOpenRole", mappedBy="specialization")
+     */
+    private $projectOpenRoles;
+
+    /**
      * @return int
      */
     public function getId()
@@ -82,5 +88,21 @@ class Specialization
     public function setUserSpecializations(Collection $userSpecializations)
     {
         $this->userSpecializations = $userSpecializations;
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getProjectOpenRoles(): Collection
+    {
+        return $this->projectOpenRoles;
+    }
+
+    /**
+     * @param Collection $projectOpenRoles
+     */
+    public function setProjectOpenRoles(Collection $projectOpenRoles): void
+    {
+        $this->projectOpenRoles = $projectOpenRoles;
     }
 }

@@ -15,15 +15,19 @@
         <div class="form-section">
             <div class="row ">
                 <form name="search-form" id="search-form" method="get" action="{{ path('projects_list') }}">
-                    <div class=" col-md-offset-1 col-md-8 form-group">
+                    <div class=" col-md-offset-3 col-md-6 form-group">
                         <input type="text" name="query" placeholder="{{ 'search_placeholder' | trans }}" class="input-block projects-search-input" value="{% if searchQuery %}{{ searchQuery }}{% endif %}">
                     </div>
-                    <div class="col-md-2 margin-left-1 padding-left-1">
-                        <a href="#null" onclick="$('#search-form').submit()" class="projects-search-button"><i class="fas fa-search"></i></a>
+                    <div class="col-md-1 margin-left-1 padding-left-1">
+                        <a href="#" onclick="$('#search-form').submit()" class="projects-search-button"><i class="fas fa-search"></i></a>
                     </div>
                 </form>
             </div>
         </div>
+
+        {% if pagination is empty  %}
+            <div class="no-projects-found">{{ 'project.no_one_found' | trans }}</div>
+        {% endif %}
 
             {% for project in pagination %}
 

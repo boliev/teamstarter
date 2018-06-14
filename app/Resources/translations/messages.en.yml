@@ -183,3 +183,4 @@ project:
             TeamStarter Team.</p>
     list: Open <span>Projects</span>
     list_menu_item: Projects
+    no_one_found: No projects found
