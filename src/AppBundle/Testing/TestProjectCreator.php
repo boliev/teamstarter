@@ -14,7 +14,7 @@ use Faker\Factory as FakerFactory;
 
 class TestProjectCreator
 {
-    const COUNTRIES = ['RU', 'US', 'UK', 'FR'];
+    const COUNTRIES = ['RU', 'US', 'GB', 'FR'];
 
     const PROGRESS_STATUSES = [
         Project::STATUS_PUBLISHED,
@@ -71,7 +71,8 @@ class TestProjectCreator
     }
 
     /**
-     * @param User $user
+     * @param User        $user
+     * @param null|string $progressStatus
      *
      * @return Project
      */
