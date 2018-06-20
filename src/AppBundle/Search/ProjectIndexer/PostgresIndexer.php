@@ -66,13 +66,18 @@ FROM (
          setweight(to_tsvector(coalesce(pr.name,'')), 'A') ||
          setweight(to_tsvector(coalesce(pr.mission,'')), 'B') ||
          setweight(to_tsvector(coalesce(pr.description,'')), 'C') ||
-         setweight(to_tsvector(coalesce(string_agg(s2.title, ' '),'')), 'D')
+         setweight(to_tsvector(coalesce(string_agg(s2.title, ' '),'')), 'D') ||
+         setweight(to_tsvector(coalesce(pr.city, '')), 'D') ||
+         setweight(to_tsvector(coalesce(c2.name, '')), 'D') ||
+         setweight(to_tsvector(coalesce(string_agg(a.name, ' '),'')), 'D')
            AS search_str
        FROM projects pr
        LEFT JOIN project_open_roles por on pr.id = por.project_id AND por.vacant=true
        LEFT JOIN project_open_role_skills skill on por.id = skill.open_role_id
        LEFT JOIN skill s2 on skill.skill_id = s2.id
-       GROUP BY pr.id
+       LEFT JOIN country c2 on pr.country = c2.code
+       LEFT JOIN countries_alias a on c2.code = a.country
+       GROUP BY pr.id, c2.name
      ) AS srch
      WHERE srch.id = p.id
      ";
