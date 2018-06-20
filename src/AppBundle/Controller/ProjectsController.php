@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Project;
+use AppBundle\Entity\SearchQueries;
 use AppBundle\Search\ProjectSearcher\ProjectSearcherInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -30,12 +31,21 @@ class ProjectsController extends Controller
     ) {
         $ids = null;
         $searchQuery = $request->query->get('query');
-        if (null !== $searchQuery && '' !== $searchQuery) {
+        $isSearch = (null !== $searchQuery && '' !== $searchQuery);
+        if ($isSearch) {
             $ids = $projectSearcher->search($searchQuery);
         }
 
         $projectRepository = $entityManager->getRepository(Project::class);
         $projects = $projectRepository->getPublishedQuery($ids);
+
+        if ($isSearch) {
+            $searchQueries = new SearchQueries();
+            $searchQueries->setQuery($searchQuery);
+            $searchQueries->setCount(count($ids));
+            $entityManager->persist($searchQueries);
+            $entityManager->flush();
+        }
 
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
