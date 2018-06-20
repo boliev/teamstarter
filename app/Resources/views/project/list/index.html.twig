@@ -40,9 +40,9 @@
                                     <span class="date"><i class="fas fa-user-tie"></i>{{ project.user.getFullName() }}</span>
                                     <span><i class="mn-icon-132"></i>{{ project.status.name }}</span>
                                     {% if project.city %}
-                                        <span><i class="fas fa-map-marker"></i>{{ project.city }}{% if project.country | country_name %}, {{ project.country | country_name }}{% endif %}</span>
-                                    {% elseif project.country | country_name%}
-                                        <span><i class="fas fa-map-marker"></i>{{ project.country | country_name }}</span>
+                                        <span><i class="fas fa-map-marker"></i>{{ project.city }}{% if project.country%}, {{ project.country}}{% endif %}</span>
+                                    {% elseif project.country%}
+                                        <span><i class="fas fa-map-marker"></i>{{ project.country }}</span>
                                     {% endif %}
                                     {% if project.screens | length > 0 %}<span><i class="far fa-image"></i>Screenshots</span>{% endif %}
                                 </div>

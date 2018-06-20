@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ProjectRepository")
- * @ORM\Table(name="projects")
+ * @ORM\Table(name="projects", indexes={@ORM\Index(name="products_country", columns={"country"})})
  * @ORM\HasLifecycleCallbacks()
  */
 class Project
@@ -57,7 +57,8 @@ class Project
 
     /**
      * @var string|null
-     * @ORM\Column(name="country", type="string", length=3, nullable=true)
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Country", inversedBy="code")
+     * @ORM\JoinColumn(name="country", referencedColumnName="code")
      */
     private $country;
 
