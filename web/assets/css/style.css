@@ -1952,12 +1952,45 @@ ul.projects-list-roles li {
 	font-weight: 400;
 }
 
+ul.project-card-roles li {
+    padding: 3px 20px 3px 0px;
+    font-style: italic;
+    color: #666666;
+    font-family: Lato;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+ul.project-card-roles li a {
+    padding-left: 5px;
+    font-style: italic;
+    color: #666666;
+    font-family: Lato;
+    font-size: 16px;
+    font-weight: 400;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+}
+
+.project-card-role-tag {
+    background-color: #42a5f5;
+}
+
+.project-card-role {
+    padding: 10px 0px;
+}
+
 ul.projects-list-roles li .fas {
 	margin-right: 5px;
 }
 
 .info-description {
 	margin-top: 10px;
+}
+
+.info-description-title {
+	margin-top: 10px;
+	font-weight: bold;
 }
 
 article.post {

@@ -120,7 +120,8 @@ project:
     menu_create: Create a project
     project_rules: <span>Project</span> rules
     main_info: <span>Project</span> main information
-    open_roles: <span>Project</span> open roles
+    open_roles_title: <span>Project</span> open roles
+    open_roles: Open roles
     screenshots: <span>Project</span> screenshots
     add_screenshot: + Add a screenshot
     screen_max_size_exception: Maximum size of screenshot must be {size} MB

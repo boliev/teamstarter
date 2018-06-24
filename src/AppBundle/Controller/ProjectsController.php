@@ -58,4 +58,19 @@ class ProjectsController extends Controller
             'searchQuery' => $searchQuery,
         ]);
     }
+
+    /**
+     * @Route("/projects/{project}/more", name="project_more")
+     *
+     * @param Project $project
+     *
+     * @return Response
+     */
+    public function moreAction(
+        Project $project
+    ) {
+        return $this->render('project/more/index.html.twig', [
+            'project' => $project,
+        ]);
+    }
 }
