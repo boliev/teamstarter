@@ -6,30 +6,13 @@
             <div class="col-sm-8 col-sm-offset-2">
                 <div class="kc-elm kc-title-wrap  left dark">
                     <div class="title-wrapper">
-                        <h3 class="kc_title">{{ 'project.list' | trans | raw }}</h3>
+                        <h3 class="kc_title">{{ project.name | raw }}</h3>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="form-section">
-            <div class="row ">
-                <form name="search-form" id="search-form" method="get" action="{{ path('projects_list') }}">
-                    <div class=" col-md-offset-3 col-md-6 form-group">
-                        <input type="text" name="query" placeholder="{{ 'search_placeholder' | trans }}" class="input-block projects-search-input" value="{% if searchQuery %}{{ searchQuery }}{% endif %}">
-                    </div>
-                    <div class="col-md-1 margin-left-1 padding-left-1">
-                        <a href="#" onclick="$('#search-form').submit()" class="projects-search-button"><i class="fas fa-search"></i></a>
-                    </div>
-                </form>
-            </div>
-        </div>
 
-        {% if pagination is empty  %}
-            <div class="no-projects-found">{{ 'project.no_one_found' | trans }}</div>
-        {% endif %}
-
-            {% for project in pagination %}
 
                 <article class="post">
                     <div class="entry-content">
@@ -46,24 +29,43 @@
                                     {% endif %}
                                     {% if project.screens | length > 0 %}<span><i class="far fa-image"></i>Screenshots</span>{% endif %}
                                 </div>
-                                <div class="row"><div class="col-sm-12"><h4 class="entry-title"><a href="{{ path('project_more', {'project': project.id}) }}">{{ project.name }}</a></h4></div></div>
+                                <div class="row"><div class="col-sm-12"><h4 class="entry-title"><a href="#">{{ project.name }}</a></h4></div></div>
                             </div>
                         </div>
                         <div class="info-bottom">
+                            <div class="info-description-title">{{ 'project.form_mission' | trans }}</div>
                             <div class="info-description">{{ project.mission }}</div>
+                            <div class="info-description-title">{{ 'project.form_description' | trans }}</div>
+                            <div class="info-description">{{ project.description }}</div>
+                            <div class="info-description-title">{{ 'project.open_roles' | trans }}</div>
                             <div class="info-description">
-                                <ul class="projects-list-roles">
+                                <ul class="project-card-roles">
                                     {% for role in project.openRoles %}
-                                        <li><i class="fas fa-door-open"></i>{{ role.name }}</li>
+                                        {% if role.vacant %}
+                                            <li>
+                                                <i class="fas fa-door-open"></i><a href="#null" onclick="expandRole({{ role.id }})">{{ role.name }}</a>
+                                                <div style="display: none" class="project-card-role" id="project-card-role-{{ role.id }}">
+                                                    {{ role.description }}
+                                                    {% if role.skills %}
+                                                        <div>
+                                                            {% for roleSkill in role.skills %} <span class="badge project-card-role-tag">{{ roleSkill.skill.title }}</span> {% endfor %}
+                                                        </div>
+                                                    {% endif %}
+                                                </div>
+                                            </li>
+                                        {% endif %}
                                     {% endfor %}
                                 </ul><div style="clear: both"></div></div>
                         </div>
                     </div>
                 </article>
-            {% endfor %}
-
-        <div class="navigation">
-            {{ knp_pagination_render(pagination) }}
-        </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        function expandRole (roleId) {
+            $('#project-card-role-'+roleId).toggle();
+        }
+    </script>
 {% endblock %}
