@@ -10,6 +10,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class SearchQueries
 {
+    const TYPE_PRODUCT = 'product';
+    const TYPE_SPECIALISTS = 'specialists';
+
     /**
      * @var int
      * @ORM\Id
@@ -35,6 +38,12 @@ class SearchQueries
      * @ORM\Column(type="datetime")
      */
     private $date;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string")
+     */
+    private $type;
 
     public function __construct()
     {
@@ -103,5 +112,21 @@ class SearchQueries
     public function setDate(\DateTime $date): void
     {
         $this->date = $date;
+    }
+
+    /**
+     * @return string
+     */
+    public function getType(): string
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param string $type
+     */
+    public function setType(string $type): void
+    {
+        $this->type = $type;
     }
 }
