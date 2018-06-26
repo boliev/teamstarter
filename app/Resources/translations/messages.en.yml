@@ -185,3 +185,6 @@ project:
     list: Open <span>Projects</span>
     list_menu_item: Projects
     no_one_found: No projects found
+specialists:
+    list_title: Available <span>Specialists</span>
+    no_one_found: No specialists found

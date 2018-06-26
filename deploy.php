@@ -73,6 +73,18 @@ task('test:projects:add-to-user', function () {
     writeln($df);
 });
 
+// dep test:specialists:add dev --n 1
+task('test:specialists:add', function () {
+    // For option
+    $number = 1;
+    if (input()->hasOption('n')) {
+        $number = input()->getOption('n');
+    }
+
+    $df = run(sprintf('cd {{release_path}} && bin/console test:specialists:add %d --env=prod', $number));
+    writeln($df);
+});
+
 // [Optional] if deploy fails automatically unlock.
 after('deploy:failed', 'deploy:unlock');
 

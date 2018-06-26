@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Project;
 use AppBundle\Entity\SearchQueries;
+use AppBundle\Entity\User;
 use AppBundle\Search\ProjectSearcher\ProjectSearcherInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -11,10 +12,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class ProjectsController extends Controller
+class SpecialistsController extends Controller
 {
     /**
-     * @Route("/projects/{page}", name="projects_list", defaults={"page": 1})
+     * @Route("/specialists/{page}", name="specialists_list", defaults={"page": 1})
      *
      * @param Request                  $request
      * @param EntityManagerInterface   $entityManager
@@ -26,35 +27,35 @@ class ProjectsController extends Controller
     public function indexAction(
         Request $request,
         EntityManagerInterface $entityManager,
-        ProjectSearcherInterface $projectSearcher,
+//        ProjectSearcherInterface $projectSearcher,
         int $page = 1
     ) {
         $ids = null;
         $searchQuery = $request->query->get('query');
         $isSearch = (null !== $searchQuery && '' !== $searchQuery);
-        if ($isSearch) {
-            $ids = $projectSearcher->search($searchQuery);
-        }
+//        if ($isSearch) {
+//            $ids = $projectSearcher->search($searchQuery);
+//        }
 
-        $projectRepository = $entityManager->getRepository(Project::class);
-        $projects = $projectRepository->getPublishedQuery($ids);
+        $userRepository = $entityManager->getRepository(User::class);
+        $specialists = $userRepository->getAvailableSpecialists($ids);
 
         if ($isSearch) {
             $searchQueries = new SearchQueries();
             $searchQueries->setQuery($searchQuery);
             $searchQueries->setCount(count($ids));
-            $searchQueries->setType(SearchQueries::TYPE_PRODUCT);
+            $searchQueries->setType(SearchQueries::TYPE_SPECIALISTS);
             $entityManager->persist($searchQueries);
             $entityManager->flush();
         }
 
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
-            $projects,
+            $specialists,
             $page
         );
 
-        return $this->render('project/list/index.html.twig', [
+        return $this->render('specialists/list/index.html.twig', [
             'pagination' => $pagination,
             'searchQuery' => $searchQuery,
         ]);

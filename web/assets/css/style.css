@@ -1675,6 +1675,10 @@ div.modal-login-social a, div.register-form-sn-login a {
 	border-radius: 50%;
 	margin-top: -9px;
 }
+img.specialists-avatar {
+	width: 120px;
+	border-radius: 50%;
+}
 
 .top-user-menu .dropdown .btn {
 	padding-top: 0px;
