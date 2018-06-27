@@ -44,12 +44,22 @@ services:
     search.project_indexer:
         class: AppBundle\Search\ProjectIndexer\PostgresIndexer
 
+    search.specialist_indexer:
+        class: AppBundle\Search\SpecialistIndexer\PostgresIndexer
+
+
+
     AppBundle\Search\ProjectIndexer\ProjectIndexerInterface: '@search.project_indexer'
+    AppBundle\Search\SpecialistIndexer\SpecialistIndexerInterface: '@search.specialist_indexer'
 
     search.project_searcher:
         class: AppBundle\Search\ProjectSearcher\PostgresSearcher
 
+    search.specialist_searcher:
+        class: AppBundle\Search\SpecialistSearcher\PostgresSearcher
+
     AppBundle\Search\ProjectSearcher\ProjectSearcherInterface: '@search.project_searcher'
+    AppBundle\Search\SpecialistSearcher\SpecialistSearcherInterface: '@search.specialist_searcher'
 
     AppBundle\Service\UserService:
         arguments:
@@ -72,6 +82,11 @@ services:
             $fromEmailAddress: '%from_email%'
 
     AppBundle\EventSubscriber\ProjectSearchIndexerSubscriber:
+        tags:
+            - { name: doctrine.event_subscriber, event: postPersist }
+            - { name: doctrine.event_subscriber, event: postUpdate }
+
+    AppBundle\EventSubscriber\SpecialistSearchIndexerSubscriber:
         tags:
             - { name: doctrine.event_subscriber, event: postPersist }
             - { name: doctrine.event_subscriber, event: postUpdate }

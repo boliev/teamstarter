@@ -56,8 +56,8 @@ class Project
     private $mission;
 
     /**
-     * @var string|null
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Country", inversedBy="code")
+     * @var Country|null
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Country", inversedBy="projects")
      * @ORM\JoinColumn(name="country", referencedColumnName="code")
      */
     private $country;
@@ -200,17 +200,17 @@ class Project
     }
 
     /**
-     * @return string|null
+     * @return Country|null
      */
-    public function getCountry(): ?string
+    public function getCountry(): ?Country
     {
         return $this->country;
     }
 
     /**
-     * @param string $country
+     * @param Country $country
      */
-    public function setCountry(?string $country)
+    public function setCountry(?Country $country)
     {
         $this->country = $country;
     }
