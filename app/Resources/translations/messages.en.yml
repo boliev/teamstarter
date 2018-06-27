@@ -187,4 +187,5 @@ project:
     no_one_found: No projects found
 specialists:
     list_title: Available <span>Specialists</span>
+    menu_list: Available specialists
     no_one_found: No specialists found
