@@ -161,6 +161,12 @@ class User extends BaseUser
     private $search;
 
     /**
+     * @var bool
+     * @ORM\Column(type="boolean", nullable=false, options={"default": false})
+     */
+    private $isFake = false;
+
+    /**
      * User constructor.
      */
     public function __construct()
@@ -552,5 +558,21 @@ class User extends BaseUser
     public function setSearch(string $search): void
     {
         $this->search = $search;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isFake(): bool
+    {
+        return $this->isFake;
+    }
+
+    /**
+     * @param bool $isFake
+     */
+    public function setIsFake(bool $isFake): void
+    {
+        $this->isFake = $isFake;
     }
 }
