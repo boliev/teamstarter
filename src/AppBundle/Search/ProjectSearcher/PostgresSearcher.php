@@ -2,6 +2,7 @@
 
 namespace AppBundle\Search\ProjectSearcher;
 
+use AppBundle\Entity\Project;
 use Doctrine\ORM\EntityManagerInterface;
 
 class PostgresSearcher implements ProjectSearcherInterface
@@ -25,18 +26,27 @@ class PostgresSearcher implements ProjectSearcherInterface
     {
         $query = $this->prepareQuery($query);
         $conn = $this->entityManager->getConnection();
-        $sql = 'SELECT id, ts_rank( search::tsvector, to_tsquery(:query), 0) as rank
-FROM projects
+        $sql = sprintf('SELECT DISTINCT p.id, ts_rank( search::tsvector, to_tsquery(:query), 0) as rank, created_at
+FROM projects p
+INNER JOIN project_open_roles por on p.id = por.project_id
 WHERE to_tsquery(:query) @@ search::tsvector
-ORDER BY rank desc';
+AND p.progress_status = \'%s\'
+AND por.vacant = true 
+ORDER BY rank desc, created_at desc',
+        Project::STATUS_PUBLISHED
+        );
 
         $stmt = $conn->prepare($sql);
 
         $stmt->execute(['query' => $query]);
 
-        $res = $stmt->fetchAll();
+        $projects = [];
+        $projectRepository = $this->entityManager->getRepository(Project::class);
+        while ($project = $stmt->fetch()) {
+            $projects[] = $projectRepository->find($project['id']);
+        }
 
-        return array_column($res, 'id');
+        return $projects;
     }
 
     private function prepareQuery(string $query): string

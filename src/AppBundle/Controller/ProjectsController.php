@@ -29,23 +29,14 @@ class ProjectsController extends Controller
         ProjectSearcherInterface $projectSearcher,
         int $page = 1
     ) {
-        $ids = null;
         $searchQuery = $request->query->get('query');
         $isSearch = (null !== $searchQuery && '' !== $searchQuery);
         if ($isSearch) {
-            $ids = $projectSearcher->search($searchQuery);
-        }
-
-        $projectRepository = $entityManager->getRepository(Project::class);
-        $projects = $projectRepository->getPublishedQuery($ids);
-
-        if ($isSearch) {
-            $searchQueries = new SearchQueries();
-            $searchQueries->setQuery($searchQuery);
-            $searchQueries->setCount(count($ids));
-            $searchQueries->setType(SearchQueries::TYPE_PRODUCT);
-            $entityManager->persist($searchQueries);
-            $entityManager->flush();
+            $projects = $projectSearcher->search($searchQuery);
+            $this->storeSearchQuery($entityManager, $searchQuery, count($projects));
+        } else {
+            $projectRepository = $entityManager->getRepository(Project::class);
+            $projects = $projectRepository->getPublishedQuery();
         }
 
         $paginator = $this->get('knp_paginator');
@@ -58,6 +49,21 @@ class ProjectsController extends Controller
             'pagination' => $pagination,
             'searchQuery' => $searchQuery,
         ]);
+    }
+
+    /**
+     * @param EntityManagerInterface $entityManager
+     * @param string                 $searchQuery
+     * @param int                    $count
+     */
+    private function storeSearchQuery(EntityManagerInterface $entityManager, string $searchQuery, int $count): void
+    {
+        $searchQueries = new SearchQueries();
+        $searchQueries->setQuery($searchQuery);
+        $searchQueries->setCount($count);
+        $searchQueries->setType(SearchQueries::TYPE_PROJECTS);
+        $entityManager->persist($searchQueries);
+        $entityManager->flush();
     }
 
     /**
