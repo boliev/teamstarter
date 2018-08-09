@@ -65,9 +65,9 @@ FROM (
        SELECT u.id,
          setweight(to_tsvector(coalesce(u.city, '')), 'A') ||
          setweight(to_tsvector(coalesce(c2.name, '')), 'A') ||
+         setweight(to_tsvector(coalesce(string_agg(s.title, ' '),'')), 'A') ||
          setweight(to_tsvector(coalesce(string_agg(a.name, ' '),'')), 'A') ||
-         setweight(to_tsvector(coalesce(string_agg(s3.title, ' '),'')), 'B') ||
-         setweight(to_tsvector(coalesce(string_agg(s.title, ' '),'')), 'C')
+         setweight(to_tsvector(coalesce(string_agg(s3.title, ' '),'')), 'A') 
            AS search_str
        FROM users u
        LEFT JOIN user_skills us on u.id = us.user_id

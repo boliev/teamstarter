@@ -2,7 +2,6 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Project;
 use AppBundle\Entity\SearchQueries;
 use AppBundle\Entity\User;
 use AppBundle\Search\SpecialistSearcher\SpecialistSearcherInterface;
@@ -34,19 +33,11 @@ class SpecialistsController extends Controller
         $searchQuery = $request->query->get('query');
         $isSearch = (null !== $searchQuery && '' !== $searchQuery);
         if ($isSearch) {
-            $ids = $specialistSearcher->search($searchQuery);
-        }
-
-        $userRepository = $entityManager->getRepository(User::class);
-        $specialists = $userRepository->getAvailableSpecialists($ids);
-
-        if ($isSearch) {
-            $searchQueries = new SearchQueries();
-            $searchQueries->setQuery($searchQuery);
-            $searchQueries->setCount(count($ids));
-            $searchQueries->setType(SearchQueries::TYPE_SPECIALISTS);
-            $entityManager->persist($searchQueries);
-            $entityManager->flush();
+            $specialists = $specialistSearcher->search($searchQuery);
+            $this->storeSearchQuery($entityManager, $searchQuery, count($specialists));
+        } else {
+            $userRepository = $entityManager->getRepository(User::class);
+            $specialists = $userRepository->getAvailableSpecialists();
         }
 
         $paginator = $this->get('knp_paginator');
@@ -61,18 +52,13 @@ class SpecialistsController extends Controller
         ]);
     }
 
-    /**
-     * @Route("/projects/{project}/more", name="project_more")
-     *
-     * @param Project $project
-     *
-     * @return Response
-     */
-    public function moreAction(
-        Project $project
-    ) {
-        return $this->render('project/more/index.html.twig', [
-            'project' => $project,
-        ]);
+    private function storeSearchQuery(EntityManagerInterface $entityManager, string $searchQuery, int $count): void
+    {
+        $searchQueries = new SearchQueries();
+        $searchQueries->setQuery($searchQuery);
+        $searchQueries->setCount($count);
+        $searchQueries->setType(SearchQueries::TYPE_SPECIALISTS);
+        $entityManager->persist($searchQueries);
+        $entityManager->flush();
     }
 }
