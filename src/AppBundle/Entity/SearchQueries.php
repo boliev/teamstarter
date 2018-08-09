@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class SearchQueries
 {
-    const TYPE_PRODUCT = 'product';
+    const TYPE_PROJECTS = 'projects';
     const TYPE_SPECIALISTS = 'specialists';
 
     /**

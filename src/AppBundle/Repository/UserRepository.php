@@ -2,6 +2,7 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\UserSpecializations;
 use Doctrine\ORM\EntityRepository;
 
 class UserRepository extends EntityRepository
@@ -11,18 +12,12 @@ class UserRepository extends EntityRepository
      *
      * @return \Doctrine\ORM\Query
      */
-    public function getAvailableSpecialists(?array $ids = null)
+    public function getAvailableSpecialists()
     {
-        $query = $this->createQueryBuilder('u')
-            ->innerJoin('u.userSpecializations', 'us')
+        return $this->createQueryBuilder('u')
+            ->innerJoin(UserSpecializations::class, 'us', 'WITH', 'us.user = u.id')
             ->where('u.enabled = true')
-            ->orderBy('u.createdAt', 'DESC');
-
-        if (null !== $ids) {
-            $query = $query->andWhere('u.id in (:ids)')
-                ->setParameter(':ids', $ids);
-        }
-
-        return $query->getQuery();
+            ->orderBy('u.updatedAt', 'desc')
+            ->getQuery();
     }
 }

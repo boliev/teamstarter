@@ -47,8 +47,12 @@ task('build', function () {
     run('cd {{release_path}} && build');
 });
 
-task('search:index', function () {
+task('search:projects:index', function () {
     run('cd {{release_path}} && bin/console projects:index --env=prod');
+});
+
+task('search:specialists:index', function () {
+    run('cd {{release_path}} && bin/console specialists:index --env=prod');
 });
 
 task('disk_free', function () {

@@ -2,10 +2,9 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Project;
 use AppBundle\Entity\SearchQueries;
 use AppBundle\Entity\User;
-use AppBundle\Search\ProjectSearcher\ProjectSearcherInterface;
+use AppBundle\Search\SpecialistSearcher\SpecialistSearcherInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -17,36 +16,28 @@ class SpecialistsController extends Controller
     /**
      * @Route("/specialists/{page}", name="specialists_list", defaults={"page": 1})
      *
-     * @param Request                  $request
-     * @param EntityManagerInterface   $entityManager
-     * @param ProjectSearcherInterface $projectSearcher
-     * @param int                      $page
+     * @param Request                     $request
+     * @param EntityManagerInterface      $entityManager
+     * @param SpecialistSearcherInterface $specialistSearcher
+     * @param int                         $page
      *
      * @return Response
      */
     public function indexAction(
         Request $request,
         EntityManagerInterface $entityManager,
-//        ProjectSearcherInterface $projectSearcher,
+        SpecialistSearcherInterface $specialistSearcher,
         int $page = 1
     ) {
         $ids = null;
         $searchQuery = $request->query->get('query');
         $isSearch = (null !== $searchQuery && '' !== $searchQuery);
-//        if ($isSearch) {
-//            $ids = $projectSearcher->search($searchQuery);
-//        }
-
-        $userRepository = $entityManager->getRepository(User::class);
-        $specialists = $userRepository->getAvailableSpecialists($ids);
-
         if ($isSearch) {
-            $searchQueries = new SearchQueries();
-            $searchQueries->setQuery($searchQuery);
-            $searchQueries->setCount(count($ids));
-            $searchQueries->setType(SearchQueries::TYPE_SPECIALISTS);
-            $entityManager->persist($searchQueries);
-            $entityManager->flush();
+            $specialists = $specialistSearcher->search($searchQuery);
+            $this->storeSearchQuery($entityManager, $searchQuery, count($specialists));
+        } else {
+            $userRepository = $entityManager->getRepository(User::class);
+            $specialists = $userRepository->getAvailableSpecialists();
         }
 
         $paginator = $this->get('knp_paginator');
@@ -61,18 +52,13 @@ class SpecialistsController extends Controller
         ]);
     }
 
-    /**
-     * @Route("/projects/{project}/more", name="project_more")
-     *
-     * @param Project $project
-     *
-     * @return Response
-     */
-    public function moreAction(
-        Project $project
-    ) {
-        return $this->render('project/more/index.html.twig', [
-            'project' => $project,
-        ]);
+    private function storeSearchQuery(EntityManagerInterface $entityManager, string $searchQuery, int $count): void
+    {
+        $searchQueries = new SearchQueries();
+        $searchQueries->setQuery($searchQuery);
+        $searchQueries->setCount($count);
+        $searchQueries->setType(SearchQueries::TYPE_SPECIALISTS);
+        $entityManager->persist($searchQueries);
+        $entityManager->flush();
     }
 }

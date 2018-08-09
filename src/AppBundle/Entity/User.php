@@ -81,8 +81,8 @@ class User extends BaseUser
     private $githubId;
 
     /**
-     * @var string|null
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Country", inversedBy="code")
+     * @var Country
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Country", inversedBy="users")
      * @ORM\JoinColumn(name="country", referencedColumnName="code")
      */
     private $country;
@@ -153,6 +153,18 @@ class User extends BaseUser
      * @ORM\Column(type="datetime")
      */
     private $updatedAt;
+
+    /**
+     * @var string
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $search;
+
+    /**
+     * @var bool
+     * @ORM\Column(type="boolean", nullable=false, options={"default": false})
+     */
+    private $isFake = false;
 
     /**
      * User constructor.
@@ -332,9 +344,9 @@ class User extends BaseUser
     }
 
     /**
-     * @return null|string
+     * @return null|Country
      */
-    public function getCountry(): ?string
+    public function getCountry(): Country
     {
         return $this->country;
     }
@@ -342,7 +354,7 @@ class User extends BaseUser
     /**
      * @param null|string $country
      */
-    public function setCountry(?string $country): void
+    public function setCountry(?Country $country): void
     {
         $this->country = $country;
     }
@@ -530,5 +542,37 @@ class User extends BaseUser
     public function setUpdatedAt($updatedAt)
     {
         $this->updatedAt = $updatedAt;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSearch(): string
+    {
+        return $this->search;
+    }
+
+    /**
+     * @param string $search
+     */
+    public function setSearch(string $search): void
+    {
+        $this->search = $search;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isFake(): bool
+    {
+        return $this->isFake;
+    }
+
+    /**
+     * @param bool $isFake
+     */
+    public function setIsFake(bool $isFake): void
+    {
+        $this->isFake = $isFake;
     }
 }

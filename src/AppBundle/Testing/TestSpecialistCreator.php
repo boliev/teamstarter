@@ -60,6 +60,7 @@ class TestSpecialistCreator
         $user->setExpectation($this->faker->words(rand(5, 80), true));
         $user->setExperience($this->faker->words(rand(5, 80), true));
         $user->setAbout($this->faker->words(rand(5, 80), true));
+        $user->setIsFake(true);
         $user->setCreatedAt($date);
         $this->entityManager->persist($user);
 

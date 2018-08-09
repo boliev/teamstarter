@@ -32,6 +32,18 @@ class Country
     private $aliases;
 
     /**
+     * @var Collection
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\User", mappedBy="country")
+     */
+    private $users;
+
+    /**
+     * @var Collection
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Project", mappedBy="country")
+     */
+    private $projects;
+
+    /**
      * @return Collection
      */
     public function getCode(): string
@@ -82,5 +94,13 @@ class Country
     public function setAliases(Collection $aliases): void
     {
         $this->aliases = $aliases;
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
     }
 }

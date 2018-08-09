@@ -1,11 +1,11 @@
 <?php
 
-namespace AppBundle\Search\ProjectSearcher;
+namespace AppBundle\Search\SpecialistSearcher;
 
-use AppBundle\Entity\Project;
+use AppBundle\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 
-class PostgresSearcher implements ProjectSearcherInterface
+class PostgresSearcher implements SpecialistSearcherInterface
 {
     /** @var EntityManagerInterface */
     private $entityManager;
@@ -18,7 +18,7 @@ class PostgresSearcher implements ProjectSearcherInterface
     /**
      * @param string $query
      *
-     * @return array
+     * @return array|User[]
      *
      * @throws \Doctrine\DBAL\DBALException
      */
@@ -26,27 +26,24 @@ class PostgresSearcher implements ProjectSearcherInterface
     {
         $query = $this->prepareQuery($query);
         $conn = $this->entityManager->getConnection();
-        $sql = sprintf('SELECT DISTINCT p.id, ts_rank( search::tsvector, to_tsquery(:query), 0) as rank, created_at
-FROM projects p
-INNER JOIN project_open_roles por on p.id = por.project_id
+        $sql = 'SELECT DISTINCT u.id, ts_rank( search::tsvector, to_tsquery(:query), 0) as rank, u.updated_at
+FROM users u
+INNER JOIN user_specializations us2 on u.id = us2.user_id
 WHERE to_tsquery(:query) @@ search::tsvector
-AND p.progress_status = \'%s\'
-AND por.vacant = true 
-ORDER BY rank desc, created_at desc',
-        Project::STATUS_PUBLISHED
-        );
+AND u.enabled = true 
+ORDER BY rank desc, u.updated_at desc';
 
         $stmt = $conn->prepare($sql);
 
         $stmt->execute(['query' => $query]);
 
-        $projects = [];
-        $projectRepository = $this->entityManager->getRepository(Project::class);
-        while ($project = $stmt->fetch()) {
-            $projects[] = $projectRepository->find($project['id']);
+        $userRepository = $this->entityManager->getRepository(User::class);
+        $specialists = [];
+        while ($specialist = $stmt->fetch()) {
+            $specialists[] = $userRepository->find($specialist['id']);
         }
 
-        return $projects;
+        return $specialists;
     }
 
     private function prepareQuery(string $query): string
