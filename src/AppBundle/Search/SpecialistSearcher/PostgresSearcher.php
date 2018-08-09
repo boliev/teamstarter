@@ -26,10 +26,12 @@ class PostgresSearcher implements SpecialistSearcherInterface
     {
         $query = $this->prepareQuery($query);
         $conn = $this->entityManager->getConnection();
-        $sql = 'SELECT id, ts_rank( search::tsvector, to_tsquery(:query), 0) as rank
-FROM users
+        $sql = 'SELECT u.id, ts_rank( search::tsvector, to_tsquery(:query), 0) as rank, u.updated_at
+FROM users u
+INNER JOIN user_specializations us2 on u.id = us2.user_id
 WHERE to_tsquery(:query) @@ search::tsvector
-ORDER BY rank desc, updated_at desc';
+AND u.enabled = true 
+ORDER BY rank desc, u.updated_at desc';
 
         $stmt = $conn->prepare($sql);
 
