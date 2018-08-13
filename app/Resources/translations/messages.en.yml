@@ -189,3 +189,8 @@ specialists:
     list_title: Available <span>Specialists</span>
     menu_list: Available specialists
     no_one_found: No specialists found
+    not_found: Specialists not found
+    about: About
+    like_to_do: Like to do
+    experience: Background
+    expectation: Expectation

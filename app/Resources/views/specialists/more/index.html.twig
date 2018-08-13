@@ -1,0 +1,91 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class ="container">
+
+                <article class="post">
+                    <div class="entry-content">
+
+                        <div class="entry-meta">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <div class="text-left padding-top-10">
+                                        <img class="specialists-list-avatar" src="{% if user.profilePicture %} {{ user.profilePicture }} {% else %}{{ asset(avatart_placeholder) }}{% endif %}" />
+                                    </div>
+                                </div>
+                                <div class="col-md-10">
+                                    <div class="info">
+                                        <div class="meta margin-top-1">
+                                            <span><i class="fas fa-briefcase"></i>
+                                                {% for userSpecialization in user.userSpecializations %}
+                                                    {{ userSpecialization.specialization.title }}{% if not loop.last %}, {% endif %}
+                                                {% endfor %}
+                                            </span>
+
+                                            {% if user.city %}
+                                                <span><i class="fas fa-map-marker"></i>{{ user.city }}{% if user.country%}, {{ user.country}}{% endif %}</span>
+                                            {% elseif user.country%}
+                                                <span><i class="fas fa-map-marker"></i>{{ user.country }}</span>
+                                            {% endif %}
+                                        </div>
+                                        <div class="row"><div class="col-sm-12"><h4 class="entry-title"><a href="#">{{ user.fullName }}</a></h4></div></div>
+                                        <div class="margin-top-10">
+                                            {% for userSkill in user.userSkills %} <span class="badge project-card-role-tag">{{ userSkill.skill.title }}</span> {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="info-bottom">
+                            {% if user.about %}
+                                <div class="info-description-title">{{ 'specialists.about' | trans }}</div>
+                                <div class="info-description">{{ user.about }}</div>
+                            {% endif %}
+                            {% if user.experience %}
+                                <div class="info-description-title">{{ 'specialists.experience' | trans }}</div>
+                                <div class="info-description">{{ user.experience }}</div>
+                            {% endif %}
+                            {% if user.likeToDo %}
+                                <div class="info-description-title">{{ 'specialists.like_to_do' | trans }}</div>
+                                <div class="info-description">{{ user.likeToDo }}</div>
+                            {% endif %}
+                            <div class="info-bottom">
+                                <div class="info-description">{{ user.about }}</div>
+                            </div>
+                            {% if user.expectation %}
+                                <div class="info-description-title">{{ 'specialists.expectation' | trans }}</div>
+                                <div class="info-description">{{ user.expectation }}</div>
+                            {% endif %}
+
+                            {#<div class="info-description-title">{{ 'project.open_roles' | trans }}</div>#}
+                            {#<div class="info-description">#}
+                                {#<ul class="project-card-roles">#}
+                                    {#{% for role in project.openRoles %}#}
+                                        {#{% if role.vacant %}#}
+                                            {#<li>#}
+                                                {#<i class="fas fa-door-open"></i><a href="#null" onclick="expandRole({{ role.id }})">{{ role.name }}</a>#}
+                                                {#<div style="display: none" class="project-card-role" id="project-card-role-{{ role.id }}">#}
+                                                    {#{{ role.description }}#}
+                                                    {#{% if role.skills %}#}
+                                                        {#<div>#}
+                                                            {#{% for roleSkill in role.skills %} <span class="badge project-card-role-tag">{{ roleSkill.skill.title }}</span> {% endfor %}#}
+                                                        {#</div>#}
+                                                    {#{% endif %}#}
+                                                {#</div>#}
+                                            {#</li>#}
+                                        {#{% endif %}#}
+                                    {#{% endfor %}#}
+                                {#</ul><div style="clear: both"></div></div>#}
+                        </div>
+                    </div>
+                </article>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        // function expandRole (roleId) {
+        //     $('#project-card-role-'+roleId).toggle();
+        // }
+    </script>
+{% endblock %}

@@ -132,6 +132,7 @@ class User extends BaseUser
     /**
      * @var Collection
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\UserSpecializations", orphanRemoval=true, mappedBy="user")
+     * @ORM\OrderBy({"specialization" = "ASC"})
      */
     private $userSpecializations;
 
@@ -574,5 +575,14 @@ class User extends BaseUser
     public function setIsFake(bool $isFake): void
     {
         $this->isFake = $isFake;
+    }
+
+    public function isSpecialist()
+    {
+        if (true === $this->enabled and count($this->getUserSpecializations())) {
+            return true;
+        }
+
+        return false;
     }
 }

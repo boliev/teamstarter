@@ -6,10 +6,12 @@ use AppBundle\Entity\SearchQueries;
 use AppBundle\Entity\User;
 use AppBundle\Search\SpecialistSearcher\SpecialistSearcherInterface;
 use Doctrine\ORM\EntityManagerInterface;
+use Elastica\Exception\NotFoundException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Translation\TranslatorInterface;
 
 class SpecialistsController extends Controller
 {
@@ -49,6 +51,28 @@ class SpecialistsController extends Controller
         return $this->render('specialists/list/index.html.twig', [
             'pagination' => $pagination,
             'searchQuery' => $searchQuery,
+        ]);
+    }
+
+    /**
+     * @Route("/specialists/{user}/more", name="specialists_more")
+     *
+     * @param User                $user
+     * @param TranslatorInterface $translator
+     *
+     * @return Response
+     */
+    public function moreAction(
+        User $user,
+        TranslatorInterface $translator
+    ) {
+        if (!$user->isSpecialist()) {
+            // not_found
+            throw new NotFoundException($translator->trans('specialists.not_found'));
+        }
+
+        return $this->render('specialists/more/index.html.twig', [
+            'user' => $user,
         ]);
     }
 
