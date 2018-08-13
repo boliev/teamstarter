@@ -1680,6 +1680,11 @@ img.specialists-avatar {
 	border-radius: 50%;
 }
 
+img.specialists-list-avatar {
+	height: 100px;
+	border-radius: 50%;
+}
+
 .top-user-menu .dropdown .btn {
 	padding-top: 0px;
 	padding-bottom: 0px;
@@ -1997,7 +2002,7 @@ ul.projects-list-roles li .fas {
 	font-weight: bold;
 }
 
-article.post {
+article.post, article.specialist {
 	padding: 35px 20px;
 }
 
