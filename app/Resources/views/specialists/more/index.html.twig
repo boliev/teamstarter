@@ -56,26 +56,10 @@
                                 <div class="info-description-title">{{ 'specialists.expectation' | trans }}</div>
                                 <div class="info-description">{{ user.expectation }}</div>
                             {% endif %}
+                            <div class="info-description">
+                                <input type="button" class="btn btn-default blue" value="{{ 'specialists.submit_offer' | trans }}">
+                            </div>
 
-                            {#<div class="info-description-title">{{ 'project.open_roles' | trans }}</div>#}
-                            {#<div class="info-description">#}
-                                {#<ul class="project-card-roles">#}
-                                    {#{% for role in project.openRoles %}#}
-                                        {#{% if role.vacant %}#}
-                                            {#<li>#}
-                                                {#<i class="fas fa-door-open"></i><a href="#null" onclick="expandRole({{ role.id }})">{{ role.name }}</a>#}
-                                                {#<div style="display: none" class="project-card-role" id="project-card-role-{{ role.id }}">#}
-                                                    {#{{ role.description }}#}
-                                                    {#{% if role.skills %}#}
-                                                        {#<div>#}
-                                                            {#{% for roleSkill in role.skills %} <span class="badge project-card-role-tag">{{ roleSkill.skill.title }}</span> {% endfor %}#}
-                                                        {#</div>#}
-                                                    {#{% endif %}#}
-                                                {#</div>#}
-                                            {#</li>#}
-                                        {#{% endif %}#}
-                                    {#{% endfor %}#}
-                                {#</ul><div style="clear: both"></div></div>#}
                         </div>
                     </div>
                 </article>
