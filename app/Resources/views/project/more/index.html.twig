@@ -38,7 +38,8 @@
                             <div class="info-description-title">{{ 'project.form_description' | trans }}</div>
                             <div class="info-description">{{ project.description }}</div>
                             <div class="info-description-title">{{ 'project.open_roles' | trans }}</div>
-                            <div class="info-description">
+                            <div class="row">
+                            <div class="info-description col-md-6">
                                 <ul class="project-card-roles">
                                     {% for role in project.openRoles %}
                                         {% if role.vacant %}
@@ -56,6 +57,10 @@
                                         {% endif %}
                                     {% endfor %}
                                 </ul><div style="clear: both"></div></div>
+                                <div class="info-description col-md-6 form-section">
+                                    <input type="button" class="btn btn-default btn-warning blue" value="{{ 'project.submit_proposal_button' | trans }}">
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </article>

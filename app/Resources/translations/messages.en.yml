@@ -185,6 +185,7 @@ project:
     list: Open <span>Projects</span>
     list_menu_item: Projects
     no_one_found: No projects found
+    submit_proposal_button: Submit a Proposal
 specialists:
     list_title: Available <span>Specialists</span>
     menu_list: Available specialists
@@ -194,3 +195,4 @@ specialists:
     like_to_do: Like to do
     experience: Background
     expectation: Expectation
+    submit_offer: Submit an Offer

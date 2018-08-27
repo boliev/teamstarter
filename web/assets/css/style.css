@@ -1409,6 +1409,10 @@ input.btn.btn-sm.btn-default.btn-cancel:hover  {
 	background-color: #42a5f5;
 	border-color: #42a5f5;
 }
+
+input.blue {
+	background-color: #42a5f5 !important;
+}
 .loging-head {
 	margin-top: 20px;
 }
