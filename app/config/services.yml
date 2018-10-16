@@ -77,6 +77,12 @@ services:
         arguments:
             - AppBundle\Entity\Specialization
 
+    AppBundle\Repository\OfferRepository:
+        class: AppBundle\Repository\OfferRepository
+        factory: ['@doctrine.orm.default_entity_manager', getRepository]
+        arguments:
+        - AppBundle\Entity\Offer
+
     AppBundle\EventSubscriber\ProjectChangeProgressStatusSubscriber:
         arguments:
             $fromEmailAddress: '%from_email%'

@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -317,6 +318,22 @@ class Project
     public function getOpenRoles(): ?Collection
     {
         return $this->openRoles;
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getVacantOpenRoles(): ?Collection
+    {
+        $vacant = new ArrayCollection();
+        foreach ($this->openRoles as $role) {
+            /** @var ProjectOpenRole $role */
+            if ($role->isVacant()) {
+                $vacant->add($role);
+            }
+        }
+
+        return $vacant;
     }
 
     /**

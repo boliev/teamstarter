@@ -142,7 +142,6 @@ project:
     add_role_success_edit: Role was successfully changed
     add_role_success_close: Role was successfully closed
     add_role_success_open: Role was successfully opened
-    add_role_success_open: Role was successfully opened
     docs: <span>Project</span> documentation
     form_name: Name
     form_status: Status
@@ -186,6 +185,11 @@ project:
     list_menu_item: Projects
     no_one_found: No projects found
     submit_proposal_button: Submit a Proposal
+    proposal_header: <span>New</span> Proposal
+    proposal_choose_role: Other role
+    proposal_message: Message
+    proposal_posted_success: Proposal was submitted
+    proposal_already_posted: You have already posted a proposal to the project
 specialists:
     list_title: Available <span>Specialists</span>
     menu_list: Available specialists
