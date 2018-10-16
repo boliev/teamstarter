@@ -17,7 +17,6 @@ class ProjectRepository extends EntityRepository
         $query = $this->createQueryBuilder('p')
             ->innerJoin('p.openRoles', 'ov')
             ->where('p.progressStatus = :publishedStatus')
-            ->andWhere('ov.vacant = true')
             ->setParameter('publishedStatus', Project::STATUS_PUBLISHED)
             ->orderBy('p.createdAt', 'DESC');
 
