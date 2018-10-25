@@ -38,7 +38,7 @@ class ProposalToProjectType extends AbstractType
             },
         ]);
         $builder->add('message', TextareaType::class, [
-            'label' => 'project.proposal_choose_message',
+            'label' => 'project.proposal_message',
             'attr' => [
                 'placeholder' => 'project.proposal_message',
             ],

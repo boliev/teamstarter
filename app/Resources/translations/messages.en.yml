@@ -190,6 +190,11 @@ project:
     proposal_message: Message
     proposal_posted_success: Proposal was submitted
     proposal_already_posted: You have already posted a proposal to the project
+    offer_choose_project: Choose project
+    offer_choose_role: Other role
+    offer_message: Offer message
+    offer_posted_success: Offer was submitted
+    offer_already_posted: You have already posted an offer to the user
 specialists:
     list_title: Available <span>Specialists</span>
     menu_list: Available specialists
@@ -200,3 +205,8 @@ specialists:
     experience: Background
     expectation: Expectation
     submit_offer: Submit an Offer
+    offer_header: <span>New</span> Offer
+    offer_choose_role: Other role
+    offer_message: Message
+    offer_posted_success: Proposal was submitted
+    offer_already_posted: You have already posted a proposal to the project

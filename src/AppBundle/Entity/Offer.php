@@ -157,17 +157,17 @@ class Offer
     }
 
     /**
-     * @return string
+     * @return User
      */
-    public function getTo(): string
+    public function getTo(): User
     {
         return $this->to;
     }
 
     /**
-     * @param string $to
+     * @param User $to
      */
-    public function setTo(string $to): void
+    public function setTo(User $to): void
     {
         $this->to = $to;
     }
