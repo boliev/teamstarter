@@ -2038,3 +2038,7 @@ article.post, article.specialist {
 	text-align: center;
 	margin: 20px 0px;
 }
+
+.badge-count {
+	background-color: #42a5f5;
+}

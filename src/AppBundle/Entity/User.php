@@ -81,7 +81,7 @@ class User extends BaseUser
     private $githubId;
 
     /**
-     * @var Country
+     * @var Country|null
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Country", inversedBy="users")
      * @ORM\JoinColumn(name="country", referencedColumnName="code")
      */
@@ -347,7 +347,7 @@ class User extends BaseUser
     /**
      * @return null|Country
      */
-    public function getCountry(): Country
+    public function getCountry(): ?Country
     {
         return $this->country;
     }

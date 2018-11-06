@@ -89,6 +89,18 @@ services:
         arguments:
         - AppBundle\Entity\ProjectOpenRole
 
+    AppBundle\Repository\UserRepository:
+        class: AppBundle\Repository\UserRepository
+        factory: ['@doctrine.orm.default_entity_manager', getRepository]
+        arguments:
+            - AppBundle\Entity\User
+
+    AppBundle\Repository\MessageRepository:
+        class: AppBundle\Repository\MessageRepository
+        factory: ['@doctrine.orm.default_entity_manager', getRepository]
+        arguments:
+        - AppBundle\Entity\Message
+
     AppBundle\EventSubscriber\ProjectChangeProgressStatusSubscriber:
         arguments:
             $fromEmailAddress: '%from_email%'

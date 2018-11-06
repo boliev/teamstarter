@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Message;
 use AppBundle\Entity\Offer;
 use AppBundle\Entity\Project;
 use AppBundle\Entity\SearchQueries;
@@ -132,10 +133,18 @@ class ProjectsController extends Controller
     {
         $offer = new Offer();
         $offer->setFrom($user);
-        $offer->setMessage($form->get('message')->getData());
         $offer->setProject($project);
         $offer->setRole($form->get('role')->getData());
         $em->persist($offer);
+
+        $message = new Message();
+        $message->setFrom($user);
+        $message->setTo($project->getUser());
+        $message->setMessage($form->get('message')->getData());
+        $message->setStatus(Message::STATUS_NEW);
+        $message->setOffer($offer);
+        $em->persist($message);
+
         $em->flush();
     }
 }
