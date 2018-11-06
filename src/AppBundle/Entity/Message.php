@@ -5,11 +5,11 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="AppBundle\Repository\OfferRepository")
- * @ORM\Table(name="offers")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\MessageRepository")
+ * @ORM\Table(name="messages")
  * @ORM\HasLifecycleCallbacks()
  */
-class Offer
+class Message
 {
     const STATUS_NEW = 'New';
 
@@ -27,28 +27,27 @@ class Offer
 
     /**
      * @var User
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="outgoingOffers")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="sent")
      */
     private $from;
 
     /**
-     * @var Project
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Project", inversedBy="offers")
-     */
-    private $project;
-
-    /**
-     * @var ProjectOpenRole|null
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\ProjectOpenRole", inversedBy="offers")
-     * @ORM\JoinColumn(name="project_open_role_id", referencedColumnName="id", nullable=true)
-     */
-    private $role;
-
-    /**
      * @var User
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="incomingOffers")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="inbox")
      */
     private $to;
+
+    /**
+     * @var string
+     * @ORM\Column(type="text", options={"default": ""})
+     */
+    private $message;
+
+    /**
+     * @var Offer
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Offer", inversedBy="messages")
+     */
+    private $offer;
 
     /**
      * @var string
@@ -119,38 +118,6 @@ class Offer
     }
 
     /**
-     * @return Project
-     */
-    public function getProject(): Project
-    {
-        return $this->project;
-    }
-
-    /**
-     * @param Project $project
-     */
-    public function setProject(Project $project): void
-    {
-        $this->project = $project;
-    }
-
-    /**
-     * @return ProjectOpenRole|null
-     */
-    public function getRole(): ?ProjectOpenRole
-    {
-        return $this->role;
-    }
-
-    /**
-     * @param ProjectOpenRole|null $role
-     */
-    public function setRole(?ProjectOpenRole $role): void
-    {
-        $this->role = $role;
-    }
-
-    /**
      * @return User
      */
     public function getTo(): User
@@ -164,6 +131,38 @@ class Offer
     public function setTo(User $to): void
     {
         $this->to = $to;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMessage(): string
+    {
+        return $this->message;
+    }
+
+    /**
+     * @param string $message
+     */
+    public function setMessage(string $message): void
+    {
+        $this->message = $message;
+    }
+
+    /**
+     * @return Offer
+     */
+    public function getOffer(): Offer
+    {
+        return $this->offer;
+    }
+
+    /**
+     * @param Offer $offer
+     */
+    public function setOffer(Offer $offer): void
+    {
+        $this->offer = $offer;
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Message;
 use AppBundle\Entity\Offer;
 use AppBundle\Entity\SearchQueries;
 use AppBundle\Entity\User;
@@ -135,11 +136,19 @@ class SpecialistsController extends Controller
     {
         $offer = new Offer();
         $offer->setFrom($fromUser);
-        $offer->setMessage($form->get('message')->getData());
         $offer->setProject($form->get('project')->getData());
         $offer->setTo($specialist);
         $offer->setRole($form->get('role')->getData());
         $em->persist($offer);
+
+        $message = new Message();
+        $message->setFrom($fromUser);
+        $message->setTo($specialist);
+        $message->setMessage($form->get('message')->getData());
+        $message->setStatus(Message::STATUS_NEW);
+        $message->setOffer($offer);
+        $em->persist($message);
+
         $em->flush();
     }
 }
