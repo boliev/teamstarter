@@ -2041,4 +2041,15 @@ article.post, article.specialist {
 
 .badge-count {
 	background-color: #42a5f5;
+	margin-bottom: 2px;
+}
+
+.dialogs-avatar img {
+	margin: 10px;
+	border-radius: 50%;
+	height: 100px;
+}
+
+.dialogs-avatar {
+	height: 120px;
 }

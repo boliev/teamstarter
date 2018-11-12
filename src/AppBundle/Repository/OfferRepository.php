@@ -2,10 +2,13 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\Message;
 use AppBundle\Entity\Offer;
 use AppBundle\Entity\Project;
 use AppBundle\Entity\User;
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Query\Expr\Orx;
+use Doctrine\ORM\QueryBuilder;
 
 class OfferRepository extends EntityRepository
 {
@@ -51,5 +54,46 @@ class OfferRepository extends EntityRepository
             ->setMaxResults(1)
             ->getQuery()
             ->getOneOrNullResult();
+    }
+
+    public function getUserOffersSortedByLastMessage(User $user): array
+    {
+        $db = $this->createQueryBuilder('o');
+
+        $offers = $db->where($this->getDialogExpression($user, $db))
+            ->getQuery()
+            ->getResult();
+        $sortedOffers = [];
+        /** @var Offer $offer */
+        foreach ($offers as $offer) {
+            /** @var Message $lastMessage */
+            $lastMessage = $offer->getMessages()->first();
+            $sortedOffers[$lastMessage->getCreatedAt()->getTimestamp()] = $offer;
+        }
+
+        krsort($offers);
+
+        return $offers;
+    }
+
+    private function getDialogExpression(User $user, QueryBuilder $db): Orx
+    {
+        $userProjects = [];
+        foreach ($user->getProjects() as $project) {
+            /* @var Project $project */
+            $userProjects[] = $project->getId();
+        }
+
+        if (count($userProjects) > 0) {
+            return $db->expr()->orX(
+                $db->expr()->eq('o.from', $user->getId()),
+                $db->expr()->in('o.project', $userProjects)
+            );
+        } else {
+            return $db->expr()->orX(
+                $db->expr()->eq('o.from', $user->getId()),
+                $db->expr()->eq('o.to', $user->getId())
+            );
+        }
     }
 }

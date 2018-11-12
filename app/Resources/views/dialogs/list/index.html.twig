@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class ="container">
+        <div class="row section-content-2 padding-bottom-5">
+
+            <div class="col-sm-8 col-sm-offset-2">
+                <div class="kc-elm kc-title-wrap  left dark">
+                    <div class="title-wrapper">
+                        <h3 class="kc_title">{{ 'dialogs.list' | trans | raw }}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% if dialogs is empty  %}
+            <div class="no-projects-found">{{ 'dialogs.no_one_found' | trans }}</div>
+        {% endif %}
+
+            {% for dialog in dialogs %}
+                {% if dialog.from.id != app.user.id%}
+                    {% set sender = dialog.from %}
+                {% elseif dialog.to is not empty %}
+                    {% set sender = dialog.to %}
+                {% else %}
+                    {% set sender = dialog.project.user %}
+                {% endif %}
+
+                <article class="post">
+                    <div class="entry-content">
+                        <div class="entry-meta">
+                            <div class="row">
+                                <div class="col-md-2 dialogs-avatar">
+                                    <img src="{% if sender.profilePicture %} {{ sender.profilePicture }} {% else %}{{ asset(avatart_placeholder) }}{% endif %}">
+                                </div>
+                                <div class="info col-md-10">
+                                    <div class="meta margin-top-1">
+                                        <span class="date"><i class="mn-icon-1130"></i>{{ dialog.messages[0].createdAt|date('F d, Y') }}</span>
+                                        <span><i class="mn-icon-132"></i><a style="color:#222;" target="_blank" href="{{ path('project_more', {'project': dialog.project.id}) }}">{{ dialog.project.name }}</a></span>
+                                        <span class="date"><i class="fas fa-user-tie"></i>{{ sender.getFullName() }} <span class="badge badge-count">{% if offerNewMessagesCount(dialog) > 0 %}{{ offerNewMessagesCount(dialog) }}{% endif %}</span></span>
+                                    </div>
+                                    <div class="row margin-top-5"><div class="col-sm-12">
+                                            <b>{% if  dialog.messages[0].from.id == app.user.id %}{{ 'dialogs.you' | trans }}{% else %}{{ sender.firstName }}{% endif %}:</b>
+                                            {{  dialog.messages[0].message | truncate(300) }}
+                                    </div></div>
+                                    <div class="row"><div class="col-sm-12 margin-top-5">
+                                            <a href="#">{{ 'dialogs.to_dialog' | trans }}</a>
+                                    </div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            {% endfor %}
+    </div>
+{% endblock %}

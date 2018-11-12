@@ -2,6 +2,7 @@
 
 namespace AppBundle\Twig;
 
+use AppBundle\Entity\Offer;
 use AppBundle\Entity\User;
 use AppBundle\Repository\MessageRepository;
 use Symfony\Component\Security\Core\Security;
@@ -29,7 +30,8 @@ class MessageCountExtension extends AbstractExtension
     public function getFunctions()
     {
         return array(
-            new TwigFunction('messageCount', array($this, 'getMessageCount')),
+            new TwigFunction('userNewMessagesCount', array($this, 'getUserMessagesCount')),
+            new TwigFunction('offerNewMessagesCount', array($this, 'getOfferMessagesCount')),
         );
     }
 
@@ -38,12 +40,26 @@ class MessageCountExtension extends AbstractExtension
      *
      * @return int|null
      */
-    public function getMessageCount()
+    public function getUserMessagesCount()
     {
         if (null === $this->user) {
             return null;
         }
 
-        return $this->messageRepository->getNewMessagesCount($this->user);
+        return $this->messageRepository->getUserNewMessagesCount($this->user);
+    }
+
+    /**
+     * @param Offer $offer
+     *
+     * @return int|null
+     */
+    public function getOfferMessagesCount(Offer $offer)
+    {
+        if (null === $this->user) {
+            return null;
+        }
+
+        return $this->messageRepository->getOfferNewMessagesCount($offer, $this->user);
     }
 }

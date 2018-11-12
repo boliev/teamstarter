@@ -210,3 +210,8 @@ specialists:
     offer_message: Message
     offer_posted_success: Proposal was submitted
     offer_already_posted: You have already posted a proposal to the project
+dialogs:
+    list: Your <span>Dialogs</span>
+    no_one_found: No dialogs found
+    you: You
+    to_dialog: To the dialog...

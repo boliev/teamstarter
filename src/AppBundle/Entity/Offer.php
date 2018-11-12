@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -45,7 +46,7 @@ class Offer
     private $role;
 
     /**
-     * @var User
+     * @var User|null
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="incomingOffers")
      */
     private $to;
@@ -55,6 +56,13 @@ class Offer
      * @ORM\Column(type="string", length=255, nullable=false, options={"default": "New"})
      */
     private $status;
+
+    /**
+     * @var Collection
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Message", mappedBy="offer")
+     * @ORM\OrderBy({"id" = "DESC"})
+     */
+    private $messages;
 
     /**
      * @var \DateTime
@@ -153,7 +161,7 @@ class Offer
     /**
      * @return User
      */
-    public function getTo(): User
+    public function getTo(): ?User
     {
         return $this->to;
     }
@@ -212,5 +220,13 @@ class Offer
     public function setUpdatedAt(\DateTime $updatedAt): void
     {
         $this->updatedAt = $updatedAt;
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getMessages(): Collection
+    {
+        return $this->messages;
     }
 }

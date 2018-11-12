@@ -115,4 +115,7 @@ services:
             - { name: doctrine.event_subscriber, event: postPersist }
             - { name: doctrine.event_subscriber, event: postUpdate }
 
-
+    twig.extension.text:
+        class: Twig_Extensions_Extension_Text
+        tags:
+        - { name: twig.extension }
