@@ -212,6 +212,10 @@ specialists:
     offer_already_posted: You have already posted a proposal to the project
 dialogs:
     list: Your <span>Dialogs</span>
+    menu_list: Dialogs
     no_one_found: No dialogs found
     you: You
     to_dialog: To the dialog...
+    no_access: Dialog not found
+    new_message: New message
+    new_message_submit_button: Post message

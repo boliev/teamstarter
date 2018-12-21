@@ -21,6 +21,7 @@
     },
     "require": {
         "php": ">=5.5.9",
+        "ext-json": "*",
         "doctrine/doctrine-bundle": "^1.6",
         "doctrine/doctrine-migrations-bundle": "^1.3",
         "doctrine/orm": "^2.5",
@@ -40,7 +41,8 @@
         "symfony/symfony": "3.4",
         "symfony/workflow": "^4.0",
         "twig/extensions": "^1.5",
-        "twig/twig": "^1.0||^2.0"
+        "twig/twig": "^1.0||^2.0",
+        "wisembly/elephant.io": "^3.3"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.10",

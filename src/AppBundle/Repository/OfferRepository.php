@@ -87,7 +87,8 @@ class OfferRepository extends EntityRepository
         if (count($userProjects) > 0) {
             return $db->expr()->orX(
                 $db->expr()->eq('o.from', $user->getId()),
-                $db->expr()->in('o.project', $userProjects)
+                $db->expr()->in('o.project', $userProjects),
+                $db->expr()->eq('o.to', $user->getId())
             );
         } else {
             return $db->expr()->orX(

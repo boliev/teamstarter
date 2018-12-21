@@ -1,0 +1,133 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class ="container">
+        <article class="post">
+            <div class="entry-content">
+                <div class="entry-meta">
+                    <div class="info">
+                        <div class="meta margin-top-1">
+                            <span class="date"><i class="mn-icon-1130"></i>{{ dialog.project.createdAt|date('F d, Y') }}</span>
+                            <span class="date"><i class="fas fa-user-tie"></i>{{ dialog.project.user.getFullName() }}</span>
+                            <span><i class="mn-icon-132"></i>{{ dialog.project.status.name }}</span>
+                            {% if dialog.project.city %}
+                                <span><i class="fas fa-map-marker"></i>{{ dialog.project.city }}{% if dialog.project.country%}, {{ dialog.project.country}}{% endif %}</span>
+                            {% elseif dialog.project.country%}
+                                <span><i class="fas fa-map-marker"></i>{{ dialog.project.country }}</span>
+                            {% endif %}
+                            {% if dialog.project.screens | length > 0 %}<span><i class="far fa-image"></i>Screenshots</span>{% endif %}
+                        </div>
+                        <div class="row"><div class="col-sm-12"><h1 class="entry-title"><a href="{{ path('project_more', {'project': dialog.project.id}) }}">{{ dialog.project.name }}</a></h1></div></div>
+                    </div>
+                </div>
+            </div>
+        </article>
+        <div id="messages">
+            {% for message in dialog.messages %}
+                <article class="post">
+                    <div class="entry-content">
+                        <div class="entry-meta">
+                            <div class="row">
+                                <div class="col-md-2 dialogs-avatar">
+                                    <img src="{% if message.from.profilePicture %} {{ message.from.profilePicture }} {% else %}{{ asset(avatart_placeholder) }}{% endif %}">
+                                </div>
+                                <div class="info col-md-10">
+                                    <div class="meta margin-top-1">
+                                        <span class="date"><i class="mn-icon-1130"></i>{{ message.createdAt|date('F d, Y H:m') }}</span>
+                                    </div>
+                                    <div class="row margin-top-5"><div class="col-sm-12">
+                                            <b>{% if  message.from.id == app.user.id %}{{ 'dialogs.you' | trans }}{% else %}{{ message.from.firstName }}{% endif %}:</b>
+                                            {{  message.message }}
+                                        </div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            {% endfor %}
+        </div>
+
+
+        <div class="form-section">
+            <div class="col-sm-8 col-sm-offset-2 margin-top-20 margin-bottom-20">
+                <form method="post" action="" id="message-form">
+                    {% for message in app.flashes('proposal-warning') %}
+                        <div class="warning-message margin-bottom-10">{{ message }}</div>
+                    {% endfor %}
+
+                    <div class="row">
+                        <div class="col-md-12 form-group">
+                            {{ form_widget(addMessageForm.message, {'attr': {'class': 'input-block'}}) }}
+                            {{ form_errors(addMessageForm.message)}}
+                        </div>
+                        <div class="col-md-12 form-group">
+                            {{ form_widget(addMessageForm.offer, {'attr': {'value': dialog.id}}) }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-offset-2 col-md-8 form-bottom">
+                            {{ form_row(addMessageForm._token) }}
+                            <input type="button" id="send-message-button" class="btn btn-primary btn-large" value="{{ 'dialogs.new_message_submit_button'|trans }}">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/socket-io/socket.io.slim.js') }}"></script>
+    <script>
+        $(function() {
+            var socket = io('{{ websocketUrl }}:{{ websocketPort }}');
+
+            socket.on('connect', function() {
+                socket.emit('room', {{ dialog.id }});
+            });
+
+            socket.on('message', function(data){
+                addMessage(data);
+            });
+
+            $("#send-message-button").click(function(){
+                $.ajax({
+                    type: "POST",
+                    url: "/dialogs/send",
+                    data: $("#message-form").serialize(),
+                    success: function() {}
+                });
+            });
+
+            function addMessage(message)
+            {
+                var container = $("#messages");
+                var post = $("<article class=\"post\"></article>");
+                var entryContent = $("<div class=\"entry-content\"></div>");
+                var entryMeta = $("<div class=\"entry-meta\"></div>");
+
+                var row = $("<div class=\"row\"></div>");
+                var img = $("<div class=\"col-md-2 dialogs-avatar\"><img src=\" {{ asset(avatart_placeholder) }}\" /></div>");
+                var messageContent = $("<div class=\"info col-md-10\"></div>");
+                var date = $("<div class=\"meta margin-top-1\"><span class=\"date\"><i class=\"mn-icon-1130\"></i>// DATE //</span></div>");
+                var text = $("<div class=\"row margin-top-5\"><div class=\"col-sm-12\">"+message.message+"</div>");
+                messageContent.append(date);
+                messageContent.append(text);
+
+                img.appendTo(row);
+                messageContent.appendTo(row);
+
+                container.append(
+                    post.append(
+                        entryContent.append(
+                            entryMeta.append(
+                                row
+                            )
+                        )
+                    )
+                );
+            }
+        });
+    </script>
+{% endblock %}

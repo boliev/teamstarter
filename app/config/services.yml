@@ -115,6 +115,11 @@ services:
             - { name: doctrine.event_subscriber, event: postPersist }
             - { name: doctrine.event_subscriber, event: postUpdate }
 
+    AppBundle\Sockets\Client:
+        arguments:
+            $url: '%websocket_url%'
+            $port: '%websocket_port%'
+
     twig.extension.text:
         class: Twig_Extensions_Extension_Text
         tags:

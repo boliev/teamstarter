@@ -78,6 +78,8 @@ class Offer
 
     /**
      * Project constructor.
+     *
+     * @throws \Exception
      */
     public function __construct()
     {
@@ -88,6 +90,8 @@ class Offer
     /**
      * @ORM\PrePersist
      * @ORM\PreUpdate
+     *
+     * @throws \Exception
      */
     public function updatedTimestamps(): void
     {
@@ -228,5 +232,19 @@ class Offer
     public function getMessages(): Collection
     {
         return $this->messages;
+    }
+
+    public function isUserInvolved(User $user)
+    {
+        /** @var Message $message */
+        $message = $this->getMessages()[0];
+        if (
+            $message->getFrom()->getId() === $user->getId() ||
+            $message->getTo()->getId() === $user->getId()
+        ) {
+            return true;
+        }
+
+        return false;
     }
 }

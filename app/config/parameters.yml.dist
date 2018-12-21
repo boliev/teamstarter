@@ -34,3 +34,6 @@ parameters:
 
     elastic_host: localhost
     elastic_port: 9200
+
+    websocket_url: http://localhost
+    websocket_port: 8081

@@ -43,7 +43,7 @@
                                             {{  dialog.messages[0].message | truncate(300) }}
                                     </div></div>
                                     <div class="row"><div class="col-sm-12 margin-top-5">
-                                            <a href="#">{{ 'dialogs.to_dialog' | trans }}</a>
+                                            <a href="{{ path('dialogs_more', {'offer': dialog.id}) }}">{{ 'dialogs.to_dialog' | trans }}</a>
                                     </div></div>
                                 </div>
                             </div>
