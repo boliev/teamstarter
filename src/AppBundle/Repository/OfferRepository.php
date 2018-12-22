@@ -68,12 +68,16 @@ class OfferRepository extends EntityRepository
         foreach ($offers as $offer) {
             /** @var Message $lastMessage */
             $lastMessage = $offer->getMessages()->first();
+            if (!$lastMessage) {
+                continue;
+            }
+
             $sortedOffers[$lastMessage->getCreatedAt()->getTimestamp()] = $offer;
         }
 
-        krsort($offers);
+        krsort($sortedOffers);
 
-        return $offers;
+        return $sortedOffers;
     }
 
     private function getDialogExpression(User $user, QueryBuilder $db): Orx

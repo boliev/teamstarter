@@ -60,7 +60,7 @@ class Offer
     /**
      * @var Collection
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Message", mappedBy="offer")
-     * @ORM\OrderBy({"id" = "DESC"})
+     * @ORM\OrderBy({"id" = "ASC"})
      */
     private $messages;
 

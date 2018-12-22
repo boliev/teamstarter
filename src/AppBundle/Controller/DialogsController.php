@@ -8,6 +8,7 @@ use AppBundle\Form\MessageType;
 use AppBundle\Repository\OfferRepository;
 use AppBundle\Sockets\Client;
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Finder\Exception\AccessDeniedException;
@@ -65,11 +66,11 @@ class DialogsController extends Controller
     /**
      * @Route("/dialogs/send", name="dialogs_send")
      *
-     * @param Request             $request
-     * @param OfferRepository     $offerRepository
-     * @param TranslatorInterface $translator
-     * @param Client              $client
-     * @param EntityManager       $entityManager
+     * @param Request                $request
+     * @param OfferRepository        $offerRepository
+     * @param TranslatorInterface    $translator
+     * @param Client                 $client
+     * @param EntityManagerInterface $entityManager
      *
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
@@ -81,7 +82,7 @@ class DialogsController extends Controller
         OfferRepository $offerRepository,
         TranslatorInterface $translator,
         Client $client,
-        EntityManager $entityManager
+        EntityManagerInterface $entityManager
     ): JsonResponse {
         $addMessageForm = $this->createForm(MessageType::class);
 

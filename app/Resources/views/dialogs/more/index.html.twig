@@ -81,6 +81,8 @@
     <script src="{{ asset('js/socket-io/socket.io.slim.js') }}"></script>
     <script>
         $(function() {
+            scrollToLastMessage();
+
             var socket = io('{{ websocketUrl }}:{{ websocketPort }}');
 
             socket.on('connect', function() {
@@ -96,9 +98,18 @@
                     type: "POST",
                     url: "/dialogs/send",
                     data: $("#message-form").serialize(),
-                    success: function() {}
+                    success: function() {
+                        $("#message_message").val('');
+                    }
                 });
             });
+
+            function scrollToLastMessage()
+            {
+                $([document.documentElement, document.body]).animate({
+                    scrollTop: $("#message_message").offset().top - window.innerHeight + $("#message_message").height()  + $("#message_message").height()
+                }, 2000);
+            }
 
             function addMessage(message)
             {
