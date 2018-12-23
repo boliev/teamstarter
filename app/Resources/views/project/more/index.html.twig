@@ -13,7 +13,7 @@
                         <div class="entry-meta">
                             <div class="info">
                                 <div class="meta margin-top-1">
-                                    <span class="date"><i class="mn-icon-1130"></i>{{ project.createdAt|date('F d, Y') }}</span>
+                                    <span class="date"><i class="mn-icon-1130"></i>{{ project.createdAt|localizeddate('medium') }}</span>
                                     <span class="date"><i class="fas fa-user-tie"></i>{{ project.user.getFullName() }}</span>
                                     <span><i class="mn-icon-132"></i>{{ project.status.name }}</span>
                                     {% if project.city %}

@@ -6,7 +6,7 @@
                 <div class="entry-meta">
                     <div class="info">
                         <div class="meta margin-top-1">
-                            <span class="date"><i class="mn-icon-1130"></i>{{ dialog.project.createdAt|date('F d, Y') }}</span>
+                            <span class="date"><i class="mn-icon-1130"></i>{{ dialog.project.createdAt|localizeddate('medium', 'none') }}</span>
                             <span class="date"><i class="fas fa-user-tie"></i>{{ dialog.project.user.getFullName() }}</span>
                             <span><i class="mn-icon-132"></i>{{ dialog.project.status.name }}</span>
                             {% if dialog.project.city %}
@@ -28,11 +28,11 @@
                         <div class="entry-meta">
                             <div class="row">
                                 <div class="col-md-2 dialogs-avatar">
-                                    <img src="{% if message.from.profilePicture %} {{ message.from.profilePicture }} {% else %}{{ asset(avatart_placeholder) }}{% endif %}">
+                                    <img alt="" src="{% if message.from.profilePicture %} {{ message.from.profilePicture }} {% else %}{{ asset(avatart_placeholder) }}{% endif %}">
                                 </div>
                                 <div class="info col-md-10">
                                     <div class="meta margin-top-1">
-                                        <span class="date"><i class="mn-icon-1130"></i>{{ message.createdAt|date('F d, Y H:m') }}</span>
+                                        <span class="date"><i class="mn-icon-1130"></i>{{ message.createdAt|localizeddate('medium') }}</span>
                                     </div>
                                     <div class="row margin-top-5"><div class="col-sm-12">
                                             <b>{% if  message.from.id == app.user.id %}{{ 'dialogs.you' | trans }}{% else %}{{ message.from.firstName }}{% endif %}:</b>
@@ -113,6 +113,7 @@
 
             function addMessage(message)
             {
+                console.log(message);
                 var container = $("#messages");
                 var post = $("<article class=\"post\"></article>");
                 var entryContent = $("<div class=\"entry-content\"></div>");
@@ -121,7 +122,7 @@
                 var row = $("<div class=\"row\"></div>");
                 var img = $("<div class=\"col-md-2 dialogs-avatar\"><img src=\" {{ asset(avatart_placeholder) }}\" /></div>");
                 var messageContent = $("<div class=\"info col-md-10\"></div>");
-                var date = $("<div class=\"meta margin-top-1\"><span class=\"date\"><i class=\"mn-icon-1130\"></i>// DATE //</span></div>");
+                var date = $("<div class=\"meta margin-top-1\"><span class=\"date\"><i class=\"mn-icon-1130\"></i>"+message.createdAt+"</span></div>");
                 var text = $("<div class=\"row margin-top-5\"><div class=\"col-sm-12\">"+message.message+"</div>");
                 messageContent.append(date);
                 messageContent.append(text);

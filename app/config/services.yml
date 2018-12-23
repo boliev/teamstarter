@@ -115,6 +115,10 @@ services:
             - { name: doctrine.event_subscriber, event: postPersist }
             - { name: doctrine.event_subscriber, event: postUpdate }
 
+    AppBundle\EventSubscriber\LocaleSubscriber:
+        arguments:
+            $defaultLocale: '%locale%'
+
     AppBundle\Sockets\Client:
         arguments:
             $url: '%websocket_url%'
@@ -124,3 +128,8 @@ services:
         class: Twig_Extensions_Extension_Text
         tags:
         - { name: twig.extension }
+
+    twig.extension.intl:
+        class: Twig_Extensions_Extension_Intl
+        tags:
+            - { name: twig.extension }

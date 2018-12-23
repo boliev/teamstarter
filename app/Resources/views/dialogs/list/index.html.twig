@@ -30,11 +30,11 @@
                         <div class="entry-meta">
                             <div class="row">
                                 <div class="col-md-2 dialogs-avatar">
-                                    <img src="{% if sender.profilePicture %} {{ sender.profilePicture }} {% else %}{{ asset(avatart_placeholder) }}{% endif %}">
+                                    <img alt="" src="{% if sender.profilePicture %} {{ sender.profilePicture }} {% else %}{{ asset(avatart_placeholder) }}{% endif %}">
                                 </div>
                                 <div class="info col-md-10">
                                     <div class="meta margin-top-1">
-                                        <span class="date"><i class="mn-icon-1130"></i>{{ dialog.messages[0].createdAt|date('F d, Y') }}</span>
+                                        <span class="date"><i class="mn-icon-1130"></i>{{ dialog.messages[0].createdAt|localizeddate('medium') }}</span>
                                         <span><i class="mn-icon-132"></i><a style="color:#222;" target="_blank" href="{{ path('project_more', {'project': dialog.project.id}) }}">{{ dialog.project.name }}</a></span>
                                         <span class="date"><i class="fas fa-user-tie"></i>{{ sender.getFullName() }} <span class="badge badge-count">{% if offerNewMessagesCount(dialog) > 0 %}{{ offerNewMessagesCount(dialog) }}{% endif %}</span></span>
                                     </div>

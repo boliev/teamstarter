@@ -5,6 +5,7 @@ namespace AppBundle\Sockets;
 use AppBundle\Entity\Message;
 use ElephantIO\Engine\SocketIO\Version1X;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 class Client
 {
@@ -16,13 +17,20 @@ class Client
 
     protected $client;
 
-    public function __construct(string $url, string $port, LoggerInterface $logger)
+    protected $dateFormatter;
+
+    public function __construct(string $url, string $port, LoggerInterface $logger, RequestStack $request)
     {
         $this->logger = $logger;
         $this->url = $url;
         $this->port = $port;
         $this->client = new \ElephantIO\Client(new Version1X($this->url.':'.$this->port));
         $this->client->initialize();
+        $this->dateFormatter = new \IntlDateFormatter(
+            $request->getCurrentRequest()->getLocale(),
+            \IntlDateFormatter::MEDIUM,
+            \IntlDateFormatter::MEDIUM
+        );
     }
 
     public function sendMessage(Message $message)
@@ -33,6 +41,7 @@ class Client
             'to' => $message->getTo()->getId(),
             'offer' => $message->getOffer()->getId(),
             'message' => $message->getMessage(),
+            'createdAt' => $this->dateFormatter->format($message->getCreatedAt()),
         ]);
     }
 }
