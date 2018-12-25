@@ -39,6 +39,8 @@ class Client
             'id' => $message->getId(),
             'from' => $message->getFrom()->getId(),
             'to' => $message->getTo()->getId(),
+            'fromFirstName' => $message->getFrom()->getFirstName(),
+            'fromProfilePicture' => $message->getFrom()->getProfilePicture() ?? null,
             'offer' => $message->getOffer()->getId(),
             'message' => $message->getMessage(),
             'createdAt' => $this->dateFormatter->format($message->getCreatedAt()),
