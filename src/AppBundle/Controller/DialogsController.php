@@ -5,9 +5,9 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Message;
 use AppBundle\Entity\Offer;
 use AppBundle\Form\MessageType;
+use AppBundle\Repository\MessageRepository;
 use AppBundle\Repository\OfferRepository;
 use AppBundle\Sockets\Client;
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -40,12 +40,18 @@ class DialogsController extends Controller
     /**
      * @Route("/dialogs/messages/{offer}", name="dialogs_more")
      *
-     * @param Offer               $offer
-     * @param TranslatorInterface $translator
+     * @param Offer                  $offer
+     * @param MessageRepository      $messageRepository
+     * @param EntityManagerInterface $entityManager
+     * @param TranslatorInterface    $translator
      *
      * @return Response
      */
-    public function moreAction(Offer $offer, TranslatorInterface $translator): Response
+    public function moreAction(
+        Offer $offer,
+        MessageRepository $messageRepository,
+        EntityManagerInterface $entityManager,
+        TranslatorInterface $translator): Response
     {
         $user = $this->getUser();
 
@@ -54,6 +60,14 @@ class DialogsController extends Controller
         }
 
         $addMessageForm = $this->createForm(MessageType::class);
+
+        /** @var Message $message */
+        foreach ($messageRepository->getNewOfferMessages($offer, $user) as $message) {
+            $message->setStatus(Message::STATUS_READ);
+            $entityManager->persist($message);
+        }
+
+        $entityManager->flush();
 
         return $this->render('dialogs/more/index.html.twig', [
             'dialog' => $offer,
@@ -103,16 +117,13 @@ class DialogsController extends Controller
     }
 
     /**
-     * @param string        $messageText
-     * @param Offer         $offer
-     * @param EntityManager $entityManager
-     *
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
+     * @param string                 $messageText
+     * @param Offer                  $offer
+     * @param EntityManagerInterface $entityManager
      *
      * @return Message
      */
-    private function saveMessage(string $messageText, Offer $offer, EntityManager $entityManager): Message
+    private function saveMessage(string $messageText, Offer $offer, EntityManagerInterface $entityManager): Message
     {
         $message = new Message();
         $message->setMessage($messageText);

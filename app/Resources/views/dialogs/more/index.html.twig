@@ -23,7 +23,7 @@
         </article>
         <div id="messages">
             {% for message in dialog.messages %}
-                <article class="post">
+                <article class="post {% if message.status == 'New' and message.from.id != app.user.id %}new-message{% endif %}">
                     <div class="entry-content">
                         <div class="entry-meta">
                             <div class="row">
@@ -115,8 +115,10 @@
             {
                 console.log(message);
                 var name = message.fromFirstName;
+                var newMessageClass = 'new-message';
                 if (message.from == {{ app.user.id }}) {
                     name = "{{ 'dialogs.you' | trans }}";
+                    newMessageClass = '';
                 }
 
                 var profilePicture = "{{ asset(avatart_placeholder) }}";
@@ -125,7 +127,7 @@
                 }
 
                 var container = $("#messages");
-                var post = $("<article class=\"post\" id=\"message"+message.id+"\" style=\"display:none;\"></article>");
+                var post = $("<article class=\"post "+newMessageClass+"\" id=\"message"+message.id+"\" style=\"display:none;\"></article>");
                 var entryContent = $("<div class=\"entry-content\"></div>");
                 var entryMeta = $("<div class=\"entry-meta\"></div>");
 

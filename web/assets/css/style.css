@@ -2023,6 +2023,14 @@ article.post, article.specialist {
 	padding: 35px 20px;
 }
 
+article.new-message {
+	background-color: aliceblue;
+}
+
+article.new-message div.entry-content {
+	background-color: aliceblue;
+}
+
 .projects-search-input {
 	border: 1px solid #666666 !important;
 }

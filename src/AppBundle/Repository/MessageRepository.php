@@ -41,4 +41,17 @@ class MessageRepository extends EntityRepository
             ->getQuery()
             ->getSingleScalarResult();
     }
+
+    public function getNewOfferMessages(Offer $offer, User $user)
+    {
+        return $offerNewMessages = $this->createQueryBuilder('m')
+            ->where('m.offer = :offer')
+            ->andWhere('m.status = :status')
+            ->andWhere('m.to = :user')
+            ->setParameter('offer', $offer)
+            ->setParameter('user', $user)
+            ->setParameter('status', Message::STATUS_NEW)
+            ->getQuery()
+            ->getResult();
+    }
 }

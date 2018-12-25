@@ -13,9 +13,7 @@ class Message
 {
     const STATUS_NEW = 'New';
 
-    const ACTIVE_STATUSES = [
-        self::STATUS_NEW,
-    ];
+    const STATUS_READ = 'Read';
 
     /**
      * @var int
