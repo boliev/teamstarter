@@ -19,3 +19,4 @@
 .php_cs.cache
 /web/avatars/*
 /web/screens/*
+/postgres-data/

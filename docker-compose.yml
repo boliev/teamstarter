@@ -1,0 +1,42 @@
+version: '3'
+services:
+  ts_php:
+    build:
+      context: ./
+      dockerfile: docker/php/Dockerfile
+    volumes:
+      - .:/var/app
+    command:
+      /bin/bash -c "exec php-fpm"
+
+  ts_nginx:
+    image: nginx:latest
+    volumes:
+      - ./docker/nginx/ts.conf:/etc/nginx/conf.d/ts.conf
+      - .:/var/app
+    ports:
+      - "8080:80"
+    environment:
+      - NGINX_HOST=ts.loc
+      - NGINX_PORT=8080
+      - APP_ENV=dev
+    command: /bin/bash -c "exec nginx -g 'daemon off;'"
+    depends_on:
+      - ts_php
+  ts_db:
+    image: postgres:9.6
+    restart: always
+    ports:
+      - "5433:5432"
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: ts
+      POSTGRES_DB: ts
+      POSTGRES_PASSWORD: 123456
+  ts_mail:
+    image: dockage/mailcatcher:latest
+    expose:
+      - 1025
+    ports:
+      - "1080:1080"
