@@ -1,0 +1,9 @@
+twig:
+    default_path: '%kernel.project_dir%/templates'
+    debug: '%kernel.debug%'
+    strict_variables: '%kernel.debug%'
+    globals:
+        avatart_placeholder: '%env(AVATAR_PLACEHOLDER)%'
+        avatar_max_size: '%env(AVATAR_MAX_SIZE)%'
+        fineUploader:
+            debug: 'true'

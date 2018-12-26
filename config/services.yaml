@@ -1,0 +1,133 @@
+# This file is the entry point to configure your own services.
+# Files in the packages/ subdirectory configure your dependencies.
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+    locale: 'en'
+
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
+    # makes classes in src/ available to be used as services
+    # this creates a service per class whose id is the fully-qualified class name
+    App\:
+        resource: '../src/*'
+        exclude: '../src/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
+
+    # controllers are imported separately to make sure services can be injected
+    # as action arguments even if you don't extend any base controller class
+    App\Controller\:
+        resource: '../src/Controller'
+        tags: ['controller.service_arguments']
+
+    # add more service definitions when explicit configuration is needed
+    # please note that last definitions always *replace* previous ones
+
+    app.form.registration:
+        class: App\Form\RegistrationType
+        tags:
+        - { name: form.type, alias: app_user_registration }
+
+    my_user_provider:
+        class: App\Provider\FOSUBUserProvider
+        arguments:
+        - "@fos_user.user_manager"
+        - "@fos_user.util.token_generator.default"
+        - {facebook: facebookId, google: googleId, github: githubId}
+
+    search.project_indexer:
+        class: App\Search\ProjectIndexer\PostgresIndexer
+
+    search.specialist_indexer:
+        class: App\Search\SpecialistIndexer\PostgresIndexer
+
+
+
+    App\Search\ProjectIndexer\ProjectIndexerInterface: '@search.project_indexer'
+    App\Search\SpecialistIndexer\SpecialistIndexerInterface: '@search.specialist_indexer'
+
+    search.project_searcher:
+        class: App\Search\ProjectSearcher\PostgresSearcher
+
+    search.specialist_searcher:
+        class: App\Search\SpecialistSearcher\PostgresSearcher
+
+    App\Search\ProjectSearcher\ProjectSearcherInterface: '@search.project_searcher'
+    App\Search\SpecialistSearcher\SpecialistSearcherInterface: '@search.specialist_searcher'
+
+    App\Service\UserService:
+        arguments:
+            $kernelRoot: "%kernel.root_dir%"
+            $avatarMaxSize: "%env(AVATAR_MAX_SIZE)%"
+
+    App\Service\ProjectService:
+        arguments:
+            $kernelRoot: "%kernel.root_dir%"
+            $screenMaxSize: "%env(PROJECT_SCREEN_MAX_SIZE)%"
+
+    App\Repository\SpecializationRepository:
+        class: App\Repository\SpecializationRepository
+        factory: ['@doctrine.orm.default_entity_manager', getRepository]
+        arguments:
+        - App\Entity\Specialization
+
+    App\Repository\OfferRepository:
+        class: App\Repository\OfferRepository
+        factory: ['@doctrine.orm.default_entity_manager', getRepository]
+        arguments:
+        - App\Entity\Offer
+
+    App\Repository\ProjectOpenRoleRepository:
+        class: App\Repository\ProjectOpenRoleRepository
+        factory: ['@doctrine.orm.default_entity_manager', getRepository]
+        arguments:
+        - App\Entity\ProjectOpenRole
+
+    App\Repository\UserRepository:
+        class: App\Repository\UserRepository
+        factory: ['@doctrine.orm.default_entity_manager', getRepository]
+        arguments:
+        - App\Entity\User
+
+    App\Repository\MessageRepository:
+        class: App\Repository\MessageRepository
+        factory: ['@doctrine.orm.default_entity_manager', getRepository]
+        arguments:
+        - App\Entity\Message
+
+    App\EventSubscriber\ProjectChangeProgressStatusSubscriber:
+        arguments:
+            $fromEmailAddress: "%env(MAILER_ADDRESS)%"
+
+    App\EventSubscriber\ProjectSearchIndexerSubscriber:
+        tags:
+        - { name: doctrine.event_subscriber, event: postPersist }
+        - { name: doctrine.event_subscriber, event: postUpdate }
+
+    App\EventSubscriber\SpecialistSearchIndexerSubscriber:
+        tags:
+        - { name: doctrine.event_subscriber, event: postPersist }
+        - { name: doctrine.event_subscriber, event: postUpdate }
+
+    App\EventSubscriber\LocaleSubscriber:
+        arguments:
+            $defaultLocale: '%locale%'
+
+    App\Sockets\Client:
+        arguments:
+            $url: '%env(WEBSOCKET_URL)%'
+            $port: '%env(WEBSOCKET_PORT)%'
+
+    twig.extension.text:
+        class: Twig_Extensions_Extension_Text
+        tags:
+        - { name: twig.extension }
+
+    twig.extension.intl:
+        class: Twig_Extensions_Extension_Intl
+        tags:
+        - { name: twig.extension }

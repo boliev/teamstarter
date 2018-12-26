@@ -1,4 +1,0 @@
-FOS\UserBundle\Model\Use:
-    properties:
-        email:
-            - NotBlank: ~
