@@ -26,16 +26,16 @@ security:
             pattern: ^/
             form_login:
                 provider: fos_userbundle
-#            oauth:
-#                resource_owners:
-#                    facebook:           "/login/check-facebook"
-#                    google:             "/login/check-google"
-#                    github:             "/login/check-github"
-#                login_path:        /login
-#                failure_path:      /login
-#                oauth_user_provider:
-#                    service: my_user_provider
-#                provider: fos_userbundle
+            oauth:
+                resource_owners:
+                    facebook:           "/login/check-facebook"
+                    google:             "/login/check-google"
+                    github:             "/login/check-github"
+                login_path:        /login
+                failure_path:      /login
+                oauth_user_provider:
+                    service: my_user_provider
+                provider: fos_userbundle
             logout:       true
             anonymous:    true
             logout_on_user_change: true
