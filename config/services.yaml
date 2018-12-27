@@ -27,6 +27,11 @@ services:
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 
+    App\Controller\DialogsController:
+        bind:
+            $websocketUrlForClient: '%env(WEBSOCKET_URL_FOR_CLIENT)%'
+            $websocketPortForClient: '%env(WEBSOCKET_PORT_FOR_CLIENT)%'
+
     app.form.registration:
         class: App\Form\RegistrationType
         tags:
@@ -119,8 +124,8 @@ services:
 
     App\Sockets\Client:
         arguments:
-            $url: '%env(WEBSOCKET_URL)%'
-            $port: '%env(WEBSOCKET_PORT)%'
+            $url: '%env(WEBSOCKET_URL_FOR_SERVER)%'
+            $port: '%env(WEBSOCKET_PORT_FOR_SERVER)%'
 
     twig.extension.text:
         class: Twig_Extensions_Extension_Text

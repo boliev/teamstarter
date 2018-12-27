@@ -11,6 +11,7 @@ use App\Form\ProposalToProjectType;
 use App\Repository\OfferRepository;
 use App\Search\ProjectSearcher\ProjectSearcherInterface;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Component\Form\FormInterface;
@@ -27,6 +28,7 @@ class ProjectsController extends AbstractController
      * @param Request                  $request
      * @param EntityManagerInterface   $entityManager
      * @param ProjectSearcherInterface $projectSearcher
+     * @param PaginatorInterface $paginator
      * @param int                      $page
      *
      * @return Response
@@ -35,6 +37,7 @@ class ProjectsController extends AbstractController
         Request $request,
         EntityManagerInterface $entityManager,
         ProjectSearcherInterface $projectSearcher,
+        PaginatorInterface $paginator,
         int $page = 1
     ) {
         $searchQuery = $request->query->get('query');
@@ -48,7 +51,6 @@ class ProjectsController extends AbstractController
             $projects = $projectRepository->getPublishedQuery();
         }
 
-        $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
             $projects,
             $page

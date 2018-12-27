@@ -86,7 +86,7 @@ class ProjectService
         $dir = substr(md5($project->getId()), 0, 2);
 
         $screenName = $project->getId().time().'.'.$extension;
-        $screen->move($this->kernelRoot.'/../web/screens/'.$dir.'/', $screenName);
+        $screen->move($this->kernelRoot.'/../public/screens/'.$dir.'/', $screenName);
 
         return '/screens/'.$dir.'/'.$screenName;
     }
@@ -98,7 +98,7 @@ class ProjectService
      */
     public function removeScreen(ProjectScreen $screen): bool
     {
-        $filename = $this->kernelRoot.'/../web/screens/'.$screen->getScreenshot();
+        $filename = $this->kernelRoot.'/../public/screens/'.$screen->getScreenshot();
         $fs = $this->getFS();
         $fs->remove($filename);
         $this->entityManager->remove($screen);

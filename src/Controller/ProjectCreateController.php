@@ -23,7 +23,7 @@ class ProjectCreateController extends AbstractController
     {
         $rulesText = $this->renderView('texts/en/project_rules.html.twig');
 
-        return $this->render(':project/create:rules.html.twig', [
+        return $this->render('project/create/rules.html.twig', [
             'rulesText' => $rulesText,
         ]);
     }
@@ -70,7 +70,7 @@ class ProjectCreateController extends AbstractController
             $this->addFlash('project-warning', $translator->trans('project.re_moderation_warning'));
         }
 
-        return $this->render(':project/create:main.html.twig', [
+        return $this->render('project/create/main.html.twig', [
             'form' => $form->createView(),
         ]);
     }

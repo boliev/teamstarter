@@ -1,2 +1,35 @@
 framework:
-    workflows: ~
+    workflows:
+        project_flow:
+            type: 'state_machine'
+            marking_store:
+                type: 'single_state'
+                arguments:
+                    - 'progressStatus'
+            supports:
+                - App\Entity\Project
+            places:
+                - !php/const App\Entity\Project::STATUS_UNFINISHED
+                - !php/const App\Entity\Project::STATUS_INREVIW
+                - !php/const App\Entity\Project::STATUS_DECLINED
+                - !php/const App\Entity\Project::STATUS_PUBLISHED
+                - !php/const App\Entity\Project::STATUS_CLOSED
+            transitions:
+                to_review:
+                    from: !php/const App\Entity\Project::STATUS_UNFINISHED
+                    to:   !php/const App\Entity\Project::STATUS_INREVIW
+                publish:
+                    from: !php/const App\Entity\Project::STATUS_INREVIW
+                    to:   !php/const App\Entity\Project::STATUS_PUBLISHED
+                re_moderate:
+                    from: !php/const App\Entity\Project::STATUS_PUBLISHED
+                    to:   !php/const App\Entity\Project::STATUS_INREVIW
+                decline:
+                    from: !php/const App\Entity\Project::STATUS_INREVIW
+                    to:   !php/const App\Entity\Project::STATUS_DECLINED
+                close:
+                    from: !php/const App\Entity\Project::STATUS_PUBLISHED
+                    to:   !php/const App\Entity\Project::STATUS_CLOSED
+                re_open:
+                    from: !php/const App\Entity\Project::STATUS_CLOSED
+                    to:   !php/const App\Entity\Project::STATUS_INREVIW

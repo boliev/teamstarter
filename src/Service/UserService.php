@@ -64,7 +64,7 @@ class UserService
         $fs = $this->getFS();
         $dir = substr(md5($user->getId()), 0, 2);
 
-        if ($user->getProfilePicture() && $fs->exists($this->kernelRoot.'/web'.$user->getProfilePicture())) {
+        if ($user->getProfilePicture() && $fs->exists($this->kernelRoot.'/public'.$user->getProfilePicture())) {
             $fs->remove($this->kernelRoot.'/../public'.$user->getProfilePicture());
         }
         $pictureName = $user->getId().'.'.$extension;

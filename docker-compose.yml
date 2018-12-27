@@ -40,3 +40,12 @@ services:
       - 1025
     ports:
       - "1080:1080"
+  ts_socket:
+    image: node:latest
+    restart: always
+    ports:
+      - "8081:8081"
+    volumes:
+    - ./socket-server:/var/app
+    command:
+      node /var/app/index.js

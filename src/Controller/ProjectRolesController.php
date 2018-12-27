@@ -35,7 +35,7 @@ class ProjectRolesController extends AbstractController
             $this->addFlash('project-warning', $translator->trans('project.re_moderation_warning'));
         }
 
-        return $this->render(':project/create:roles_list.html.twig', [
+        return $this->render('project/create/roles_list.html.twig', [
             'project' => $project,
             'rolesList' => $project->getOpenRoles(),
         ]);
@@ -94,7 +94,7 @@ class ProjectRolesController extends AbstractController
             return $this->redirectToRoute('project_edit_open_roles_list', ['project' => $project->getId()]);
         }
 
-        return $this->render(':project/create:roles_list_add.html.twig', [
+        return $this->render('project/create/roles_list_add.html.twig', [
             'project' => $project,
             'role' => $role,
             'form' => $form->createView(),

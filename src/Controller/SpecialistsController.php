@@ -10,6 +10,7 @@ use App\Form\OfferToSpecialistType;
 use App\Repository\OfferRepository;
 use App\Search\SpecialistSearcher\SpecialistSearcherInterface;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Component\Form\FormInterface;
@@ -24,10 +25,11 @@ class SpecialistsController extends AbstractController
     /**
      * @Route("/specialists/{page}", name="specialists_list", defaults={"page": 1})
      *
-     * @param Request                     $request
-     * @param EntityManagerInterface      $entityManager
+     * @param Request $request
+     * @param EntityManagerInterface $entityManager
      * @param SpecialistSearcherInterface $specialistSearcher
-     * @param int                         $page
+     * @param PaginatorInterface $paginator
+     * @param int $page
      *
      * @return Response
      */
@@ -35,6 +37,7 @@ class SpecialistsController extends AbstractController
         Request $request,
         EntityManagerInterface $entityManager,
         SpecialistSearcherInterface $specialistSearcher,
+        PaginatorInterface $paginator,
         int $page = 1
     ) {
         $ids = null;
@@ -48,7 +51,6 @@ class SpecialistsController extends AbstractController
             $specialists = $userRepository->getAvailableSpecialists();
         }
 
-        $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
             $specialists,
             $page
@@ -116,7 +118,7 @@ class SpecialistsController extends AbstractController
             return $this->redirectToRoute('specialists_more', ['user' => $specialist->getId()]);
         }
 
-        return $this->render(':specialists/more:add_offer.html.twig', [
+        return $this->render('specialists/more/add_offer.html.twig', [
             'specialist' => $specialist,
             'form' => $form->createView(),
         ]);

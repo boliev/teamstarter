@@ -33,10 +33,10 @@
 
                             <div class="col-sm-3">
                                 <a class="table-list-actions" href="{{ path('project_edit_name', {'project': project.id}) }}">{{ 'project.edit_link' | trans }}</a>
-                                {% if project.progressStatus == constant('AppBundle\\Entity\\Project::STATUS_PUBLISHED') %}
+                                {% if project.progressStatus == constant('App\\Entity\\Project::STATUS_PUBLISHED') %}
                                     <a class="table-list-actions" href="{{ path('project_edit_close', {'project': project.id}) }}">{{ 'project.close_link' | trans }}</a>
                                 {% endif %}
-                                {% if project.progressStatus == constant('AppBundle\\Entity\\Project::STATUS_CLOSED') %}
+                                {% if project.progressStatus == constant('App\\Entity\\Project::STATUS_CLOSED') %}
                                     <a class="table-list-actions" href="{{ path('project_edit_reopen', {'project': project.id}) }}">{{ 'project.open_link' | trans }}</a>
                                 {% endif %}
 

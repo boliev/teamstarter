@@ -40,15 +40,19 @@ class DialogsController extends AbstractController
     /**
      * @Route("/dialogs/messages/{offer}", name="dialogs_more")
      *
-     * @param Offer                  $offer
-     * @param MessageRepository      $messageRepository
+     * @param Offer $offer
+     * @param string $websocketUrlForClient
+     * @param string $websocketPortForClient
+     * @param MessageRepository $messageRepository
      * @param EntityManagerInterface $entityManager
-     * @param TranslatorInterface    $translator
+     * @param TranslatorInterface $translator
      *
      * @return Response
      */
     public function moreAction(
         Offer $offer,
+        string $websocketUrlForClient,
+        string $websocketPortForClient,
         MessageRepository $messageRepository,
         EntityManagerInterface $entityManager,
         TranslatorInterface $translator): Response
@@ -72,8 +76,8 @@ class DialogsController extends AbstractController
         return $this->render('dialogs/more/index.html.twig', [
             'dialog' => $offer,
             'addMessageForm' => $addMessageForm->createView(),
-            'websocketUrl' => $this->getParameter('websocket_url'),
-            'websocketPort' => $this->getParameter('websocket_port'),
+            'websocketUrl' => $websocketUrlForClient,
+            'websocketPort' => $websocketPortForClient,
         ]);
     }
 

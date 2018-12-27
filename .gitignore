@@ -24,4 +24,6 @@
 /web/avatars/*
 /web/screens/*
 /postgres-data/
+/socket-server/node_modules
+/public/screens/
 

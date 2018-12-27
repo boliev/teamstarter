@@ -33,7 +33,7 @@ class ProjectScreensController extends AbstractController
             $this->addFlash('project-warning', $translator->trans('project.re_moderation_warning'));
         }
 
-        return $this->render(':project/create:screens.html.twig', [
+        return $this->render('project/create/screens.html.twig', [
             'project' => $project,
         ]);
     }
