@@ -3,19 +3,20 @@ services:
   ts_php:
     build:
       context: ./
-      dockerfile: docker/php/Dockerfile-dev
+      dockerfile: docker/php/Dockerfile-prod
     volumes:
       - .:/var/app
+      - ./docker/.env.prod.local:/var/app/.env.local
     command:
       /bin/bash -c "exec php-fpm"
 
   ts_nginx:
     image: nginx:latest
     volumes:
-      - ./docker/nginx/ts-dev.conf:/etc/nginx/conf.d/ts.conf
+      - ./docker/nginx/ts-prod.conf:/etc/nginx/conf.d/ts.conf
       - .:/var/app
     ports:
-      - "8080:80"
+      - "80:80"
     environment:
       - NGINX_HOST=ts.loc
       - NGINX_PORT=8080
@@ -34,12 +35,6 @@ services:
       POSTGRES_USER: ts
       POSTGRES_DB: ts
       POSTGRES_PASSWORD: 123456
-  ts_mail:
-    image: dockage/mailcatcher:latest
-    expose:
-      - 1025
-    ports:
-      - "1080:1080"
   ts_socket:
     image: node:latest
     restart: always
