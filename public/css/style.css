@@ -1599,6 +1599,18 @@ div.modal-login-social a, div.register-form-sn-login a {
 .form-section input.btn:hover {
 	background: #42a5f5;
 }
+.form-section input.btn.active {
+	background: #42a5f5;
+}
+.btn, .custom-file-control::before {
+	transition: none;
+}
+.btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active,
+.show > .btn-primary.dropdown-toggle {
+	color: #fff;
+	background-color: #42a5f5;
+	border-color: #42a5f5;
+}
 .form-section select {
 	border: none;
 	outline: none;
