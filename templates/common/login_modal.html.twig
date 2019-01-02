@@ -20,10 +20,10 @@
             <form class="apus-login-form" action="{{ path("fos_user_security_check") }}" method="post" id="login-modal-form">
 
                 <div class="form-group">
-                    <input autocomplete="off" type="text" placeholder="{{ 'security.login.username'|trans }}" name="_username" class="form-control margin-bottom-35" id="username_or_email">
+                    <input autocomplete="off" type="text" placeholder="{{ 'security.login.username'|trans }}" name="_username" class="form-control margin-bottom-35 login-form-input" id="username_or_email">
                 </div>
                 <div class="form-group">
-                    <input name="_password" type="password" placeholder="{{ 'security.login.password'|trans }}" class="password required form-control" id="login_password">
+                    <input name="_password" type="password" placeholder="{{ 'security.login.password'|trans }}" class="password required form-control login-form-input" id="login_password">
                 </div>
                 <div class="row">
                     <div class="col-sm-6">

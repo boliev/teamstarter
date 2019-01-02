@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <!-- themify-icon.css -->
     <link rel="stylesheet" href="{{ asset('css/fontawesome/web-fonts-with-css/css/fontawesome-all.css') }}">
+    <!-- material -->
+    <link rel="stylesheet" href="{{ asset('css/bootstrap-material-design.css') }}">
     <!-- owl-carousel -->
     <link rel="stylesheet" href="{{ asset('css/owl.carousel.css') }}">
     <link rel="stylesheet" href="{{ asset('css/owl.theme.css') }}">
@@ -55,6 +57,9 @@
 <script src="{{ asset('js/jquery-2.1.4.min.js') }}" ></script>
 <!-- Include  for bootstrap -->
 <script src="{{ asset('js/bootstrap.min.js') }}" ></script>
+<!-- material -->
+<script src="{{ asset('js/popper.min.js') }}" ></script>
+<script src="{{ asset('js/bootstrap-material-design.min.js') }}" ></script>
 <!-- Include  for Owl-carousel -->
 <script src="{{ asset('js/owl.carousel.min.js') }}" ></script>
 <!-- Include  for magnific-popup -->
@@ -76,6 +81,7 @@
 <script src="{{ asset('js/lightbox.js') }}" ></script>
 <!-- Include script.js -->
 <script src="{{ asset('js/script.js') }}" ></script>
+<script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
 {% block javascripts %}{% endblock %}
 </body>
 </html>

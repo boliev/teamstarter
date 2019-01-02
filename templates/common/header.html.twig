@@ -15,10 +15,10 @@
                 <div class="pull-right widget-social">
                     <ul class="top-user-menu">
                         {% if app.user %}
-                                <li><img id="top-menu-avatar" src="{% if app.user.profilePicture %} {{ app.user.profilePicture }} {% else %}{{ asset(avatart_placeholder) }}{% endif %}" /></li>
+                                <li><img alt="" id="top-menu-avatar" src="{% if app.user.profilePicture %} {{ app.user.profilePicture }} {% else %}{{ asset(avatart_placeholder) }}{% endif %}" /></li>
                                 <li>
                                     <div class="dropdown show">
-                                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <a class="btn btn-secondary dropdown-toggle top-menu-user" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         {{ app.user.fullName }}
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -37,6 +37,7 @@
             </div>
         </div>
     </div>
+
     <div class="header-main clearfix main-sticky-header-wrapper" style="height: 128px;">
         <div class="main-sticky-header">
             <div class="container">
@@ -64,7 +65,6 @@
                                             {% if app.user %}<li><a href="{{ path('dialogs_list') }}">{{ 'dialogs.menu_list' | trans }} <span class="badge badge-count">{% if userNewMessagesCount() > 0 %}{{ userNewMessagesCount() }}{% endif %}</span></a></li>{% endif %}
                                             <li><a href="contact.html">Contact us</a></li>
                                         </ul>
-
                                     </div>
                                 </nav>
                             </div>
@@ -80,4 +80,5 @@
             </div>
         </div>
     </div>
+
 </header>
