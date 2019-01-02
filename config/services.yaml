@@ -104,6 +104,12 @@ services:
         arguments:
         - App\Entity\Message
 
+    App\Repository\ProjectRepository:
+        class: App\Repository\Projectepository
+        factory: ['@doctrine.orm.default_entity_manager', getRepository]
+        arguments:
+        - App\Entity\Project
+
     App\EventSubscriber\ProjectChangeProgressStatusSubscriber:
         arguments:
             $fromEmailAddress: "%env(MAILER_ADDRESS)%"

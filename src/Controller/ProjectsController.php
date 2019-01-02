@@ -9,6 +9,7 @@ use App\Entity\SearchQueries;
 use App\Entity\User;
 use App\Form\ProposalToProjectType;
 use App\Repository\OfferRepository;
+use App\Repository\ProjectRepository;
 use App\Search\ProjectSearcher\ProjectSearcherInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
@@ -47,6 +48,7 @@ class ProjectsController extends AbstractController
             $projects = $projectSearcher->search($searchQuery);
             $this->storeSearchQuery($entityManager, $searchQuery, \count($projects));
         } else {
+            /** @var ProjectRepository $projectRepository */
             $projectRepository = $entityManager->getRepository(Project::class);
             $projects = $projectRepository->getPublishedQuery();
         }
@@ -120,9 +122,13 @@ class ProjectsController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->createOffer($user, $form, $project, $em);
+            $offer = $this->createOffer($user, $form, $project, $em);
 
-            $this->addFlash('add-role-success', $translator->trans('project.proposal_posted_success'));
+            $this->addFlash('add-role-success', $translator->trans(
+                'project.proposal_posted_success',
+                    ['{offer}' => $this->generateUrl('dialogs_more', ['offer' => $offer->getId()])]
+            ));
+
             $this->addFlash('do-not-show-proposal-already-message', 1);
 
             return $this->redirectToRoute('project_more', ['project' => $project->getId()]);
@@ -141,8 +147,10 @@ class ProjectsController extends AbstractController
      * @param EntityManagerInterface $em
      *
      * @throws \Exception
+     *
+     * @return Offer
      */
-    private function createOffer(User $user, FormInterface $form, Project $project, EntityManagerInterface $em): void
+    private function createOffer(User $user, FormInterface $form, Project $project, EntityManagerInterface $em): Offer
     {
         $offer = new Offer();
         $offer->setFrom($user);
@@ -159,5 +167,7 @@ class ProjectsController extends AbstractController
         $em->persist($message);
 
         $em->flush();
+
+        return $offer;
     }
 }

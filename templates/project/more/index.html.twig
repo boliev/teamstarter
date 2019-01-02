@@ -4,7 +4,7 @@
 
         {% for message in app.flashes('add-role-success') %}
             <div class="success-message margin-top-20">
-                {{ message }}
+                {{ message | raw}}
             </div>
         {% endfor %}
 
@@ -25,7 +25,7 @@
                                 </div>
                                 <div class="row"><div class="col-sm-12"><h1 class="entry-title"><a href="#">{{ project.name }}</a></h1></div></div>
                                 {% if offer and app.flashes('do-not-show-proposal-already-message')|length == 0 %}
-                                    <div class="hint-success text-center margin-top-10">{{ 'project.proposal_already_posted' | trans }}</div>
+                                    <div class="hint-success text-center margin-top-10">{{ 'project.proposal_already_posted' | trans ({'{offer}': path('dialogs_more', {'offer': offer.id})}) | raw}}</div>
                                 {% endif %}
                             </div>
                         </div>
@@ -34,7 +34,7 @@
                             <div class="info-description">{{ project.mission }}</div>
                             <div class="info-description-title">{{ 'project.form_description' | trans }}</div>
                             <div class="info-description">{{ project.description }}</div>
-                            {% if not offer %}
+                            {% if not offer and app.user.id != project.user.id %}
                                 <div class="info-description-proposal margin-top-10">
                                     <input type="button" onclick="window.location.href = '{{ path('project_add_proposal', {'project': project.id}) }}'" class="btn btn-default btn-warning blue" value="{{ 'project.submit_proposal_button' | trans }}">
                                 </div>

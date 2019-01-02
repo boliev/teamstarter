@@ -8,6 +8,8 @@ use App\Entity\SearchQueries;
 use App\Entity\User;
 use App\Form\OfferToSpecialistType;
 use App\Repository\OfferRepository;
+use App\Repository\ProjectRepository;
+use App\Repository\UserRepository;
 use App\Search\SpecialistSearcher\SpecialistSearcherInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
@@ -25,11 +27,11 @@ class SpecialistsController extends AbstractController
     /**
      * @Route("/specialists/{page}", name="specialists_list", defaults={"page": 1})
      *
-     * @param Request $request
-     * @param EntityManagerInterface $entityManager
+     * @param Request                     $request
+     * @param EntityManagerInterface      $entityManager
      * @param SpecialistSearcherInterface $specialistSearcher
-     * @param PaginatorInterface $paginator
-     * @param int $page
+     * @param PaginatorInterface          $paginator
+     * @param int                         $page
      *
      * @return Response
      */
@@ -47,6 +49,7 @@ class SpecialistsController extends AbstractController
             $specialists = $specialistSearcher->search($searchQuery);
             $this->storeSearchQuery($entityManager, $searchQuery, count($specialists));
         } else {
+            /** @var UserRepository $userRepository */
             $userRepository = $entityManager->getRepository(User::class);
             $specialists = $userRepository->getAvailableSpecialists();
         }
@@ -65,9 +68,10 @@ class SpecialistsController extends AbstractController
     /**
      * @Route("/specialists/{user}/more", name="specialists_more")
      *
-     * @param User                $user
+     * @param User $user
      * @param TranslatorInterface $translator
-     * @param OfferRepository     $offerRepository
+     * @param OfferRepository $offerRepository
+     * @param ProjectRepository $projectRepository
      *
      * @throws \Doctrine\ORM\NonUniqueResultException
      *
@@ -76,7 +80,8 @@ class SpecialistsController extends AbstractController
     public function moreAction(
         User $user,
         TranslatorInterface $translator,
-        OfferRepository $offerRepository
+        OfferRepository $offerRepository,
+        ProjectRepository $projectRepository
     ) {
         if (!$user->isSpecialist()) {
             // not_found
@@ -86,23 +91,33 @@ class SpecialistsController extends AbstractController
         return $this->render('specialists/more/index.html.twig', [
             'user' => $user,
             'offer' => ($this->getUser() ? $offerRepository->getUserOfferForSpecialist($this->getUser(), $user) : null),
+            'projectsCount' => ($this->getUser() ? $projectRepository->getPublishedCount($this->getUser()) : 0)
         ]);
     }
 
     /**
      * @Route("/specialists/{specialist}/offer/submit", name="specialist_add_offer")
      *
-     * @param Request                $request
+     * @param Request $request
      * @param EntityManagerInterface $em
-     * @param TranslatorInterface    $translator
-     * @param User                   $specialist
+     * @param TranslatorInterface $translator
+     * @param User $specialist
+     * @param ProjectRepository $projectRepository
+     *
+     * @throws \Exception
      *
      * @return Response
      */
-    public function submitOffer(Request $request, EntityManagerInterface $em, TranslatorInterface $translator, User $specialist)
+    public function submitOffer(
+        Request $request,
+        EntityManagerInterface $em,
+        TranslatorInterface $translator,
+        User $specialist,
+        ProjectRepository $projectRepository
+    )
     {
         $user = $this->getUser();
-        if (!$user) {
+        if (!$user || $projectRepository->getPublishedCount($user) < 1) {
             throw new AccessDeniedException();
         }
 
@@ -110,9 +125,11 @@ class SpecialistsController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->createOffer($user, $form, $specialist, $em);
+            $newOffer = $this->createOffer($user, $form, $specialist, $em);
 
-            $this->addFlash('add-offer-success', $translator->trans('project.offer_posted_success'));
+            $this->addFlash('add-offer-success', $translator->trans('project.offer_posted_success', [
+                '{offer}' => $this->generateUrl('dialogs_more', ['offer' => $newOffer->getId()]),
+            ]));
             $this->addFlash('do-not-show-offer-already-message', 1);
 
             return $this->redirectToRoute('specialists_more', ['user' => $specialist->getId()]);
@@ -134,7 +151,17 @@ class SpecialistsController extends AbstractController
         $entityManager->flush();
     }
 
-    private function createOffer(User $fromUser, FormInterface $form, User $specialist, EntityManagerInterface $em): void
+    /**
+     * @param User                   $fromUser
+     * @param FormInterface          $form
+     * @param User                   $specialist
+     * @param EntityManagerInterface $em
+     *
+     * @throws \Exception
+     *
+     * @return Offer
+     */
+    private function createOffer(User $fromUser, FormInterface $form, User $specialist, EntityManagerInterface $em): Offer
     {
         $offer = new Offer();
         $offer->setFrom($fromUser);
@@ -152,5 +179,7 @@ class SpecialistsController extends AbstractController
         $em->persist($message);
 
         $em->flush();
+
+        return $offer;
     }
 }
