@@ -15,26 +15,32 @@
                     <form method="post" action="{{ path('fos_user_registration_register') }}">
 
                         <div class="form-group">
-                            {{ form_widget(form.firstName, {'attr': {'class': 'margin-bottom-10 margin-top-20', 'placeholder': 'registration.label_first_name'}}) }}
+                            {{ form_label(form.firstName, '', {'label_attr': {'class': 'bmd-label-floating'}}) }}
+                            {{ form_widget(form.firstName, {'attr': {'class': 'margin-bottom-10'}}) }}
                             {{ form_errors(form.firstName)}}
                         </div>
 
                         <div class="form-group">
-                            {{ form_widget(form.lastName, {'attr': {'class': 'margin-bottom-10', 'placeholder': 'registration.label_last_name'}}) }}
+                            {{ form_label(form.lastName, '', {'label_attr': {'class': 'bmd-label-floating'}}) }}
+                            {{ form_widget(form.lastName, {'attr': {'class': 'margin-bottom-10'}}) }}
                             {{ form_errors(form.lastName)}}
                         </div>
 
                         <div class="form-group">
-                            {{ form_widget(form.email, {'attr': {'class': 'margin-bottom-10', 'placeholder':   'registration.label_email' | trans }}) }}
+
+                            {{ form_label(form.email, '', {'label_attr': {'class': 'bmd-label-floating'}}) }}
+                            {{ form_widget(form.email, {'attr': {'class': 'margin-bottom-10'}}) }}
                             {{ form_errors(form.email)}}
                         </div>
 
                         <div class="form-group">
-                            {{ form_widget(form.plainPassword.first, {'attr': {'class': 'margin-bottom-10', 'placeholder': 'registration.label_fassword_first' | trans}}) }}
+                            {{ form_label(form.plainPassword.first, '', {'label_attr': {'class': 'bmd-label-floating'}}) }}
+                            {{ form_widget(form.plainPassword.first, {'attr': {'class': 'margin-bottom-10'}}) }}
                             {{ form_errors(form.plainPassword.first)}}
                         </div>
                         <div class="form-group">
-                            {{ form_widget(form.plainPassword.second, {'attr': {'class': 'margin-bottom-10', 'placeholder': 'registration.label_fassword_second' | trans}}) }}
+                            {{ form_label(form.plainPassword.second, '', {'label_attr': {'class': 'bmd-label-floating'}}) }}
+                            {{ form_widget(form.plainPassword.second, {'attr': {'class': 'margin-bottom-10'}}) }}
                             {{ form_errors(form.plainPassword.second)}}
                         </div>
                         <div class="register-form-sn-login text-center">

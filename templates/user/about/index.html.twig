@@ -37,30 +37,37 @@
                             </div>
                             <p class="upload-field-hint">{{ 'user.avatar_max_size_hint' | trans({'{size}': avatar_max_size/1000000}) }}</p>
                         </div></div>
+
                         <div class="row"> <div class="col-md-12 form-group">
-                        {{ form_widget(form.country, {'attr': {'class': 'input-block'}}) }}
-                        {{ form_errors(form.country)}}
+                            {{ form_label(form.country, '', {'label_attr': {'class': 'bmd-label-floating'}}) }}
+                            {{ form_widget(form.country, {'attr': {'class': 'input-block'}}) }}
+                            {{ form_errors(form.country)}}
                         </div></div>
                         <div class="row"> <div class="col-md-12 form-group">
-                        {{ form_widget(form.city, {'attr': {'class': 'input-block', 'placeholder': 'user.city'}}) }}
-                        {{ form_errors(form.city)}}
+                            {{ form_label(form.city, '', {'label_attr': {'class': 'bmd-label-floating'}}) }}
+                            {{ form_widget(form.city, {'attr': {'class': 'input-block'}}) }}
+                            {{ form_errors(form.city)}}
                         </div></div>
                         <div class="row"> <div class="col-md-12 form-group">
-                        {{ form_widget(form.likeToDo, {'attr': {'class': 'input-block', 'placeholder': 'user.like_to_do'}}) }}
-                        {{ form_errors(form.likeToDo)}}
+                            {{ form_label(form.likeToDo, '', {'label_attr': {'class': 'bmd-label-floating'}}) }}
+                            {{ form_widget(form.likeToDo, {'attr': {'class': 'input-block'}}) }}
+                            {{ form_errors(form.likeToDo)}}
                         </div></div>
                         <div class="row"> <div class="col-md-12 form-group">
-                        {{ form_widget(form.expectation, {'attr': {'class': 'input-block', 'placeholder': 'user.expectation'}}) }}
-                        {{ form_errors(form.expectation)}}
-                            </div></div>
+                            {{ form_label(form.expectation, '', {'label_attr': {'class': 'bmd-label-floating'}}) }}
+                            {{ form_widget(form.expectation, {'attr': {'class': 'input-block'}}) }}
+                            {{ form_errors(form.expectation)}}
+                        </div></div>
                         <div class="row"> <div class="col-md-12 form-group">
-                        {{ form_widget(form.experience, {'attr': {'class': 'input-block', 'placeholder': 'user.experience'}}) }}
-                        {{ form_errors(form.experience)}}
-                            </div></div>
+                            {{ form_label(form.experience, '', {'label_attr': {'class': 'bmd-label-floating'}}) }}
+                            {{ form_widget(form.experience, {'attr': {'class': 'input-block'}}) }}
+                            {{ form_errors(form.experience)}}
+                        </div></div>
                         <div class="row"> <div class="col-md-12 form-group">
-                        {{ form_widget(form.about, {'attr': {'class': 'input-block', 'placeholder': 'user.about'}}) }}
-                        {{ form_errors(form.about)}}
-                            </div></div>
+                            {{ form_label(form.about, '', {'label_attr': {'class': 'bmd-label-floating'}}) }}
+                            {{ form_widget(form.about, {'attr': {'class': 'input-block'}}) }}
+                            {{ form_errors(form.about)}}
+                        </div></div>
                         <div class="row">
                             <div class="col-md-12 form-bottom">
                                 {{ form_row(form._token) }}

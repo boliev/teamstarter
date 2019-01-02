@@ -91,8 +91,13 @@ input:focus,textarea:hover,textarea:focus,a:hover,a:focus,a:visited,a.active,sel
 	text-decoration: none;
 	color: inherit;
 }
-.form-control {
+.bmd-form-group .form-control {
 	box-shadow: none;
+	line-height: 1.5;
+}
+
+.form-control {
+	line-height: 1.5;
 }
 ul {
 	margin: 0;
@@ -102,7 +107,11 @@ ul {
 h1,h2,h3,h4,h5,h6 {
 	margin: 0;
 	font-weight: normal;
-	line-height: 1.5; 
+	line-height: 1.5;
+}
+
+h3 {
+	font-size: 24px;
 }
 .raleway {
 	font-family: 'Raleway', sans-serif;
@@ -131,6 +140,14 @@ h1,h2,h3,h4,h5,h6 {
 }
 div#preloader { position: fixed; left: 0; top: 0; z-index: 999; width: 100%; height: 100%; overflow: visible; background: #ffffff url('/public/img/heart.gif') no-repeat center center; }
 
+.btn {
+	text-transform: none;
+	font-size: 14px;
+}
+
+.row {
+	display: block;
+}
 
 /**
 * Web Application Prefix Apply For Making Owner Styles
@@ -175,6 +192,17 @@ div#preloader { position: fixed; left: 0; top: 0; z-index: 999; width: 100%; hei
  .navbar-nav li {
  	position: relative;
  }
+
+.navbar-nav {
+	-webkit-flex-direction: row;
+	-ms-flex-direction: row;
+	flex-direction: row;
+}
+
+.navbar {
+	box-shadow: none;
+}
+
  .menu-dropdown {
  	position: absolute;
  	position: absolute;
@@ -1073,6 +1101,10 @@ button.btn.btn-primary.text-capitalize.active {
 	background: #42a5f5;
 }
 
+.btn.btn-primary:hover {
+	color: #ffffff;
+}
+
 .overlay {
 	background-color: rgba(83, 171, 243, 0.7);
 	text-align: center;
@@ -1366,18 +1398,19 @@ button.btn.btn-primary.text-capitalize.active {
 	cursor: pointer;
 }
 
-.modal-header {
+.modal-content .modal-header {
 	padding: 2px 16px;
 	background-color: #42a5f5;
 	color: white;
+	display: block;
 }
 
-.modal-body {
+.modal-content .modal-body {
 	padding: 2px 35px;
 	z-index: 999;
 }
 
-.modal-content  input {
+.modal-content input, .btn.btn-sm {
 	height: 50px;
 	border-radius: 25px;
 	background-color: #f3f3f3;
@@ -1390,9 +1423,11 @@ input#apus-user-remember, input#apus-user-remember-mobile {
 .apus-login-form .form-group {
 	margin-bottom: 0;
 	line-height: 4;
+	padding: 0px;
 }
 .modal-header .close {
-	padding-bottom:5px;
+	padding: 0px 0px 5px 0px;
+	margin: -2px 0px 0px 0px;
 }
 input.btn.btn-sm.btn-warning,
 input.btn.btn-sm.btn-default.btn-cancel {
@@ -1402,12 +1437,21 @@ input.btn.btn-sm.btn-default.btn-cancel {
 	margin-right: 25px;
 	line-height: 5px;
 	background-color: #42a5f5;
+	font-size: 12px;
 }
 input.btn.btn-sm.btn-warning:hover,
 input.btn.btn-sm.btn-default.btn-cancel:hover  {
 	color: #fff;
 	background-color: #42a5f5;
 	border-color: #42a5f5;
+}
+
+.btn-warning {
+	color: #ffffff;
+}
+
+.btn-warning:hover, .form-section input.btn:hover {
+	color: #ffffff;
 }
 
 input.blue {
@@ -1496,6 +1540,43 @@ div.modal-login-social a, div.register-form-sn-login a {
 	font-style: italic;
 	color: #666666;
 }
+.form-section textarea::-webkit-input-placeholder,
+.form-section input:not(.btn)::-webkit-input-placeholder, .form-section select::-webkit-input-placeholder {
+	font-size: 16px;
+}
+
+.form-section textarea::-moz-placeholder,
+.form-section input:not(.btn)::-moz-placeholder, .form-section select::-moz-placeholder {
+	font-size: 16px;
+}
+
+.form-section textarea::-ms-input-placeholder,
+.form-section input:not(.btn):-ms-input-placeholder, .form-section select:-ms-input-placeholder {
+	font-size: 16px;
+}
+
+.form-section textarea:-moz-placeholder,
+.form-section input:not(.btn):-moz-placeholder, .form-section select:-moz-placeholder {
+	font-size: 16px;
+}
+
+
+.apus-login-form .bmd-form-group input:not(.btn)::-webkit-input-placeholder {
+	font-size: 14px;
+}
+
+.apus-login-form .bmd-form-group input:not(.btn)::-moz-placeholder {
+	font-size: 14px;
+}
+
+.apus-login-form .bmd-form-group input:not(.btn):-ms-input-placeholder {
+	font-size: 14px;
+}
+
+.apus-login-form .bmd-form-group input:not(.btn):-moz-placeholder {
+	font-size: 14px;
+}
+
 .form-section textarea {
 	max-height: 170px;
 	margin: 0;
@@ -1706,6 +1787,7 @@ img.specialists-list-avatar {
 	padding-top: 0px;
 	padding-bottom: 0px;
 	padding-left: 5px;
+	color: #ffffff;
 }
 
 .top-user-menu .dropdown-menu a.dropdown-item {
@@ -1713,6 +1795,7 @@ img.specialists-list-avatar {
 	display: block;
 	padding: 10px 20px;
 	touch-action: manipulation;
+	font-size: 12px;
 }
 .top-user-menu .dropdown-menu a.dropdown-item:hover {
 	background-color: #42a5f5 !important;
@@ -2042,6 +2125,14 @@ article.new-message div.entry-content {
 	color: #222222;
 }
 
+.projects-search-button:visited {
+	color: #222222;
+}
+
+.projects-search-button:hover {
+	color: #42a5f5;
+}
+
 .no-projects-found {
 	text-align: center;
 	margin: 20px 0px;
@@ -2050,6 +2141,7 @@ article.new-message div.entry-content {
 .badge-count {
 	background-color: #42a5f5;
 	margin-bottom: 2px;
+	border-radius: 10px;
 }
 
 .dialogs-avatar img {
@@ -2060,4 +2152,53 @@ article.new-message div.entry-content {
 
 .dialogs-avatar {
 	height: 120px;
+}
+
+div.search-container {
+	display: block;
+}
+
+div.search-container div.form-group {
+	padding-top: 0px;
+}
+
+.form-check-input {
+	position: relative;
+}
+
+.checkbox label, .radio label, label {
+	font-size: 16px;
+}
+
+.bmd-form-group label {
+	font-size: 16px;
+	margin: 0px;
+}
+
+.bmd-form-group .bmd-label-floating {
+	top: 29px;
+	padding-left: 15px;
+	z-index: 100;
+}
+
+.bmd-form-group.is-filled .bmd-label-floating, .bmd-form-group.is-focused .bmd-label-floating {
+	font-size: 12px;
+}
+
+.navbar-nav.megamenu > li {
+	margin-right: 35px !important;
+}
+
+div.bootstrap-tagsinput ul.dropdown-menu {
+	opacity: inherit;
+	transform: none;
+}
+
+div.bootstrap-tagsinput ul.dropdown-menu a.dropdown-item {
+	font-size: 14px;
+}
+
+.login-form-input {
+	background-image: none;
+	font-size: 14px;
 }

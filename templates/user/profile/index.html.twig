@@ -24,32 +24,37 @@
 
                         <div class="row">
                             <div class="col-md-12 form-group">
-                                {{ form_widget(form.firstName, {'attr': {'class': 'input-block', 'placeholder': 'user.first_name'}}) }}
+                                {{ form_label(form.firstName, '', {'label_attr': {'class': 'bmd-label-floating'}}) }}
+                                {{ form_widget(form.firstName, {'attr': {'class': 'input-block'}}) }}
                                 {{ form_errors(form.firstName)}}
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12 form-group">
-                                {{ form_widget(form.lastName, {'attr': {'class': 'input-block', 'placeholder': 'user.last_name'}}) }}
+                                {{ form_label(form.lastName, '', {'label_attr': {'class': 'bmd-label-floating'}}) }}
+                                {{ form_widget(form.lastName, {'attr': {'class': 'input-block'}}) }}
                                 {{ form_errors(form.lastName)}}
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-md-12 form-group">
-                                {{ form_widget(form.newPassword, {'attr': {'class': 'input-block', 'placeholder': 'user.new_password'}}) }}
+                                {{ form_label(form.newPassword, '', {'label_attr': {'class': 'bmd-label-floating'}}) }}
+                                {{ form_widget(form.newPassword, {'attr': {'class': 'input-block'}}) }}
                                 {{ form_errors(form.newPassword)}}
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12 form-group">
-                                {{ form_widget(form.newPasswordRepeat, {'attr': {'class': 'input-block', 'placeholder': 'user.new_password_repeat'}}) }}
+                                {{ form_label(form.newPasswordRepeat, '', {'label_attr': {'class': 'bmd-label-floating'}}) }}
+                                {{ form_widget(form.newPasswordRepeat, {'attr': {'class': 'input-block'}}) }}
                                 {{ form_errors(form.newPasswordRepeat)}}
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12 form-group">
-                                {{ form_widget(form.oldPassword, {'attr': {'class': 'input-block', 'placeholder': 'user.old_password'}}) }}
+                                {{ form_label(form.oldPassword, '', {'label_attr': {'class': 'bmd-label-floating'}}) }}
+                                {{ form_widget(form.oldPassword, {'attr': {'class': 'input-block'}}) }}
                                 {{ form_errors(form.oldPassword)}}
                             </div>
                         </div>

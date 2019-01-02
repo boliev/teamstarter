@@ -18,13 +18,15 @@
 
                         <div class="row">
                             <div class="col-md-12 form-group">
-                                {{ form_widget(form.name, {'attr': {'class': 'input-block', 'placeholder': 'project.add_role_name'}}) }}
+                                {{ form_label(form.name, '', {'label_attr': {'class': 'bmd-label-floating'}}) }}
+                                {{ form_widget(form.name, {'attr': {'class': 'input-block'}}) }}
                                 {{ form_errors(form.name)}}
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12 form-group">
-                                {{ form_widget(form.specialization, {'attr': {'class': 'input-block', 'placeholder': 'project.add_role_specialization'}}) }}
+                                {{ form_label(form.specialization, '', {'label_attr': {'class': 'bmd-label-floating'}}) }}
+                                {{ form_widget(form.specialization, {'attr': {'class': 'input-block'}}) }}
                                 {{ form_errors(form.specialization)}}
                             </div>
                         </div>
@@ -37,7 +39,8 @@
 
                         <div class="row">
                             <div class="col-md-12 form-group">
-                                {{ form_widget(form.description, {'attr': {'class': 'input-block', 'placeholder': 'project.form_description', 'rows': '12'}}) }}
+                                {{ form_label(form.description, '', {'label_attr': {'class': 'bmd-label-floating'}}) }}
+                                {{ form_widget(form.description, {'attr': {'class': 'input-block', 'rows': '12'}}) }}
                                 {{ form_errors(form.description)}}
                             </div>
                         </div>

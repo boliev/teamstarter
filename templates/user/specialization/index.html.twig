@@ -72,6 +72,7 @@
                 for (key in data) {
                     autocomplete.push(data[key].name);
                 }
+                console.log(autocomplete);
                 tagInput.tagsinput({
                     typeahead: {
                         source: autocomplete,

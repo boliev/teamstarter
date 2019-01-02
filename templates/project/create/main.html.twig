@@ -19,37 +19,43 @@
 
                         <div class="row">
                             <div class="col-md-12 form-group">
-                                {{ form_widget(form.name, {'attr': {'class': 'input-block', 'placeholder': 'project.form_name'}}) }}
+                                {{ form_label(form.name, '', {'label_attr': {'class': 'bmd-label-floating'}}) }}
+                                {{ form_widget(form.name, {'attr': {'class': 'input-block'}}) }}
                                 {{ form_errors(form.name)}}
                             </div>
                         </div>
                          <div class="row">
                             <div class="col-md-12 form-group">
-                                {{ form_widget(form.status, {'attr': {'class': 'input-block', 'placeholder': 'project.form_status'}}) }}
+                                {{ form_label(form.status, '', {'label_attr': {'class': 'bmd-label-floating'}}) }}
+                                {{ form_widget(form.status, {'attr': {'class': 'input-block'}}) }}
                                 {{ form_errors(form.status)}}
                             </div>
                         </div>
                          <div class="row">
                             <div class="col-md-12 form-group">
-                                {{ form_widget(form.country, {'attr': {'class': 'input-block', 'placeholder': 'project.form_country'}}) }}
+                                {{ form_label(form.country, '', {'label_attr': {'class': 'bmd-label-floating'}}) }}
+                                {{ form_widget(form.country, {'attr': {'class': 'input-block'}}) }}
                                 {{ form_errors(form.country)}}
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12 form-group">
-                                {{ form_widget(form.city, {'attr': {'class': 'input-block', 'placeholder': 'project.form_city'}}) }}
+                                {{ form_label(form.city, '', {'label_attr': {'class': 'bmd-label-floating'}}) }}
+                                {{ form_widget(form.city, {'attr': {'class': 'input-block'}}) }}
                                 {{ form_errors(form.city)}}
                             </div>
                         </div>
                          <div class="row">
                             <div class="col-md-12 form-group">
-                                {{ form_widget(form.mission, {'attr': {'class': 'input-block', 'placeholder': 'project.form_mission'}}) }}
+                                {{ form_label(form.mission, '', {'label_attr': {'class': 'bmd-label-floating'}}) }}
+                                {{ form_widget(form.mission, {'attr': {'class': 'input-block'}}) }}
                                 {{ form_errors(form.mission)}}
                             </div>
                         </div>
                          <div class="row">
                             <div class="col-md-12 form-group">
-                                {{ form_widget(form.description, {'attr': {'class': 'input-block', 'placeholder': 'project.form_description', 'rows': 8}}) }}
+                                {{ form_label(form.description, '', {'label_attr': {'class': 'bmd-label-floating'}}) }}
+                                {{ form_widget(form.description, {'attr': {'class': 'input-block', 'rows': 8}}) }}
                                 {{ form_errors(form.description)}}
                             </div>
                         </div>
