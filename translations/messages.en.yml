@@ -1,0 +1,221 @@
+ProjectTitle: TeamStarter
+Projects: Projects
+we_speak: We speak
+sign_in: Sign in
+sign_up: Sign up
+profile: Profile
+logout: Logout
+submit: Submit
+cancel: Cancel
+Unfinished: Unfinished
+InReview: In review
+Declined: Declined
+Published: Published
+search_placeholder: Search...
+registration:
+    label_first_name: First name
+    label_last_name: Last name
+    label_email: Email
+    label_fassword_first: Password
+    label_fassword_second: Repeat password
+    description: It's a service to build your team when you don't have investors. It is an opportunity to find not employees but fellow enthusiasts, who can work for your project as a hobby, in their spare time, gaining useful experience, portfolio and profit in the future.
+    for_founders_title: TeamStarter for project founders
+    for_founders_description: The best way to translate your idea into reality. We help you to assemble your team as soon as possible and totally free. All you need is an interesting and perspective project.
+    for_professionals_title: TeamStarter for professionals
+    for_professionals_description: If you are looking for a startup in which you can take part in your free time, or want to apply your skills on real projects - TeamStarter is a service that will offer you hundreds of interesting projects that have been manually moderated.
+    signup: Sign up for TeamStarter
+    form_terms: By clicking "Sign up for TeamStarter", you agree to our <a href="/terms/">terms of service</a> and <a href="/privacy/">privacy policy</a>. We’ll occasionally send you account related emails.
+    email:
+        subject: 'Welcome to TeamStarter'
+        message: |
+            Hello!
+
+            To finish activating your TeamStarter account - please visit %confirmationUrl%
+
+            This link can only be used once to validate your account.
+
+            Regards,
+            TeamStarter.
+specialization:
+    Other: Other
+    chose: <span>Chose your</span> specializations
+    you_can_choose: You can choose <span id="spec_more">%count%</span> more <span id="spec_more_specializations">specializations</span>
+    specializations: specializations
+    specialization: specialization
+    selected: Specializations selected
+    no_specializations_selected: You need to select at least one specialization
+    too_many_specializations_selected: Too many specializations
+    cant_find_specialization: Can't find specialization
+    menu_title: Specializations
+    form_success: Specializations & skills were saved!
+    skills_hint: Skills separated by commas
+
+skill:
+    add: <span>Add your</span> skills
+    add_hint: Add your professional skills and arrange them in order of importance for you. The more accurately you specify the skills and their order, the sooner a suitable project will find you.
+    input_hint: Skills separated by commas
+user:
+    about_title: <span>Tell us about</span> yourself
+    about_menu_title: About you
+    about_skip: You can skip this form, but the more information you enter about yourself, the greater the chance that potential partners will work with you
+    about_skip_button: Skip form
+    about_profile: Profile
+    country: Country
+    choose_country: Select country
+    city: City
+    first_name: First name
+    last_name: Last name
+    new_password_form_hint: Leave the password fields blank if you don't want to change your password
+    new_password: New password
+    new_password_repeat: Repeat new password
+    old_password: Old password
+    old_password_required: Old password required
+    old_password_invalid: Old password is invalid
+    repeat_password_invalid: The entered passwords don't match.
+    like_to_do: What would you like to do
+    expectation: What do you expect from a project
+    experience: Describe your background
+    about: Tell us about yourself
+    profile_picture: Upload a profile picture
+    avatar_max_size_exception: Maximum size of avatar must be {size} MB
+    avatar_max_size_hint: Only images, {size} MB max
+    avatar_extension_exception: Avatar must be an image
+    about_form_dkipped_at: About form skipped at
+    profile_form_success: Profile changes were saved!
+    about_form_success: All changes were saved!
+    bad_credentials: Bad credentials
+    lost_password: Lost Your Password?
+    lost_password_email:
+        subject: 'Reset Password'
+        message: |
+            Hello %username%!
+
+            To reset your password - please visit %confirmationUrl%
+
+            Regards,
+            TeamStarter Team.
+contacts:
+    menu_title: Contacts
+    form_title: How potential partners can contact you?
+    form_hint: Your contact information can be seen only by the people you give access to
+    personal_messages: Personal Messages
+    email: Email
+    your_email: Your email
+    phone: Phone
+    your_phone: Your phone
+    skype: Skype
+    your_skype: Your Skype
+    personal_messages_additional_info: Personal messages additional info
+    email_additional_info: Email additional info
+    phone_additional_info: Phone additional info
+    skype_additional_info: Skype additional info
+    enabled: Enabled
+    visivle: Visible
+    prefered: Prefered
+    no_contact: there is no contact whith id {id}
+    form_success: Contacts were saved!
+project:
+    create: Create a project
+    my_projects: My projects
+    menu_create: Create a project
+    project_rules: <span>Project</span> rules
+    main_info: <span>Project</span> main information
+    open_roles_title: <span>Project</span> open roles
+    open_roles: Open roles
+    screenshots: <span>Project</span> screenshots
+    add_screenshot: + Add a screenshot
+    screen_max_size_exception: Maximum size of screenshot must be {size} MB
+    screen_extension_exception: Screen must be an image
+    my_list: <span>My</span> projects
+    edit_link: Edit
+    close_link: Close
+    open_link: Open
+    add_role: + Add new role
+    add_role_page_title_add: <span>Add</span> new role
+    add_role_page_title_edit: <span>Edit</span> role
+    add_role_name: Title
+    add_role_specialization: Specialization
+    add_role_chose_specialization: Chose a specialization
+    add_role_submit_add: Add role
+    add_role_submit_edit: Edit role
+    add_role_success_add: New role was successfully added
+    add_role_success_edit: Role was successfully changed
+    add_role_success_close: Role was successfully closed
+    add_role_success_open: Role was successfully opened
+    docs: <span>Project</span> documentation
+    form_name: Name
+    form_status: Status
+    form_country: Country
+    form_country_placeholder: Chose country
+    form_city: City
+    form_status_placeholder: Chose status
+    form_mission: Mission
+    form_description: Description
+    agree_button: I agree with project rules
+    next_button: Proceed
+    finish_button: Finish
+    back_button: Back
+    no_docs_button: I don't have any documentation
+    doc_name: Document name
+    doc_url: Document URL
+    saved: Project saved
+    closed: Project closed
+    re_moderation_warning: After editing the project will be sent to re-moderation and for some time will be unavailable in the system
+    submit_success: Thank you for submitting your project! After manual reviewing it will be added to the system. We will inform you by email!
+    submit_success_email:
+        subject: Thank you for submitting your project!
+        message: |
+            <p>Hello %username%!</p>
+            <p>Thank you for submitting your project!</p>
+            <p>After manual reviewing it will be added to the system. We will inform you by email!</p>
+            <br /><br />
+            <p>Regards,<br />
+            TeamStarter Team.</p>
+    edit_success: Thank you for editing your project! After manual reviewing it will be back in the system. We will inform you by email!
+    edit_success_email:
+        subject:  Thank you for editing your project!
+        message: |
+            <p>Hello %username%!</p>
+            <p>Thank you for editting your project!</p>
+            <p>After manual reviewing it will be back in the system. We will inform you by email!</p>
+            <br /><br />
+            <p>Regards,<br />
+            TeamStarter Team.</p>
+    list: Open <span>Projects</span>
+    list_menu_item: Projects
+    no_one_found: No projects found
+    submit_proposal_button: Submit a Proposal
+    proposal_header: <span>New</span> Proposal
+    proposal_choose_role: Other role
+    proposal_message: Message
+    proposal_posted_success: Proposal was submitted
+    proposal_already_posted: You have already posted a proposal to the project
+    offer_choose_project: Choose project
+    offer_choose_role: Other role
+    offer_message: Offer message
+    offer_posted_success: Offer was submitted
+    offer_already_posted: You have already posted an offer to the user
+specialists:
+    list_title: Available <span>Specialists</span>
+    menu_list: Available specialists
+    no_one_found: No specialists found
+    not_found: Specialists not found
+    about: About
+    like_to_do: Like to do
+    experience: Background
+    expectation: Expectation
+    submit_offer: Submit an Offer
+    offer_header: <span>New</span> Offer
+    offer_choose_role: Other role
+    offer_message: Message
+    offer_posted_success: Proposal was submitted
+    offer_already_posted: You have already posted a proposal to the project
+dialogs:
+    list: Your <span>Dialogs</span>
+    menu_list: Dialogs
+    no_one_found: No dialogs found
+    you: You
+    to_dialog: To the dialog...
+    no_access: Dialog not found
+    new_message: New message
+    new_message_submit_button: Post message

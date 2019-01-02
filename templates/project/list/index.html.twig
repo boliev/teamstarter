@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class ="container">
+        <div class="row section-content-2 padding-bottom-5">
+
+            <div class="col-sm-8 col-sm-offset-2">
+                <div class="kc-elm kc-title-wrap  left dark">
+                    <div class="title-wrapper">
+                        <h3 class="kc_title">{{ 'project.list' | trans | raw }}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <div class="row ">
+                <form name="search-form" id="search-form" method="get" action="{{ path('projects_list') }}">
+                    <div class=" col-md-offset-3 col-md-6 form-group">
+                        <input type="text" name="query" placeholder="{{ 'search_placeholder' | trans }}" class="input-block projects-search-input" value="{% if searchQuery %}{{ searchQuery }}{% endif %}">
+                    </div>
+                    <div class="col-md-1 margin-left-1 padding-left-1">
+                        <a href="#" onclick="$('#search-form').submit()" class="projects-search-button"><i class="fas fa-search"></i></a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        {% if pagination is empty  %}
+            <div class="no-projects-found">{{ 'project.no_one_found' | trans }}</div>
+        {% endif %}
+
+            {% for project in pagination %}
+
+                <article class="post">
+                    <div class="entry-content">
+                        <div class="entry-meta">
+                            <div class="info">
+                                <div class="meta margin-top-1">
+                                    <span class="date"><i class="mn-icon-1130"></i>{{ project.createdAt|localizeddate('medium', 'none') }}</span>
+                                    <span class="date"><i class="fas fa-user-tie"></i>{{ project.user.getFullName() }}</span>
+                                    <span><i class="mn-icon-132"></i>{{ project.status.name }}</span>
+                                    {% if project.city %}
+                                        <span><i class="fas fa-map-marker"></i>{{ project.city }}{% if project.country%}, {{ project.country}}{% endif %}</span>
+                                    {% elseif project.country%}
+                                        <span><i class="fas fa-map-marker"></i>{{ project.country }}</span>
+                                    {% endif %}
+                                    {% if project.screens | length > 0 %}<span><i class="far fa-image"></i>Screenshots</span>{% endif %}
+                                </div>
+                                <div class="row"><div class="col-sm-12"><h4 class="entry-title"><a href="{{ path('project_more', {'project': project.id}) }}">{{ project.name }}</a></h4></div></div>
+                            </div>
+                        </div>
+                        <div class="info-bottom">
+                            <div class="info-description">{{ project.mission }}</div>
+                            <div class="info-description">
+                                <ul class="projects-list-roles">
+                                    {% for role in project.openRoles %}
+                                        <li><i class="fas fa-door-open"></i>{{ role.name }}</li>
+                                    {% endfor %}
+                                </ul><div style="clear: both"></div></div>
+                        </div>
+                    </div>
+                </article>
+            {% endfor %}
+
+        <div class="navigation">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+    </div>
+{% endblock %}
