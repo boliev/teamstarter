@@ -10,6 +10,23 @@ use Doctrine\ORM\QueryBuilder;
 class ProjectRepository extends EntityRepository
 {
     /**
+     * @param User $user
+     *
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     *
+     * @return int
+     */
+    public function getPublishedCount(User $user): int
+    {
+        return $this->getPublished()
+            ->select('count(p.id)')
+            ->andWhere('p.user = :user')
+            ->setParameter(':user', $user)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+    /**
      * @param array|null $ids
      *
      * @return \Doctrine\ORM\Query

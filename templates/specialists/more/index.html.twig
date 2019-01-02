@@ -4,7 +4,7 @@
 
         {% for message in app.flashes('add-offer-success') %}
             <div class="success-message margin-top-20">
-                {{ message }}
+                {{ message | raw }}
             </div>
         {% endfor %}
 
@@ -43,7 +43,9 @@
                         </div>
 
                         {% if offer and app.flashes('do-not-show-offer-already-message')|length == 0 %}
-                            <div class="hint-success text-center margin-top-10">{{ 'project.offer_already_posted' | trans }}</div>
+                            <div class="hint-success text-center margin-top-10">{{ 'project.offer_already_posted' | trans ({'{offer}': path('dialogs_more',{'offer': offer.id})}) | raw}}</div>
+                        {% elseif projectsCount < 1 %}
+                            <div class="hint-success text-center margin-top-10">{{ 'specialists.need_to_have_projects' | trans }}</div>
                         {% endif %}
 
                         <div class="info-bottom">
@@ -66,7 +68,7 @@
                                 <div class="info-description-title">{{ 'specialists.expectation' | trans }}</div>
                                 <div class="info-description">{{ user.expectation }}</div>
                             {% endif %}
-                            {% if not offer %}
+                            {% if not offer and app.user.id != user.id  and projectsCount > 0 %}
                                 <div class="info-description">
                                     <input type="button" class="btn btn-default blue" onclick="window.location.href = '{{ path('specialist_add_offer', {'specialist': user.id}) }}'" value="{{ 'specialists.submit_offer' | trans }}">
                                 </div>

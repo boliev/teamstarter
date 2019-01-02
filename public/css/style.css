@@ -1438,6 +1438,7 @@ input.btn.btn-sm.btn-default.btn-cancel {
 	line-height: 5px;
 	background-color: #42a5f5;
 	font-size: 12px;
+	color:#ffffff;
 }
 input.btn.btn-sm.btn-warning:hover,
 input.btn.btn-sm.btn-default.btn-cancel:hover  {
@@ -1446,7 +1447,7 @@ input.btn.btn-sm.btn-default.btn-cancel:hover  {
 	border-color: #42a5f5;
 }
 
-.btn-warning {
+.btn.btn-warning, .btn-warning {
 	color: #ffffff;
 }
 

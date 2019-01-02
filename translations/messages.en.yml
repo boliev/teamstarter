@@ -188,13 +188,13 @@ project:
     proposal_header: <span>New</span> Proposal
     proposal_choose_role: Other role
     proposal_message: Message
-    proposal_posted_success: Proposal was submitted
-    proposal_already_posted: You have already posted a proposal to the project
+    proposal_posted_success: <a href="{offer}">Proposal</a> was submitted
+    proposal_already_posted: You have already posted <a href="{offer}">a proposal</a> to the project
     offer_choose_project: Choose project
     offer_choose_role: Other role
     offer_message: Offer message
-    offer_posted_success: Offer was submitted
-    offer_already_posted: You have already posted an offer to the user
+    offer_posted_success: <a href="{offer}">Offer</a> was submitted
+    offer_already_posted: You have already posted <a href="{offer}">an offer</a> to the user
 specialists:
     list_title: Available <span>Specialists</span>
     menu_list: Available specialists
@@ -210,6 +210,7 @@ specialists:
     offer_message: Message
     offer_posted_success: Proposal was submitted
     offer_already_posted: You have already posted a proposal to the project
+    need_to_have_projects: You need to have at least one published project to submit an offer
 dialogs:
     list: Your <span>Dialogs</span>
     menu_list: Dialogs
