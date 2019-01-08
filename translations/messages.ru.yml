@@ -1,13 +1,23 @@
 ProjectTitle: TeamStarter
 Projects: Проекты
-we_speak: Мы говорим по
+we_speak: Языки
 sign_in: Вход
 sign_up: Регистрация
 profile: Профиль
 logout: Выход
+submit: Отправить
+cancel: Отмена
+Unfinished: Незаконченный
+InReview: На модерации
+Declined: Отклонен
+Published: Опубликован
+search_placeholder: Поиск...
 registration:
     label_first_name: Имя
     label_last_name: Фамилия
+    label_email: Email
+    label_fassword_first: Пароль
+    label_fassword_second: Еще раз пароль
     description: Это сервис для подбора команды в условиях, когда у проекта нет финансирования. Это возможность найти не сотрудников, но партнеров-энтузиастов, готовых работать над проектом в качестве хобби, в свободное время, получая за работу полезный опыт, портфолио и профит в будущем.
     for_founders_title: TeamStarter для основателей проектов
     for_founders_description: Лучший способ воплотить свои идеи. Ма поможем вам быстро и бесплатно собрать команду профессионало-энтузиастов для вашего проета. Все, что требуется от вас - интересный проект, которым не стыдно будет похвастаться.
@@ -27,5 +37,163 @@ registration:
             С наилучшими пожеланиями,
             TeamStarter.
 specialization:
-    Other: Другое
+    Other: Другие
+    chose: <span>Укажие вашу</span> специализацию
+    you_can_choose: Вы можете выбрать еще <span id="spec_more">%count%</span> <span id="spec_more_specializations">специализации</span>
+    specializations: специализации
+    specialization: специализация
+    selected: Специализации выбраны
+    no_specializations_selected: Необходимо выбрать хотя бы одну специализацию
+    too_many_specializations_selected: Слишком много специализаций
+    cant_find_specialization: Такой специализации нет
+    menu_title: Специализации
+    form_success: Специализаци и навыки сохренены!
+    skills_hint: Навыки через запятую
 
+skill:
+    add: <span>Укажите ваши</span> навыки
+    add_hint: Укажите ваши профессиональные навыки в порядке важности. Чем точнее вы укажите свои навыки, тем раньше мы подберем вам подходящий проект
+    input_hint: Навыки через запятую
+user:
+    about_title: <span>Расскажите</span> о себе
+    about_menu_title: О вас
+    about_skip: Эту форму можно пропустить, но чем больше информации вы укажите, тем выше шанс найти парнера
+    about_skip_button: Пропустить форму
+    about_profile: Профиль
+    country: Страна
+    choose_country: Выберите страну
+    city: Город
+    first_name: Имя
+    last_name: Фамилия
+    new_password_form_hint: Если не хотите менять пароль, оставьте поля для ввода пароля пустыми
+    new_password: Новый пароль
+    new_password_repeat: Еще раз новый пароль
+    old_password: Текущий пароль
+    old_password_required: Укажите текущий пароль
+    old_password_invalid: Текущий пароль не подходит
+    repeat_password_invalid: Пароли должны совпадать
+    like_to_do: Чем бы вы хотели заниматься
+    expectation: Чего вы ожидаете от проекта
+    experience: Опишите свой опыт
+    about: Расскажите о себе
+    profile_picture: Загрузить фото
+    avatar_max_size_exception: Максимальный размер фото {size} MБ
+    avatar_max_size_hint: Только изображения, максимум {size} MБ
+    avatar_extension_exception: Только изображения
+    profile_form_success: Профиль сохранен!
+    about_form_success: Изменения сохранены!
+    bad_credentials: Пользователь с такой электронной почтой или паролем не найден
+    lost_password: Забыли пароль?
+    lost_password_email:
+        subject: 'Восстановление пароля'
+        message: |
+            Приветствуем, %username%!
+
+            Чтобы восстановить доступ к своему аккаунту, пройдите, пожалуйста, по ссылке: %confirmationUrl%
+
+            Если вы получили это письмо по ошибке, просто игнорируйте его.
+
+            С наилучшими пожеланиями,
+            TeamStarter.
+project:
+    create: Добавить проект
+    my_projects: Мои проекты
+    menu_create: Добавить проект
+    project_rules: <span>Правила создания</span> проекта
+    main_info: <span>Информация о </span> проекте
+    open_roles_title: <span>Открытые</span> роли
+    open_roles: Открытые роли
+    screenshots: <span>Скриншоты</span> проекта
+    add_screenshot: + Добавить скриншот
+    screen_max_size_exception: Максимальный размер изображения {size} MБ
+    screen_extension_exception: Скриншот должен быть изображением
+    my_list: <span>Мои</span> проекты
+    edit_link: Редактировать
+    close_link: Закрыть
+    open_link: Открыть
+    add_role: + Добавить роль
+    add_role_page_title_add: <span>Добавление</span> роли
+    add_role_page_title_edit: <span>Редакировать</span> роль
+    add_role_name: Название
+    add_role_specialization: Специализация
+    add_role_chose_specialization: Выберите специализацию
+    add_role_submit_add: Добавить роль
+    add_role_submit_edit: Редактировать роль
+    add_role_success_add: Роль добавлена
+    add_role_success_edit: Роль сохранена
+    add_role_success_close: Роль закрыта
+    add_role_success_open: Роль открыта
+    form_name: Название
+    form_status: Статус
+    form_country: Страна
+    form_country_placeholder: Выберите страну
+    form_city: Город
+    form_status_placeholder: Выберите статус
+    form_mission: Миссия
+    form_description: Описание
+    agree_button: Я согласен с правилами создания проекта
+    next_button: Продолжить
+    finish_button: Завершить
+    back_button: Назад
+    saved: Проект сохранен
+    closed: Проект закрыт
+    re_moderation_warning: После редактирования проект будет отправлен на перемодерацию и некоторое время не будет доступен в системе
+    submit_success: Ваш проект добавлен! После ручной модерации он появится в системе. Мы сообщим вам по электронной почте.
+    submit_success_email:
+        subject: Ваш проект добавлен!
+        message: |
+            <p>Приветствуем, %username%!</p>
+            <p>Ваш проект добавлен!</p>
+            <p>После ручной модерации он появится в системе. Мы сообщим вам по электронной почте.</p>
+            <br /><br />
+            <p>С наилучшими пожеланиями,<br />
+            TeamStarter.</p>
+    edit_success: Thank you for editing your project! After manual reviewing it will be back in the system. We will inform you by email!
+    edit_success_email:
+        subject:  Thank you for editing your project!
+        message: |
+            <p>Приветствуем, %username%!</p>
+            <p>Ваш проект изменен!</p>
+            <p>После ручной модерации он вернется в систему. Мы сообщим вам по электронной почте.</p>
+            <br /><br />
+            <p>С наилучшими пожеланиями,<br />
+            TeamStarter.</p>
+    list: Открытые <span>проекты</span>
+    list_menu_item: Проекты
+    no_one_found: Нет открытых проектов
+    submit_proposal_button: Предложить сотрудничество
+    proposal_header: <span>Создание</span> предложения
+    proposal_choose_role: Другая роль
+    proposal_message: Предложение
+    proposal_posted_success: <a href="{offer}">Предложение</a> отправлено
+    proposal_already_posted: Вы уже отправили <a href="{offer}">предложение</a> на этот проект
+    offer_choose_project: Выбрать проект
+    offer_choose_role: Другая роль
+    offer_message: Предложение
+    offer_posted_success: <a href="{offer}">Предложение</a> оправлено
+    offer_already_posted: Вы уже отправили <a href="{offer}">предложение</a> этому специалисту
+specialists:
+    list_title: Доступные <span>специалисты</span>
+    menu_list: Специалисты
+    no_one_found: Подходящие специалисты не найдены
+    not_found: Подходящие специалисты не найдены
+    about: О специалисте
+    like_to_do: Чем бы хотел заниматься
+    experience: Опыт
+    expectation: Ожидание от проекта
+    submit_offer: Предложить сотрудничество
+    offer_header: <span>Создание</span> предложения
+    offer_choose_role: Другая роль
+    offer_message: Предложение
+    offer_posted_success: <a href="{offer}">Предложение</a> оправлено
+    offer_already_posted: Вы уже отправили <a href="{offer}">предложение</a> этотму специалисту
+    need_to_have_projects: Необходимо иметь хотя бы один активный проект для отправки предложения
+dialogs:
+    list: Ваши <span>диалоги</span>
+    menu_list: Диалоги
+    no_one_found: Нет акивных диалогов
+    you: Вы
+    to_dialog: К диалогу...
+    no_access: Нет такого диалога
+    new_message: Отправить сообщение
+    new_message_submit_button: Оправить
