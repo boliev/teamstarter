@@ -5,15 +5,15 @@ services:
       context: ./
       dockerfile: docker/php/Dockerfile-dev
     volumes:
-      - .:/var/app
+      - .:/var/app:cached
     command:
       /bin/bash -c "exec php-fpm"
 
   ts_nginx:
     image: nginx:latest
     volumes:
-      - ./docker/nginx/ts-dev.conf:/etc/nginx/conf.d/ts.conf
-      - .:/var/app
+      - ./docker/nginx/ts-dev.conf:/etc/nginx/conf.d/ts.conf:ro
+      - .:/var/app:cached
     ports:
       - "8080:80"
     environment:
@@ -29,7 +29,7 @@ services:
     ports:
       - "5433:5432"
     volumes:
-      - ./postgres-data:/var/lib/postgresql/data
+      - ./postgres-data:/var/lib/postgresql/data:cached
     environment:
       POSTGRES_USER: ts
       POSTGRES_DB: ts
@@ -46,6 +46,6 @@ services:
     ports:
       - "8081:8081"
     volumes:
-    - ./socket-server:/var/app
+    - ./socket-server:/var/app:cached
     command:
       node /var/app/index.js

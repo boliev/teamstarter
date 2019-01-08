@@ -53,7 +53,7 @@ body {
 	font-size: 16px;
 	line-height: 1.5;
 	letter-spacing: .5px;
-	background-color: #fff;
+	background: #1a1a1a !important;
 	color: #222222;
 	font-family: 'Lato', sans-serif;
 	-webkit-font-smoothing: antialiased;
@@ -2214,4 +2214,18 @@ div.bootstrap-tagsinput ul.dropdown-menu a.dropdown-item {
 .login-form-input {
 	background-image: none;
 	font-size: 14px;
+}
+
+.logo img {
+	height: 100px;
+}
+
+.kc_text_block {
+	text-align: center;
+}
+
+#content {
+	padding: 0px;
+	margin: 0px;
+	background: #ffffff;
 }
