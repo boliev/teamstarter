@@ -6,6 +6,7 @@ services:
       dockerfile: docker/php/Dockerfile-dev
     volumes:
       - .:/var/app:cached
+      - ./docker/php/upload.ini:/usr/local/etc/php/conf.d/upload.ini:ro
     command:
       /bin/bash -c "exec php-fpm"
 
