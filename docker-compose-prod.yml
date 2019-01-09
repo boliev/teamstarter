@@ -17,7 +17,7 @@ services:
       - ./docker/nginx/ts-prod.conf:/etc/nginx/conf.d/ts.conf:ro
       - .:/var/app
     ports:
-      - "80:80"
+      - "8080:8080"
     environment:
       - NGINX_HOST=ts.loc
       - NGINX_PORT=8080
