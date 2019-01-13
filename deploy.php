@@ -4,7 +4,7 @@ namespace Deployer;
 
 use Symfony\Component\Console\Input\InputOption;
 
-require 'recipe/symfony3.php';
+require 'recipe/symfony4.php';
 
 // Project name
 set('application', 'teamstarter');
@@ -17,19 +17,19 @@ set('git_tty', true);
 
 // Shared files/dirs between deploys
 add('shared_files', [
-    'app/config/parameters.yml',
+    '.env.local',
 ]);
 add('shared_dirs', [
-    'var/logs',
-    'web/avatars',
-    'web/screes',
+    'var/log',
+    'public/avatars',
+    'public/screens',
 ]);
 
 // Writable dirs by web server
 add('writable_dirs', [
     'var',
-    'web/avatars',
-    'web/screens',
+    'public/avatars',
+    'public/screens',
 ]);
 set('allow_anonymous_stats', false);
 set('writable_use_sudo', true);
@@ -38,8 +38,9 @@ set('writable_use_sudo', true);
 
 host('dev')
     ->hostname('voovle.ru')
+    ->stage('develop')
     ->user('deploy')
-    ->set('deploy_path', '/var/www/ts_dev/{{application}}');
+    ->set('deploy_path', '/var/www/ts_dev4/{{application}}');
 
 // Tasks
 
