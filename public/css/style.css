@@ -2233,3 +2233,11 @@ div.bootstrap-tagsinput ul.dropdown-menu a.dropdown-item {
 	margin: 0px;
 	background: #ffffff;
 }
+
+#main-mobile-menu {
+	padding-top: 0px;
+}
+
+.navbar-nav {
+	display: block;
+}
