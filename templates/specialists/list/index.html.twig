@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class ="container">
+        <div class="row section-content-2 padding-bottom-5">
+
+            <div class="col-sm-8 col-sm-offset-2">
+                <div class="kc-elm kc-title-wrap  left dark">
+                    <div class="title-wrapper">
+                        <h3 class="kc_title">{{ 'specialists.list_title' | trans | raw }}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <div class="row search-container">
+                <form name="search-form" id="search-form" method="get" action="{{ path('specialists_list') }}">
+                    <div class=" col-md-offset-3 col-md-6 form-group">
+                        <input type="text" name="query" placeholder="{{ 'search_placeholder' | trans }}" class="input-block projects-search-input" value="{% if searchQuery %}{{ searchQuery }}{% endif %}">
+                    </div>
+                    <div class="col-md-1 margin-left-1 padding-left-1">
+                        <a href="#" onclick="$('#search-form').submit()" class="projects-search-button"><i class="fas fa-search"></i></a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        {% if pagination is empty  %}
+            <div class="no-projects-found">{{ 'specialists.no_one_found' | trans }}</div>
+        {% endif %}
+
+            {% for user in pagination %}
+
+                <article class="post">
+                    <div class="entry-content">
+                        <div class="entry-meta">
+                            <div class="info">
+                                <div class="meta margin-top-1"><span><i class="fas fa-briefcase"></i>
+                                    {% for userSpecialization in user.userSpecializations %}
+                                        {{ userSpecialization.specialization.title }}{% if not loop.last %}, {% endif %}
+                                    {% endfor %}
+                                    </span>
+                                    {% if user.city %}
+                                        <span><i class="fas fa-map-marker"></i>{{ user.city }}{% if user.country%}, {{ user.country}}{% endif %}</span>
+                                    {% elseif user.country%}
+                                        <span><i class="fas fa-map-marker"></i>{{ user.country }}</span>
+                                    {% endif %}
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-2">
+                                        <div class="specialists-list-avatar text-center padding-top-10">
+                                            <img class="specialists-avatar" src="{% if user.profilePicture %} {{ user.profilePicture }} {% else %}{{ asset(avatart_placeholder) }}{% endif %}" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-10">
+                                        <div class="row">
+                                            <div class="col-sm-12 padding-left-1"><h4 class="entry-title"><a href="{{ path('specialists_more', {'user': user.id}) }}">{{ user.fullName }}</a></h4></div>
+                                            <div class="info-bottom">
+                                                <div class="info-description">{{ user.about }}</div>
+                                                <div>
+                                                    {% for userSkill in user.userSkills %} <span class="badge project-card-role-tag">{{ userSkill.skill.title }}</span> {% endfor %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            {% endfor %}
+
+        <div class="navigation">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+    </div>
+{% endblock %}

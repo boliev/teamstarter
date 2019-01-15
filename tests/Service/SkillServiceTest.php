@@ -12,7 +12,7 @@ class SkillServiceTest extends TestCase
      */
     public function testGenerateSlug(string $input, string $output)
     {
-        $skillService = new \AppBundle\Service\SkillService();
+        $skillService = new \App\Service\SkillService();
         $slug = $skillService->generateSlug($input);
         $this->assertEquals($slug, $output);
     }

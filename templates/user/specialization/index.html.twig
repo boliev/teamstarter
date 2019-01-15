@@ -1,0 +1,141 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class ="container">
+        <div class="row section-content-2">
+
+            <div class="form-section">
+                <div class="col-sm-8 col-sm-offset-2">
+                    <form method="post" action="">
+                        <div class="kc-elm kc-title-wrap  left dark">
+                            <div class="title-wrapper">
+                                <h3 class="kc_title">{{ 'specialization.chose' | trans | raw }}</h3>
+                            </div>
+                        </div>
+                        <p class="hint" id="you_can_choose">{{ 'specialization.you_can_choose' | trans({'%count%':3}) | raw }}</p>
+                        <p class="hint" style="display:none" id="you_cant_choose_anymore">{{ 'specialization.selected' | trans }}</p>
+
+                        {% for message in app.flashes('specialization-success') %}
+                            <div class="success-message">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+
+                        {% for message in app.flashes('specialization-errors') %}
+                            <div class="error margin-bottom-10">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+
+
+
+                        {% for specialization in specializations %}
+                            {% if loop.first %}
+                            <div class="row">
+                            {% endif %}
+                                <div class="col-md-4"><label class="form-check-label"><input type="checkbox" class="form-check-input specialization-checkbox" name="specializations[]" value="{{ specialization.id }}" {% if(userSpecialization[specialization.id]) is defined %} checked="checked" {% endif %} />{{ specialization.title }}</label></div>
+                                    {% if loop.index is divisible by(3) or loop.last %}
+                            </div>
+                                        {% if not loop.last %}
+                        <div class="row">
+                                        {% endif %}
+                                    {% endif %}
+                        {% endfor %}
+
+                            <div class="kc-elm kc-title-wrap  left dark">
+                                <div class="title-wrapper margin-top-25">
+                                    <h3 class="kc_title">{{ 'skill.add' | trans | raw }}</h3>
+                                </div>
+                            </div>
+
+                            <p class="hint">{{ 'skill.add_hint' | trans }}</p>
+                            <div class="row">
+                                <div class="col-md-12 skill-input">
+                                    <input type="text" name="skills" id="user-specializations-skills" class="input-block">
+                                </div>
+                            </div>
+                            <p class="text-center margin-top-15"><input type="submit" class="wpcf7-form-control wpcf7-submit btn btn-primary btn-outline" value="{{ 'submit'|trans }}"></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $(function(){
+            var tagInput = $('#user-specializations-skills');
+
+            $.get('{{ path('ajax_skills') }}', function(data){
+                var autocomplete = [];
+                for (key in data) {
+                    autocomplete.push(data[key].name);
+                }
+                console.log(autocomplete);
+                tagInput.tagsinput({
+                    typeahead: {
+                        source: autocomplete,
+                        name: 'name',
+                        displayKey: 'name',
+                        valueKey: 'name',
+                        afterSelect: function(item) {
+                            tagInput.tagsinput('input').val('');
+                        }
+                    }
+                });
+
+                {% for userSkill in userSkills %}
+                tagInput.tagsinput('add', "{{ userSkill.skill.title }}");
+                {% endfor %}
+                addTagsPlaceholderIfNeeded(tagInput.tagsinput('items'));
+
+                tagInput.on('itemAdded', function(event) {
+                    addTagsPlaceholderIfNeeded(tagInput.tagsinput('items'));
+                });
+                tagInput.on('itemRemoved', function(event) {
+                    addTagsPlaceholderIfNeeded(tagInput.tagsinput('items'));
+                });
+            });
+        });
+
+        function addTagsPlaceholderIfNeeded(tags)
+        {
+            var tagInput = $('#user-specializations-skills');
+            if(tags.length) {
+                tagInput.tagsinput('input').removeAttr('placeholder');
+            } else {
+                tagInput.tagsinput('input').attr('placeholder', '{{ 'skill.input_hint' | trans }}');
+            }
+
+        }
+
+        $(function(){
+            validateSpecialization();
+            $(".specialization-checkbox").change(validateSpecialization);
+        });
+
+        function validateSpecialization()
+        {
+            var count = $(".specialization-checkbox:checked").length;
+            if(count >= 3) {
+                $("#you_can_choose").hide();
+                $("#you_cant_choose_anymore").show();
+                $(".specialization-checkbox:not(:checked)").attr('disabled', 'disabled');
+                $(".specialization-checkbox:not(:checked)").parent('label').addClass('disabled');
+            } else {
+                var more = 3-parseInt(count);
+                $("#you_cant_choose_anymore").hide();
+                $("#you_can_choose").show();
+                $("#spec_more").text(more);
+                $(".specialization-checkbox").removeAttr('disabled');
+                $(".specialization-checkbox").parent('label').removeClass('disabled');
+                if(more == 1) {
+                    $("#spec_more_specializations").text("{{ 'specialization.specialization' | trans }}");
+                } else {
+                    $("#spec_more_specializations").text("{{ 'specialization.specializations' | trans }}");
+                }
+            }
+        }
+    </script>
+{% endblock %}

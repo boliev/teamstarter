@@ -1,7 +1,11 @@
 /.web-server-pid
+/.env.local
+/.env.*.local
+/public/bundles/
 /app/config/parameters.yml
 /build/
 /phpunit.xml
+.phpunit
 /var/*
 !/var/cache
 /var/cache/*
@@ -19,3 +23,7 @@
 .php_cs.cache
 /web/avatars/*
 /web/screens/*
+/postgres-data/
+/socket-server/node_modules
+/public/screens/
+

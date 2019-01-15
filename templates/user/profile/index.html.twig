@@ -1,0 +1,89 @@
+{% extends 'base.html.twig' %}
+{% form_theme form _self %}
+{% block body %}
+    <div class ="container">
+        <div class="row section-content-2">
+
+            <div class="form-section">
+                <div class="col-sm-8 col-sm-offset-2">
+                    <div class="kc-elm kc-title-wrap  left dark">
+                        <div class="title-wrapper">
+                            <h3 class="kc_title">{{ 'user.about_profile' | trans }}</h3>
+                        </div>
+                    </div>
+
+                    <p class="hint">{{ 'user.new_password_form_hint' | trans }}</p>
+
+                    {% for message in app.flashes('profile-success') %}
+                        <div class="success-message">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+
+                    <form method="post" action="">
+
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                {{ form_label(form.firstName, '', {'label_attr': {'class': 'bmd-label-floating'}}) }}
+                                {{ form_widget(form.firstName, {'attr': {'class': 'input-block'}}) }}
+                                {{ form_errors(form.firstName)}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                {{ form_label(form.lastName, '', {'label_attr': {'class': 'bmd-label-floating'}}) }}
+                                {{ form_widget(form.lastName, {'attr': {'class': 'input-block'}}) }}
+                                {{ form_errors(form.lastName)}}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                {{ form_label(form.newPassword, '', {'label_attr': {'class': 'bmd-label-floating'}}) }}
+                                {{ form_widget(form.newPassword, {'attr': {'class': 'input-block'}}) }}
+                                {{ form_errors(form.newPassword)}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                {{ form_label(form.newPasswordRepeat, '', {'label_attr': {'class': 'bmd-label-floating'}}) }}
+                                {{ form_widget(form.newPasswordRepeat, {'attr': {'class': 'input-block'}}) }}
+                                {{ form_errors(form.newPasswordRepeat)}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                {{ form_label(form.oldPassword, '', {'label_attr': {'class': 'bmd-label-floating'}}) }}
+                                {{ form_widget(form.oldPassword, {'attr': {'class': 'input-block'}}) }}
+                                {{ form_errors(form.oldPassword)}}
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-offset-2 col-md-8 form-bottom">
+                                {{ form_row(form._token) }}
+                                    <input type="submit" class="btn btn-primary btn-large" value="{{ 'submit'|trans }}">
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+
+{% endblock %}
+
+{% block form_errors %}
+    {% spaceless %}
+        {% if errors|length > 0 %}
+                {% for error in errors %}
+                    <div class="error">{{ error.message }}</div>
+                {% endfor %}
+        {% endif %}
+    {% endspaceless %}
+{% endblock form_errors %}

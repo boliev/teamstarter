@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class ="container">
+
+        {% for message in app.flashes('add-role-success') %}
+            <div class="success-message margin-top-20">
+                {{ message | raw}}
+            </div>
+        {% endfor %}
+
+                <article class="post">
+                    <div class="entry-content">
+                        <div class="entry-meta">
+                            <div class="info">
+                                <div class="meta margin-top-1">
+                                    <span class="date"><i class="mn-icon-1130"></i>{{ project.createdAt|localizeddate('medium') }}</span>
+                                    <span class="date"><i class="fas fa-user-tie"></i>{{ project.user.getFullName() }}</span>
+                                    <span><i class="mn-icon-132"></i>{{ project.status.name }}</span>
+                                    {% if project.city %}
+                                        <span><i class="fas fa-map-marker"></i>{{ project.city }}{% if project.country%}, {{ project.country}}{% endif %}</span>
+                                    {% elseif project.country%}
+                                        <span><i class="fas fa-map-marker"></i>{{ project.country }}</span>
+                                    {% endif %}
+                                    {% if project.screens | length > 0 %}<span><i class="far fa-image"></i>Screenshots</span>{% endif %}
+                                </div>
+                                <div class="row"><div class="col-sm-12"><h1 class="entry-title"><a href="#">{{ project.name }}</a></h1></div></div>
+                                {% if offer and app.flashes('do-not-show-proposal-already-message')|length == 0 %}
+                                    <div class="hint-success text-center margin-top-10">{{ 'project.proposal_already_posted' | trans ({'{offer}': path('dialogs_more', {'offer': offer.id})}) | raw}}</div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="info-bottom">
+                            <div class="info-description-title">{{ 'project.form_mission' | trans }}</div>
+                            <div class="info-description">{{ project.mission }}</div>
+                            <div class="info-description-title">{{ 'project.form_description' | trans }}</div>
+                            <div class="info-description">{{ project.description }}</div>
+                            {% if not offer and app.user.id != project.user.id %}
+                                <div class="info-description-proposal margin-top-10">
+                                    <input type="button" onclick="window.location.href = '{{ path('project_add_proposal', {'project': project.id}) }}'" class="btn btn-default btn-warning blue" value="{{ 'project.submit_proposal_button' | trans }}">
+                                </div>
+                            {% endif %}
+                            {% if project.getVacantOpenRoles|length > 0 %}
+                            <div class="info-description-title">{{ 'project.open_roles' | trans }}</div>
+                            <div class="row">
+                            <div class="info-description col-md-6">
+                                <ul class="project-card-roles">
+                                    {% for role in project.getVacantOpenRoles %}
+                                    {% if role.vacant %}
+
+                                            <li>
+                                                <i class="fas fa-door-open"></i><a href="#null" onclick="expandRole({{ role.id }})">{{ role.name }}</a>
+                                                <div style="display: none" class="project-card-role" id="project-card-role-{{ role.id }}">
+                                                    {{ role.description }}
+                                                    {% if role.skills %}
+                                                        <div>
+                                                            {% for roleSkill in role.skills %} <span class="badge project-card-role-tag">{{ roleSkill.skill.title }}</span> {% endfor %}
+                                                        </div>
+                                                    {% endif %}
+                                                </div>
+                                            </li>
+                                    {% endif %}
+                                    {% endfor %}
+                                </ul><div style="clear: both"></div></div>
+                                <div class="info-description col-md-6 form-section">
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </article>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        function expandRole (roleId) {
+            $('#project-card-role-'+roleId).toggle();
+        }
+    </script>
+{% endblock %}

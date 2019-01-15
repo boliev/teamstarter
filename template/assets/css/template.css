@@ -4485,7 +4485,7 @@ strong{
       }
       .kc-title-wrap.lighting .kc_title:before {
         content: "";
-        background: url("../img/line-left-white.png") no-repeat;
+        background: url("/img/line-left-white.png") no-repeat;
         width: 90px;
         height: 25px;
         display: inline-block;
@@ -4507,7 +4507,7 @@ strong{
     @media (min-width: 768px) {
       .kc-title-wrap.left.lighting .kc_title:after {
         content: "";
-        background: url("../img/line-right-dark1.png") no-repeat;
+        background: url("/img/line-right-dark1.png") no-repeat;
         width: 53px;
         height: 18px;
         display: inline-block;
@@ -4520,7 +4520,7 @@ strong{
       }
       .kc-title-wrap.left.lighting .kc_title:before {
         content: "";
-        background: url("../img/line-left-white.png") no-repeat;
+        background: url("/img/line-left-white.png") no-repeat;
         width: 0px;
         height: 0px;
         display: none;
@@ -7045,9 +7045,7 @@ strong{
         padding: 35px 0;
       }
     }
-    .post .entry-content .info .meta {
-      padding: 30px 0 10px;
-    }
+
     .post .entry-content .info .meta i {
       font-size: 21px;
       color: #42a5f5;

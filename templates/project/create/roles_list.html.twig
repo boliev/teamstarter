@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class ="container">
+        <div class="row section-content-2">
+
+            <div class="form-section">
+                <div class="col-sm-8 col-sm-offset-2">
+                    <form method="post" action="">
+                        <div class="kc-elm kc-title-wrap  left dark">
+                            <div class="title-wrapper">
+                                <h3 class="kc_title">{{ 'project.open_roles_title' | trans | raw }}</h3>
+                            </div>
+                        </div>
+
+                        {% for message in app.flashes('project-warning') %}
+                            <div class="warning-message margin-bottom-10">{{ message }}</div>
+                        {% endfor %}
+
+                        {% for message in app.flashes('add-role-success') %}
+                            <div class="success-message">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+
+                        {% for role in rolesList %}
+
+                            <div class="row role-list {% if not role.isVacant %} inactive-row {% endif %}">
+                                <div class="col-sm-6">
+                                    {{ role.name }}
+                                </div>
+                                <div class="col-sm-3">
+                                    {{ role.specialization.title }}
+                                </div>
+                                <div class="col-sm-3">
+                                    <a class="table-list-actions" href="{{ path('project_edit_open_roles_edit', {'project': project.id, 'role': role.id}) }}">{{ 'project.edit_link' | trans }}</a>
+                                    {% if role.isVacant %}
+                                        <a class="table-list-actions" href="{{ path('project_role_edit_close', {'role': role.id}) }}">{{ 'project.close_link' | trans }}</a>
+                                    {% else %}
+                                        <a class="table-list-actions" href="{{ path('project_role_edit_open', {'role': role.id}) }}">{{ 'project.open_link' | trans }}</a>
+                                    {% endif %}
+                                </div>
+
+                            </div>
+                        {% endfor %}
+
+                        <div class="row">
+                            <div class="col-sm-12 text-center margin-top-25">
+                                <a href="{{ path('project_edit_open_roles_add', {'project': project.id}) }}">{{ 'project.add_role' | trans }}</a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-offset-2 col-md-8 form-bottom margin-top-20">
+                                <input type="button" class="btn btn-default btn-large" onclick="window.location.href = '{{ path('project_edit_name', {'project': project.id}) }}'" value="{{ 'project.back_button'|trans }}">
+                                <input type="button" class="btn btn-default btn-large" onclick="window.location.href = '{{ path('project_edit_screens', {'project': project.id}) }}'" value="{{ 'project.next_button'|trans }}">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

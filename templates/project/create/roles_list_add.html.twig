@@ -1,0 +1,123 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class ="container">
+        <div class="row section-content-2">
+
+            <div class="form-section">
+                <div class="col-sm-8 col-sm-offset-2">
+                    <form method="post" action="">
+                        <div class="kc-elm kc-title-wrap  left dark">
+                            <div class="title-wrapper">
+                                {% if app.request.get('_route') == 'project_edit_open_roles_edit' %}
+                                    <h3 class="kc_title">{{ 'project.add_role_page_title_edit' | trans | raw }}</h3>
+                                {% else %}
+                                    <h3 class="kc_title">{{ 'project.add_role_page_title_add' | trans | raw }}</h3>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                {{ form_label(form.name, '', {'label_attr': {'class': 'bmd-label-floating'}}) }}
+                                {{ form_widget(form.name, {'attr': {'class': 'input-block'}}) }}
+                                {{ form_errors(form.name)}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                {{ form_label(form.specialization, '', {'label_attr': {'class': 'bmd-label-floating'}}) }}
+                                {{ form_widget(form.specialization, {'attr': {'class': 'input-block'}}) }}
+                                {{ form_errors(form.specialization)}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                {{ form_widget(form.skills, {'attr': {'class': 'input-block'}}) }}
+                                {{ form_errors(form.skills)}}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                {{ form_label(form.description, '', {'label_attr': {'class': 'bmd-label-floating'}}) }}
+                                {{ form_widget(form.description, {'attr': {'class': 'input-block', 'rows': '12'}}) }}
+                                {{ form_errors(form.description)}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-offset-2 col-md-8 form-bottom">
+                                {{ form_row(form._token) }}
+                                <input type="button" class="btn btn-default btn-warning" onclick="window.location.href = '{{ path('project_edit_open_roles_list', {'project': project.id}) }}'" value="{{ 'cancel'|trans }}">
+                                {% if app.request.get('_route') == 'project_edit_open_roles_edit' %}
+                                    <input type="submit" class="btn btn-primary btn-large" value="{{ 'project.add_role_submit_edit'|trans }}">
+                                {% else %}
+                                    <input type="submit" class="btn btn-primary btn-large" value="{{ 'project.add_role_submit_add'|trans }}">
+                                {% endif %}
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $(function(){
+            var tagInput = $('#open_role_skills');
+
+            $.get('{{ path('ajax_skills') }}', function(data){
+                var autocomplete = [];
+                for (key in data) {
+                    autocomplete.push(data[key].name);
+                }
+                tagInput.tagsinput({
+                    typeahead: {
+                        source: autocomplete,
+                        name: 'name',
+                        displayKey: 'name',
+                        valueKey: 'name',
+                        afterSelect: function(item) {
+                            tagInput.tagsinput('input').val('');
+                        }
+                    }
+                });
+
+                {% for roleSkill in role.getSkills %}
+                    tagInput.tagsinput('add', "{{ roleSkill.skill.title }}");
+                {% endfor %}
+                addTagsPlaceholderIfNeeded(tagInput.tagsinput('items'));
+
+                tagInput.on('itemAdded', function(event) {
+                    addTagsPlaceholderIfNeeded(tagInput.tagsinput('items'));
+                });
+                tagInput.on('itemRemoved', function(event) {
+                    addTagsPlaceholderIfNeeded(tagInput.tagsinput('items'));
+                });
+            });
+        });
+
+        function addTagsPlaceholderIfNeeded(tags)
+        {
+            var tagInput = $('#open_role_skills');
+            if(tags.length) {
+                tagInput.tagsinput('input').removeAttr('placeholder');
+            } else {
+                tagInput.tagsinput('input').attr('placeholder', '{{ 'skill.input_hint' | trans }}');
+            }
+
+        }
+    </script>
+{% endblock %}
+
+{% block form_errors %}
+    {% spaceless %}
+        {% if errors|length > 0 %}
+            {% for error in errors %}
+                <div class="error">{{ error.message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endspaceless %}
+{% endblock form_errors %}

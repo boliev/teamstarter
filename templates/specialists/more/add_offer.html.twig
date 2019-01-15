@@ -1,0 +1,92 @@
+{% extends 'base.html.twig' %}
+{% form_theme form _self %}
+{% block body %}
+    <div class ="container">
+        <div class="row section-content-2">
+
+            <div class="form-section">
+                <div class="col-sm-8 col-sm-offset-2">
+                    <form method="post" action="">
+                        <div class="kc-elm kc-title-wrap  left dark">
+                            <div class="title-wrapper">
+                                <h3 class="kc_title">{{ 'specialists.offer_header' | trans | raw }}</h3>
+                            </div>
+                        </div>
+
+                        {% for message in app.flashes('offer-warning') %}
+                            <div class="warning-message margin-bottom-10">{{ message }}</div>
+                        {% endfor %}
+
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                {{ form_widget(form.project, {'attr': {'class': 'input-block'}}) }}
+                                {{ form_errors(form.project)}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                {{ form_widget(form.role, {'attr': {'class': 'input-block'}}) }}
+                                {{ form_errors(form.role)}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                {{ form_widget(form.message, {'attr': {'class': 'input-block'}}) }}
+                                {{ form_errors(form.message)}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-offset-2 col-md-8 form-bottom">
+                                {{ form_row(form._token) }}
+                                <input type="submit" class="btn btn-primary btn-large" value="{{ 'specialists.submit_offer' | trans }}">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $(function(){
+            $("#offer_to_specialist_project").change(function() {
+                cleaRoles();
+                var id = $(this).val();
+                if(parseInt(id) > 0) {
+                    $.ajax({
+                        url: '/api/v1/project/' + id + '/get-roles',
+                        success: function (data) {
+                            for (var id in data) {
+                                $("#offer_to_specialist_role").append("<option value='" + id + "'>" + data[id])
+                            }
+                        },
+                        dataType: 'JSON'
+                    });
+                }
+            });
+
+            function cleaRoles()
+            {
+                $("#offer_to_specialist_role").find("option").each(function(){
+                    if(parseInt($(this).val()) > 0) {
+                        $(this).remove();
+                    }
+                });
+            }
+        })
+    </script>
+{% endblock %}
+
+{% block form_errors %}
+    {% spaceless %}
+        {% if errors|length > 0 %}
+            {% for error in errors %}
+                <div class="error">{{ error.message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endspaceless %}
+{% endblock form_errors %}
