@@ -1,7 +1,3 @@
-
-
-
-{#{% extends "@FOSUser/layout.html.twig" %}#}
 {% trans_default_domain 'FOSUserBundle' %}
 
 {% block fos_user_content %}
@@ -11,7 +7,7 @@
     <div class="modal-content">
         <div class="modal-header">
             <span class="close">&times;</span>
-            <h2 class="text-uppercase">Log In</h2>
+            <h2 class="text-uppercase">{{ 'sign_in' | trans ({}, 'messages') }}</h2>
         </div>
         <div class="modal-body margin-top-40">
             <div id="modal-login-form-errors">
@@ -25,22 +21,21 @@
                 <div class="form-group">
                     <input name="_password" type="password" placeholder="{{ 'security.login.password'|trans }}" class="password required form-control login-form-input" id="login_password">
                 </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group margin-top-12">
-                            <label style="font-weight: normal">
-                                <input class="checkbox-noanet" type="checkbox" name="_remember_me" id="apus-user-remember" value="on"> &nbsp; {{ 'security.login.remember_me'|trans }}
-                            </label>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div class="form-group margin-top-12">
+                                <label style="font-weight: normal">
+                                    <input class="checkbox-noanet" type="checkbox" name="_remember_me" id="apus-user-remember" value="on"> &nbsp; {{ 'security.login.remember_me'|trans }}
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <p class="margin-top-30">
+                                <a class="lost-pass" href="{{ path('fos_user_resetting_request') }}" class="back-link" title="Forgot Password">{{ 'user.lost_password' | trans({}, 'messages') }}</a>
+                            </p>
+
                         </div>
                     </div>
-                    <div class="col-sm-6">
-                        <p class="margin-top-30">
-                            <a class="lost-pass" href="{{ path('fos_user_resetting_request') }}" class="back-link" title="Forgot Password">{{ 'user.lost_password' | trans({}, 'messages') }}</a>
-                        </p>
-
-                    </div>
-                </div>
-
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="modal-login-social text-center">
@@ -56,7 +51,7 @@
                     <input id="modal-login-submit" type="submit" class="btn text-uppercase btn-sm btn-warning" name="submit" value="{{ 'security.login.submit'|trans }}">
                     <input type="button" class="btn text-uppercase btn-sm btn-default btn-cancel" name="cancel" value="Register" onclick="window.location.href='{{ path('fos_user_registration_register') }}'">
                 </div>
-                <input type="hidden" id="security_login" name="security_login" value="f6377080a1"><input type="hidden" name="_wp_http_referer" value="/wp-demo/noanet/">                </form>
+            </form>
         </div>
     </div>
 
