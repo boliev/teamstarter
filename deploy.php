@@ -38,7 +38,7 @@ set('writable_use_sudo', true);
 
 host('dev')
     ->hostname('voovle.ru')
-    ->stage('develop')
+    ->stage('feature/#59-design')
     ->user('deploy')
     ->set('deploy_path', '/var/www/ts_dev4/{{application}}');
 
