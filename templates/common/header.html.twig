@@ -1,5 +1,5 @@
-{% include 'common/mobile_header.html.twig' %}
-<header id="apus-header" class="site-header header-v2 hidden-sm hidden-xs">
+{% include 'common/main_menu/mobile.html.twig' %}
+<header id="apus-header" class="site-header header-v2">
     <div id="apus-topbar" class="apus-topbar">
         <div class="container">
             <div class="topbar-inner clearfix">
@@ -12,28 +12,7 @@
                         </div>
                     </aside>
                 </div>
-                <div class="pull-right widget-social">
-                    <ul class="top-user-menu">
-                        {% if app.user %}
-                                <li><img alt="" id="top-menu-avatar" src="{% if app.user.profilePicture %} {{ app.user.profilePicture }} {% else %}{{ asset(avatart_placeholder) }}{% endif %}" /></li>
-                                <li>
-                                    <div class="dropdown show">
-                                        <a class="btn btn-secondary dropdown-toggle top-menu-user" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        {{ app.user.fullName }}
-                                        </a>
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                            <a class="dropdown-item" href="{{ path('user_profile_form') }}">{{ 'profile' | trans }}</a>
-                                            <a class="dropdown-item" href="{{ path('user_about_form') }}">{{ 'user.about_menu_title' | trans }}</a>
-                                            <a class="dropdown-item" href="{{ path('user_specialization_form') }}">{{ 'specialization.menu_title' | trans }}</a>
-                                            <a class="dropdown-item" href="{{ path('fos_user_security_logout') }}">{{ 'logout' | trans }}</a>
-                                        </div>
-                                    </div>
-                                </li>
-                        {% else %}
-                            <button id="myBtn" class="modal-btn-1"><i class="mn-icon-410"></i> Login</button>
-                        {% endif %}
-                    </ul>
-                </div>
+                {% include 'common/user_menu.html.twig' %}
             </div>
         </div>
     </div>
@@ -54,20 +33,12 @@
                             </div>
                         </div>
                         <div class="col-md-9 p-static">
-                            <div class="main-menu pull-left">
-                                <nav data-duration="400" class="hidden-xs hidden-sm apus-megamenu slide animate navbar">
-                                    <div class="collapse navbar-collapse">
-                                        <ul id="primary-menu" class="nav navbar-nav megamenu">
-                                            {% include 'common/top_menu_items.html.twig' %}
-                                        </ul>
-                                    </div>
-                                </nav>
-                            </div>
+
+                            {% include 'common/main_menu/regular.html.twig' %}
 
                             <div class="setting-popup pull-right">
                                 <!-- The Modal -->
-                                {% include 'common/login_modal.html.twig' %}
-
+                                {% include 'common/login_modal.html.twig'  with {'login_modal_id': 'myModal'} %}
                             </div>
                         </div>
                     </div>

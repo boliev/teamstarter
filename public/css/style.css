@@ -1411,13 +1411,12 @@ button.btn.btn-primary.text-capitalize.active {
 }
 
 .modal-content input, .btn.btn-sm {
-	height: 50px;
 	border-radius: 25px;
 	background-color: #f3f3f3;
 	border: none;
 	padding: 23px;
 }
-input#apus-user-remember, input#apus-user-remember-mobile {
+input#apus-user-remember {
 	height: initial;
 }
 .apus-login-form .form-group {
@@ -2240,4 +2239,22 @@ div.bootstrap-tagsinput ul.dropdown-menu a.dropdown-item {
 
 .navbar-nav {
 	display: block;
+}
+
+#mobile-menu-button {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	margin: 0px;
+	padding: 0px;
+}
+
+#mobile-menu-button button {
+	color: #ffffff;
+	background: transparent;
+	font-size: 14px;
+}
+
+#apus-header.header-v2 {
+	padding: 0px !important;
 }

@@ -1,0 +1,22 @@
+<div class="pull-right widget-social">
+    <ul class="top-user-menu">
+        {% if app.user %}
+            <li><img alt="" id="top-menu-avatar" src="{% if app.user.profilePicture %} {{ app.user.profilePicture }} {% else %}{{ asset(avatart_placeholder) }}{% endif %}" /></li>
+            <li>
+                <div class="dropdown show">
+                    <a class="btn btn-secondary dropdown-toggle top-menu-user" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{ app.user.fullName }}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="{{ path('user_profile_form') }}">{{ 'profile' | trans }}</a>
+                        <a class="dropdown-item" href="{{ path('user_about_form') }}">{{ 'user.about_menu_title' | trans }}</a>
+                        <a class="dropdown-item" href="{{ path('user_specialization_form') }}">{{ 'specialization.menu_title' | trans }}</a>
+                        <a class="dropdown-item" href="{{ path('fos_user_security_logout') }}">{{ 'logout' | trans }}</a>
+                    </div>
+                </div>
+            </li>
+        {% else %}
+            <button id="myBtn" class="modal-btn-1"><i class="mn-icon-410"></i> Login</button>
+        {% endif %}
+    </ul>
+</div>
