@@ -1416,7 +1416,7 @@ button.btn.btn-primary.text-capitalize.active {
 	border: none;
 	padding: 23px;
 }
-input.apus-user-remember {
+input#apus-user-remember {
 	height: initial;
 }
 .apus-login-form .form-group {
@@ -1501,7 +1501,7 @@ span.close-1 {
 	border: none;
 	padding: 0px 25px;
 }
-.modal-login-form-errors {
+#modal-login-form-errors {
 	text-align: center;
 	padding-bottom: 15px;
 	color: red;
