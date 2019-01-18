@@ -1345,7 +1345,6 @@ button.btn.btn-primary.text-capitalize.active {
 	display: none; /* Hidden by default */
 	position: fixed; /* Stay in place */
 	z-index: 999; /* Sit on top */
-	padding-top: 100px; /* Location of the box */
 	left: 0;
 	top: 0;
 	width: 100%; /* Full width */
@@ -1410,12 +1409,13 @@ button.btn.btn-primary.text-capitalize.active {
 	z-index: 999;
 }
 
-.modal-content input, .btn.btn-sm {
+.login-form-input, .btn.btn-sm {
 	border-radius: 25px;
 	background-color: #f3f3f3;
 	border: none;
 	padding: 23px;
 }
+
 input#apus-user-remember {
 	height: initial;
 }
@@ -1424,6 +1424,16 @@ input#apus-user-remember {
 	line-height: 4;
 	padding: 0px;
 }
+
+.apus-login-form .checkbox-noanet-div {
+	line-height: normal;
+}
+
+.checkbox-noanet-label {
+	font-weight: normal;
+	line-height: 1.5;
+}
+
 .modal-header .close {
 	padding: 0px 0px 5px 0px;
 	margin: -2px 0px 0px 0px;

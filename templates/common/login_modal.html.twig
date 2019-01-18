@@ -23,8 +23,8 @@
                 </div>
                     <div class="row">
                         <div class="col-xs-6">
-                            <div class="form-group margin-top-12">
-                                <label style="font-weight: normal">
+                            <div class="form-group margin-top-30 checkbox-noanet-div">
+                                <label class="checkbox-noanet-label">
                                     <input class="checkbox-noanet" type="checkbox" name="_remember_me" id="apus-user-remember" value="on"> &nbsp; {{ 'security.login.remember_me'|trans }}
                                 </label>
                             </div>
@@ -49,7 +49,7 @@
 
                 <div class="form-group padding-bottom-50 text-center">
                     <input id="modal-login-submit" type="submit" class="btn text-uppercase btn-sm btn-warning" name="submit" value="{{ 'security.login.submit'|trans }}">
-                    <input type="button" class="btn text-uppercase btn-sm btn-default btn-cancel" name="cancel" value="Register" onclick="window.location.href='{{ path('fos_user_registration_register') }}'">
+                    <input type="button" class="btn text-uppercase btn-sm btn-default btn-cancel" name="cancel" value="{{ 'layout.register'|trans }}" onclick="window.location.href='{{ path('fos_user_registration_register') }}'">
                 </div>
             </form>
         </div>
