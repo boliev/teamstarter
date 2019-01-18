@@ -1418,6 +1418,7 @@ button.btn.btn-primary.text-capitalize.active {
 
 input#apus-user-remember {
 	height: initial;
+	margin-right: 4px;
 }
 .apus-login-form .form-group {
 	margin-bottom: 0;
