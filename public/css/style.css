@@ -1675,6 +1675,10 @@ div.modal-login-social a, div.register-form-sn-login a {
 	margin: 10px;
 }
 
+.message {
+	padding: 30px;
+}
+
 .form-section input[type="checkbox"] {
 	width: auto;
 	margin-right: 10px;
