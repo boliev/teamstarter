@@ -10,6 +10,7 @@ Declined: Отклонен
 Published: Опубликован
 search_placeholder: Поиск...
 registration:
+    header: Регистрация
     label_first_name: Имя
     label_last_name: Фамилия
     label_email: Email
