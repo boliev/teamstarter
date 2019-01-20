@@ -1780,6 +1780,8 @@ div.modal-login-social a, div.register-form-sn-login a {
 
 .form-section input.btn {
 	display: inline;
+	margin-bottom: 10px;
+	min-width: 240px;
 }
 
 .form-bottom {
