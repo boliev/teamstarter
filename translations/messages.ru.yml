@@ -9,6 +9,10 @@ InReview: На модерации
 Declined: Отклонен
 Published: Опубликован
 search_placeholder: Поиск...
+Idea only: Только идея
+Specifications: Спецификация
+There is a Demo: Демо
+Project released: Проект запущен
 registration:
     header: Регистрация
     label_first_name: Имя

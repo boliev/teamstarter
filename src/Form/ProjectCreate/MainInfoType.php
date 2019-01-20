@@ -12,21 +12,32 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class MainInfoType extends AbstractType
 {
     private $countryRepository;
 
-    public function __construct(CountryRepository $countryRepository)
+    private $translator;
+
+    public function __construct(CountryRepository $countryRepository, TranslatorInterface $translator)
     {
         $this->countryRepository = $countryRepository;
+        $this->translator = $translator;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('name', TextType::class, ['label' => 'project.form_name'])
-            ->add('status', EntityType::class, ['label' => 'project.form_status', 'class' => ProjectStatus::class, 'placeholder' => 'project.form_status_placeholder'])
+            ->add('status', EntityType::class, [
+                'label' => 'project.form_status',
+                'class' => ProjectStatus::class,
+                'placeholder' => 'project.form_status_placeholder',
+                'choice_label' => function (ProjectStatus $status) {
+                    return $this->translator->trans($status->getName());
+                },
+            ])
             ->add('country', ChoiceType::class, [
                 'mapped' => false,
                 'label' => 'project.form_country',
