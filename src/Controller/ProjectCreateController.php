@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Country;
 use App\Entity\Project;
 use App\Form\ProjectCreate\MainInfoType;
+use App\Repository\CountryRepository;
 use App\Service\ProjectService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -37,6 +39,7 @@ class ProjectCreateController extends AbstractController
      * @param EntityManagerInterface $em
      * @param TranslatorInterface    $translator
      * @param ProjectService         $projectService
+     * @param CountryRepository      $countryRepository
      *
      * @return Response
      */
@@ -45,7 +48,8 @@ class ProjectCreateController extends AbstractController
         Request $request,
         EntityManagerInterface $em,
         TranslatorInterface $translator,
-        ProjectService $projectService
+        ProjectService $projectService,
+        CountryRepository $countryRepository
     ) {
         if (!$project) {
             $project = new Project();
@@ -59,6 +63,14 @@ class ProjectCreateController extends AbstractController
         $form = $this->createForm(MainInfoType::class, $project);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            if ($form['country']->getData()) {
+                /** @var Country $country */
+                $country = $countryRepository->findOneBy(['code' => $form['country']->getData()]);
+                if ($country) {
+                    $project->setCountry($country);
+                }
+            }
+
             $em->persist($project);
             $em->flush();
             $projectService->reModerateIfNeeded($project);

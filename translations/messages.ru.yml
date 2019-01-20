@@ -62,9 +62,10 @@ skill:
 user:
     about_title: <span>Расскажите</span> о себе
     about_menu_title: О вас
-    about_skip: Эту форму можно пропустить, но чем больше информации вы укажите, тем выше шанс найти парнера
+    about_skip: Эту форму можно пропустить, но чем больше информации вы укажите, тем выше шанс найти партнера
     about_skip_button: Пропустить форму
     about_profile: Профиль
+    profile_menu_title: Профиль
     country: Страна
     choose_country: Выберите страну
     city: Город
