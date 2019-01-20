@@ -88,7 +88,7 @@ user:
     about: Расскажите о себе
     profile_picture: Загрузить фото
     avatar_max_size_exception: Максимальный размер фото {size} MБ
-    avatar_max_size_hint: Только изображения, максимум {size} MБ
+    avatar_max_size_hint: Максимальный размер фото {size} MБ
     avatar_extension_exception: Только изображения
     profile_form_success: Профиль сохранен!
     about_form_success: Изменения сохранены!
