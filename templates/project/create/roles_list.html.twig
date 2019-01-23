@@ -25,13 +25,13 @@
                         {% for role in rolesList %}
 
                             <div class="row role-list {% if not role.isVacant %} inactive-row {% endif %}">
-                                <div class="col-sm-6">
+                                <div class="col-sm-5">
                                     {{ role.name }}
                                 </div>
-                                <div class="col-sm-3">
+                                <div class="col-sm-3 role-list-specialization">
                                     {{ role.specialization.title }}
                                 </div>
-                                <div class="col-sm-3">
+                                <div class="col-sm-4">
                                     <a class="table-list-actions" href="{{ path('project_edit_open_roles_edit', {'project': project.id, 'role': role.id}) }}">{{ 'project.edit_link' | trans }}</a>
                                     {% if role.isVacant %}
                                         <a class="table-list-actions" href="{{ path('project_role_edit_close', {'role': role.id}) }}">{{ 'project.close_link' | trans }}</a>

@@ -2276,3 +2276,13 @@ div.bootstrap-tagsinput ul.dropdown-menu a.dropdown-item {
 #apus-header.header-v2 {
 	padding: 0px !important;
 }
+
+.role-list a {
+	font-size: 14px;
+}
+
+.role-list-specialization {
+	color: #666666;
+	font-style: italic;
+	font-size: 14px;
+}
