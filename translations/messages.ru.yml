@@ -141,7 +141,7 @@ project:
     form_status_placeholder: Выберите статус
     form_mission: Миссия
     form_description: Описание
-    agree_button: Я согласен с правилами создания проекта
+    agree_button: Cогласен с правилами
     next_button: Продолжить
     finish_button: Завершить
     back_button: Назад
