@@ -70,7 +70,7 @@ class ProjectChangeProgressStatusSubscriber implements EventSubscriberInterface
         $message = (new \Swift_Message($this->translator->trans('project.submit_success_email.subject')))
             ->setFrom($this->fromEmailAddress, $this->fromName)
             ->setTo($user->getEmail())
-            ->setBody($this->translator->trans('project.submit_success_email.message', ['%username%' => $user->getFullName() ?? $user->getEmail()]), 'text/html');
+            ->setBody($this->translator->trans('project.submit_success_email.message', ['%username%' => $user->getFirstName() ?? $user->getEmail()]), 'text/html');
 
         $this->mailer->send($message);
         $this->flashBag->add('project-saved', $this->translator->trans('project.submit_success'));
@@ -88,7 +88,7 @@ class ProjectChangeProgressStatusSubscriber implements EventSubscriberInterface
         $message = (new \Swift_Message($this->translator->trans('project.edit_success_email.subject')))
             ->setFrom($this->fromEmailAddress, $this->fromName)
             ->setTo($user->getEmail())
-            ->setBody($this->translator->trans('project.edit_success_email.message', ['%username%' => $user->getFullName() ?? $user->getEmail()]), 'text/html');
+            ->setBody($this->translator->trans('project.edit_success_email.message', ['%username%' => $user->getFirstName() ?? $user->getEmail()]), 'text/html');
 
         $this->mailer->send($message);
         $this->flashBag->add('project-saved', $this->translator->trans('project.edit_success'));
