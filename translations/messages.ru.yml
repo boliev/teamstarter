@@ -158,13 +158,13 @@ project:
             <br /><br />
             <p>С наилучшими пожеланиями,<br />
             TeamStarter.</p>
-    edit_success: Thank you for editing your project! After manual reviewing it will be back in the system. We will inform you by email!
+    edit_success: Ваш проект изменен! После ручной модерации он вернется в систему. Мы сообщим вам об этом по электронной почте!
     edit_success_email:
-        subject:  Thank you for editing your project!
+        subject:  Ваш проект изменен!
         message: |
             <p>Приветствуем, %username%!</p>
             <p>Ваш проект изменен!</p>
-            <p>После ручной модерации он вернется в систему. Мы сообщим вам по электронной почте.</p>
+            <p>После ручной модерации он вернется в систему. Мы сообщим вам об этом по электронной почте.</p>
             <br /><br />
             <p>С наилучшими пожеланиями,<br />
             TeamStarter.</p>
