@@ -27,28 +27,35 @@ class ProjectChangeProgressStatusSubscriber implements EventSubscriberInterface
     private $fromEmailAddress;
 
     /**
+     * @var string
+     */
+    private $fromName;
+
+    /**
      * @var FlashBag
      */
     private $flashBag;
 
     /**
      * WorkflowLogger constructor.
-     *
      * @param \Swift_Mailer       $mailer
      * @param TranslatorInterface $translator
      * @param string              $fromEmailAddress
+     * @param string              $fromName
      * @param FlashBagInterface   $flashBag
      */
     public function __construct(
         \Swift_Mailer $mailer,
         TranslatorInterface $translator,
         string $fromEmailAddress,
+        string $fromName,
         FlashBagInterface $flashBag)
     {
         $this->mailer = $mailer;
         $this->translator = $translator;
         $this->fromEmailAddress = $fromEmailAddress;
         $this->flashBag = $flashBag;
+        $this->fromName = $fromName;
     }
 
     /**
@@ -61,9 +68,9 @@ class ProjectChangeProgressStatusSubscriber implements EventSubscriberInterface
         $user = $project->getUser();
 
         $message = (new \Swift_Message($this->translator->trans('project.submit_success_email.subject')))
-            ->setFrom($this->fromEmailAddress)
+            ->setFrom($this->fromEmailAddress, $this->fromName)
             ->setTo($user->getEmail())
-            ->setBody($this->translator->trans('project.submit_success_email.message', ['%username%' => $user->getFullName()]), 'text/html');
+            ->setBody($this->translator->trans('project.submit_success_email.message', ['%username%' => $user->getFullName() ?? $user->getEmail()]), 'text/html');
 
         $this->mailer->send($message);
         $this->flashBag->add('project-saved', $this->translator->trans('project.submit_success'));
@@ -79,9 +86,9 @@ class ProjectChangeProgressStatusSubscriber implements EventSubscriberInterface
         $user = $project->getUser();
 
         $message = (new \Swift_Message($this->translator->trans('project.edit_success_email.subject')))
-            ->setFrom($this->fromEmailAddress)
+            ->setFrom($this->fromEmailAddress, $this->fromName)
             ->setTo($user->getEmail())
-            ->setBody($this->translator->trans('project.edit_success_email.message', ['%username%' => $user->getFullName()]), 'text/html');
+            ->setBody($this->translator->trans('project.edit_success_email.message', ['%username%' => $user->getFullName() ?? $user->getEmail()]), 'text/html');
 
         $this->mailer->send($message);
         $this->flashBag->add('project-saved', $this->translator->trans('project.edit_success'));
