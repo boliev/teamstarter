@@ -1,4 +1,5 @@
 ProjectTitle: TeamStarter
+index_page_title: Найди свою команду мечты
 sign_in: Вход
 sign_up: Регистрация
 logout: Выход
@@ -13,6 +14,31 @@ Idea only: Только идея
 Specifications: Спецификация
 There is a Demo: Демо
 Project released: Проект запущен
+title:
+    default: Найди свою команду мечты
+    index_page: Найди свою команду мечты
+    registration: Регистрация
+    confirmed: Ваш аккаунт подтвержден
+    reset_password: Сбросить пароль
+    login: Вход
+    user_specialization: Укажие вашу специализацию
+    user_about: Расскажите о себе
+    user_profile: Профиль
+    user_projects: Мои проекты
+    project_create_main: Создание проекта
+    project_create_rules: Правила создания проекта
+    project_create_roles: Открытые роли
+    project_create_add_role: Добавить роль
+    project_create_screens: Скриншоты проекта
+    project_add_proposal: Предложить сотрудничество
+    project_list: Открытые проекты
+    project_more: '%title%'
+    specialists_list: Доступные специалисты
+    specialists_more: '%name%'
+    specialists_add_offer: Предложить сотрудничество
+    dialogs_list: Ваши диалоги
+    dialogs_more: 'Диалог: %name%'
+
 registration:
     header: Регистрация
     label_first_name: Имя

@@ -1672,7 +1672,7 @@ div.modal-login-social a, div.register-form-sn-login a {
 
 .flash-success, .message {
 	text-align: center;
-	margin: 10px;
+	margin: 20px 10px 10px 10px;
 }
 
 .message {
