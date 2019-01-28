@@ -90,6 +90,26 @@ task('test:specialists:add', function () {
     writeln($df);
 });
 
+task('user:make:admin', function () {
+    // For option
+    if (input()->hasOption('u')) {
+        $user = input()->getOption('u');
+    }
+
+    $df = run(sprintf('cd {{release_path}} && php bin/console fos:user:promote %s ROLE_ADMIN --env=prod', $user));
+    writeln($df);
+});
+
+task('user:remove:admin', function () {
+    // For option
+    if (input()->hasOption('u')) {
+        $user = input()->getOption('u');
+    }
+
+    $df = run(sprintf('cd {{release_path}} && php bin/console fos:user:promote %s ROLE_ADMIN --env=prod', $user));
+    writeln($df);
+});
+
 // [Optional] if deploy fails automatically unlock.
 after('deploy:failed', 'deploy:unlock');
 

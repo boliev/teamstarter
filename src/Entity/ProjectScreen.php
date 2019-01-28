@@ -77,4 +77,8 @@ class ProjectScreen
     {
         $this->project = $project;
     }
+
+    public function __toString() {
+        return $this->screenshot;
+    }
 }

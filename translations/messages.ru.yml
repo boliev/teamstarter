@@ -233,3 +233,7 @@ dialogs:
     no_access: Нет такого диалога
     new_message: Отправить сообщение
     new_message_submit_button: Оправить
+admin:
+    projects: Проекты
+    all_projects: Все проекты
+    projects_in_review: Проекты на модерации

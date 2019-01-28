@@ -401,4 +401,9 @@ class Project
     {
         return $this->search;
     }
+
+
+    public function __toString() {
+        return $this->name;
+    }
 }

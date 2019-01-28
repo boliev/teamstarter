@@ -1,0 +1,8 @@
+{% for role in value %}
+    <p><b>{{ role.name }}</b></p>
+    <p>
+        <ul>{% for skill in role.skills %}<li>{{ skill }}</li>{% endfor %}</ul>
+    </p>
+    <p>{{ role.description }}</p>
+    <hr />
+{% endfor %}
