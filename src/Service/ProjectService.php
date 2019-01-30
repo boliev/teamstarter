@@ -141,6 +141,11 @@ class ProjectService
         return $this->applyStatus($project, 'close');
     }
 
+    public function decline(Project $project)
+    {
+        return $this->applyStatus($project, 'decline');
+    }
+
     /**
      * @param Project $project
      *

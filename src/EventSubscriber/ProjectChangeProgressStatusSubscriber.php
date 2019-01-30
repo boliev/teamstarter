@@ -38,6 +38,7 @@ class ProjectChangeProgressStatusSubscriber implements EventSubscriberInterface
 
     /**
      * WorkflowLogger constructor.
+     *
      * @param \Swift_Mailer       $mailer
      * @param TranslatorInterface $translator
      * @param string              $fromEmailAddress
@@ -49,8 +50,8 @@ class ProjectChangeProgressStatusSubscriber implements EventSubscriberInterface
         TranslatorInterface $translator,
         string $fromEmailAddress,
         string $fromName,
-        FlashBagInterface $flashBag)
-    {
+        FlashBagInterface $flashBag
+    ) {
         $this->mailer = $mailer;
         $this->translator = $translator;
         $this->fromEmailAddress = $fromEmailAddress;
@@ -95,6 +96,27 @@ class ProjectChangeProgressStatusSubscriber implements EventSubscriberInterface
     }
 
     /**
+     * @param Event $event
+     */
+    public function onDecline(Event $event)
+    {
+        /** @var Project $project */
+        $project = $event->getSubject();
+        $user = $project->getUser();
+        $comment = $project->getLastModeratorComment();
+
+        $message = (new \Swift_Message($this->translator->trans('project.decline_email.subject')))
+            ->setFrom($this->fromEmailAddress, $this->fromName)
+            ->setTo($user->getEmail())
+            ->setBody($this->translator->trans('project.decline_email.message', [
+                '%username%' => $user->getFirstName() ?? $user->getEmail(),
+                '%comment%' => $comment->getComment(),
+            ]), 'text/html');
+
+        $this->mailer->send($message);
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function getSubscribedEvents()
@@ -103,6 +125,7 @@ class ProjectChangeProgressStatusSubscriber implements EventSubscriberInterface
             'workflow.project_flow.completed.to_review' => 'onReview',
             'workflow.project_flow.completed.re_moderate' => 'onReModerate',
             'workflow.project_flow.completed.re_open' => 'onReModerate',
+            'workflow.project_flow.completed.decline' => 'onDecline',
         );
     }
 }
