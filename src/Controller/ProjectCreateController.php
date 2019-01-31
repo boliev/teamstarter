@@ -152,4 +152,25 @@ class ProjectCreateController extends AbstractController
 
         return $this->redirectToRoute('user_projects_list');
     }
+
+    /**
+     * @Route("/project/edit/{project}/remoderate-decliend/", name="project_edit_remoderate_declined")
+     *
+     * @param Project $project
+     * @param ProjectService $projectService
+     * @param TranslatorInterface $translator
+     *
+     * @return Response
+     */
+    public function reModerateDeclinedAction(Project $project, ProjectService $projectService, TranslatorInterface $translator)
+    {
+        if ($project->getUser()->getId() !== $this->getUser()->getId()) {
+            $this->redirectToRoute('homepage');
+        }
+
+        $projectService->reModerateDeclined($project);
+        $this->addFlash('project-saved', $translator->trans('project.remoderate_closed'));
+
+        return $this->redirectToRoute('user_projects_list');
+    }
 }

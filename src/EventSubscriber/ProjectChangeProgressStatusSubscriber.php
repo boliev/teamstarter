@@ -117,6 +117,25 @@ class ProjectChangeProgressStatusSubscriber implements EventSubscriberInterface
     }
 
     /**
+     * @param Event $event
+     */
+    public function onRemoderateDeclined(Event $event)
+    {
+        /** @var Project $project */
+        $project = $event->getSubject();
+        $user = $project->getUser();
+
+        $message = (new \Swift_Message($this->translator->trans('project.remoderate_declined_email.subject')))
+            ->setFrom($this->fromEmailAddress, $this->fromName)
+            ->setTo($user->getEmail())
+            ->setBody($this->translator->trans('project.remoderate_declined_email.message', [
+                '%username%' => $user->getFirstName() ?? $user->getEmail(),
+            ]), 'text/html');
+
+        $this->mailer->send($message);
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function getSubscribedEvents()
@@ -126,6 +145,7 @@ class ProjectChangeProgressStatusSubscriber implements EventSubscriberInterface
             'workflow.project_flow.completed.re_moderate' => 'onReModerate',
             'workflow.project_flow.completed.re_open' => 'onReModerate',
             'workflow.project_flow.completed.decline' => 'onDecline',
+            'workflow.project_flow.completed.re_moderate_declined' => 'onRemoderateDeclined',
         );
     }
 }

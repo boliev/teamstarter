@@ -5,7 +5,7 @@
         <div class="row section-content-2">
 
             <div class="form-section">
-                <div class="col-sm-8 col-sm-offset-2">
+                <div class="col-sm-10 col-sm-offset-2">
                     <div class="kc-elm kc-title-wrap  left dark">
                         <div class="title-wrapper">
                             <h3 class="kc_title">{{ 'project.my_list' | trans | raw }}</h3>
@@ -39,6 +39,9 @@
                                 {% endif %}
                                 {% if project.progressStatus == constant('App\\Entity\\Project::STATUS_CLOSED') %}
                                     <a class="table-list-actions" href="{{ path('project_edit_reopen', {'project': project.id}) }}">{{ 'project.open_link' | trans }}</a>
+                                {% endif %}
+                                {% if project.progressStatus == constant('App\\Entity\\Project::STATUS_DECLINED') %}
+                                    <a class="table-list-actions" href="{{ path('project_edit_remoderate_declined', {'project': project.id}) }}">{{ 'project.remoderate_link' | trans }}</a>
                                 {% endif %}
 
                             </div>

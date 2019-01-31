@@ -158,6 +158,16 @@ class ProjectService
 
     /**
      * @param Project $project
+     *
+     * @return bool
+     */
+    public function reModerateDeclined(Project $project)
+    {
+        return $this->applyStatus($project, 're_moderate_declined');
+    }
+
+    /**
+     * @param Project $project
      * @param string  $status
      *
      * @return bool
