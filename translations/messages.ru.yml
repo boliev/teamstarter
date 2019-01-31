@@ -25,6 +25,7 @@ title:
     user_about: Расскажите о себе
     user_profile: Профиль
     user_projects: Мои проекты
+    moderator_comments: Комментарии модератора
     project_create_main: Создание проекта
     project_create_rules: Правила создания проекта
     project_create_roles: Открытые роли
@@ -144,10 +145,12 @@ project:
     screen_max_size_exception: Максимальный размер изображения {size} MБ
     screen_extension_exception: Скриншот должен быть изображением
     my_list: <span>Мои</span> проекты
+    moderator_comments: <span>Комментарии</span> модератора
     edit_link: Редактировать
     close_link: Закрыть
     open_link: Открыть
     remoderate_link: Повторная модерация
+    declined_comments_link: Комментарии модератора
     add_role: + Добавить роль
     add_role_page_title_add: <span>Добавление</span> роли
     add_role_page_title_edit: <span>Редакировать</span> роль

@@ -42,7 +42,9 @@
                                 {% endif %}
                                 {% if project.progressStatus == constant('App\\Entity\\Project::STATUS_DECLINED') %}
                                     <a class="table-list-actions" href="{{ path('project_edit_remoderate_declined', {'project': project.id}) }}">{{ 'project.remoderate_link' | trans }}</a>
+                                    <a class="table-list-actions" href="{{ path('user_projects_moderator_comments', {'project': project.id}) }}">{{ 'project.declined_comments_link' | trans }}</a>
                                 {% endif %}
+
 
                             </div>
 
