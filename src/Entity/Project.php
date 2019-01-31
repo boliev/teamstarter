@@ -430,7 +430,7 @@ class Project
      */
     public function getLastModeratorComment(): ProjectModeratorComments
     {
-        return $this->getModeratorsComments()->last();
+        return $this->getModeratorsComments()->first();
     }
 
 

@@ -40,7 +40,7 @@
                 if(reason == '') {
                    return;
                 }
-                $("#decline-project-btn").attr("disabled", "disabled")
+                $("#decline-project-btn").attr("disabled", "disabled");
 
                 $.ajax({
                     type: "POST",
@@ -52,6 +52,7 @@
                     success: function(data) {
                         console.log(data);
                         $("#decline-project-btn").removeAttr('disabled');
+                        $('#declineModal').modal('toggle');
                     },
                     error: function(data) {
                         console.log(data);
