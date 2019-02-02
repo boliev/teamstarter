@@ -48,6 +48,7 @@ easy_admin:
                     - {property: user.experience, label: 'User Experience'}
                     - {property: user.about, label: 'User About'}
                     - {property: user.userSkills, label: 'User Skills', template: 'admin/users/skills.html.twig'}
+                    - {property: moderatorsComments, template: 'admin/products/moderators_comments.html.twig'}
                     - {property: user.userSpecializations, label: 'User Specializations', template: 'admin/users/specializations.html.twig'}
             sort: 'createdAt'
             disabled_actions: ['new', 'edit', 'delete']
