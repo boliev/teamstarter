@@ -16,11 +16,27 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProjectsController extends EasyAdminController
 {
     /**
-     * @Route("/admin/approve", name="dialogs_list")
+     * @Route("/admin/approve", name="admin_project_approve")
+     * @param Request $request
+     * @param ProjectService $projectService
+     * @param ProjectRepository $projectRepository
+     * @return JsonResponse
      */
-    public function approveAction()
+    public function approveAction(Request $request, ProjectService $projectService, ProjectRepository $projectRepository)
     {
+        $projectId = $request->request->get('projectId');
+        /** @var Project $project */
+        $project = $projectRepository->find($projectId);
+        if (null === $project) {
+            throw new NotFoundHttpException('project not found');
+        }
 
+        $res = $projectService->approve($project);
+        if(!$res) {
+            return new JsonResponse(['error' => 'Can\'t apply status'], 400);
+        }
+
+        return new JsonResponse([], 200);
     }
 
     /**

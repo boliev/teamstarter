@@ -53,10 +53,35 @@
                         console.log(data);
                         $("#decline-project-btn").removeAttr('disabled');
                         $('#declineModal').modal('toggle');
+                        window.location = "{{ path('easyadmin', {action: 'list', entity: 'ProjectsInReview'}) }}";
                     },
                     error: function(data) {
-                        console.log(data);
                         $("form-group").addClass("has-error");
+                    },
+                    dataType: 'JSON'
+                });
+
+            });
+
+            $(".action-approve").click(function(event) {
+                event.preventDefault();
+                var projectId = {{ _entity_id }};
+                if(!confirm('Are you sure to approve this project?')) {
+                    return false;
+                }
+                console.log('Approved');
+
+                $.ajax({
+                    type: "POST",
+                    url: "{{ path('admin_project_approve') }}",
+                    data: {
+                        'projectId': projectId
+                    },
+                    success: function(data) {
+                        window.location = "{{ path('easyadmin', {action: 'list', entity: 'ProjectsInReview'}) }}";
+                    },
+                    error: function(data) {
+
                     },
                     dataType: 'JSON'
                 });

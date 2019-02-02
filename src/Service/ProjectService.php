@@ -146,6 +146,11 @@ class ProjectService
         return $this->applyStatus($project, 'decline');
     }
 
+    public function approve(Project $project)
+    {
+        return $this->applyStatus($project, 'approve');
+    }
+
     /**
      * @param Project $project
      *
