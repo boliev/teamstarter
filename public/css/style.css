@@ -1418,6 +1418,7 @@ button.btn.btn-primary.text-capitalize.active {
 
 input#apus-user-remember {
 	height: initial;
+	margin-right: 4px;
 }
 .apus-login-form .form-group {
 	margin-bottom: 0;
@@ -1671,12 +1672,17 @@ div.modal-login-social a, div.register-form-sn-login a {
 
 .flash-success, .message {
 	text-align: center;
-	margin: 10px;
+	margin: 20px 10px 10px 10px;
+}
+
+.message {
+	padding: 30px;
 }
 
 .form-section input[type="checkbox"] {
 	width: auto;
 	margin-right: 10px;
+	padding: 0px;
 }
 
 .form-section label {
@@ -1774,6 +1780,8 @@ div.modal-login-social a, div.register-form-sn-login a {
 
 .form-section input.btn {
 	display: inline;
+	margin-bottom: 10px;
+	min-width: 240px;
 }
 
 .form-bottom {
@@ -2212,7 +2220,7 @@ div.search-container div.form-group {
 }
 
 .navbar-nav.megamenu > li {
-	margin-right: 35px !important;
+	margin-right: 20px !important;
 }
 
 div.bootstrap-tagsinput ul.dropdown-menu {
@@ -2267,4 +2275,14 @@ div.bootstrap-tagsinput ul.dropdown-menu a.dropdown-item {
 
 #apus-header.header-v2 {
 	padding: 0px !important;
+}
+
+.role-list a {
+	font-size: 14px;
+}
+
+.role-list-specialization {
+	color: #666666;
+	font-style: italic;
+	font-size: 14px;
 }

@@ -121,6 +121,13 @@ class Project
     private $search;
 
     /**
+     * @var Collection
+     * @ORM\OneToMany(targetEntity="App\Entity\ProjectModeratorComments", mappedBy="project")
+     * @ORM\OrderBy({"id" = "DESC"})
+     */
+    private $moderatorsComments;
+
+    /**
      * Project constructor.
      */
     public function __construct()
@@ -400,5 +407,35 @@ class Project
     public function getSearch(): ?string
     {
         return $this->search;
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getModeratorsComments(): Collection
+    {
+        return $this->moderatorsComments;
+    }
+
+    /**
+     * @param Collection $moderatorsComments
+     */
+    public function setModeratorsComments(Collection $moderatorsComments): void
+    {
+        $this->moderatorsComments = $moderatorsComments;
+    }
+
+    /**
+     * @return ProjectModeratorComments
+     */
+    public function getLastModeratorComment(): ProjectModeratorComments
+    {
+        return $this->getModeratorsComments()->first();
+    }
+
+
+
+    public function __toString() {
+        return $this->name;
     }
 }

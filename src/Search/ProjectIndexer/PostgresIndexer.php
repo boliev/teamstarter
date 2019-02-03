@@ -69,6 +69,7 @@ FROM (
          setweight(to_tsvector(coalesce(string_agg(s2.title, ' '),'')), 'D') ||
          setweight(to_tsvector(coalesce(pr.city, '')), 'D') ||
          setweight(to_tsvector(coalesce(c2.name, '')), 'D') ||
+         setweight(to_tsvector(coalesce(c2.ru, '')), 'D') ||
          setweight(to_tsvector(coalesce(string_agg(a.name, ' '),'')), 'D')
            AS search_str
        FROM projects pr
@@ -77,7 +78,7 @@ FROM (
        LEFT JOIN skill s2 on skill.skill_id = s2.id
        LEFT JOIN country c2 on pr.country = c2.code
        LEFT JOIN countries_alias a on c2.code = a.country
-       GROUP BY pr.id, c2.name
+       GROUP BY pr.id, c2.name, c2.ru
      ) AS srch
      WHERE srch.id = p.id
      ";

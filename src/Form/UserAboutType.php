@@ -2,10 +2,10 @@
 
 namespace App\Form;
 
-use App\Entity\Country;
 use App\Entity\User;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use App\Repository\CountryRepository;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -15,11 +15,24 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class UserAboutType extends AbstractType
 {
+    private $countryRepository;
+
+    public function __construct(CountryRepository $countryRepository)
+    {
+        $this->countryRepository = $countryRepository;
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('profilePicture', FileType::class, ['label' => 'user.profile_picture', 'mapped' => false, 'required' => false])
-            ->add('country', EntityType::class, ['label' => 'user.country', 'class' => Country::class, 'placeholder' => 'user.choose_country'])
+            ->add('country', ChoiceType::class, [
+                'mapped' => false,
+                'label' => 'user.country',
+                'placeholder' => 'user.choose_country',
+                'choices' => $this->countryRepository->getLocalizedCountries('ru'),
+                'data' => ($options['data']->getCountry() ? $options['data']->getCountry()->getCode() : null),
+            ])
             ->add('city', TextType::class, ['label' => 'user.city'])
             ->add('likeToDo', TextareaType::class, ['label' => 'user.like_to_do'])
             ->add('expectation', TextareaType::class, ['label' => 'user.expectation'])

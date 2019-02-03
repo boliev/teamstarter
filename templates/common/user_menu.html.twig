@@ -8,7 +8,7 @@
                         {{ app.user.fullName }}
                     </a>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="{{ path('user_profile_form') }}">{{ 'profile' | trans }}</a>
+                        <a class="dropdown-item" href="{{ path('user_profile_form') }}">{{ 'user.profile_menu_title' | trans }}</a>
                         <a class="dropdown-item" href="{{ path('user_about_form') }}">{{ 'user.about_menu_title' | trans }}</a>
                         <a class="dropdown-item" href="{{ path('user_specialization_form') }}">{{ 'specialization.menu_title' | trans }}</a>
                         <a class="dropdown-item" href="{{ path('fos_user_security_logout') }}">{{ 'logout' | trans }}</a>
@@ -16,7 +16,7 @@
                 </div>
             </li>
         {% else %}
-            <button id="myBtn" class="modal-btn-1"><i class="mn-icon-410"></i> Login</button>
+            <button id="myBtn" class="modal-btn-1"><i class="mn-icon-410"></i> {{ 'sign_in' | trans }}</button>
         {% endif %}
     </ul>
 </div>

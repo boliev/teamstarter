@@ -1,4 +1,5 @@
 {% extends 'base.html.twig' %}
+{% block title %} {{ 'title.user_about' | trans }} {% endblock %}
 {% form_theme form _self %}
 {% block body %}
     <div class ="container">
@@ -23,7 +24,7 @@
                         {% endfor %}
 
 
-                        <div class="row"><div class="col-md-3 about-form-avatar">
+                        <div class="row"><div class="col-md-3 about-form-avatar text-center">
                         {% if (app.user.profilePicture) %}
                         <img id="about-form-avatar" src="{{ app.user.profilePicture }}" />
 

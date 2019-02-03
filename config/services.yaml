@@ -110,9 +110,17 @@ services:
         arguments:
         - App\Entity\Project
 
+    App\Repository\CountryRepository:
+        class: App\Repository\CountryRepository
+        arguments:
+            - '@Doctrine\Common\Persistence\ManagerRegistry'
+            - App\Entity\Country
+            - '%env(ALWAYS_FIRST_COUNTRY)%'
+
     App\EventSubscriber\ProjectChangeProgressStatusSubscriber:
         arguments:
             $fromEmailAddress: "%env(MAILER_ADDRESS)%"
+            $fromName: "%env(MAILER_SENDER_NAME)%"
 
     App\EventSubscriber\ProjectSearchIndexerSubscriber:
         tags:

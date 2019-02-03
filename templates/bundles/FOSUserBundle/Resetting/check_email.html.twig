@@ -1,9 +1,9 @@
 {% extends "@FOSUser/layout.html.twig" %}
-
+{% block title %} {{ 'title.reset_password' | trans ({}, 'messages') }} {% endblock %}
 {% trans_default_domain 'FOSUserBundle' %}
 
 {% block fos_user_content %}
     <p class="message">
-        {{ 'resetting.check_email'|trans({'%tokenLifetime%': tokenLifetime})|nl2br }}
+        {{ 'resetting.check_email'|trans({'%tokenLifetime%': tokenLifetime}, 'messages')|nl2br }}
     </p>
 {% endblock %}

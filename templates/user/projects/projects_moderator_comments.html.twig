@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+{% block title %} {{ 'title.moderator_comments' | trans }} {% endblock %}
+{% block body %}
+    <div class ="container">
+        <div class="row section-content-2">
+
+            <div class="form-section">
+                <div class="col-sm-10 col-sm-offset-2">
+                    <div class="kc-elm kc-title-wrap  left dark">
+                        <div class="title-wrapper">
+                            <h3 class="kc_title">{{ 'project.moderator_comments' | trans | raw }}</h3>
+                        </div>
+                    </div>
+
+                    {% for comment in comments %}
+                        <div class="row margin-bottom-10">
+                            <div class="col-sm-12">
+                                <b>{{ comment.createdAt|localizeddate('short') }}</b>
+
+                                {{ comment.comment }}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

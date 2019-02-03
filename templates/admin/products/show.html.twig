@@ -1,0 +1,93 @@
+{# templates/admin/new.html.twig #}
+{% extends '@EasyAdmin/default/show.html.twig' %}
+
+{% block main %}
+    {{ parent() }}
+    <div class="modal fade" id="declineModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Decline project</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group"><textarea required class="form-control" id="decline-project-reason" name="decline_reason"></textarea></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" id="decline-project-btn" class="btn btn-primary">Decline</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+{% block body_javascript %}
+    {{ parent() }}
+
+    <script type="text/javascript">
+        $(function() {
+            $(".action-decline").attr('src', "#null");
+            $(".action-decline").attr('data-toggle', 'modal');
+            $(".action-decline").attr('data-target', '#declineModal');
+
+            $("#decline-project-btn").click(function(event) {
+                event.preventDefault();
+                var reason = $("#decline-project-reason").val();
+                var projectId = {{ _entity_id }};
+                if(reason == '') {
+                   return;
+                }
+                $("#decline-project-btn").attr("disabled", "disabled");
+
+                $.ajax({
+                    type: "POST",
+                    url: "{{ path('admin_project_decline') }}",
+                    data: {
+                        'reason': reason,
+                        'projectId': projectId
+                    },
+                    success: function(data) {
+                        console.log(data);
+                        $("#decline-project-btn").removeAttr('disabled');
+                        $('#declineModal').modal('toggle');
+                        window.location = "{{ path('easyadmin', {action: 'list', entity: 'ProjectsInReview'}) }}";
+                    },
+                    error: function(data) {
+                        $("form-group").addClass("has-error");
+                    },
+                    dataType: 'JSON'
+                });
+
+            });
+
+            $(".action-approve").click(function(event) {
+                event.preventDefault();
+                var projectId = {{ _entity_id }};
+                if(!confirm('Are you sure to approve this project?')) {
+                    return false;
+                }
+                console.log('Approved');
+
+                $.ajax({
+                    type: "POST",
+                    url: "{{ path('admin_project_approve') }}",
+                    data: {
+                        'projectId': projectId
+                    },
+                    success: function(data) {
+                        window.location = "{{ path('easyadmin', {action: 'list', entity: 'ProjectsInReview'}) }}";
+                    },
+                    error: function(data) {
+
+                    },
+                    dataType: 'JSON'
+                });
+
+            });
+
+        });
+    </script>
+{% endblock %}

@@ -172,4 +172,8 @@ class ProjectOpenRole
     {
         $this->skills = $skills;
     }
+
+    public function __toString() {
+        return $this->specialization->getTitle();
+    }
 }

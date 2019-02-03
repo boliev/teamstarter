@@ -38,7 +38,7 @@ set('writable_use_sudo', true);
 
 host('dev')
     ->hostname('voovle.ru')
-    ->stage('develop')
+    ->stage('feature/#59-design')
     ->user('deploy')
     ->set('deploy_path', '/var/www/ts_dev4/{{application}}');
 
@@ -87,6 +87,26 @@ task('test:specialists:add', function () {
     }
 
     $df = run(sprintf('cd {{release_path}} && bin/console test:specialists:add %d --env=prod', $number));
+    writeln($df);
+});
+
+task('user:make:admin', function () {
+    // For option
+    if (input()->hasOption('u')) {
+        $user = input()->getOption('u');
+    }
+
+    $df = run(sprintf('cd {{release_path}} && php bin/console fos:user:promote %s ROLE_ADMIN --env=prod', $user));
+    writeln($df);
+});
+
+task('user:remove:admin', function () {
+    // For option
+    if (input()->hasOption('u')) {
+        $user = input()->getOption('u');
+    }
+
+    $df = run(sprintf('cd {{release_path}} && php bin/console fos:user:promote %s ROLE_ADMIN --env=prod', $user));
     writeln($df);
 });
 
