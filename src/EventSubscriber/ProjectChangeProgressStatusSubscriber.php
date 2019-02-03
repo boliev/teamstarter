@@ -3,6 +3,7 @@
 namespace App\EventSubscriber;
 
 use App\Entity\Project;
+use App\Repository\UserRepository;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBag;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
@@ -44,14 +45,20 @@ class ProjectChangeProgressStatusSubscriber implements EventSubscriberInterface
     private $router;
 
     /**
+     * @var UserRepository
+     */
+    private $userRepository;
+
+    /**
      * WorkflowLogger constructor.
      *
-     * @param \Swift_Mailer $mailer
+     * @param \Swift_Mailer       $mailer
      * @param TranslatorInterface $translator
-     * @param string $fromEmailAddress
-     * @param string $fromName
-     * @param FlashBagInterface $flashBag
-     * @param RouterInterface $router
+     * @param string              $fromEmailAddress
+     * @param string              $fromName
+     * @param FlashBagInterface   $flashBag
+     * @param RouterInterface     $router
+     * @param UserRepository      $userRepository
      */
     public function __construct(
         \Swift_Mailer $mailer,
@@ -59,7 +66,8 @@ class ProjectChangeProgressStatusSubscriber implements EventSubscriberInterface
         string $fromEmailAddress,
         string $fromName,
         FlashBagInterface $flashBag,
-        RouterInterface $router
+        RouterInterface $router,
+        UserRepository $userRepository
     ) {
         $this->mailer = $mailer;
         $this->translator = $translator;
@@ -67,6 +75,7 @@ class ProjectChangeProgressStatusSubscriber implements EventSubscriberInterface
         $this->flashBag = $flashBag;
         $this->fromName = $fromName;
         $this->router = $router;
+        $this->userRepository = $userRepository;
     }
 
     /**
@@ -85,6 +94,12 @@ class ProjectChangeProgressStatusSubscriber implements EventSubscriberInterface
 
         $this->mailer->send($message);
         $this->flashBag->add('project-saved', $this->translator->trans('project.submit_success'));
+
+        $this->notifyAdmins(
+            $project,
+            'project.submit_success_admin_email.subject',
+            'project.submit_success_admin_email.message'
+        );
     }
 
     /**
@@ -103,6 +118,13 @@ class ProjectChangeProgressStatusSubscriber implements EventSubscriberInterface
 
         $this->mailer->send($message);
         $this->flashBag->add('project-saved', $this->translator->trans('project.edit_success'));
+
+        $this->notifyAdmins(
+            $project,
+            'project.remoderate_admin_email.subject',
+            'project.remoderate_admin_email.message'
+        );
+
     }
 
     /**
@@ -135,7 +157,6 @@ class ProjectChangeProgressStatusSubscriber implements EventSubscriberInterface
         $project = $event->getSubject();
         $user = $project->getUser();
 
-
         $message = (new \Swift_Message($this->translator->trans('project.approve_success_email.subject')))
             ->setFrom($this->fromEmailAddress, $this->fromName)
             ->setTo($user->getEmail())
@@ -145,7 +166,7 @@ class ProjectChangeProgressStatusSubscriber implements EventSubscriberInterface
                     'project_more',
                     ['project' => $project->getId()],
                     UrlGeneratorInterface::ABSOLUTE_URL
-                )
+                ),
             ]), 'text/html');
 
         $this->mailer->send($message);
@@ -168,6 +189,12 @@ class ProjectChangeProgressStatusSubscriber implements EventSubscriberInterface
             ]), 'text/html');
 
         $this->mailer->send($message);
+
+        $this->notifyAdmins(
+            $project,
+            'project.remoderate_declinned_admin_email.subject',
+            'project.remoderate_declinned_admin_email.message'
+        );
     }
 
     /**
@@ -183,5 +210,22 @@ class ProjectChangeProgressStatusSubscriber implements EventSubscriberInterface
             'workflow.project_flow.completed.re_moderate_declined' => 'onRemoderateDeclined',
             'workflow.project_flow.completed.approve' => 'onApprove',
         );
+    }
+
+    private function notifyAdmins(Project $project, string $subjectTranslateKey, string $bodyTranslateKey)
+    {
+
+        $message = (new \Swift_Message($this->translator->trans($subjectTranslateKey)))
+            ->setFrom($this->fromEmailAddress, $this->fromName)
+            ->setTo($this->userRepository->getAdminsEmails())
+            ->setBody($this->translator->trans(
+                $bodyTranslateKey,
+                ['%link%' => $this->router->generate(
+                    'easyadmin',
+                    ['action' => 'show', 'entity' => 'ProjectsInReview', 'id' => $project->getId()],
+                    UrlGeneratorInterface::ABSOLUTE_URL)]
+            ), 'text/html');
+
+        $this->mailer->send($message);
     }
 }

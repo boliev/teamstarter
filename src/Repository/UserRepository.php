@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\UserSpecializations;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\EntityRepository;
 
 class UserRepository extends EntityRepository
@@ -19,5 +20,17 @@ class UserRepository extends EntityRepository
             ->where('u.enabled = true')
             ->orderBy('u.updatedAt', 'desc')
             ->getQuery();
+    }
+
+    public function getAdminsEmails(): array
+    {
+        $emails = $this->createQueryBuilder('u')
+            ->select('u.email')
+            ->where('u.roles LIKE :roles')
+            ->setParameter('roles', '%ROLE_ADMIN%')
+            ->getQuery()
+            ->getScalarResult();
+
+        return array_column($emails, 'email');
     }
 }
