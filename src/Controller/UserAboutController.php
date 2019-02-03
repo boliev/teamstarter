@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Country;
 use App\Entity\User;
 use App\Form\UserAboutType;
+use App\Repository\CountryRepository;
 use App\Service\UserService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -25,11 +27,17 @@ class UserAboutController extends AbstractController
      * @param EntityManagerInterface $em
      * @param UserService            $userService
      * @param TranslatorInterface    $translator
+     * @param CountryRepository      $countryRepository
      *
      * @return Response
      */
-    public function indexAction(Request $request, EntityManagerInterface $em, UserService $userService, TranslatorInterface $translator)
-    {
+    public function indexAction(
+        Request $request,
+        EntityManagerInterface $em,
+        UserService $userService,
+        TranslatorInterface $translator,
+        CountryRepository $countryRepository
+    ) {
         /** @var User $user */
         $user = $this->getUser();
 
@@ -45,6 +53,14 @@ class UserAboutController extends AbstractController
                     $user->setProfilePicture($file);
                 } catch (\Exception $e) {
                     $form->get('profilePicture')->addError(new FormError($e->getMessage()));
+                }
+            }
+
+            if ($form['country']->getData()) {
+                /** @var Country $country */
+                $country = $countryRepository->findOneBy(['code' => $form['country']->getData()]);
+                if ($country) {
+                    $user->setCountry($country);
                 }
             }
 

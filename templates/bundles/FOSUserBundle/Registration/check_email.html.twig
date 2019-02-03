@@ -1,5 +1,5 @@
 {% extends "@FOSUser/layout.html.twig" %}
-
+{% block title %} {{ 'title.registration' | trans ({}, 'messages') }} {% endblock %}
 {% trans_default_domain 'FOSUserBundle' %}
 
 {% block fos_user_content %}

@@ -1,4 +1,5 @@
 {% extends "@FOSUser/layout.html.twig" %}
+{% block title %} {{ 'title.reset_password' | trans ({}, 'messages') }} {% endblock %}
 {% trans_default_domain 'FOSUserBundle' %}
 
 {% block fos_user_content %}
@@ -10,7 +11,7 @@
 
                 <div class="kc-title-wrap left dark  margin-bottom-15px">
                     <div class="title-wrapper margin-bottom-15">
-                        <h3 class="kc_title"><span>Reset</span> Password</h3>
+                        <h3 class="kc_title">{{ 'resetting.header' | trans({}, 'messages') | raw}}</h3>
                     </div>
                 </div>
 

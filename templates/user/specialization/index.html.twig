@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-
+{% block title %} {{ 'title.user_specialization' | trans }} {% endblock %}
 {% block body %}
     <div class ="container">
         <div class="row section-content-2">
@@ -72,7 +72,6 @@
                 for (key in data) {
                     autocomplete.push(data[key].name);
                 }
-                console.log(autocomplete);
                 tagInput.tagsinput({
                     typeahead: {
                         source: autocomplete,

@@ -1,0 +1,96 @@
+easy_admin:
+    site_name: 'TeamStarter Admin'
+    list:
+        max_results: 50
+    entities:
+        ProjectsInReview:
+            class: App\Entity\Project
+            controller: App\Controller\Admin\ProjectsController
+            label: 'admin.projects_in_review'
+            templates:
+                show: 'admin/products/show.html.twig'
+            list:
+                title: "admin.projects_in_review"
+                dql_filter: "entity.progressStatus = 'InReview'"
+                actions: ['show']
+                fields:
+                    - id
+                    - name
+                    - progressStatus
+                    - status
+                    - mission
+                    - country
+                    - city
+                    - createdAt
+            show:
+                title: '%%entity_label%% (#%%entity_id%%)'
+                actions:
+                    - {name: "approve", title: "Approve"}
+                    - {name: "decline", title: "Decline"}
+                fields:
+                    - id
+                    - name
+                    - progressStatus
+                    - status
+                    - mission
+                    - country
+                    - city
+                    - description
+                    - createdAt
+                    - {property: openRoles, template: 'admin/products/open_roles.html.twig'}
+                    - {property: screens, template: 'admin/products/screens.html.twig'}
+                    - {property: user.email, label: 'User Email'}
+                    - {property: user.fullName, label: 'User Full Name'}
+                    - {property: user.country, label: 'User Country'}
+                    - {property: user.city, label: 'User City'}
+                    - {property: user.likeToDo, label: 'User Like to do'}
+                    - {property: user.expectation, label: 'User Expectation'}
+                    - {property: user.experience, label: 'User Experience'}
+                    - {property: user.about, label: 'User About'}
+                    - {property: user.userSkills, label: 'User Skills', template: 'admin/users/skills.html.twig'}
+                    - {property: user.userSpecializations, label: 'User Specializations', template: 'admin/users/specializations.html.twig'}
+                    - {property: moderatorsComments, template: 'admin/products/moderators_comments.html.twig'}
+            sort: 'createdAt'
+            disabled_actions: ['new', 'edit', 'delete']
+        Project:
+            class: App\Entity\Project
+            controller: App\Controller\Admin\ProjectsController
+            label: 'admin.all_projects'
+            list:
+                title: "admin.all_projects"
+                actions: ['show']
+                fields:
+                    - id
+                    - name
+                    - progressStatus
+                    - status
+                    - mission
+                    - country
+                    - city
+                    - createdAt
+            show:
+                title: "admin.all_projects"
+                fields:
+                    - id
+                    - name
+                    - progressStatus
+                    - status
+                    - mission
+                    - country
+                    - city
+                    - description
+                    - createdAt
+                    - {property: openRoles, template: 'admin/products/open_roles.html.twig'}
+                    - {property: screens, template: 'admin/products/screens.html.twig'}
+                    - {property: user.email, label: 'User Email'}
+                    - {property: user.fullName, label: 'User Full Name'}
+                    - {property: user.country, label: 'User Country'}
+                    - {property: user.city, label: 'User City'}
+                    - {property: user.likeToDo, label: 'User Like to do'}
+                    - {property: user.expectation, label: 'User Expectation'}
+                    - {property: user.experience, label: 'User Experience'}
+                    - {property: user.about, label: 'User About'}
+                    - {property: user.userSkills, label: 'User Skills', template: 'admin/users/skills.html.twig'}
+                    - {property: user.userSpecializations, label: 'User Specializations', template: 'admin/users/specializations.html.twig'}
+            sort: 'createdAt'
+            disabled_actions: ['new', 'edit', 'delete']

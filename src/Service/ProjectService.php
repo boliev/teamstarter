@@ -141,6 +141,16 @@ class ProjectService
         return $this->applyStatus($project, 'close');
     }
 
+    public function decline(Project $project)
+    {
+        return $this->applyStatus($project, 'decline');
+    }
+
+    public function approve(Project $project)
+    {
+        return $this->applyStatus($project, 'approve');
+    }
+
     /**
      * @param Project $project
      *
@@ -149,6 +159,16 @@ class ProjectService
     public function reOpen(Project $project)
     {
         return $this->applyStatus($project, 're_open');
+    }
+
+    /**
+     * @param Project $project
+     *
+     * @return bool
+     */
+    public function reModerateDeclined(Project $project)
+    {
+        return $this->applyStatus($project, 're_moderate_declined');
     }
 
     /**

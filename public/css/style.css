@@ -1345,7 +1345,6 @@ button.btn.btn-primary.text-capitalize.active {
 	display: none; /* Hidden by default */
 	position: fixed; /* Stay in place */
 	z-index: 999; /* Sit on top */
-	padding-top: 100px; /* Location of the box */
 	left: 0;
 	top: 0;
 	width: 100%; /* Full width */
@@ -1410,21 +1409,32 @@ button.btn.btn-primary.text-capitalize.active {
 	z-index: 999;
 }
 
-.modal-content input, .btn.btn-sm {
-	height: 50px;
+.login-form-input, .btn.btn-sm {
 	border-radius: 25px;
 	background-color: #f3f3f3;
 	border: none;
 	padding: 23px;
 }
-input#apus-user-remember, input#apus-user-remember-mobile {
+
+input#apus-user-remember {
 	height: initial;
+	margin-right: 4px;
 }
 .apus-login-form .form-group {
 	margin-bottom: 0;
 	line-height: 4;
 	padding: 0px;
 }
+
+.apus-login-form .checkbox-noanet-div {
+	line-height: normal;
+}
+
+.checkbox-noanet-label {
+	font-weight: normal;
+	line-height: 1.5;
+}
+
 .modal-header .close {
 	padding: 0px 0px 5px 0px;
 	margin: -2px 0px 0px 0px;
@@ -1662,12 +1672,17 @@ div.modal-login-social a, div.register-form-sn-login a {
 
 .flash-success, .message {
 	text-align: center;
-	margin: 10px;
+	margin: 20px 10px 10px 10px;
+}
+
+.message {
+	padding: 30px;
 }
 
 .form-section input[type="checkbox"] {
 	width: auto;
 	margin-right: 10px;
+	padding: 0px;
 }
 
 .form-section label {
@@ -1765,6 +1780,8 @@ div.modal-login-social a, div.register-form-sn-login a {
 
 .form-section input.btn {
 	display: inline;
+	margin-bottom: 10px;
+	min-width: 240px;
 }
 
 .form-bottom {
@@ -2203,7 +2220,7 @@ div.search-container div.form-group {
 }
 
 .navbar-nav.megamenu > li {
-	margin-right: 35px !important;
+	margin-right: 20px !important;
 }
 
 div.bootstrap-tagsinput ul.dropdown-menu {
@@ -2240,4 +2257,32 @@ div.bootstrap-tagsinput ul.dropdown-menu a.dropdown-item {
 
 .navbar-nav {
 	display: block;
+}
+
+#mobile-menu-button {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	margin: 0px;
+	padding: 0px;
+}
+
+#mobile-menu-button button {
+	color: #ffffff;
+	background: transparent;
+	font-size: 14px;
+}
+
+#apus-header.header-v2 {
+	padding: 0px !important;
+}
+
+.role-list a {
+	font-size: 14px;
+}
+
+.role-list-specialization {
+	color: #666666;
+	font-style: italic;
+	font-size: 14px;
 }

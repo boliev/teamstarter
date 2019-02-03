@@ -65,6 +65,7 @@ FROM (
        SELECT u.id,
          setweight(to_tsvector(coalesce(u.city, '')), 'A') ||
          setweight(to_tsvector(coalesce(c2.name, '')), 'A') ||
+         setweight(to_tsvector(coalesce(c2.ru, '')), 'A') ||
          setweight(to_tsvector(coalesce(string_agg(s.title, ' '),'')), 'A') ||
          setweight(to_tsvector(coalesce(string_agg(a.name, ' '),'')), 'A') ||
          setweight(to_tsvector(coalesce(string_agg(s3.title, ' '),'')), 'A') 
@@ -76,7 +77,7 @@ FROM (
        LEFT JOIN countries_alias a on c2.code = a.country
        LEFT JOIN user_specializations usp on usp.user_id = u.id
        LEFT JOIN specialization s3 on usp.specialization_id = s3.id
-       GROUP BY u.id, c2.name
+       GROUP BY u.id, c2.name, c2.ru
      ) AS srch
      WHERE srch.id = u.id
      ";

@@ -1,0 +1,24 @@
+<div class="active-mobile pull-left hidden-lg hidden-md" id="mobile-menu-button">
+    <button data-toggle="offcanvas" class="btn btn-sm btn-danger btn-offcanvas btn-toggle-canvas offcanvas" type="button">
+        <i class="fa fa-bars"></i>
+    </button>
+</div>
+
+<div id="wrapper-container" class="wrapper-container hidden-lg hidden-md">
+    <div id="apus-mobile-menu" class="apus-offcanvas hidden-lg hidden-md">
+        <div class="apus-offcanvas-body">
+            <div class="offcanvas-head">
+                <button type="button" class="btn btn-toggle-canvas" data-toggle="offcanvas">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <nav class="navbar navbar-offcanvas navbar-static">
+                <div class="navbar-collapse navbar-offcanvas-collapse">
+                    <ul id="main-mobile-menu" class="nav navbar-nav">
+                        {% include 'common/main_menu/items.html.twig' %}
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+</div>

@@ -6,7 +6,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\CountryRepository")
  * @ORM\Table(name="country")
  */
 class Country
@@ -24,6 +24,12 @@ class Country
      * @ORM\Column(type="string")
      */
     private $name;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string")
+     */
+    private $ru;
 
     /**
      * @var Collection
@@ -102,5 +108,21 @@ class Country
     public function getUsers(): Collection
     {
         return $this->users;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRu(): string
+    {
+        return $this->ru;
+    }
+
+    /**
+     * @param string $ru
+     */
+    public function setRu(string $ru): void
+    {
+        $this->ru = $ru;
     }
 }

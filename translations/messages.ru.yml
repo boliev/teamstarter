@@ -1,9 +1,7 @@
 ProjectTitle: TeamStarter
-Projects: Проекты
-we_speak: Языки
+index_page_title: Найди свою команду мечты
 sign_in: Вход
 sign_up: Регистрация
-profile: Профиль
 logout: Выход
 submit: Отправить
 cancel: Отмена
@@ -12,7 +10,38 @@ InReview: На модерации
 Declined: Отклонен
 Published: Опубликован
 search_placeholder: Поиск...
+Idea only: Только идея
+Specifications: Спецификация
+There is a Demo: Демо
+Project released: Проект запущен
+title:
+    default: Найди свою команду мечты
+    index_page: Найди свою команду мечты
+    registration: Регистрация
+    confirmed: Ваш аккаунт подтвержден
+    reset_password: Сбросить пароль
+    login: Вход
+    user_specialization: Укажие вашу специализацию
+    user_about: Расскажите о себе
+    user_profile: Профиль
+    user_projects: Мои проекты
+    moderator_comments: Комментарии модератора
+    project_create_main: Создание проекта
+    project_create_rules: Правила создания проекта
+    project_create_roles: Открытые роли
+    project_create_add_role: Добавить роль
+    project_create_screens: Скриншоты проекта
+    project_add_proposal: Предложить сотрудничество
+    project_list: Открытые проекты
+    project_more: '%title%'
+    specialists_list: Доступные специалисты
+    specialists_more: '%name%'
+    specialists_add_offer: Предложить сотрудничество
+    dialogs_list: Ваши диалоги
+    dialogs_more: 'Диалог: %name%'
+
 registration:
+    header: Регистрация
     label_first_name: Имя
     label_last_name: Фамилия
     label_email: Email
@@ -36,6 +65,13 @@ registration:
 
             С наилучшими пожеланиями,
             TeamStarter.
+resetting:
+    header: <span>Сбросить</span> пароль
+    check_email: |
+        Письмо отправлено. Оно содержит ссылку, при переходе по которой ваш пароль будет сброшен.
+        Заметьте, вы сможете запросить новый пароль только через %tokenLifetime% часа.
+
+        Если вы не получили письмо, проверьте папку Спам или попробуйте снова.
 specialization:
     Other: Другие
     chose: <span>Укажие вашу</span> специализацию
@@ -57,9 +93,10 @@ skill:
 user:
     about_title: <span>Расскажите</span> о себе
     about_menu_title: О вас
-    about_skip: Эту форму можно пропустить, но чем больше информации вы укажите, тем выше шанс найти парнера
+    about_skip: Эту форму можно пропустить, но чем больше информации вы укажите, тем выше шанс найти партнера
     about_skip_button: Пропустить форму
     about_profile: Профиль
+    profile_menu_title: Профиль
     country: Страна
     choose_country: Выберите страну
     city: Город
@@ -78,7 +115,7 @@ user:
     about: Расскажите о себе
     profile_picture: Загрузить фото
     avatar_max_size_exception: Максимальный размер фото {size} MБ
-    avatar_max_size_hint: Только изображения, максимум {size} MБ
+    avatar_max_size_hint: Максимальный размер фото {size} MБ
     avatar_extension_exception: Только изображения
     profile_form_success: Профиль сохранен!
     about_form_success: Изменения сохранены!
@@ -108,9 +145,12 @@ project:
     screen_max_size_exception: Максимальный размер изображения {size} MБ
     screen_extension_exception: Скриншот должен быть изображением
     my_list: <span>Мои</span> проекты
+    moderator_comments: <span>Комментарии</span> модератора
     edit_link: Редактировать
     close_link: Закрыть
     open_link: Открыть
+    remoderate_link: Повторная модерация
+    declined_comments_link: Комментарии модератора
     add_role: + Добавить роль
     add_role_page_title_add: <span>Добавление</span> роли
     add_role_page_title_edit: <span>Редакировать</span> роль
@@ -131,12 +171,13 @@ project:
     form_status_placeholder: Выберите статус
     form_mission: Миссия
     form_description: Описание
-    agree_button: Я согласен с правилами создания проекта
+    agree_button: Cогласен с правилами
     next_button: Продолжить
     finish_button: Завершить
     back_button: Назад
     saved: Проект сохранен
     closed: Проект закрыт
+    remoderate_closed: Проект отправлен на повторную модерацию
     re_moderation_warning: После редактирования проект будет отправлен на перемодерацию и некоторое время не будет доступен в системе
     submit_success: Ваш проект добавлен! После ручной модерации он появится в системе. Мы сообщим вам по электронной почте.
     submit_success_email:
@@ -144,17 +185,79 @@ project:
         message: |
             <p>Приветствуем, %username%!</p>
             <p>Ваш проект добавлен!</p>
-            <p>После ручной модерации он появится в системе. Мы сообщим вам по электронной почте.</p>
+            <p>После ручной модерации он появится в системе.</p> <p>Мы сообщим вам об этом по электронной почте.</p>
             <br /><br />
             <p>С наилучшими пожеланиями,<br />
             TeamStarter.</p>
-    edit_success: Thank you for editing your project! After manual reviewing it will be back in the system. We will inform you by email!
+    approve_success_email:
+        subject: Ваш проект прошел модерацию!
+        message: |
+            <p>Приветствуем, %username%!</p>
+            <p>Ваш проект добавлен в систему!</p>
+            <p>Мы рады сообщить, что ваш проект прошел модерацию и доступен в системе по ссылке %link%.</p>
+            <br /><br />
+            <p>С наилучшими пожеланиями,<br />
+            TeamStarter.</p>
+    edit_success: Ваш проект изменен! После ручной модерации он вернется в систему. Мы сообщим вам об этом по электронной почте!
     edit_success_email:
-        subject:  Thank you for editing your project!
+        subject:  Ваш проект изменен!
         message: |
             <p>Приветствуем, %username%!</p>
             <p>Ваш проект изменен!</p>
-            <p>После ручной модерации он вернется в систему. Мы сообщим вам по электронной почте.</p>
+            <p>После ручной модерации он вернется в систему.</p> <p>Мы сообщим вам об этом по электронной почте.</p>
+            <br /><br />
+            <p>С наилучшими пожеланиями,<br />
+            TeamStarter.</p>
+    decline_email:
+        subject:
+            Ваш проект отклонен :-(
+        message: |
+            <p>Приветствуем, %username%!</p>
+            <p>К сожалению, ваш проект отклонен модератором.!</p>
+            <p>Комментарий модератора:</p>
+            <p>%comment%</p>
+            <p>Отправить проект на повторную модерацию можно на странице "Мои проекты"</p>
+            <br /><br />
+            <p>С наилучшими пожеланиями,<br />
+            TeamStarter.</p>
+    remoderate_declined_email:
+        subject:  Ваш проект отправлен на повторную модерацию!
+        message: |
+            <p>Приветствуем, %username%!</p>
+            <p>Ваш проект отправлен на повторную модерацию!</p>
+            <p>После ручной модерации он появится в системе.</p> <p>Мы сообщим вам об этом по электронной почте.</p>
+            <br /><br />
+            <p>С наилучшими пожеланиями,<br />
+            TeamStarter.</p>
+    submit_success_admin_email:
+        subject: Новый проект получен на модерацию!
+        message: |
+            <p>Здравствуй админ!</p>
+            <p>Новый проект готов к модерации!</p>
+            <p>Отнесись к модерации со всей строгостью и серьезностью.</p> <p>От качества проектов в системе зависит зависит наш успех.</p>
+            <p><a href="%link%">Модерировать проект</a></p>
+            <br /><br />
+            <p>С наилучшими пожеланиями,<br />
+            TeamStarter.</p>
+    remoderate_admin_email:
+        subject: Перемодерация опубликованного проекта!
+        message: |
+            <p>Здравствуй админ!</p>
+            <p>Требуется перемодерация опубликованного проекта!</p>
+            <p>Отнесись к модерации со всей строгостью и серьезностью.</p> <p>От качества проектов в системе зависит зависит наш успех.</p>
+            <p><a href="%link%">Модерировать проект</a></p>
+            <br /><br />
+            <p>С наилучшими пожеланиями,<br />
+            TeamStarter.</p>
+    remoderate_declinned_admin_email:
+        subject: Перемодерация отклоненного проекта!
+        message: |
+            <p>Здравствуй админ!</p>
+            <p>Требуется перемодерация отклоненного проекта!</p>
+            <p>Отнесись к модерации со всей строгостью и серьезностью.</p>
+            <p>Просмотри комментарии отклонившего проект админа.</p>
+            <p>От качества проектов в системе зависит зависит наш успех.</p>
+            <p><a href="%link%">Модерировать проект</a></p>
             <br /><br />
             <p>С наилучшими пожеланиями,<br />
             TeamStarter.</p>
@@ -197,3 +300,7 @@ dialogs:
     no_access: Нет такого диалога
     new_message: Отправить сообщение
     new_message_submit_button: Оправить
+admin:
+    projects: Проекты
+    all_projects: Все проекты
+    projects_in_review: Проекты на модерации
