@@ -144,6 +144,12 @@ class User extends BaseUser
     private $projects;
 
     /**
+     * @var \DateTime|null
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $proUntil;
+
+    /**
      * @var \DateTime
      * @ORM\Column(type="datetime")
      */
@@ -585,5 +591,36 @@ class User extends BaseUser
         }
 
         return false;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getProUntil(): ?\DateTime
+    {
+        return $this->proUntil;
+    }
+
+    /**
+     * @param \DateTime $proUntil
+     */
+    public function setProUntil(\DateTime $proUntil): void
+    {
+        $this->proUntil = $proUntil;
+    }
+
+    /**
+     * @return bool
+     *
+     * @throws \Exception
+     */
+    public function isPro(): bool
+    {
+        if (null === $this->getProUntil()) {
+            return false;
+        }
+        $nowDate = new \DateTime();
+
+        return $this->getProUntil() >= $nowDate;
     }
 }
