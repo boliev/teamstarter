@@ -32,6 +32,10 @@ services:
             $websocketUrlForClient: '%env(WEBSOCKET_URL_FOR_CLIENT)%'
             $websocketPortForClient: '%env(WEBSOCKET_PORT_FOR_CLIENT)%'
 
+    App\Controller\DefaultController:
+        bind:
+            $locale: '%locale%'
+
     app.form.registration:
         class: App\Form\RegistrationType
         tags:
@@ -140,6 +144,10 @@ services:
         arguments:
             $url: '%env(WEBSOCKET_URL_FOR_SERVER)%'
             $port: '%env(WEBSOCKET_PORT_FOR_SERVER)%'
+
+    Parsedown:
+        class: \Parsedown
+        autowire: true
 
     twig.extension.text:
         class: Twig_Extensions_Extension_Text

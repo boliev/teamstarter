@@ -14,6 +14,7 @@ Idea only: Только идея
 Specifications: Спецификация
 There is a Demo: Демо
 Project released: Проект запущен
+terms: '<span>Правила использования</span> сайта %site_name%'
 title:
     default: Найди свою команду мечты
     index_page: Найди свою команду мечты
@@ -39,6 +40,7 @@ title:
     specialists_add_offer: Предложить сотрудничество
     dialogs_list: Ваши диалоги
     dialogs_more: 'Диалог: %name%'
+    terms: 'Правила использования сайта %site_name%'
 
 registration:
     header: Регистрация
