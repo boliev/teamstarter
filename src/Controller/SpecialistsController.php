@@ -114,17 +114,19 @@ class SpecialistsController extends AbstractController
      * @param TranslatorInterface $translator
      * @param User $specialist
      * @param ProjectRepository $projectRepository
-     *
-     * @throws \Exception
+     * @param OfferRepository $offerRepository
      *
      * @return Response
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @throws \Exception
      */
     public function submitOffer(
         Request $request,
         EntityManagerInterface $em,
         TranslatorInterface $translator,
         User $specialist,
-        ProjectRepository $projectRepository
+        ProjectRepository $projectRepository,
+        OfferRepository $offerRepository
     )
     {
         $user = $this->getUser();
@@ -136,6 +138,10 @@ class SpecialistsController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            if(!$user->isPro() && $offerRepository->getSentForLast24HoursCount($user) >= 3) {
+                return $this->render('specialists/more/access_denied_add_offer.html.twig', []);
+            }
+
             $newOffer = $this->createOffer($user, $form, $specialist, $em);
 
             $this->addFlash('add-offer-success', $translator->trans('project.offer_posted_success', [

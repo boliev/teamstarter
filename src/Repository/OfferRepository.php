@@ -80,6 +80,30 @@ class OfferRepository extends EntityRepository
         return $sortedOffers;
     }
 
+    /**
+     * @param User $user
+     *
+     * @return int
+     *
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @throws \Exception
+     */
+    public function getSentForLast24HoursCount(User $user): int
+    {
+        $date = new \DateTime();
+        $date->modify('-24 hour');
+
+        return $this->createQueryBuilder('o')
+            ->select('count(o.id)')
+            ->where('o.from = :user')
+            ->andWhere('o.createdAt > :date')
+            ->setParameter('user', $user->getId())
+            ->setParameter('date', $date)
+            ->getQuery()
+            ->getSingleScalarResult();
+
+    }
+
     private function getDialogExpression(User $user, QueryBuilder $db): Orx
     {
         $userProjects = [];

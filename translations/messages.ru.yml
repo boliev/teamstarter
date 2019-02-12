@@ -310,3 +310,5 @@ pro:
     buy: Купить PRO аккаунт
     specialists_list_access_denied: К сожалению, для просмотра списка специалистов необходимо иметь хотя бы один активный проект <span> или PRO аккаунт</span>
     specialists_more_access_denied: К сожалению, для просмотра специалистов необходимо иметь хотя бы один активный проект <span> или PRO аккаунт</span>
+    specialists_add_offer_access_denied: К сожалению, для отправки более трех предложений в сутки необходимо иметь <span> PRO аккаунт</span>
+    projects_add_proposal_access_denied: К сожалению, для отправки более трех предложений в сутки необходимо иметь <span> PRO аккаунт</span>

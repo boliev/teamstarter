@@ -29,7 +29,7 @@ class ProjectsController extends AbstractController
      * @param Request                  $request
      * @param EntityManagerInterface   $entityManager
      * @param ProjectSearcherInterface $projectSearcher
-     * @param PaginatorInterface $paginator
+     * @param PaginatorInterface       $paginator
      * @param int                      $page
      *
      * @return Response
@@ -106,12 +106,20 @@ class ProjectsController extends AbstractController
      * @param EntityManagerInterface $em
      * @param TranslatorInterface $translator
      * @param Project $project
+     * @param OfferRepository $offerRepository
      *
      * @return Response
+     *
+     * @throws \Doctrine\ORM\NonUniqueResultException
      * @throws \Exception
      */
-    public function submitProposal(Request $request, EntityManagerInterface $em, TranslatorInterface $translator, Project $project)
-    {
+    public function submitProposal(
+        Request $request,
+        EntityManagerInterface $em,
+        TranslatorInterface $translator,
+        Project $project,
+        OfferRepository $offerRepository
+    ) {
         $user = $this->getUser();
 
         if (!$user) {
@@ -122,6 +130,9 @@ class ProjectsController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            if (!$user->isPro() && $offerRepository->getSentForLast24HoursCount($user) >= 3) {
+                return $this->render('project/more/access_denied_add_proposal.html.twig', []);
+            }
             $offer = $this->createOffer($user, $form, $project, $em);
 
             $this->addFlash('add-role-success', $translator->trans(
@@ -141,9 +152,9 @@ class ProjectsController extends AbstractController
     }
 
     /**
-     * @param User $user
-     * @param FormInterface $form
-     * @param Project $project
+     * @param User                   $user
+     * @param FormInterface          $form
+     * @param Project                $project
      * @param EntityManagerInterface $em
      *
      * @throws \Exception
