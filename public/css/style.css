@@ -2286,3 +2286,42 @@ div.bootstrap-tagsinput ul.dropdown-menu a.dropdown-item {
 	font-style: italic;
 	font-size: 14px;
 }
+
+div.pro-access-error {
+	font-style: italic;
+	font-family: Lato;
+	font-size: 20px;
+	font-weight: 400;
+	border-top: 1px dashed #e1e1e1;
+	border-bottom: 1px dashed #e1e1e1;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	margin-bottom: 15px;
+}
+
+div.pro-access-error span {
+	color: #42a5f5;
+	font-weight: bold;
+}
+
+div.pro-access-buttons {
+	text-align: center;
+	margin-bottom: 50px;
+    margin-top: 30px;
+}
+
+.pro-access-buttons a {
+	background: #42a5f5;
+	color: #fff;
+	min-width: 240px;
+	padding: 10px 35px;
+	margin: 10px;
+}
+
+.pro-access-buttons a:hover {
+	background: #42a5f5;
+	color: #fff;
+	min-width: 240px;
+	padding: 10px 35px;
+	margin: 10px;
+}

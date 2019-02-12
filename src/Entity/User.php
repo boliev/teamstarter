@@ -520,6 +520,24 @@ class User extends BaseUser
         $this->projects = $projects;
     }
 
+    public function hasActiveProject(): bool
+    {
+        /** @var Project $project */
+        foreach ($this->projects as $project)
+        {
+            if($project->getProgressStatus() === Project::STATUS_PUBLISHED) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public function isProOrHasActiveProjects(): bool
+    {
+        return $this->isPro() || $this->hasActiveProject();
+    }
+
     /**
      * @return \DateTime
      */

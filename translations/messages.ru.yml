@@ -306,3 +306,7 @@ admin:
     projects: Проекты
     all_projects: Все проекты
     projects_in_review: Проекты на модерации
+pro:
+    buy: Купить PRO аккаунт
+    specialists_list_access_denied: К сожалению, для просмотра списка специалистов необходимо иметь хотя бы один активный проект <span> или PRO аккаунт</span>
+    specialists_more_access_denied: К сожалению, для просмотра специалистов необходимо иметь хотя бы один активный проект <span> или PRO аккаунт</span>

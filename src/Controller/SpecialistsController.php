@@ -42,6 +42,11 @@ class SpecialistsController extends AbstractController
         PaginatorInterface $paginator,
         int $page = 1
     ) {
+
+        if(!$this->getUser()->isProOrHasActiveProjects()) {
+            return $this->render('specialists/list/access_denied.html.twig');
+        }
+
         $ids = null;
         $searchQuery = $request->query->get('query');
         $isSearch = (null !== $searchQuery && '' !== $searchQuery);
@@ -83,6 +88,12 @@ class SpecialistsController extends AbstractController
         OfferRepository $offerRepository,
         ProjectRepository $projectRepository
     ) {
+
+        /** @var User $user */
+        if(!$this->getUser()->isProOrHasActiveProjects()) {
+            return $this->render('specialists/more/access_denied.html.twig');
+        }
+
         if (!$user->isSpecialist()) {
             // not_found
             throw new NotFoundHttpException($translator->trans('specialists.not_found'));
