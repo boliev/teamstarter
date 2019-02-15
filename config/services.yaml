@@ -5,6 +5,7 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: 'ru'
+    pro_price: '%env(PRO_PRICE)%'
 
 services:
     # default configuration for services in *this* file
@@ -35,6 +36,10 @@ services:
     App\Controller\DefaultController:
         bind:
             $locale: '%locale%'
+
+    App\Controller\ProController:
+        bind:
+            $price: '%pro_price%'
 
     app.form.registration:
         class: App\Form\RegistrationType
@@ -72,6 +77,9 @@ services:
         arguments:
             $kernelRoot: "%kernel.root_dir%"
             $avatarMaxSize: "%env(AVATAR_MAX_SIZE)%"
+            $fromEmailAddress: "%env(MAILER_ADDRESS)%"
+            $fromName: "%env(MAILER_SENDER_NAME)%"
+            $notifyNewProUsersEmails: "%env(NOTIFY_NEW_PRO_USER)%"
 
     App\Service\ProjectService:
         arguments:

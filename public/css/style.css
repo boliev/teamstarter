@@ -2326,3 +2326,27 @@ div.pro-access-buttons {
 	padding: 10px 35px;
 	margin: 10px;
 }
+
+.pricing-price {
+	font-size: 64px;
+	font-weight: 500;
+	text-align: center;
+}
+
+.pricing-period {
+	text-align: center;
+	font-size: 16px;
+	margin-top: -20px;
+}
+
+.pricing-item {
+	font-size: 14px;
+}
+
+.pricing-item i {
+	color: #42a5f5;
+}
+
+.pricing-items-container {
+	margin-top: 15px;
+}
