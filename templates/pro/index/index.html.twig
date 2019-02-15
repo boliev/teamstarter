@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+{% block title %} {{ 'pro.buy_title' | trans }} {% endblock %}
+{% block body %}
+    <div class ="container">
+        <div class="row section-content-2">
+
+            <div class="form-section">
+                <div class="col-sm-8 col-sm-offset-2">
+                        <div class="kc-elm kc-title-wrap  left dark">
+                            <div class="title-wrapper">
+                                <h3 class="kc_title">{{ 'pro.buy_header' | trans | raw }}</h3>
+                            </div>
+                        </div>
+
+                    <div class="row">
+                        <div class="col-sm-8 col-sm-offset-2">
+                            <div class="pricing-price">{{ 'currency' | trans }}{{ price }}</div>
+                            <div class="pricing-period">{{ 'pro.payment_period' | trans }}</div>
+                            <div class="pricing-items-container">
+                                <div class="pricing-item"><i class="fas fa-infinity"></i> {{ 'pro.open_specialists_list' | trans }}</div>
+                                <div class="pricing-item"><i class="fas fa-infinity"></i> {{ 'pro.fast_moderation' | trans }}</div>
+                                <div class="pricing-item"><i class="fas fa-infinity"></i> {{ 'pro.unlimited_offers' | trans }}</div>
+                            </div>
+                            <div class="pricing-button">
+                                <div class="pro-access-buttons">
+                                    <a class="" href="{{ path('pro_checkout') }}">{{ 'pro.buy' | trans }}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+{% block javascripts %}
+
+{% endblock %}

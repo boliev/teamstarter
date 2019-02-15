@@ -15,6 +15,7 @@ Specifications: Спецификация
 There is a Demo: Демо
 Project released: Проект запущен
 terms: '<span>Правила использования</span> сайта %site_name%'
+currency: ₽
 title:
     default: Найди свою команду мечты
     index_page: Найди свою команду мечты
@@ -306,3 +307,33 @@ admin:
     projects: Проекты
     all_projects: Все проекты
     projects_in_review: Проекты на модерации
+pro:
+    buy_title: Купить PRO аккаунт
+    buy_header: <span>Купить</span> PRO аккаунт
+    buy: Купить PRO аккаунт
+    specialists_list_access_denied: К сожалению, для просмотра списка специалистов необходимо иметь хотя бы один активный проект <span> или PRO аккаунт</span>
+    specialists_more_access_denied: К сожалению, для просмотра специалистов необходимо иметь хотя бы один активный проект <span> или PRO аккаунт</span>
+    specialists_add_offer_access_denied: К сожалению, для отправки более трех предложений в сутки необходимо иметь <span> PRO аккаунт</span>
+    projects_add_proposal_access_denied: К сожалению, для отправки более трех предложений в сутки необходимо иметь <span> PRO аккаунт</span>
+    payment_period: В месяц
+    unlimited_offers: Безлимитное кол-во предложений
+    fast_moderation: Модерация и перемодерация проекта вне очереди
+    open_specialists_list: Возможность искать специалистов не имея активного проекта
+    buy_success_message: PRO аккаунт куплен и успешно активирован
+    buy_success_email:
+        subject: Успешная покупка PRO аккаунта!
+        message: |
+            <p>Приветствуем, %username%!</p>
+            <p>PRO аккаунт куплен и успешно активирован!</p>
+            <br /><br />
+            <p>С наилучшими пожеланиями,<br />
+            TeamStarter.</p>
+    buy_success_email_admins:
+        subject: Успешная покупка PRO аккаунта!
+        message: |
+            <p>Приветствуем, %username%!</p>
+            <p>+1 PRO пользователь TeamStarter</p>
+            <p>Сьешь мороженку красава!</p>
+            <br /><br />
+            <p>С наилучшими пожеланиями,<br />
+            TeamStarter.</p>
