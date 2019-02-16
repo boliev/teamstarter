@@ -88,6 +88,13 @@ class User extends BaseUser
     private $country;
 
     /**
+     * @var Country|null
+     * @ORM\ManyToOne(targetEntity="App\Entity\PromoCode", inversedBy="users")
+     * @ORM\JoinColumn(name="promoCode", referencedColumnName="code")
+     */
+    private $promoCode;
+
+    /**
      * @var string
      * @ORM\Column(name="city", type="string", length=100, nullable=true)
      */
@@ -640,5 +647,21 @@ class User extends BaseUser
         $nowDate = new \DateTime();
 
         return $this->getProUntil() >= $nowDate;
+    }
+
+    /**
+     * @return Country|null
+     */
+    public function getPromoCode(): ?Country
+    {
+        return $this->promoCode;
+    }
+
+    /**
+     * @param Country|null $promoCode
+     */
+    public function setPromoCode(?Country $promoCode): void
+    {
+        $this->promoCode = $promoCode;
     }
 }

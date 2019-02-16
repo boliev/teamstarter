@@ -307,6 +307,7 @@ admin:
     projects: Проекты
     all_projects: Все проекты
     projects_in_review: Проекты на модерации
+    promo_codes: Промо коды
 pro:
     buy_title: Купить PRO аккаунт
     become_a_pro: Стань PRO
