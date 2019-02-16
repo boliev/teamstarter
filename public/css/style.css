@@ -2327,6 +2327,23 @@ div.pro-access-buttons {
 	margin: 10px;
 }
 
+.apus-topbar .pro-header-button a {
+	border: 2px solid #42a5f5;
+	background: transparent;
+	color: #fff;
+	min-width: 240px;
+	padding: 10px 35px;
+	margin: 10px;
+}
+
+.apus-topbar .pro-header-button a:hover {
+	background: #42a5f5;
+	color: #fff;
+	min-width: 240px;
+	padding: 10px 35px;
+	margin: 10px;
+}
+
 .pricing-price {
 	font-size: 64px;
 	font-weight: 500;
