@@ -309,6 +309,7 @@ admin:
     projects_in_review: Проекты на модерации
 pro:
     buy_title: Купить PRO аккаунт
+    become_a_pro: Стань PRO
     buy_header: <span>Купить</span> PRO аккаунт
     buy: Купить PRO аккаунт
     specialists_list_access_denied: К сожалению, для просмотра списка специалистов необходимо иметь хотя бы один активный проект <span> или PRO аккаунт</span>
