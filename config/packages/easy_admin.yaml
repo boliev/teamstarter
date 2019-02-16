@@ -103,8 +103,10 @@ easy_admin:
                     - code
                     - users
                     - freeProMonths
+                    - until
             form:
                 fields:
                     - code
                     - description
                     - {property: freeProMonths, label: 'Free PRO months'}
+                    - until

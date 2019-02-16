@@ -6,7 +6,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="App\Repository\PromoCodeRepository")
  * @ORM\Table(name="promo_codes")
  */
 class PromoCode
@@ -32,9 +32,16 @@ class PromoCode
     private $users;
 
     /**
+     * @var int
      * @ORM\Column(type="integer", nullable=false, options={"default": 0})
      */
     private $freeProMonths;
+
+    /**
+     * @var \DateTime|null
+     * @ORM\Column(type="datetime", nullable=false)
+     */
+    private $until;
 
     /**
      * @return string
@@ -87,7 +94,7 @@ class PromoCode
     /**
      * @return mixed
      */
-    public function getFreeProMonths()
+    public function getFreeProMonths(): int
     {
         return $this->freeProMonths;
     }
@@ -98,5 +105,21 @@ class PromoCode
     public function setFreeProMonths($freeProMonths): void
     {
         $this->freeProMonths = $freeProMonths;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getUntil(): ?\DateTime
+    {
+        return $this->until;
+    }
+
+    /**
+     * @param \DateTime $until
+     */
+    public function setUntil(\DateTime $until): void
+    {
+        $this->until = $until;
     }
 }

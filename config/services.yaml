@@ -116,6 +116,12 @@ services:
         arguments:
         - App\Entity\Message
 
+    App\Repository\PromoCodeRepository:
+        class: App\Repository\PromoCodeRepository
+        factory: ['@doctrine.orm.default_entity_manager', getRepository]
+        arguments:
+            - App\Entity\PromoCode
+
     App\Repository\ProjectRepository:
         class: App\Repository\Projectepository
         factory: ['@doctrine.orm.default_entity_manager', getRepository]
