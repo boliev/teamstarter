@@ -94,3 +94,19 @@ easy_admin:
                     - {property: user.userSpecializations, label: 'User Specializations', template: 'admin/users/specializations.html.twig'}
             sort: 'createdAt'
             disabled_actions: ['new', 'edit', 'delete']
+        PromoCodes:
+            class: App\Entity\PromoCode
+            label: 'admin.promo_codes'
+            list:
+                title: "admin.promo_codes"
+                fields:
+                    - code
+                    - users
+                    - freeProMonths
+                    - until
+            form:
+                fields:
+                    - code
+                    - description
+                    - {property: freeProMonths, label: 'Free PRO months'}
+                    - until

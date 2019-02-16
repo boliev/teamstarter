@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+{% block title %} {{ 'title.user_about' | trans }} {% endblock %}
+{% form_theme form _self %}
+{% block body %}
+    <div class ="container">
+        <div class="row section-content-2">
+
+            <div class="form-section">
+                <div class="col-sm-8 col-sm-offset-2">
+                    <form method="post" action="">
+
+                        <p class="hint">{{ 'registration.promo_code_hint' | trans }}</p>
+
+                        <div class="row"> <div class="col-md-12 form-group">
+                            {{ form_label(form.promoCode, '', {'label_attr': {'class': 'bmd-label-floating'}}) }}
+                            {{ form_widget(form.promoCode, {'attr': {'class': 'input-block'}}) }}
+                            {{ form_errors(form.promoCode)}}
+                        </div></div>
+                        <div class="row">
+                            <div class="col-md-12 form-bottom">
+                                {{ form_row(form._token) }}
+                                <input type="submit" class="btn btn-primary btn-large" value="{{ 'submit'|trans }}">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+
+{% endblock %}
+
+{% block form_errors %}
+    {% spaceless %}
+        {% if errors|length > 0 %}
+                {% for error in errors %}
+                    <div class="error">{{ error.message }}</div>
+                {% endfor %}
+        {% endif %}
+    {% endspaceless %}
+{% endblock form_errors %}

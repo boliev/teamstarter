@@ -13,6 +13,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class User extends BaseUser
 {
+    const ROLE_ADMIN = 'ROLE_ADMIN';
+
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -86,6 +88,13 @@ class User extends BaseUser
      * @ORM\JoinColumn(name="country", referencedColumnName="code")
      */
     private $country;
+
+    /**
+     * @var PromoCode|null
+     * @ORM\ManyToOne(targetEntity="App\Entity\PromoCode", inversedBy="users")
+     * @ORM\JoinColumn(name="promoCode", referencedColumnName="code")
+     */
+    private $promoCode;
 
     /**
      * @var string
@@ -523,14 +532,18 @@ class User extends BaseUser
     public function hasActiveProject(): bool
     {
         /** @var Project $project */
-        foreach ($this->projects as $project)
-        {
-            if($project->getProgressStatus() === Project::STATUS_PUBLISHED) {
+        foreach ($this->projects as $project) {
+            if (Project::STATUS_PUBLISHED === $project->getProgressStatus()) {
                 return true;
             }
         }
 
         return false;
+    }
+
+    public function isAdmin()
+    {
+        return $this->hasRole(self::ROLE_ADMIN);
     }
 
     public function isProOrHasActiveProjects(): bool
@@ -640,5 +653,27 @@ class User extends BaseUser
         $nowDate = new \DateTime();
 
         return $this->getProUntil() >= $nowDate;
+    }
+
+    /**
+     * @return PromoCode|null
+     */
+    public function getPromoCode(): ?PromoCode
+    {
+        return $this->promoCode;
+    }
+
+    /**
+     * @param PromoCode|null $promoCode
+     *
+     * @throws \Exception
+     */
+    public function setPromoCode(?PromoCode $promoCode): void
+    {
+        $this->promoCode = $promoCode;
+        if ($promoCode->getFreeProMonths() > 0) {
+            $proDate = (new \DateTime())->add(new \DateInterval('P'.$promoCode->getFreeProMonths().'M'));
+            $this->proUntil = $proDate;
+        }
     }
 }
