@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+{% block title %} {{ 'title.contact' | trans }} {% endblock %}
+{% block body %}
+    <div class ="container">
+        <div class="row section-content-2">
+
+            <div class="form-section">
+                <div class="col-sm-8 col-sm-offset-2">
+                    <div class="kc-elm kc-title-wrap  left dark">
+                        <div class="title-wrapper">
+                            <h3 class="kc_title">{{ 'contact.header' | trans | raw }}</h3>
+                        </div>
+                    </div>
+
+                    <div class="success-message">{{ 'contact.success_message' | trans }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+{% block javascripts %}
+
+{% endblock %}
