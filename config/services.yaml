@@ -41,6 +41,12 @@ services:
         bind:
             $price: '%pro_price%'
 
+    App\Controller\UserPromoCodeController:
+        bind:
+            $fromEmailAddress: "%env(MAILER_ADDRESS)%"
+            $fromName: "%env(MAILER_SENDER_NAME)%"
+            $notifyNewBetaRequests: "%env(NOTIFY_NEW_PRO_USER)%"
+
     app.form.registration:
         class: App\Form\RegistrationType
         tags:

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\BetaRequest;
 use App\Entity\User;
 use App\Form\UserPromoCodeType;
 use App\Repository\PromoCodeRepository;
@@ -57,5 +58,44 @@ class UserPromoCodeController extends AbstractController
         return $this->render('user/promocode/index.html.twig', [
             'form' => $form->createView(),
         ]);
+    }
+
+    /**
+     * @Route("/user/promo-code/sign-up", name="user_promo_code_sign_up")
+     *
+     * @param string                 $fromEmailAddress
+     * @param string                 $fromName
+     * @param string                 $notifyNewBetaRequests
+     * @param EntityManagerInterface $em
+     * @param \Swift_Mailer          $mailer
+     * @param TranslatorInterface    $translator
+     *
+     * @return Response
+     */
+    public function signUpForBeta(
+        string $fromEmailAddress,
+        string $fromName,
+        string $notifyNewBetaRequests,
+        EntityManagerInterface $em,
+        \Swift_Mailer $mailer,
+        TranslatorInterface $translator
+    ) {
+        try {
+            $betaRequest = new BetaRequest();
+            $betaRequest->setUser($this->getUser());
+            $em->persist($betaRequest);
+            $em->flush();
+        } catch (\Exception $e) {
+        }
+
+        $notifyEmails = explode(',', $notifyNewBetaRequests);
+        $message = (new \Swift_Message($translator->trans('user.new_request_for_beta_email_admins.subject')))
+            ->setFrom($fromEmailAddress, $fromName)
+            ->setTo($notifyEmails)
+            ->setBody($translator->trans('user.new_request_for_beta_email_admins.message'), 'text/html');
+
+        $mailer->send($message);
+
+        return $this->render('user/promocode/request.html.twig', []);
     }
 }

@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-{% block title %} {{ 'title.user_about' | trans }} {% endblock %}
+{% block title %} {{ 'title.enter_promo' | trans }} {% endblock %}
 {% form_theme form _self %}
 {% block body %}
     <div class ="container">
@@ -21,6 +21,9 @@
                                 {{ form_row(form._token) }}
                                 <input type="submit" class="btn btn-primary btn-large" value="{{ 'submit'|trans }}">
                             </div>
+                        </div>
+                        <div class="promo-request-link text-center">
+                            <a href="{{ path('user_promo_code_sign_up') }}">{{ 'registration.promo_code_request' | trans }}</a>
                         </div>
                     </form>
                 </div>
