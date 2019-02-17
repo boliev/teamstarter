@@ -44,6 +44,7 @@ title:
     terms: 'Правила использования сайта %site_name%'
     enter_promo: Сервис находится на стадии Бета-тестирования
     promo_request: Я хочу записаться на бета-тестирование
+    contact: Наши контакты
 
 registration:
     header: Регистрация
@@ -352,6 +353,26 @@ pro:
             <p>Приветствуем, %username%!</p>
             <p>+1 PRO пользователь TeamStarter</p>
             <p>Сьешь мороженку красава!</p>
+            <br /><br />
+            <p>С наилучшими пожеланиями,<br />
+            TeamStarter.</p>
+contact:
+    header: Форма <span>обратной связи</span>
+    menu_title: Наши контакты
+    field_title: Тема сообщения
+    field_email: Ваш email
+    field_text: Текст сообщения
+    success_message: Спасибо за обращение! Наш сотрудник свяжется с вами в ближайшее время!
+    support_email:
+        subject: Новое обращение в ТП!
+        message: |
+            <p>ID Заявки: %id%</p>
+            <p>Email: %email%</p>
+            <p>Имя: %name%</p>
+            <p>ID Юзера: %user_id%</p>
+            <p>IsPRO: %user_pro%</p>
+            <p>Тема: %title%</p>
+            <p>Текст:<br /> %text%</p>
             <br /><br />
             <p>С наилучшими пожеланиями,<br />
             TeamStarter.</p>
