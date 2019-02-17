@@ -21,6 +21,7 @@ class RegistrationIncompleteSubscriber implements EventSubscriberInterface
     const ABOUT_SKIP_ROUTE = 'specify_about_form_skip';
     const CONTACTS_ROUTE = 'specify_contacts_form';
     const PROMO_CODE_ROUTE = 'user_promo_code_form';
+    const PROMO_CODE_SIGN_UP_ROUTE = 'user_promo_code_sign_up';
     /**
      * @var EntityManagerInterface
      */
@@ -129,6 +130,7 @@ class RegistrationIncompleteSubscriber implements EventSubscriberInterface
             self::ABOUT_SKIP_ROUTE,
             self::CONTACTS_ROUTE,
             self::PROMO_CODE_ROUTE,
+            self::PROMO_CODE_SIGN_UP_ROUTE,
         ])) {
             return false;
         }
