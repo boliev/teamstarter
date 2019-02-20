@@ -3,4 +3,4 @@
 <li><a href="{{ path('project_create_rules') }}">{{ 'project.menu_create' | trans }}</a></li>
 {% if app.user and app.user.projects | length > 0 %}<li><a href="{{ path('user_projects_list') }}">{{ 'project.my_projects' | trans }} </a></li>{% endif %}
 {% if app.user %}<li><a href="{{ path('dialogs_list') }}">{{ 'dialogs.menu_list' | trans }} <span class="badge badge-count">{% if userNewMessagesCount() > 0 %}{{ userNewMessagesCount() }}{% endif %}</span></a></li>{% endif %}
-<li><a href="contact.html">Contact us</a></li>
+<li><a href="{{ path('contact_form') }}">{{ 'contact.menu_title' | trans }}</a></li>

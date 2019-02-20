@@ -14,6 +14,8 @@ Idea only: Только идея
 Specifications: Спецификация
 There is a Demo: Демо
 Project released: Проект запущен
+terms: '<span>Правила использования</span> сайта %site_name%'
+currency: ₽
 title:
     default: Найди свою команду мечты
     index_page: Найди свою команду мечты
@@ -39,6 +41,10 @@ title:
     specialists_add_offer: Предложить сотрудничество
     dialogs_list: Ваши диалоги
     dialogs_more: 'Диалог: %name%'
+    terms: 'Правила использования сайта %site_name%'
+    enter_promo: Сервис находится на стадии Бета-тестирования
+    promo_request: Я хочу записаться на бета-тестирование
+    contact: Наши контакты
 
 registration:
     header: Регистрация
@@ -47,13 +53,18 @@ registration:
     label_email: Email
     label_fassword_first: Пароль
     label_fassword_second: Еще раз пароль
+    label_promo_code: Промокод
+    promo_code_error: Промокод в системе не найден
+    promo_code_hint: Сервис находится на стадии Бета-тестирования. Вход осуществляется только по промокодам.
+    promo_code_request: У меня нет кода, но я хочу записаться на бета-тестирование
+    promo_code_request_success: Спасибо %name%! Ваша заявка принята. Мы вышлем вам промокод в ближайшее время.
     description: Это сервис для подбора команды в условиях, когда у проекта нет финансирования. Это возможность найти не сотрудников, но партнеров-энтузиастов, готовых работать над проектом в качестве хобби, в свободное время, получая за работу полезный опыт, портфолио и профит в будущем.
     for_founders_title: TeamStarter для основателей проектов
     for_founders_description: Лучший способ воплотить свои идеи. Ма поможем вам быстро и бесплатно собрать команду профессионало-энтузиастов для вашего проета. Все, что требуется от вас - интересный проект, которым не стыдно будет похвастаться.
     for_professionals_title: TeamStarter для специалистов
     for_professionals_description: Если вы ищите стартап в котором можно поучавствовать в свободное время, или хотите применить свои навыки на настоящих боевых проектах - TeamStarter это сервис, который предложит вам сотни интересных проектов, прошедьших ручную модерацию.
     signup: Зарегистрироваться
-    form_terms: Нажимая "Зарегистрироваться", вы соглашаетесь с <a href="/terms/">правилами сервиса</a> и <a href="/privacy/">политикой конфиденциальности</a>. Время от времени мы будем отсылать вам электронные письма.
+    form_terms: Нажимая "Зарегистрироваться", вы соглашаетесь с <a target="_blanc" href="/terms">правилами сервиса</a>. Время от времени мы будем отсылать вам электронные письма.
     email:
         subject: 'Добро пожаловать в TeamStarter'
         message: |
@@ -132,6 +143,15 @@ user:
 
             С наилучшими пожеланиями,
             TeamStarter.
+    new_request_for_beta_email_admins:
+        subject: Новая заявка на бета-тестирование!
+        message: |
+            <p>Приветствуем, Админ!</p>
+            <p>+1 заяака на промо-код TeamStarter</p>
+            <p>Сьешь мороженку красава!</p>
+            <br /><br />
+            <p>С наилучшими пожеланиями,<br />
+            TeamStarter.</p>
 project:
     create: Добавить проект
     my_projects: Мои проекты
@@ -304,3 +324,55 @@ admin:
     projects: Проекты
     all_projects: Все проекты
     projects_in_review: Проекты на модерации
+    promo_codes: Промо коды
+pro:
+    buy_title: Купить PRO аккаунт
+    become_a_pro: Стань PRO
+    buy_header: <span>Купить</span> PRO аккаунт
+    buy: Купить PRO аккаунт
+    specialists_list_access_denied: К сожалению, для просмотра списка специалистов необходимо иметь хотя бы один активный проект <span> или PRO аккаунт</span>
+    specialists_more_access_denied: К сожалению, для просмотра специалистов необходимо иметь хотя бы один активный проект <span> или PRO аккаунт</span>
+    specialists_add_offer_access_denied: К сожалению, для отправки более трех предложений в сутки необходимо иметь <span> PRO аккаунт</span>
+    projects_add_proposal_access_denied: К сожалению, для отправки более трех предложений в сутки необходимо иметь <span> PRO аккаунт</span>
+    payment_period: В месяц
+    unlimited_offers: Безлимитное кол-во предложений
+    fast_moderation: Модерация и перемодерация проекта вне очереди
+    open_specialists_list: Возможность искать специалистов не имея активного проекта
+    buy_success_message: PRO аккаунт куплен и успешно активирован
+    buy_success_email:
+        subject: Успешная покупка PRO аккаунта!
+        message: |
+            <p>Приветствуем, %username%!</p>
+            <p>PRO аккаунт куплен и успешно активирован!</p>
+            <br /><br />
+            <p>С наилучшими пожеланиями,<br />
+            TeamStarter.</p>
+    buy_success_email_admins:
+        subject: Успешная покупка PRO аккаунта!
+        message: |
+            <p>Приветствуем, %username%!</p>
+            <p>+1 PRO пользователь TeamStarter</p>
+            <p>Сьешь мороженку красава!</p>
+            <br /><br />
+            <p>С наилучшими пожеланиями,<br />
+            TeamStarter.</p>
+contact:
+    header: Форма <span>обратной связи</span>
+    menu_title: Наши контакты
+    field_title: Тема сообщения
+    field_email: Ваш email
+    field_text: Текст сообщения
+    success_message: Спасибо за обращение! Наш сотрудник свяжется с вами в ближайшее время!
+    support_email:
+        subject: Новое обращение в ТП!
+        message: |
+            <p>ID Заявки: %id%</p>
+            <p>Email: %email%</p>
+            <p>Имя: %name%</p>
+            <p>ID Юзера: %user_id%</p>
+            <p>IsPRO: %user_pro%</p>
+            <p>Тема: %title%</p>
+            <p>Текст:<br /> %text%</p>
+            <br /><br />
+            <p>С наилучшими пожеланиями,<br />
+            TeamStarter.</p>

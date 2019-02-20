@@ -5,6 +5,7 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: 'ru'
+    pro_price: '%env(PRO_PRICE)%'
 
 services:
     # default configuration for services in *this* file
@@ -31,6 +32,26 @@ services:
         bind:
             $websocketUrlForClient: '%env(WEBSOCKET_URL_FOR_CLIENT)%'
             $websocketPortForClient: '%env(WEBSOCKET_PORT_FOR_CLIENT)%'
+
+    App\Controller\DefaultController:
+        bind:
+            $locale: '%locale%'
+
+    App\Controller\ProController:
+        bind:
+            $price: '%pro_price%'
+
+    App\Controller\UserPromoCodeController:
+        bind:
+            $fromEmailAddress: "%env(MAILER_ADDRESS)%"
+            $fromName: "%env(MAILER_SENDER_NAME)%"
+            $notifyNewBetaRequests: "%env(NOTIFY_NEW_PRO_USER)%"
+
+    App\Controller\ContactController:
+        bind:
+            $fromEmailAddress: "%env(MAILER_ADDRESS)%"
+            $fromName: "%env(MAILER_SENDER_NAME)%"
+            $supportEmail: "%env(SUPPORT_EMAIL)%"
 
     app.form.registration:
         class: App\Form\RegistrationType
@@ -68,6 +89,9 @@ services:
         arguments:
             $kernelRoot: "%kernel.root_dir%"
             $avatarMaxSize: "%env(AVATAR_MAX_SIZE)%"
+            $fromEmailAddress: "%env(MAILER_ADDRESS)%"
+            $fromName: "%env(MAILER_SENDER_NAME)%"
+            $notifyNewProUsersEmails: "%env(NOTIFY_NEW_PRO_USER)%"
 
     App\Service\ProjectService:
         arguments:
@@ -103,6 +127,12 @@ services:
         factory: ['@doctrine.orm.default_entity_manager', getRepository]
         arguments:
         - App\Entity\Message
+
+    App\Repository\PromoCodeRepository:
+        class: App\Repository\PromoCodeRepository
+        factory: ['@doctrine.orm.default_entity_manager', getRepository]
+        arguments:
+            - App\Entity\PromoCode
 
     App\Repository\ProjectRepository:
         class: App\Repository\Projectepository
@@ -140,6 +170,10 @@ services:
         arguments:
             $url: '%env(WEBSOCKET_URL_FOR_SERVER)%'
             $port: '%env(WEBSOCKET_PORT_FOR_SERVER)%'
+
+    Parsedown:
+        class: \Parsedown
+        autowire: true
 
     twig.extension.text:
         class: Twig_Extensions_Extension_Text

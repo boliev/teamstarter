@@ -1,7 +1,47 @@
 {% extends 'base.html.twig' %}
 {% block title %} {{ 'title.index_page' | trans }} {% endblock %}
 {% block body %}
-    <div class="row">
-        <p>Teamstarter very first page</p>
+
+    <div class="" style="background-color: #ffffff;">
+        <div class="index-page-carousel">
+            <div class="owl-carousel owl-theme">
+                <div class="index-banner-item index-banner1">
+                    <div class="index-banner-text1"><span class="index-banner-text-back">Есть отличная идея?</span></div>
+                    <div class="index-banner-text2"><span class="index-banner-text-back">Но не хватает денег на реализацию <span class="index-banner-blue">MVP</span>?</span></div>
+                    <div class="index-banner-text3"><span class="index-banner-text-back">Мы поможем вам найти надежного <span class="index-banner-blue">технического партнера</span>?</span></div>
+                </div>
+
+                <div class="index-banner-item index-banner2">
+                    <div class="index-banner-text1"><span class="index-banner-text-back">Хотите стать сооснователем стартапа?</span></div>
+                    <div class="index-banner-text2"><span class="index-banner-text-back">Но  <span class="index-banner-blue">нет денег</span> на инвестиции?</span></div>
+                    <div class="index-banner-text3"><span class="index-banner-text-back">Вкладывайте не деньги, а <span class="index-banner-blue">знания, опыт и время!</span></span></div>
+                </div>
+
+                <div class="index-banner-item index-banner3">
+                    <div class="index-banner-text1"><span class="index-banner-text-back">Хотите получить опыт работы</span></div>
+                    <div class="index-banner-text2"><span class="index-banner-text-back">на настоящем <span class="index-banner-blue">боевом</span> проекте? </span></div>
+                    <div class="index-banner-text3"><span class="index-banner-text-back"><span class="index-banner-blue">Присоединяйтесь</span> к одному из множества стартапов!</span></div>
+                </div>
+            </div>
+        </div>
     </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $(document).ready(function(){
+            $('.owl-carousel').owlCarousel({
+                items:1,
+                loop: true,
+                nav:false,
+                margin: 10,
+                center: true,
+                touchDrag: true,
+                dots: true,
+                autoplay: true,
+                autoplayTimeout: 5000
+            });
+        });
+    </script>
 {% endblock %}

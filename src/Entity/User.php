@@ -13,6 +13,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class User extends BaseUser
 {
+    const ROLE_ADMIN = 'ROLE_ADMIN';
+
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -88,6 +90,13 @@ class User extends BaseUser
     private $country;
 
     /**
+     * @var PromoCode|null
+     * @ORM\ManyToOne(targetEntity="App\Entity\PromoCode", inversedBy="users")
+     * @ORM\JoinColumn(name="promoCode", referencedColumnName="code")
+     */
+    private $promoCode;
+
+    /**
      * @var string
      * @ORM\Column(name="city", type="string", length=100, nullable=true)
      */
@@ -142,6 +151,12 @@ class User extends BaseUser
      * @ORM\OrderBy({"createdAt" = "DESC"})
      */
     private $projects;
+
+    /**
+     * @var \DateTime|null
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $proUntil;
 
     /**
      * @var \DateTime
@@ -514,6 +529,28 @@ class User extends BaseUser
         $this->projects = $projects;
     }
 
+    public function hasActiveProject(): bool
+    {
+        /** @var Project $project */
+        foreach ($this->projects as $project) {
+            if (Project::STATUS_PUBLISHED === $project->getProgressStatus()) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public function isAdmin()
+    {
+        return $this->hasRole(self::ROLE_ADMIN);
+    }
+
+    public function isProOrHasActiveProjects(): bool
+    {
+        return $this->isPro() || $this->hasActiveProject();
+    }
+
     /**
      * @return \DateTime
      */
@@ -585,5 +622,58 @@ class User extends BaseUser
         }
 
         return false;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getProUntil(): ?\DateTime
+    {
+        return $this->proUntil;
+    }
+
+    /**
+     * @param \DateTime $proUntil
+     */
+    public function setProUntil(\DateTime $proUntil): void
+    {
+        $this->proUntil = $proUntil;
+    }
+
+    /**
+     * @return bool
+     *
+     * @throws \Exception
+     */
+    public function isPro(): bool
+    {
+        if (null === $this->getProUntil()) {
+            return false;
+        }
+        $nowDate = new \DateTime();
+
+        return $this->getProUntil() >= $nowDate;
+    }
+
+    /**
+     * @return PromoCode|null
+     */
+    public function getPromoCode(): ?PromoCode
+    {
+        return $this->promoCode;
+    }
+
+    /**
+     * @param PromoCode|null $promoCode
+     *
+     * @throws \Exception
+     */
+    public function setPromoCode(?PromoCode $promoCode): void
+    {
+        $this->promoCode = $promoCode;
+        if ($promoCode->getFreeProMonths() > 0) {
+            $proDate = (new \DateTime())->add(new \DateInterval('P'.$promoCode->getFreeProMonths().'M'));
+            $this->proUntil = $proDate;
+        }
     }
 }
