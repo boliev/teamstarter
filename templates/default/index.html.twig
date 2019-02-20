@@ -1,12 +1,47 @@
 {% extends 'base.html.twig' %}
 {% block title %} {{ 'title.index_page' | trans }} {% endblock %}
 {% block body %}
-    <div class="container index-page-containner">
-        <div class="row">
-            <p><span>TeamStarter</span> - это сервис для подбора команды в условиях, когда у проекта нет финансирования. Это возможность найти не сотрудников, но партнеров-энтузиастов, готовых работать над проектом в качестве хобби, в свободное время, получая за работу полезный опыт, портфолио и профит в будущем. </p>
-            <p>Есть много людей с хорошими идеями, но без денег. Есть много специалистов, обладающих внушительным опытом, желающих получить опыт боевой работы в смежной специальности, и готовых тратить на это по несколько часов в день. Есть много начинающих специалистов, готовых работать по несколько часов в день ради опыта. Есть люди, готовые вложить в интересную идею не деньги, а знания и опыт.</p>
-            <p>TeamStarter - это сервис, объединяющий таких людей. Это проект, это эксперимент, доказывающий, что в людях жив энтузиазм. Это возможность творить стартапы и воплощать идеи, не имея финансирования. Это возможность набирать новые знания на боевых проектах, не бросая текущую работу.</p>
 
+    <div class="" style="background-color: #ffffff;">
+        <div class="index-page-carousel">
+            <div class="owl-carousel owl-theme">
+                <div class="index-banner-item index-banner1">
+                    <div class="index-banner-text1"><span class="index-banner-text-back">Есть отличная идея?</span></div>
+                    <div class="index-banner-text2"><span class="index-banner-text-back">Но не хватает денег на реализацию <span class="index-banner-blue">MVP</span>?</span></div>
+                    <div class="index-banner-text3"><span class="index-banner-text-back">Мы поможем вам найти надежного <span class="index-banner-blue">технического партнера</span>?</span></div>
+                </div>
+
+                <div class="index-banner-item index-banner2">
+                    <div class="index-banner-text1"><span class="index-banner-text-back">Хотите стать сооснователем стартапа?</span></div>
+                    <div class="index-banner-text2"><span class="index-banner-text-back">Но  <span class="index-banner-blue">нет денег</span> на инвестиции?</span></div>
+                    <div class="index-banner-text3"><span class="index-banner-text-back">Вкладывайте не деньги, а <span class="index-banner-blue">знания, опыт и время!</span></span></div>
+                </div>
+
+                <div class="index-banner-item index-banner3">
+                    <div class="index-banner-text1"><span class="index-banner-text-back">Хотите получить опыт работы</span></div>
+                    <div class="index-banner-text2"><span class="index-banner-text-back">на настоящем <span class="index-banner-blue">боевом</span> проекте? </span></div>
+                    <div class="index-banner-text3"><span class="index-banner-text-back"><span class="index-banner-blue">Присоединяйтесь</span> к одному из множества стартапов!</span></div>
+                </div>
+            </div>
         </div>
     </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $(document).ready(function(){
+            $('.owl-carousel').owlCarousel({
+                items:1,
+                loop: true,
+                nav:false,
+                margin: 10,
+                center: true,
+                touchDrag: true,
+                dots: true,
+                autoplay: true,
+                autoplayTimeout: 5000
+            });
+        });
+    </script>
 {% endblock %}
