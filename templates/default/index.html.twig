@@ -6,21 +6,21 @@
         <div class="index-page-carousel">
             <div class="owl-carousel owl-theme">
                 <div class="index-banner-item index-banner1">
-                    <div class="index-banner-text1"><span class="index-banner-text-back">Есть отличная идея?</span></div>
-                    <div class="index-banner-text2"><span class="index-banner-text-back">Но не хватает денег на реализацию <span class="index-banner-blue">MVP</span>?</span></div>
-                    <div class="index-banner-text3"><span class="index-banner-text-back">Мы поможем вам найти надежного <span class="index-banner-blue">технического партнера</span>?</span></div>
+                    <div class="index-banner-text index-banner-text1" data-depth="0.3"><span class="index-banner-text-back">Есть отличная идея?</span></div>
+                    <div class="index-banner-text index-banner-text2" data-depth="0.6"><span class="index-banner-text-back">Но не хватает денег на реализацию <span class="index-banner-blue">MVP</span>?</span></div>
+                    <div class="index-banner-text index-banner-text3" data-depth="0.9"><span class="index-banner-text-back">Мы поможем вам найти надежного <span class="index-banner-blue">технического партнера</span>?</span></div>
                 </div>
 
-                <div class="index-banner-item index-banner2">
-                    <div class="index-banner-text1"><span class="index-banner-text-back">Хотите стать сооснователем стартапа?</span></div>
-                    <div class="index-banner-text2"><span class="index-banner-text-back">Но  <span class="index-banner-blue">нет денег</span> на инвестиции?</span></div>
-                    <div class="index-banner-text3"><span class="index-banner-text-back">Вкладывайте не деньги, а <span class="index-banner-blue">знания, опыт и время!</span></span></div>
+                <div class="index-banner-item index-banner2 scene">
+                    <div class="index-banner-text index-banner-text1" data-depth="0.2"><span class="index-banner-text-back">Хотите стать сооснователем стартапа?</span></div>
+                    <div class="index-banner-text index-banner-text2" data-depth="0.6"><span class="index-banner-text-back">Но  <span class="index-banner-blue">нет денег</span> на инвестиции?</span></div>
+                    <div class="index-banner-text index-banner-text3" data-depth="0.2"><span class="index-banner-text-back">Вкладывайте не деньги, а <span class="index-banner-blue">знания, опыт и время!</span></span></div>
                 </div>
 
-                <div class="index-banner-item index-banner3">
-                    <div class="index-banner-text1"><span class="index-banner-text-back">Хотите получить опыт работы</span></div>
-                    <div class="index-banner-text2"><span class="index-banner-text-back">на настоящем <span class="index-banner-blue">боевом</span> проекте? </span></div>
-                    <div class="index-banner-text3"><span class="index-banner-text-back"><span class="index-banner-blue">Присоединяйтесь</span> к одному из множества стартапов!</span></div>
+                <div class="index-banner-item index-banner3 scene">
+                    <div class="index-banner-text index-banner-text1" data-depth="0.2"><span class="index-banner-text-back">Хотите получить опыт работы</span></div>
+                    <div class="index-banner-text index-banner-text2" data-depth="0.6"><span class="index-banner-text-back">на настоящем <span class="index-banner-blue">боевом</span> проекте? </span></div>
+                    <div class="index-banner-text index-banner-text3" data-depth="0.2"><span class="index-banner-text-back"><span class="index-banner-blue">Присоединяйтесь</span> к одному из множества стартапов!</span></div>
                 </div>
             </div>
         </div>
@@ -31,7 +31,7 @@
 {% block javascripts %}
     <script>
         $(document).ready(function(){
-            $('.owl-carousel').owlCarousel({
+            var owl = $('.owl-carousel').owlCarousel({
                 items:1,
                 loop: true,
                 nav:false,
@@ -40,8 +40,34 @@
                 touchDrag: true,
                 dots: true,
                 autoplay: true,
-                autoplayTimeout: 5000
+                autoplayTimeout: 10000,
+                autoplaySpeed: 500,
+                onInitialized: function() {
+                    $(".index-banner1 .index-banner-text").css("transform", "translatex(110px)");
+                }
+            });
+
+            owl.on('changed.owl.carousel', function(event) {
+                var page = event.item.index - 1;
+                var prev = page - 1;
+                if (prev === 0) {
+                    prev = 3;
+                }
+                $(".index-banner"+page+" .index-banner-text").css("transform", "translatex(110px)");
+                $(".index-banner"+prev+" .index-banner-text").css("transform", "translatex(0px)");
             });
         });
+
+        $(function() {
+            $(".sss").click(function () {
+                $(".index-banner-text").css("transform", "translatex(110px)");
+            });
+
+            $(".ddd").click(function () {
+                $(".index-banner-text").css("transform", "translatex(-300px)");
+            });
+
+
+        })
     </script>
 {% endblock %}

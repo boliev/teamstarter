@@ -2362,7 +2362,10 @@ div.pro-access-buttons {
 	font-size: 36px;
 	color: #ffffff;
 	text-shadow: #000 2px 2px 2px;
-	padding-left: 110px;
+
+	perspective: 1px;
+	overflow-x: hidden;
+	overflow-y: auto;
 }
 
 .index-banner1 {
@@ -2377,15 +2380,19 @@ div.pro-access-buttons {
 
 .index-banner-text1 {
 	padding-top: 90px;
+	transition: all;
+	transition-duration: 2s;
 }
 
 .index-banner-text2 {
 	padding-top: 50px;
 	font-size: 66px;
+	transition-duration: 3s;
 }
 
 .index-banner-text3 {
 	padding-top: 50px;
+	transition-duration: 2s;
 }
 
 .index-banner-blue {
