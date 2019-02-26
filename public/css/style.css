@@ -636,15 +636,6 @@ End of our news question
 	background: url(/public/img/bg-testomonial.jpg) 0% 0%/auto no-repeat scroll;
 	
 }
-.testimonials-body .owl-nav, 
-.partner-sllide-content .owl-nav,
-.testimonial-slide-content .owl-nav,
-.who-we-are-slide-content .owl-nav {
-	display: none;
-}
-.partner-sllide-content.owl-carousel.owl-theme.owl-responsive-1000.owl-loaded .owl-dot {
-	display: none;
-}
 .footer-area-section,
 .footer-area-v2-section {
 	background-color: #222222;
@@ -825,11 +816,6 @@ End of our news question
 	font-size: 14px;
 	font-style: italic;
 }
-.testimonial-slide-content .owl-controls,
-.who-we-are-slide-content .owl-controls {
-	position: relative !important;
-	margin-top: 60px;
-}
 .contact-form-area-section .section-content {
 	padding-top: 75px;
 }
@@ -911,9 +897,6 @@ End of our news question
 }
 .who-we-are-slide-pic {
 	padding-top: 60px;
-}
-.who-we-are-slide-content .owl-controls {
-	margin-top: 30px;
 }
 .love-our-network-section.v-3 {
 	background: transparent url(/public/img/bg-count.jpg) center center/auto no-repeat scroll
@@ -1193,9 +1176,6 @@ button.btn.btn-primary.text-capitalize.active {
 }
 .blog-catergoy-2-date .meta i {
 	margin-right: 10px;
-}
-.who-we-are-slide-conten-2 .owl-dots {
-	display: none !important;
 }
 
 .blog-catergoy-2-item img {
@@ -2367,3 +2347,62 @@ div.pro-access-buttons {
 .pricing-items-container {
 	margin-top: 15px;
 }
+
+.index-page-carousel {
+	margin-top: 0px;
+	margin-bottom: 20px;
+}
+
+.index-banner-item {
+	width: 100%;
+	height: 700px;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: left top;
+	font-size: 36px;
+	color: #ffffff;
+	text-shadow: #000 2px 2px 2px;
+
+	perspective: 1px;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+
+.index-banner1 {
+	background-image: url("/images/index_banners/ban1.jpg");
+}
+.index-banner2 {
+	background-image: url("/images/index_banners/ban2.jpg");
+}
+.index-banner3 {
+	background-image: url("/images/index_banners/ban3.jpg");
+}
+
+.index-banner-text1 {
+	padding-top: 90px;
+	transition: all;
+	transition-duration: 2s;
+}
+
+.index-banner-text2 {
+	padding-top: 50px;
+	font-size: 66px;
+	transition-duration: 3s;
+}
+
+.index-banner-text3 {
+	padding-top: 50px;
+	transition-duration: 2s;
+}
+
+.index-banner-blue {
+	color: #42a5f5;
+	margin: 0px;
+}
+
+.index-banner-text-back {
+	padding: 10px;
+	background: rgba(0, 0, 0, 0.6);
+}
+
+
