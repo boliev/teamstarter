@@ -121,7 +121,7 @@ user:
     old_password_invalid: Текущий пароль не подходит
     repeat_password_invalid: Пароли должны совпадать
     like_to_do: Чем бы вы хотели заниматься
-    expectation: Чего вы ожидаете от проекта
+    expectation: Что вы ожидаете от проекта
     experience: Опишите свой опыт
     about: Расскажите о себе
     profile_picture: Загрузить фото

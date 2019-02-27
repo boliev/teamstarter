@@ -2,67 +2,70 @@
 
 namespace App\Testing;
 
+use App\Entity\Country;
 use App\Entity\Project;
 use App\Entity\ProjectOpenRole;
 use App\Entity\ProjectOpenRoleSkills;
-use App\Entity\ProjectScreen;
-use App\Entity\Skill;
+use App\Entity\ProjectStatus;
 use App\Entity\Specialization;
 use App\Entity\User;
+use App\Repository\CountryRepository;
+use App\Repository\SpecializationRepository;
+use App\Service\SkillService;
 use Doctrine\ORM\EntityManagerInterface;
-use Faker\Factory as FakerFactory;
 
 class TestProjectCreator
 {
-    const COUNTRIES = ['RU', 'US', 'GB', 'FR'];
-
-    const PROGRESS_STATUSES = [
-        Project::STATUS_PUBLISHED,
-        Project::STATUS_CLOSED,
-        Project::STATUS_DECLINED,
-        Project::STATUS_INREVIW,
-        Project::STATUS_UNFINISHED,
-    ];
-
-    /**
-     * @var \Faker\Generator
-     */
-    private $faker;
-
     /**
      * @var EntityManagerInterface
      */
     private $entityManager;
 
     /**
-     * TestProjectCreator constructor.
-     *
-     * @param EntityManagerInterface $entityManager
+     * @var CountryRepository
      */
-    public function __construct(EntityManagerInterface $entityManager)
-    {
-        $this->faker = $faker = FakerFactory::create();
+    private $countryRepository;
+
+    /**
+     * @var SkillService
+     */
+    private $skillService;
+
+    /**
+     * @var SpecializationRepository
+     */
+    private $specializationRepository;
+
+    /**
+     * @param EntityManagerInterface   $entityManager
+     * @param CountryRepository        $countryRepository
+     * @param SpecializationRepository $specializationRepository
+     * @param SkillService             $skillService
+     */
+    public function __construct(
+        EntityManagerInterface $entityManager,
+        CountryRepository $countryRepository,
+        SpecializationRepository $specializationRepository,
+        SkillService $skillService
+    ) {
         $this->entityManager = $entityManager;
+        $this->countryRepository = $countryRepository;
+        $this->skillService = $skillService;
+        $this->specializationRepository = $specializationRepository;
     }
 
     /**
-     * @param User        $user
-     * @param null|string $progressStatus
+     * @param User  $user
+     * @param array $projectData
      *
      * @return Project
+     *
+     * @throws \Exception
      */
-    public function create(User $user, ?string $progressStatus)
+    public function create(User $user, array $projectData)
     {
-        $project = $this->createTestProject($user, $progressStatus);
-        $rolesCount = rand(0, 10);
-        for ($i = 0; $i < $rolesCount; ++$i) {
-            $this->createRole($project);
-        }
-
-        $screensCount = rand(0, 10);
-        for ($i = 0; $i < $screensCount; ++$i) {
-            $this->createScreen($project);
-        }
+        $project = $this->createTestProject($user, $projectData);
+        $this->addRoles($project, $projectData);
 
         $this->entityManager->persist($project);
         $this->entityManager->flush();
@@ -71,33 +74,34 @@ class TestProjectCreator
     }
 
     /**
-     * @param User        $user
-     * @param null|string $progressStatus
+     * @param User  $user
+     * @param array $projectData
      *
      * @return Project
+     *
+     * @throws \Exception
      */
-    private function createTestProject(User $user, ?string $progressStatus): Project
+    private function createTestProject(User $user, array $projectData): Project
     {
-        $projectStatuses = $this->entityManager->getRepository('App:ProjectStatus')->findAll();
-        shuffle($projectStatuses);
+        if (!isset($projectData['status'])) {
+            $projectData['status'] = 4;
+        }
+
+        /** @var ProjectStatus $projectStatus */
+        $projectStatus = $this->entityManager->getRepository('App:ProjectStatus')->find($projectData['status']);
+        /** @var Country $country */
+        $country = $this->countryRepository->findOneBy(['code' => $projectData['country']]);
         $project = new Project();
         $project->setUser($user);
-        $date = new \DateTime();
-        $project->setName(sprintf('%s %s', $this->faker->words(rand(3, 7), true), $date->format('Y-m-d h:i')));
-        $project->setStatus($projectStatuses[0]);
-        $project->setMission($this->faker->words(rand(5, 35), true));
-        $project->setDescription($this->faker->text(rand(100, 1000)));
-        $project->setCountry(self::COUNTRIES[array_rand(self::COUNTRIES)]);
-        $project->setCity($this->faker->city);
-        if ($progressStatus && in_array($progressStatus, self::PROGRESS_STATUSES)) {
-            $project->setProgressStatus($progressStatus);
-        } else {
-            $project->setProgressStatus(self::PROGRESS_STATUSES[array_rand(self::PROGRESS_STATUSES)]);
+        $project->setName($projectData['name']);
+        $project->setStatus($projectStatus);
+        $project->setMission($projectData['mission']);
+        $project->setDescription($projectData['description']);
+        $project->setCountry($country);
+        if (isset($projectData['city'])) {
+            $project->setCity($projectData['city']);
         }
-        $random_day = rand(0, 365);
-        $date = new \DateTime();
-        $date = $date->modify(sprintf('-%d days', $random_day));
-        $project->setCreatedAt($date);
+        $project->setProgressStatus(Project::STATUS_PUBLISHED);
         $this->entityManager->persist($project);
 
         return $project;
@@ -105,54 +109,36 @@ class TestProjectCreator
 
     /**
      * @param Project $project
-     *
-     * @return ProjectOpenRole
+     * @param array   $projectData
      */
-    private function createRole(Project $project)
+    private function addRoles(Project $project, array $projectData)
     {
-        $specializations = $this->entityManager->getRepository(Specialization::class)->findAll();
-        $skills = $this->entityManager->getRepository(Skill::class)->findAll();
-        shuffle($skills);
-        /** @var Specialization $specialization */
-        $specialization = $specializations[array_rand($specializations)];
-        $role = new ProjectOpenRole();
-        $roleNamesBegins = ['Need', 'Wanted', 'I wanna the best', 'Give me', 'Where is my', 'Ninja', 'Super-puper'];
-        $roleNamesEndings = ['fast', 'please', 'for work', 'for slavery', 'for free', '!'];
-        shuffle($roleNamesBegins);
-        shuffle($roleNamesEndings);
-        $name = sprintf('%s %s %s', $roleNamesBegins[0], $specialization->getTitle(), $roleNamesEndings[0]);
-        $role->setName($name);
-        $role->setSpecialization($specialization);
-        $role->setDescription($this->faker->text(rand(2, 1000)));
-        $role->setVacant(rand(0, 1));
-        $role->setProject($project);
-        $skillsCount = rand(0, 10);
-        for ($i = 0; $i < $skillsCount; ++$i) {
-            $skill = array_pop($skills);
-            $projectOpenRoleSkills = new ProjectOpenRoleSkills();
-            $projectOpenRoleSkills->setOpenRole($role);
-            $projectOpenRoleSkills->setSkill($skill);
-            $projectOpenRoleSkills->setPriority($i);
-            $this->entityManager->persist($projectOpenRoleSkills);
+        foreach ($projectData['roles'] as $roleData) {
+            $specializationId = $roleData['specialization'] ?? 2;
+            $specialization = $this->specializationRepository->find($specializationId);
+            $skills = [];
+
+            foreach ($roleData['skills'] as $skill) {
+                $skills[] = $skillEntity = $this->skillService->getOrCreateSkill($skill);
+            }
+
+            /** @var Specialization $specialization */
+            $role = new ProjectOpenRole();
+            $role->setName($roleData['name']);
+            $role->setSpecialization($specialization);
+            $role->setDescription($roleData['description']);
+            $role->setVacant(1);
+            $role->setProject($project);
+            $priority = 1;
+            foreach ($skills as $skill) {
+                $projectOpenRoleSkills = new ProjectOpenRoleSkills();
+                $projectOpenRoleSkills->setOpenRole($role);
+                $projectOpenRoleSkills->setSkill($skill);
+                $projectOpenRoleSkills->setPriority($priority);
+                $this->entityManager->persist($projectOpenRoleSkills);
+                ++$priority;
+            }
+            $this->entityManager->persist($role);
         }
-        $this->entityManager->persist($role);
-
-        return $role;
-    }
-
-    /**
-     * @param Project $project
-     *
-     * @return ProjectScreen
-     */
-    private function createScreen(Project $project)
-    {
-        $image = $this->faker->imageUrl();
-        $screen = new ProjectScreen();
-        $screen->setScreenshot($image);
-        $screen->setProject($project);
-        $this->entityManager->persist($screen);
-
-        return $screen;
     }
 }

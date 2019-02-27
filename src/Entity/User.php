@@ -419,7 +419,7 @@ class User extends BaseUser
     /**
      * @param string $likeToDo
      */
-    public function setLikeToDo(string $likeToDo)
+    public function setLikeToDo(?string $likeToDo)
     {
         $this->likeToDo = $likeToDo;
     }
@@ -435,7 +435,7 @@ class User extends BaseUser
     /**
      * @param string $expectation
      */
-    public function setExpectation(string $expectation)
+    public function setExpectation(?string $expectation)
     {
         $this->expectation = $expectation;
     }
@@ -451,7 +451,7 @@ class User extends BaseUser
     /**
      * @param string $experience
      */
-    public function setExperience(string $experience)
+    public function setExperience(?string $experience)
     {
         $this->experience = $experience;
     }

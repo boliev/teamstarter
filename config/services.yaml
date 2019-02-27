@@ -98,6 +98,10 @@ services:
             $kernelRoot: "%kernel.root_dir%"
             $screenMaxSize: "%env(PROJECT_SCREEN_MAX_SIZE)%"
 
+    App\Testing\TestSpecialistCreator:
+        arguments:
+            $kernelRoot: "%kernel.root_dir%"
+
     App\Repository\SpecializationRepository:
         class: App\Repository\SpecializationRepository
         factory: ['@doctrine.orm.default_entity_manager', getRepository]

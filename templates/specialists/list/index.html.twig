@@ -58,7 +58,7 @@
                                         <div class="row">
                                             <div class="col-sm-12 padding-left-1"><h4 class="entry-title"><a href="{{ path('specialists_more', {'user': user.id}) }}">{{ user.fullName }}</a></h4></div>
                                             <div class="info-bottom">
-                                                <div class="info-description">{{ user.about }}</div>
+                                                <div class="info-description">{{ user.experience }}</div>
                                                 <div>
                                                     {% for userSkill in user.userSkills %} <span class="badge project-card-role-tag">{{ userSkill.skill.title }}</span> {% endfor %}
                                                 </div>
