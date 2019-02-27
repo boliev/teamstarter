@@ -90,12 +90,7 @@ class RegistrationIncompleteSubscriber implements EventSubscriberInterface
             return;
         }
 
-        // About form
-        $now = new \DateTime();
-        $diff = new \DateInterval('P7D');
-        $skippedUntil = $user->getAboutFormSkipped()->add($diff);
-
-        if (null === $user->getCountry() && $now > $skippedUntil) {
+        if (null === $user->getCountry()) {
             $event->setResponse(new RedirectResponse($this->router->generate(self::ABOUT_ROUTE)));
 
             return;

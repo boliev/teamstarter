@@ -14,9 +14,6 @@
                             </div>
                         </div>
 
-                        <p class="hint">{{ 'user.about_skip' | trans }}</p>
-
-
                         {% for message in app.flashes('about-success') %}
                             <div class="success-message">
                                 {{ message }}
@@ -38,6 +35,18 @@
                             </div>
                             <p class="upload-field-hint">{{ 'user.avatar_max_size_hint' | trans({'{size}': avatar_max_size/1000000}) }}</p>
                         </div></div>
+
+                        <div class="row"> <div class="col-md-12 form-group">
+                                {{ form_widget(form.lookingForProject, {'attr': {'class': 'input-block'}}) }}
+                                {{ form_label(form.lookingForProject, '', {'label_attr': {'class': 'form-check-label'}}) }}
+                                {{ form_errors(form.lookingForProject)}}
+                            </div></div>
+
+                        <div class="row"> <div class="col-md-12 form-group">
+                                {{ form_widget(form.lookingForPartner, {'attr': {'class': 'input-block'}}) }}
+                                {{ form_label(form.lookingForPartner, '', {'label_attr': {'class': 'form-check-label'}}) }}
+                                {{ form_errors(form.lookingForPartner)}}
+                            </div></div>
 
                         <div class="row"> <div class="col-md-12 form-group">
                             {{ form_label(form.country, '', {'label_attr': {'class': 'bmd-label-floating'}}) }}
@@ -64,20 +73,10 @@
                             {{ form_widget(form.experience, {'attr': {'class': 'input-block'}}) }}
                             {{ form_errors(form.experience)}}
                         </div></div>
-                        <div class="row"> <div class="col-md-12 form-group">
-                            {{ form_label(form.about, '', {'label_attr': {'class': 'bmd-label-floating'}}) }}
-                            {{ form_widget(form.about, {'attr': {'class': 'input-block'}}) }}
-                            {{ form_errors(form.about)}}
-                        </div></div>
                         <div class="row">
                             <div class="col-md-12 form-bottom">
                                 {{ form_row(form._token) }}
-                                {% if app.request.get('_route') == 'specify_about_form' %}
                                     <input type="submit" class="btn btn-primary btn-large" value="{{ 'submit'|trans }}">
-                                    <input type="button" class="btn btn-default btn-warning" onclick="window.location.href = '{{ path('specify_about_form_skip') }}'" value="{{ 'user.about_skip_button'|trans }}">
-                                {% else %}
-                                    <input type="submit" class="btn btn-primary btn-large" value="{{ 'submit'|trans }}">
-                                {% endif %}
                             </div>
                         </div>
                     </form>

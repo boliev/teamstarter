@@ -183,12 +183,31 @@ class User extends BaseUser
     private $isFake = false;
 
     /**
+     * @var bool
+     * @ORM\Column(type="boolean", nullable=false, options={"default": false})
+     */
+    private $lookingForPartner;
+
+    /**
+     * @var bool
+     * @ORM\Column(type="boolean", nullable=false, options={"default": false})
+     */
+    private $lookingForProject;
+
+    /**
+     * @var int|null
+     * @ORM\Column(type="integer")
+     */
+    private $canContributeHours;
+    /**
      * User constructor.
      */
     public function __construct()
     {
         parent::__construct();
         $this->setCreatedAt(new \DateTime('now'));
+        $this->lookingForPartner = false;
+        $this->lookingForProject = false;
     }
 
     /**
@@ -675,5 +694,53 @@ class User extends BaseUser
             $proDate = (new \DateTime())->add(new \DateInterval('P'.$promoCode->getFreeProMonths().'M'));
             $this->proUntil = $proDate;
         }
+    }
+
+    /**
+     * @return int
+     */
+    public function getCanContributeHours(): ?int
+    {
+        return $this->canContributeHours;
+    }
+
+    /**
+     * @param int $canContributeHours
+     */
+    public function setCanContributeHours(int $canContributeHours): void
+    {
+        $this->canContributeHours = $canContributeHours;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isLookingForPartner(): bool
+    {
+        return $this->lookingForPartner;
+    }
+
+    /**
+     * @param bool $lookingForPartner
+     */
+    public function setLookingForPartner(bool $lookingForPartner): void
+    {
+        $this->lookingForPartner = $lookingForPartner;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isLookingForProject(): bool
+    {
+        return $this->lookingForProject;
+    }
+
+    /**
+     * @param bool $lookingForProject
+     */
+    public function setLookingForProject(bool $lookingForProject): void
+    {
+        $this->lookingForProject = $lookingForProject;
     }
 }

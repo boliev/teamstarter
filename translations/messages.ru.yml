@@ -104,7 +104,6 @@ skill:
 user:
     about_title: <span>Расскажите</span> о себе
     about_menu_title: О вас
-    about_skip: Эту форму можно пропустить, но чем больше информации вы укажите, тем выше шанс найти партнера
     about_skip_button: Пропустить форму
     about_profile: Профиль
     profile_menu_title: Профиль
@@ -113,6 +112,8 @@ user:
     city: Город
     first_name: Имя
     last_name: Фамилия
+    looking_for_partner: Ищу партнера в свой проект
+    looking_for_project: Ищу проект
     new_password_form_hint: Если не хотите менять пароль, оставьте поля для ввода пароля пустыми
     new_password: Новый пароль
     new_password_repeat: Еще раз новый пароль
