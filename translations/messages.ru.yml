@@ -104,7 +104,6 @@ skill:
 user:
     about_title: <span>Расскажите</span> о себе
     about_menu_title: О вас
-    about_skip: Эту форму можно пропустить, но чем больше информации вы укажите, тем выше шанс найти партнера
     about_skip_button: Пропустить форму
     about_profile: Профиль
     profile_menu_title: Профиль
@@ -113,6 +112,13 @@ user:
     city: Город
     first_name: Имя
     last_name: Фамилия
+    looking_for_partner: Хочу найти партнера в свой проект
+    looking_for_project: Хочу найти проект
+    canContributeHours: Сколько времени вы готовы тратить на проект?
+    5_hours_week: 5 часов в неделю
+    10_hours_week: 10 часов в неделю
+    20_hours_week: 20 часов в неделю
+    40_hours_week: 40 часов в неделю
     new_password_form_hint: Если не хотите менять пароль, оставьте поля для ввода пароля пустыми
     new_password: Новый пароль
     new_password_repeat: Еще раз новый пароль
@@ -121,7 +127,7 @@ user:
     old_password_invalid: Текущий пароль не подходит
     repeat_password_invalid: Пароли должны совпадать
     like_to_do: Чем бы вы хотели заниматься
-    expectation: Чего вы ожидаете от проекта
+    expectation: Что вы ожидаете от проекта
     experience: Опишите свой опыт
     about: Расскажите о себе
     profile_picture: Загрузить фото

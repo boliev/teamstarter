@@ -63,22 +63,8 @@ task('disk_free', function () {
 
 option('u', null, InputOption::VALUE_REQUIRED, 'user email.');
 option('n', null, InputOption::VALUE_REQUIRED, 'number of projects.');
-// dep test:projects:add-to-user dev --u voff.web+0509@gmail.com --n 1
-task('test:projects:add-to-user', function () {
-    // For option
-    $tag = null;
-    if (input()->hasOption('u')) {
-        $user = input()->getOption('u');
-    }
-    if (input()->hasOption('n')) {
-        $number = input()->getOption('n');
-    }
 
-    $df = run(sprintf('cd {{release_path}} && bin/console test:projects:add-to-user %s %d Published --env=prod', $user, $number));
-    writeln($df);
-});
-
-// dep test:specialists:add dev --n 1
+// dep test:specialists:add dev --n some@mail.ru
 task('test:specialists:add', function () {
     // For option
     $number = 1;

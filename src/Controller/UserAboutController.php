@@ -82,24 +82,6 @@ class UserAboutController extends AbstractController
     }
 
     /**
-     * @Route("/specify/about/skip", name="specify_about_form_skip")
-     *
-     * @param EntityManagerInterface $em
-     *
-     * @return Response
-     */
-    public function skipAboutFormAction(EntityManagerInterface $em)
-    {
-        /** @var User $user */
-        $user = $this->getUser();
-        $user->setAboutFormSkipped(new \DateTime());
-        $em->persist($user);
-        $em->flush();
-
-        return $this->redirectToRoute('homepage');
-    }
-
-    /**
      * @Route("/specify/about/upload-profile", name="specify_about_upload_avatar")
      *
      * @param Request                $request
