@@ -68,8 +68,8 @@ option('n', null, InputOption::VALUE_REQUIRED, 'number of projects.');
 task('test:specialists:add', function () {
     // For option
     $number = 1;
-    if (input()->hasOption('n')) {
-        $number = input()->getOption('n');
+    if (input()->hasOption('u')) {
+        $number = input()->getOption('u');
     }
 
     $df = run(sprintf('cd {{release_path}} && bin/console test:specialists:add %d --env=prod', $number));

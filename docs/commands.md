@@ -12,7 +12,7 @@
 
 # Deployer
 
-`dep test:specialists:add dev --n 5` Добавить тестового пользователя some@mail.ru (Должен быть описан в `src/Testing/data/specialists.json`).
+`dep test:specialists:add --u some@mail.ru dev` Добавить тестового пользователя some@mail.ru (Должен быть описан в `src/Testing/data/specialists.json`).
 
 `dep search:projects:index` поисковая индексация всех проектов
 
