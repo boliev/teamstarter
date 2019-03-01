@@ -207,7 +207,7 @@ class User extends BaseUser
         parent::__construct();
         $this->setCreatedAt(new \DateTime('now'));
         $this->lookingForPartner = false;
-        $this->lookingForProject = false;
+        $this->lookingForProject = true;
     }
 
     /**

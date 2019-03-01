@@ -47,7 +47,11 @@
                                 {{ form_label(form.lookingForPartner, '', {'label_attr': {'class': 'form-check-label'}}) }}
                                 {{ form_errors(form.lookingForPartner)}}
                             </div></div>
-
+                        <div class="row"> <div class="col-md-12 form-group">
+                            {{ form_label(form.canContributeHours, '', {'label_attr': {'class': 'bmd-label-floating'}}) }}
+                            {{ form_widget(form.canContributeHours, {'attr': {'class': 'input-block'}}) }}
+                            {{ form_errors(form.canContributeHours)}}
+                        </div></div>
                         <div class="row"> <div class="col-md-12 form-group">
                             {{ form_label(form.country, '', {'label_attr': {'class': 'bmd-label-floating'}}) }}
                             {{ form_widget(form.country, {'attr': {'class': 'input-block'}}) }}

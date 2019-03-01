@@ -112,8 +112,13 @@ user:
     city: Город
     first_name: Имя
     last_name: Фамилия
-    looking_for_partner: Ищу партнера в свой проект
-    looking_for_project: Ищу проект
+    looking_for_partner: Хочу найти партнера в свой проект
+    looking_for_project: Хочу найти проект
+    canContributeHours: Сколько времени вы готовы тратить на проект?
+    5_hours_week: 5 часов в неделю
+    10_hours_week: 10 часов в неделю
+    20_hours_week: 20 часов в неделю
+    40_hours_week: 40 часов в неделю
     new_password_form_hint: Если не хотите менять пароль, оставьте поля для ввода пароля пустыми
     new_password: Новый пароль
     new_password_repeat: Еще раз новый пароль

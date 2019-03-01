@@ -29,6 +29,15 @@ class UserAboutType extends AbstractType
             ->add('profilePicture', FileType::class, ['label' => 'user.profile_picture', 'mapped' => false, 'required' => false])
             ->add('lookingForProject', CheckboxType::class, ['label' => 'user.looking_for_project', 'required' => false])
             ->add('lookingForPartner', CheckboxType::class, ['label' => 'user.looking_for_partner', 'required' => false])
+            ->add('canContributeHours', ChoiceType::class, [
+                'label' => 'user.canContributeHours',
+                'choices' => [
+                    'user.5_hours_week' => 5,
+                    'user.10_hours_week' => 10,
+                    'user.20_hours_week' => 20,
+                    'user.40_hours_week' => 40
+                ]
+            ])
             ->add('country', ChoiceType::class, [
                 'mapped' => false,
                 'label' => 'user.country',

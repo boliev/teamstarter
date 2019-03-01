@@ -120,6 +120,9 @@ class TestSpecialistCreator
         $user->setCountry($country);
         $user->setCity($userData['city']);
         $user->setEnabled(true);
+        $user->setLookingForProject($userData['looking_for_project']);
+        $user->setLookingForPartner($userData['looking_for_partner'] ?? false);
+        $user->setCanContributeHours($userData['canContributeHours'] ?? 5);
         $user->setPassword('Some123456#');
         $user->setLikeToDo($userData['like_to_do'] ?? null);
         $user->setExpectation($userData['expectation'] ?? null);
