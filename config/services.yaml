@@ -37,6 +37,10 @@ services:
         bind:
             $locale: '%locale%'
 
+    App\Controller\ProjectCreateController:
+        bind:
+            $locale: '%locale%'
+
     App\Controller\ProController:
         bind:
             $price: '%pro_price%'

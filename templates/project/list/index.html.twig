@@ -31,36 +31,7 @@
         {% endif %}
 
             {% for project in pagination %}
-
-                <article class="post">
-                    <div class="entry-content">
-                        <div class="entry-meta">
-                            <div class="info">
-                                <div class="meta margin-top-1">
-                                    <span class="date"><i class="mn-icon-1130"></i>{{ project.createdAt|localizeddate('medium', 'none') }}</span>
-                                    <span class="date"><i class="fas fa-user-tie"></i>{{ project.user.getFullName() }}</span>
-                                    <span><i class="mn-icon-132"></i>{{ project.status.name }}</span>
-                                    {% if project.city %}
-                                        <span><i class="fas fa-map-marker"></i>{{ project.city }}{% if project.country%}, {{ project.country}}{% endif %}</span>
-                                    {% elseif project.country%}
-                                        <span><i class="fas fa-map-marker"></i>{{ project.country }}</span>
-                                    {% endif %}
-                                    {% if project.screens | length > 0 %}<span><i class="far fa-image"></i>Screenshots</span>{% endif %}
-                                </div>
-                                <div class="row"><div class="col-sm-12"><h4 class="entry-title"><a href="{{ path('project_more', {'project': project.id}) }}">{{ project.name }}</a></h4></div></div>
-                            </div>
-                        </div>
-                        <div class="info-bottom">
-                            <div class="info-description">{{ project.mission }}</div>
-                            <div class="info-description">
-                                <ul class="projects-list-roles">
-                                    {% for role in project.openRoles %}
-                                        <li><i class="fas fa-door-open"></i>{{ role.name }}</li>
-                                    {% endfor %}
-                                </ul><div style="clear: both"></div></div>
-                        </div>
-                    </div>
-                </article>
+                {% include 'project/list/one_project.html.twig' with {'project': project} %}
             {% endfor %}
 
         <div class="navigation">

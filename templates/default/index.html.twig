@@ -12,14 +12,14 @@
                     {% if not app.user %}<div class="index-banner-button"><a class="" href="{{ path('fos_user_registration_register') }}">{{ 'join_us' | trans }}</a></div>{% endif %}
                 </div>
 
-                <div class="index-banner-item index-banner2 scene">
+                <div class="index-banner-item index-banner2">
                     <div class="index-banner-text index-banner-text1"><span class="index-banner-text-back">Наверняка у тебя есть отличная идея, но не хватает денег на реализацию <span class="index-banner-blue">MVP</span></span></div>
                     <div class="index-banner-text index-banner-text2"><span class="index-banner-text-back">Найди заинтересованного специалиста</span></div>
                     <div class="index-banner-text index-banner-text3"><span class="index-banner-text-back">Или собери команду <span class="index-banner-blue">с горящими глазами</span></span></div>
                     {% if not app.user %}<div class="index-banner-button"><a class="" href="{{ path('fos_user_registration_register') }}">Собери команду - это просто!</a></div>{% endif %}
                 </div>
 
-                <div class="index-banner-item index-banner3 scene">
+                <div class="index-banner-item index-banner3">
                     <div class="index-banner-text index-banner-text1"><span class="index-banner-text-back">Инвестируй не деньги, а свой <span class="index-banner-blue">опыт и время</span></span></div>
                     <div class="index-banner-text index-banner-text2"><span class="index-banner-text-back">Присоединись к интересному стартапу</span></div>
                     <div class="index-banner-text index-banner-text3"><span class="index-banner-text-back">Попробуй себя в новой роли и получи опыт в <span class="index-banner-blue">настоящем боевом проекте</span></span></div>
@@ -29,6 +29,18 @@
         </div>
     </div>
 
+    <div class ="container">
+        {% for project in projects %}
+        <div class="row">
+            <div class="col-sm-12">{% include 'project/list/one_project.html.twig' with {"project": project} %}</div>
+        </div>
+        {% endfor %}
+        <div class="row">
+            <div class="col-sm-12 text-center margin-bottom-30 margin-top-30">
+                <a href="#" class="link-button">{{ 'project.get_more_projects' | trans }}</a>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block javascripts %}
@@ -52,14 +64,14 @@
             });
 
             owl.on('changed.owl.carousel', function(event) {
+                $(".index-banner-item .index-banner-text").css("transform", "translatex(0px)");
+                $(".index-banner-item .index-banner-button").css("opacity", "0");
                 var page = event.item.index - 1;
-                var prev = page - 1;
-                if (prev === 0) {
-                    prev = 3;
+                if(page == 0) {
+                    page = 3;
                 }
                 $(".index-banner"+page+" .index-banner-text").css("transform", "translatex(110px)");
                 $(".index-banner"+page+" .index-banner-button").css("opacity", "1");
-                $(".index-banner"+prev+" .index-banner-text").css("transform", "translatex(0px)");
             });
         });
     </script>

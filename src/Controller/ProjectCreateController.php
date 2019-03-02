@@ -19,11 +19,12 @@ class ProjectCreateController extends AbstractController
     /**
      * @Route("/project/create/rules/", name="project_create_rules")
      *
+     * @param string $locale
      * @return Response
      */
-    public function rulesAction()
+    public function rulesAction(string $locale)
     {
-        $rulesText = $this->renderView('texts/en/project_rules.html.twig');
+        $rulesText = $this->renderView('texts/'.$locale.'/project_rules.html.twig');
 
         return $this->render('project/create/rules.html.twig', [
             'rulesText' => $rulesText,

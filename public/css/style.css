@@ -2120,6 +2120,10 @@ article.post, article.specialist {
 	padding: 35px 20px;
 }
 
+article.post {
+	transition: opacity 2s ease-out;
+}
+
 article.new-message {
 	background-color: aliceblue;
 }
@@ -2431,4 +2435,24 @@ div.index-banner-button {
 	margin: 10px;
 }
 
+.info-description span {
+	color: #a1a1a1;
+}
+
+.link-button {
+	background: #42a5f5;
+	color: #fff;
+	min-width: 240px;
+	padding: 10px 35px;
+	margin: 10px;
+	text-shadow: none;
+}
+
+.link-button:hover {
+	background: #42a5f5;
+	color: #fff;
+	min-width: 240px;
+	padding: 10px 35px;
+	margin: 10px;
+}
 
