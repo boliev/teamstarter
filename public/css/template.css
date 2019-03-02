@@ -4209,11 +4209,6 @@ ul.style-ul li span {
       margin: 0;
     }
 
-    /* 5. menu */
-    a:hover, a:active, a:focus, a:visited {
-      background: transparent;
-    }
-
     .btn{
       color: #ffffff;
 	  background-color:transparent;
