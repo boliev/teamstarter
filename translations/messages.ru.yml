@@ -302,6 +302,8 @@ project:
     offer_message: Предложение
     offer_posted_success: <a href="{offer}">Предложение</a> оправлено
     offer_already_posted: Вы уже отправили <a href="{offer}">предложение</a> этому специалисту
+    our_mission: Наша миссия
+    get_more_projects: Больше проектов
 specialists:
     list_title: Доступные <span>специалисты</span>
     menu_list: Специалисты

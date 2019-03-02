@@ -2439,3 +2439,20 @@ div.index-banner-button {
 	color: #a1a1a1;
 }
 
+.link-button {
+	background: #42a5f5;
+	color: #fff;
+	min-width: 240px;
+	padding: 10px 35px;
+	margin: 10px;
+	text-shadow: none;
+}
+
+.link-button:hover {
+	background: #42a5f5;
+	color: #fff;
+	min-width: 240px;
+	padding: 10px 35px;
+	margin: 10px;
+}
+

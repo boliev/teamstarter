@@ -29,6 +29,18 @@
         </div>
     </div>
 
+    <div class ="container">
+        {% for project in projects %}
+        <div class="row">
+            <div class="col-sm-12">{% include 'project/list/one_project.html.twig' with {"project": project} %}</div>
+        </div>
+        {% endfor %}
+        <div class="row">
+            <div class="col-sm-12 text-center margin-bottom-30 margin-top-30">
+                <a href="#" class="link-button">{{ 'project.get_more_projects' | trans }}</a>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block javascripts %}
