@@ -2379,6 +2379,7 @@ div.pro-access-buttons {
 }
 
 .index-banner-text1 {
+	font-size: 24px;
 	padding-top: 90px;
 	transition: all;
 	transition-duration: 2s;
@@ -2403,6 +2404,31 @@ div.pro-access-buttons {
 .index-banner-text-back {
 	padding: 10px;
 	background: rgba(0, 0, 0, 0.6);
+}
+
+div.index-banner-button {
+	text-align: center;
+	margin-top: 50px;
+	opacity: 0;
+	transition: opacity 2s ease-out;
+}
+
+.index-banner-button a {
+	background: #42a5f5;
+	color: #fff;
+	min-width: 240px;
+	padding: 10px 35px;
+	margin: 10px;
+	text-shadow: none;
+	box-shadow: #000 4px 6px 10px;
+}
+
+.index-banner-button a:hover {
+	background: #42a5f5;
+	color: #fff;
+	min-width: 240px;
+	padding: 10px 35px;
+	margin: 10px;
 }
 
 

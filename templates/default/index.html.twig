@@ -6,21 +6,24 @@
         <div class="index-page-carousel">
             <div class="owl-carousel owl-theme">
                 <div class="index-banner-item index-banner1">
-                    <div class="index-banner-text index-banner-text1" data-depth="0.3"><span class="index-banner-text-back">Есть отличная идея?</span></div>
-                    <div class="index-banner-text index-banner-text2" data-depth="0.6"><span class="index-banner-text-back">Но не хватает денег на реализацию <span class="index-banner-blue">MVP</span>?</span></div>
-                    <div class="index-banner-text index-banner-text3" data-depth="0.9"><span class="index-banner-text-back">Мы поможем вам найти надежного <span class="index-banner-blue">технического партнера</span>?</span></div>
+                    <div class="index-banner-text index-banner-text1"><span class="index-banner-text-back"><span class="index-banner-blue">TeamStarter</span> - онлайн-платформа для поиска единомышленников и интересных стартапов</span></div>
+                    <div class="index-banner-text index-banner-text2"><span class="index-banner-text-back">Здесь мы объединяемся в <span class="index-banner-blue">команды</span></span></div>
+                    <div class="index-banner-text index-banner-text3"><span class="index-banner-text-back">и сотрудничаем, чтобы вместе создавать <span class="index-banner-blue">лучшие стартапы</span></span></div>
+                    {% if not app.user %}<div class="index-banner-button"><a class="" href="{{ path('fos_user_registration_register') }}">{{ 'join_us' | trans }}</a></div>{% endif %}
                 </div>
 
                 <div class="index-banner-item index-banner2 scene">
-                    <div class="index-banner-text index-banner-text1" data-depth="0.2"><span class="index-banner-text-back">Хотите стать сооснователем стартапа?</span></div>
-                    <div class="index-banner-text index-banner-text2" data-depth="0.6"><span class="index-banner-text-back">Но  <span class="index-banner-blue">нет денег</span> на инвестиции?</span></div>
-                    <div class="index-banner-text index-banner-text3" data-depth="0.2"><span class="index-banner-text-back">Вкладывайте не деньги, а <span class="index-banner-blue">знания, опыт и время!</span></span></div>
+                    <div class="index-banner-text index-banner-text1"><span class="index-banner-text-back">Наверняка у тебя есть отличная идея, но не хватает денег на реализацию <span class="index-banner-blue">MVP</span></span></div>
+                    <div class="index-banner-text index-banner-text2"><span class="index-banner-text-back">Найди заинтересованного специалиста</span></div>
+                    <div class="index-banner-text index-banner-text3"><span class="index-banner-text-back">Или собери команду <span class="index-banner-blue">с горящими глазами</span></span></div>
+                    {% if not app.user %}<div class="index-banner-button"><a class="" href="{{ path('fos_user_registration_register') }}">Собери команду - это просто!</a></div>{% endif %}
                 </div>
 
                 <div class="index-banner-item index-banner3 scene">
-                    <div class="index-banner-text index-banner-text1" data-depth="0.2"><span class="index-banner-text-back">Хотите получить опыт работы</span></div>
-                    <div class="index-banner-text index-banner-text2" data-depth="0.6"><span class="index-banner-text-back">на настоящем <span class="index-banner-blue">боевом</span> проекте? </span></div>
-                    <div class="index-banner-text index-banner-text3" data-depth="0.2"><span class="index-banner-text-back"><span class="index-banner-blue">Присоединяйтесь</span> к одному из множества стартапов!</span></div>
+                    <div class="index-banner-text index-banner-text1"><span class="index-banner-text-back">Инвестируй не деньги, а свой <span class="index-banner-blue">опыт и время</span></span></div>
+                    <div class="index-banner-text index-banner-text2"><span class="index-banner-text-back">Присоединись к интересному стартапу</span></div>
+                    <div class="index-banner-text index-banner-text3"><span class="index-banner-text-back">Попробуй себя в новой роли и получи опыт в <span class="index-banner-blue">настоящем боевом проекте</span></span></div>
+                    {% if not app.user %}<div class="index-banner-button"><a class="" href="{{ path('fos_user_registration_register') }}">Стань сооснователем стартапа!</a></div>{% endif %}
                 </div>
             </div>
         </div>
@@ -44,6 +47,7 @@
                 autoplaySpeed: 500,
                 onInitialized: function() {
                     $(".index-banner1 .index-banner-text").css("transform", "translatex(110px)");
+                    $(".index-banner1 .index-banner-button").css("opacity", "1");
                 }
             });
 
@@ -54,6 +58,7 @@
                     prev = 3;
                 }
                 $(".index-banner"+page+" .index-banner-text").css("transform", "translatex(110px)");
+                $(".index-banner"+page+" .index-banner-button").css("opacity", "1");
                 $(".index-banner"+prev+" .index-banner-text").css("transform", "translatex(0px)");
             });
         });
