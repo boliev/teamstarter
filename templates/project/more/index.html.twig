@@ -22,7 +22,6 @@
                                     {% elseif project.country%}
                                         <span><i class="fas fa-map-marker"></i>{{ project.country }}</span>
                                     {% endif %}
-                                    {% if project.screens | length > 0 %}<span><i class="far fa-image"></i>Screenshots</span>{% endif %}
                                 </div>
                                 <div class="row"><div class="col-sm-12"><h1 class="entry-title"><a href="#">{{ project.name }}</a></h1></div></div>
                                 {% if offer and app.flashes('do-not-show-proposal-already-message')|length == 0 %}

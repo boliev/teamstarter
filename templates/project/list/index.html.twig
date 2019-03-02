@@ -45,13 +45,13 @@
                                     {% elseif project.country%}
                                         <span><i class="fas fa-map-marker"></i>{{ project.country }}</span>
                                     {% endif %}
-                                    {% if project.screens | length > 0 %}<span><i class="far fa-image"></i>Screenshots</span>{% endif %}
                                 </div>
                                 <div class="row"><div class="col-sm-12"><h4 class="entry-title"><a href="{{ path('project_more', {'project': project.id}) }}">{{ project.name }}</a></h4></div></div>
                             </div>
                         </div>
                         <div class="info-bottom">
                             <div class="info-description">{{ project.mission }}</div>
+                            <div class="info-description">{{ project.description | truncate(250, true) }}</div>
                             <div class="info-description">
                                 <ul class="projects-list-roles">
                                     {% for role in project.openRoles %}
