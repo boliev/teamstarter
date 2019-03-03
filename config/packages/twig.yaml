@@ -7,3 +7,5 @@ twig:
         avatar_max_size: '%env(AVATAR_MAX_SIZE)%'
         fineUploader:
             debug: 'true'
+        yandex_metrika: '%env(YANDEX_METRIKA)%'
+        google_analytics: '%env(GOOGLE_ANALYTICS)%'
