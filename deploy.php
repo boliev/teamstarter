@@ -38,10 +38,15 @@ set('writable_use_sudo', true);
 
 host('dev')
     ->hostname('voovle.ru')
-    ->stage('feature/#59-design')
+    ->stage('develop')
     ->user('deploy')
     ->set('deploy_path', '/var/www/ts_dev4/{{application}}');
 
+host('prod')
+    ->hostname('142.93.161.215')
+    ->stage('master')
+    ->user('deploy')
+    ->set('deploy_path', '/var/www/{{application}}');
 // Tasks
 
 task('build', function () {
