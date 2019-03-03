@@ -1,8 +1,6 @@
 # Symfony console
 
-`bin/console test:projects:add-to-user user@gmail.com 5 Published` Добавить пользователю `user@gmail.com` 5 проектов со статсом `Published`
-
-`bin/console test:specialists:add 5` Добавить 5 тестовых специалистов
+`bin/console test:specialists:add some@mail.ru` Добавить тестового пользователя some@mail.ru (Должен быть описан в `src/Testing/data/specialists.json`).
 
 `bin/console projects:index` Поисковая индексация всех проектов
 
@@ -13,9 +11,8 @@
 `bin/console fos:user:demote someuser@mail.com ROLE_ADMIN` - Забрать админские права
 
 # Deployer
-`dep test:projects:add-to-user dev --u user@gmail.com --n 5` Добавить пользователю `user@gmail.com` 5 проектов со статсом `Published`
 
-`dep test:specialists:add dev --n 5` Добавить 5 тестовых специалистов
+`dep test:specialists:add --u some@mail.ru dev` Добавить тестового пользователя some@mail.ru (Должен быть описан в `src/Testing/data/specialists.json`).
 
 `dep search:projects:index` поисковая индексация всех проектов
 

@@ -31,6 +31,7 @@ FROM users u
 INNER JOIN user_specializations us2 on u.id = us2.user_id
 WHERE to_tsquery(:query) @@ search::tsvector
 AND u.enabled = true 
+AND u.looking_for_project = true
 ORDER BY rank desc, u.updated_at desc';
 
         $stmt = $conn->prepare($sql);

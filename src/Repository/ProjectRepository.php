@@ -5,6 +5,8 @@ namespace App\Repository;
 use App\Entity\Project;
 use App\Entity\User;
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Mapping\OrderBy;
+use Doctrine\ORM\Query\Expr;
 use Doctrine\ORM\QueryBuilder;
 
 class ProjectRepository extends EntityRepository
@@ -50,6 +52,14 @@ class ProjectRepository extends EntityRepository
             ->andWhere('p.user = :user')
             ->setParameter(':user', $user)
             ->orderBy('p.name', 'ASC');
+    }
+
+    public function getPublishedOrderedByIdQuery(string $order = 'DESC')
+    {
+        return $this->getPublished()
+            ->orderBy('p.id', $order)
+            ->setMaxResults(11)
+            ->getQuery();
     }
 
     private function getPublished()

@@ -46,6 +46,9 @@
                                     {% elseif user.country%}
                                         <span><i class="fas fa-map-marker"></i>{{ user.country }}</span>
                                     {% endif %}
+                                    {% if user.canContributeHours%}
+                                        <span><i class="far fa-clock"></i>{% if user.canContributeHours == 5 %} {{ 'user.5_hours_week' | trans }}{% elseif user.canContributeHours == 10 %} {{ 'user.10_hours_week' | trans }}{% elseif user.canContributeHours == 20 %} {{ 'user.20_hours_week' | trans }}{% elseif user.canContributeHours == 40 %} {{ 'user.40_hours_week' | trans }}{% endif %}</span>
+                                    {% endif %}
                                 </div>
 
                                 <div class="row">
@@ -58,7 +61,9 @@
                                         <div class="row">
                                             <div class="col-sm-12 padding-left-1"><h4 class="entry-title"><a href="{{ path('specialists_more', {'user': user.id}) }}">{{ user.fullName }}</a></h4></div>
                                             <div class="info-bottom">
-                                                <div class="info-description">{{ user.about }}</div>
+                                                {% if user.experience %}<div class="info-description">{{ user.experience | truncate(250, true) }}</div> {% endif %}
+                                                {% if user.expectation %}<div class="info-description">{{ user.expectation | truncate(250, true) }}</div> {% endif %}
+                                                {% if user.likeToDo %}<div class="info-description">{{ user.likeToDo | truncate(250, true) }}</div> {% endif %}
                                                 <div>
                                                     {% for userSkill in user.userSkills %} <span class="badge project-card-role-tag">{{ userSkill.skill.title }}</span> {% endfor %}
                                                 </div>

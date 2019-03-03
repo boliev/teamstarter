@@ -38,10 +38,15 @@ set('writable_use_sudo', true);
 
 host('dev')
     ->hostname('voovle.ru')
-    ->stage('feature/#59-design')
+    ->stage('develop')
     ->user('deploy')
     ->set('deploy_path', '/var/www/ts_dev4/{{application}}');
 
+host('prod')
+    ->hostname('142.93.161.215')
+    ->stage('master')
+    ->user('deploy')
+    ->set('deploy_path', '/var/www/{{application}}');
 // Tasks
 
 task('build', function () {
@@ -63,22 +68,8 @@ task('disk_free', function () {
 
 option('u', null, InputOption::VALUE_REQUIRED, 'user email.');
 option('n', null, InputOption::VALUE_REQUIRED, 'number of projects.');
-// dep test:projects:add-to-user dev --u voff.web+0509@gmail.com --n 1
-task('test:projects:add-to-user', function () {
-    // For option
-    $tag = null;
-    if (input()->hasOption('u')) {
-        $user = input()->getOption('u');
-    }
-    if (input()->hasOption('n')) {
-        $number = input()->getOption('n');
-    }
 
-    $df = run(sprintf('cd {{release_path}} && bin/console test:projects:add-to-user %s %d Published --env=prod', $user, $number));
-    writeln($df);
-});
-
-// dep test:specialists:add dev --n 1
+// dep test:specialists:add dev --n some@mail.ru
 task('test:specialists:add', function () {
     // For option
     $number = 1;

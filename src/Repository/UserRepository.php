@@ -18,6 +18,7 @@ class UserRepository extends EntityRepository
         return $this->createQueryBuilder('u')
             ->innerJoin(UserSpecializations::class, 'us', 'WITH', 'us.user = u.id')
             ->where('u.enabled = true')
+            ->andWhere('u.lookingForProject = true')
             ->orderBy('u.updatedAt', 'desc')
             ->getQuery();
     }

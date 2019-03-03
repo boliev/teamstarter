@@ -37,6 +37,10 @@ services:
         bind:
             $locale: '%locale%'
 
+    App\Controller\ProjectCreateController:
+        bind:
+            $locale: '%locale%'
+
     App\Controller\ProController:
         bind:
             $price: '%pro_price%'
@@ -97,6 +101,10 @@ services:
         arguments:
             $kernelRoot: "%kernel.root_dir%"
             $screenMaxSize: "%env(PROJECT_SCREEN_MAX_SIZE)%"
+
+    App\Testing\TestSpecialistCreator:
+        arguments:
+            $kernelRoot: "%kernel.root_dir%"
 
     App\Repository\SpecializationRepository:
         class: App\Repository\SpecializationRepository

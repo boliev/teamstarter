@@ -43,6 +43,9 @@ class SpecialistsController extends AbstractController
         int $page = 1
     ) {
 
+        if(!$this->getUser()) {
+            return $this->render('specialists/list/access_denied.html.twig');
+        }
         if(!$this->getUser()->isProOrHasActiveProjects()) {
             return $this->render('specialists/list/access_denied.html.twig');
         }

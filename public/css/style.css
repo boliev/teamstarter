@@ -2120,6 +2120,10 @@ article.post, article.specialist {
 	padding: 35px 20px;
 }
 
+article.post {
+	transition: opacity 2s ease-out;
+}
+
 article.new-message {
 	background-color: aliceblue;
 }
@@ -2362,7 +2366,10 @@ div.pro-access-buttons {
 	font-size: 36px;
 	color: #ffffff;
 	text-shadow: #000 2px 2px 2px;
-	padding-left: 110px;
+
+	perspective: 1px;
+	overflow-x: hidden;
+	overflow-y: auto;
 }
 
 .index-banner1 {
@@ -2376,15 +2383,21 @@ div.pro-access-buttons {
 }
 
 .index-banner-text1 {
+	font-size: 24px;
 	padding-top: 90px;
+	transition: all;
+	transition-duration: 2s;
 }
 
 .index-banner-text2 {
 	padding-top: 50px;
+	font-size: 66px;
+	transition-duration: 3s;
 }
 
 .index-banner-text3 {
 	padding-top: 50px;
+	transition-duration: 2s;
 }
 
 .index-banner-blue {
@@ -2397,4 +2410,49 @@ div.pro-access-buttons {
 	background: rgba(0, 0, 0, 0.6);
 }
 
+div.index-banner-button {
+	text-align: center;
+	margin-top: 50px;
+	opacity: 0;
+	transition: opacity 2s ease-out;
+}
+
+.index-banner-button a {
+	background: #42a5f5;
+	color: #fff;
+	min-width: 240px;
+	padding: 10px 35px;
+	margin: 10px;
+	text-shadow: none;
+	box-shadow: #000 4px 6px 10px;
+}
+
+.index-banner-button a:hover {
+	background: #42a5f5;
+	color: #fff;
+	min-width: 240px;
+	padding: 10px 35px;
+	margin: 10px;
+}
+
+.info-description span {
+	color: #a1a1a1;
+}
+
+.link-button {
+	background: #42a5f5;
+	color: #fff;
+	min-width: 240px;
+	padding: 10px 35px;
+	margin: 10px;
+	text-shadow: none;
+}
+
+.link-button:hover {
+	background: #42a5f5;
+	color: #fff;
+	min-width: 240px;
+	padding: 10px 35px;
+	margin: 10px;
+}
 

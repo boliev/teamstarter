@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Repository\ProjectRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -10,11 +12,20 @@ class DefaultController extends AbstractController
 {
     /**
      * @Route("/", name="homepage")
+     *
+     * @param ProjectRepository $projectRepository
+     * @param PaginatorInterface $paginator
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function indexAction()
+    public function indexAction(
+        ProjectRepository $projectRepository,
+        PaginatorInterface $paginator
+    )
     {
         return $this->render('default/index.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+            'projects' => $pagination = $paginator->paginate($projectRepository->getPublishedOrderedByIdQuery(), 1, 6)
         ]);
     }
 
