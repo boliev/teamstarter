@@ -72,12 +72,11 @@ option('n', null, InputOption::VALUE_REQUIRED, 'number of projects.');
 // dep test:specialists:add dev --n some@mail.ru
 task('test:specialists:add', function () {
     // For option
-    $number = 1;
-    if (input()->hasOption('n')) {
-        $number = input()->getOption('n');
+    if (input()->hasOption('u')) {
+        $user = input()->getOption('u');
     }
 
-    $df = run(sprintf('cd {{release_path}} && bin/console test:specialists:add %d --env=prod', $number));
+    $df = run(sprintf('cd {{release_path}} && bin/console test:specialists:add %s --env=prod', $user));
     writeln($df);
 });
 
