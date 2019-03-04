@@ -15,7 +15,8 @@ Specifications: Спецификация
 There is a Demo: Демо
 Project released: Проект запущен
 join_us: Присоединяйся!
-terms: '<span>Правила использования</span> сайта %site_name%'
+terms: '<span>Пользовательское</span> соглашение'
+oferta: Пользовательское соглашение
 currency: ₽
 title:
     default: Найди свою команду мечты
@@ -42,10 +43,10 @@ title:
     specialists_add_offer: Предложить сотрудничество
     dialogs_list: Ваши диалоги
     dialogs_more: 'Диалог: %name%'
-    terms: 'Правила использования сайта %site_name%'
+    terms: 'Пользовательское соглашение сайта %site_name%'
     enter_promo: Сервис находится на стадии Бета-тестирования
     promo_request: Я хочу записаться на бета-тестирование
-    contact: Наши контакты
+    contact: Контакты
 
 registration:
     header: Регистрация
@@ -367,7 +368,7 @@ pro:
             TeamStarter.</p>
 contact:
     header: Форма <span>обратной связи</span>
-    menu_title: Наши контакты
+    menu_title: Контакты
     field_title: Тема сообщения
     field_email: Ваш email
     field_text: Текст сообщения
