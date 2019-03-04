@@ -18,33 +18,43 @@
                         </div>
                     </div>
 
-                <div class="col-sm-8 col-sm-offset-2">
-                    <form method="post" action="">
+                    <div class="col-sm-8 col-sm-offset-2">
+                        <form method="post" action="">
 
-                        <div class="row"> <div class="col-md-12 form-group">
-                                {{ form_label(form.title, '', {'label_attr': {'class': 'bmd-label-floating'}}) }}
-                                {{ form_widget(form.title, {'attr': {'class': 'input-block'}}) }}
-                                {{ form_errors(form.title)}}
-                            </div></div>
-                        <div class="row"> <div class="col-md-12 form-group">
-                                {{ form_label(form.email, '', {'label_attr': {'class': 'bmd-label-floating'}}) }}
-                                {{ form_widget(form.email, {'attr': {'class': 'input-block', 'value': email}}) }}
-                                {{ form_errors(form.email)}}
-                            </div></div>
-                        <div class="row"> <div class="col-md-12 form-group">
-                                {{ form_label(form.description, '', {'label_attr': {'class': 'bmd-label-floating'}}) }}
-                                {{ form_widget(form.description, {'attr': {'class': 'input-block'}}) }}
-                                {{ form_errors(form.description)}}
-                            </div></div>
+                            <div class="row"> <div class="col-md-12 form-group">
+                                    {{ form_label(form.title, '', {'label_attr': {'class': 'bmd-label-floating'}}) }}
+                                    {{ form_widget(form.title, {'attr': {'class': 'input-block'}}) }}
+                                    {{ form_errors(form.title)}}
+                                </div></div>
+                            <div class="row"> <div class="col-md-12 form-group">
+                                    {{ form_label(form.email, '', {'label_attr': {'class': 'bmd-label-floating'}}) }}
+                                    {{ form_widget(form.email, {'attr': {'class': 'input-block', 'value': email}}) }}
+                                    {{ form_errors(form.email)}}
+                                </div></div>
+                            <div class="row"> <div class="col-md-12 form-group">
+                                    {{ form_label(form.description, '', {'label_attr': {'class': 'bmd-label-floating'}}) }}
+                                    {{ form_widget(form.description, {'attr': {'class': 'input-block'}}) }}
+                                    {{ form_errors(form.description)}}
+                                </div></div>
 
-                        <div class="row">
-                            <div class="col-md-12 form-bottom">
-                                {{ form_row(form._token) }}
-                                <input type="submit" class="btn btn-primary btn-large" value="{{ 'submit'|trans }}">
+                            <div class="row">
+                                <div class="col-md-12 form-bottom">
+                                    {{ form_row(form._token) }}
+                                    <input type="submit" class="btn btn-primary btn-large" value="{{ 'submit'|trans }}">
+                                </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="legal-info col-sm-offset-4">
+                <p><i class="fas fa-user-tie padding-right-5"></i>Индивидуальный предприниматель Болиев Владимир Таймуразович</p>
+                <p><i class="far fa-id-card padding-right-5"></i>ИНН: 151500419967, ОГРН: 318151300001373</p>
+                <p><i class="far fa-credit-card padding-right-5"></i>Банк: АО "ТИНЬКОФФ БАНК", БИК: 044525974</p>
+                <p><i class="far fa-credit-card padding-right-5"></i>Расчетный счет: 40802 810 9000 0039 8899</p>
+                <p><i class="far fa-credit-card padding-right-5"></i>Корр. счет: 30101 810 1452 5000 0974</p>
             </div>
         </div>
     </div>

@@ -2456,3 +2456,22 @@ div.index-banner-button {
 	margin: 10px;
 }
 
+.footer-menu li {
+	float: left;
+	margin-right: 30px;
+}
+
+.footer-menu li a {
+	color: #ffffff;
+	font-size: 14px;
+}
+
+.footer-menu li a:hover {
+	color: #ffffff;
+}
+
+.legal-info {
+	margin-top: 30px;
+	font-size: 12px;
+	margin-bottom: 30px;
+}
