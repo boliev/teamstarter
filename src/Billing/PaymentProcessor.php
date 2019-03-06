@@ -13,19 +13,19 @@ class PaymentProcessor
     /** @var EntityManagerInterface */
     private $entityManager;
 
-    /** @var UserService */
-    private $userService;
-
     /** @var PaymentFetcher */
     private $paymentFetcher;
+
+    /** @var ProSetter  */
+    private $proSetter;
 
     public function __construct(
         PaymentFetcher $paymentFetcher,
         EntityManagerInterface $entityManager,
-        UserService $userService
+        ProSetter $proSetter
     ) {
         $this->entityManager = $entityManager;
-        $this->userService = $userService;
+        $this->proSetter = $proSetter;
         $this->paymentFetcher = $paymentFetcher;
     }
 
@@ -43,7 +43,7 @@ class PaymentProcessor
         $paymentFromYandex = $this->getPaymentFromYandex($id);
 
         if (Payment::STATUS_SUCCEEDED === $paymentFromYandex['status'] && true === $paymentFromYandex['paid']) {
-            $this->userService->setPro($payment->getUser());
+            $this->proSetter->setUser($payment->getUser());
             $this->setPaymentPayed($payment, $paymentFromYandex['status']);
 
             return true;

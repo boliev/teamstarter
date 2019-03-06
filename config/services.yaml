@@ -93,9 +93,6 @@ services:
         arguments:
             $kernelRoot: "%kernel.root_dir%"
             $avatarMaxSize: "%env(AVATAR_MAX_SIZE)%"
-            $fromEmailAddress: "%env(MAILER_ADDRESS)%"
-            $fromName: "%env(MAILER_SENDER_NAME)%"
-            $notifyNewProUsersEmails: "%env(NOTIFY_NEW_PRO_USER)%"
 
     App\Service\ProjectService:
         arguments:
@@ -190,6 +187,12 @@ services:
             $fromEmailAddress: "%env(MAILER_ADDRESS)%"
             $fromName: "%env(MAILER_SENDER_NAME)%"
             $notifyAboutErrorsEmails: "%env(NOTIFY_NEW_PRO_USER)%"
+
+    App\Billing\ProSetter:
+        bind:
+            $fromEmailAddress: "%env(MAILER_ADDRESS)%"
+            $fromName: "%env(MAILER_SENDER_NAME)%"
+            $notifyNewProUsersEmails: "%env(NOTIFY_NEW_PRO_USER)%"
 
     Parsedown:
         class: \Parsedown

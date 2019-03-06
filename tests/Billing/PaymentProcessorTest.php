@@ -5,6 +5,7 @@ namespace App\Tests;
 use App\Billing\Exception;
 use App\Billing\PaymentFetcher;
 use App\Billing\PaymentProcessor;
+use App\Billing\ProSetter;
 use App\Entity\Payment;
 use App\Entity\User;
 use App\Service\UserService;
@@ -24,9 +25,9 @@ class PaymentProcessorTest extends TestCase
     {
         $paymentFetcher = $this->getMockBuilder(PaymentFetcher::class)->disableOriginalConstructor()->getMock();
         $entityManager = $this->getMockBuilder(EntityManagerInterface::class)->disableOriginalConstructor()->getMock();
-        $userService = $this->getMockBuilder(UserService::class)->disableOriginalConstructor()->getMock();
+        $proSetter = $this->getMockBuilder(ProSetter::class)->disableOriginalConstructor()->getMock();
 
-        $processor = new PaymentProcessor($paymentFetcher, $entityManager, $userService);
+        $processor = new PaymentProcessor($paymentFetcher, $entityManager, $proSetter);
         $this->expectException(Exception\NoPaymentIdException::class);
         $processor->setProPayment($data);
     }
@@ -56,9 +57,9 @@ class PaymentProcessorTest extends TestCase
         $repository->method('findOneBy')->willReturn($payment);
         $entityManager = $this->getMockBuilder(EntityManagerInterface::class)->disableOriginalConstructor()->getMock();
         $entityManager->method('getRepository')->willReturn($repository);
-        $userService = $this->getMockBuilder(UserService::class)->disableOriginalConstructor()->getMock();
+        $proSetter = $this->getMockBuilder(ProSetter::class)->disableOriginalConstructor()->getMock();
 
-        $processor = new PaymentProcessor($paymentFetcher, $entityManager, $userService);
+        $processor = new PaymentProcessor($paymentFetcher, $entityManager, $proSetter);
         $this->expectException(Exception\NoPaymentFoundException::class);
         $processor->setProPayment($data);
     }
@@ -89,9 +90,9 @@ class PaymentProcessorTest extends TestCase
         $repository->method('findOneBy')->willReturn($payment);
         $entityManager = $this->getMockBuilder(EntityManagerInterface::class)->disableOriginalConstructor()->getMock();
         $entityManager->method('getRepository')->willReturn($repository);
-        $userService = $this->getMockBuilder(UserService::class)->disableOriginalConstructor()->getMock();
+        $proSetter = $this->getMockBuilder(ProSetter::class)->disableOriginalConstructor()->getMock();
 
-        $processor = new PaymentProcessor($paymentFetcher, $entityManager, $userService);
+        $processor = new PaymentProcessor($paymentFetcher, $entityManager, $proSetter);
         $this->expectException(Exception\PaymentAlreadyPayedException::class);
         $processor->setProPayment($data);
     }
@@ -124,9 +125,9 @@ class PaymentProcessorTest extends TestCase
         $repository->method('findOneBy')->willReturn($payment);
         $entityManager = $this->getMockBuilder(EntityManagerInterface::class)->disableOriginalConstructor()->getMock();
         $entityManager->method('getRepository')->willReturn($repository);
-        $userService = $this->getMockBuilder(UserService::class)->disableOriginalConstructor()->getMock();
+        $proSetter = $this->getMockBuilder(ProSetter::class)->disableOriginalConstructor()->getMock();
 
-        $processor = new PaymentProcessor($paymentFetcher, $entityManager, $userService);
+        $processor = new PaymentProcessor($paymentFetcher, $entityManager, $proSetter);
         $this->expectException(Exception\PaymentNotFoundInYandexException::class);
         $processor->setProPayment($data);
     }
@@ -160,9 +161,9 @@ class PaymentProcessorTest extends TestCase
         $repository->method('findOneBy')->willReturn($payment);
         $entityManager = $this->getMockBuilder(EntityManagerInterface::class)->disableOriginalConstructor()->getMock();
         $entityManager->method('getRepository')->willReturn($repository);
-        $userService = $this->getMockBuilder(UserService::class)->disableOriginalConstructor()->getMock();
+        $proSetter = $this->getMockBuilder(ProSetter::class)->disableOriginalConstructor()->getMock();
 
-        $processor = new PaymentProcessor($paymentFetcher, $entityManager, $userService);
+        $processor = new PaymentProcessor($paymentFetcher, $entityManager, $proSetter);
         $this->expectException(Exception\BadPaymentFromYandexException::class);
         $processor->setProPayment($data);
     }
@@ -196,9 +197,9 @@ class PaymentProcessorTest extends TestCase
         $repository->method('findOneBy')->willReturn($payment);
         $entityManager = $this->getMockBuilder(EntityManagerInterface::class)->disableOriginalConstructor()->getMock();
         $entityManager->method('getRepository')->willReturn($repository);
-        $userService = $this->getMockBuilder(UserService::class)->disableOriginalConstructor()->getMock();
+        $proSetter = $this->getMockBuilder(ProSetter::class)->disableOriginalConstructor()->getMock();
 
-        $processor = new PaymentProcessor($paymentFetcher, $entityManager, $userService);
+        $processor = new PaymentProcessor($paymentFetcher, $entityManager, $proSetter);
         $this->expectException(Exception\PaymentReceivedButNotPayedException::class);
         $processor->setProPayment($data);
     }
@@ -237,9 +238,9 @@ class PaymentProcessorTest extends TestCase
         $repository->method('findOneBy')->willReturn($payment);
         $entityManager = $this->getMockBuilder(EntityManagerInterface::class)->disableOriginalConstructor()->getMock();
         $entityManager->method('getRepository')->willReturn($repository);
-        $userService = $this->getMockBuilder(UserService::class)->disableOriginalConstructor()->getMock();
+        $proSetter = $this->getMockBuilder(ProSetter::class)->disableOriginalConstructor()->getMock();
 
-        $processor = new PaymentProcessor($paymentFetcher, $entityManager, $userService);
+        $processor = new PaymentProcessor($paymentFetcher, $entityManager, $proSetter);
         $this->assertTrue($processor->setProPayment($data));
         $this->assertTrue($payment->isPaid());
         $this->assertEquals($payment->getStatus(), Payment::STATUS_SUCCEEDED);
