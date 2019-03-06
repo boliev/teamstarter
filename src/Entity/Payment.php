@@ -11,6 +11,8 @@ use Doctrine\ORM\Mapping as ORM;
 class Payment
 {
     const STATUS_PENDING = 'pending';
+    const STATUS_SUCCEEDED = 'succeeded';
+
     const TYPE_YANDEX = 'yandex';
 
     /**

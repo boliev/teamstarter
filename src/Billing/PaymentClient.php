@@ -8,6 +8,7 @@ use GuzzleHttp\Client;
 class PaymentClient
 {
     private const URL_YANDEX_CREATE_PAYMENT = 'https://payment.yandex.net/api/v3/payments';
+    private const URL_YANDEX_GET_PAYMENT = 'https://payment.yandex.net/api/v3/payments/';
 
     /** @var Client */
     private $client;
@@ -55,6 +56,21 @@ class PaymentClient
     }
 
     /**
+     * @param string $id
+     *
+     * @return array
+     *
+     * @throws PaymentFailureException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function getPayment(string $id)
+    {
+        $url = self::URL_YANDEX_GET_PAYMENT.$id;
+
+        return $this->makeGetRequest($url);
+    }
+
+    /**
      * @param string $url
      * @param $data
      *
@@ -72,6 +88,31 @@ class PaymentClient
                 'Idempotence-Key' => uniqid(),
             ],
             'body' => json_encode($data),
+        ]);
+
+        if (200 !== $res->getStatusCode()) {
+            throw new PaymentFailureException($res->getBody(), $res->getStatusCode());
+        }
+
+        return json_decode($res->getBody(), true);
+    }
+
+    /**
+     * @param string $url
+     *
+     * @return array
+     *
+     * @throws PaymentFailureException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    private function makeGetRequest(string $url): array
+    {
+        $res = $this->client->request('GET', $url, [
+            'auth' => [$this->shopId, $this->key],
+            'headers' => [
+                'Content-Type' => 'application/json',
+                'Idempotence-Key' => uniqid(),
+            ],
         ]);
 
         if (200 !== $res->getStatusCode()) {
