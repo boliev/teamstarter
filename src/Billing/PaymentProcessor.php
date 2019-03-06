@@ -2,6 +2,7 @@
 
 namespace App\Billing;
 
+use App\Billing\Exception;
 use App\Entity\Payment;
 use App\Service\UserService;
 use Doctrine\ORM\EntityManagerInterface;
@@ -47,13 +48,13 @@ class PaymentProcessor
 
             return true;
         }
-        throw new BadRequestHttpException();
+        throw new Exception\PaymentReceivedButNotPayedException();
     }
 
     private function getPaymentIdFromRequest(?array $data): string
     {
         if (!isset($data['object']['id'])) {
-            throw new BadRequestHttpException();
+            throw new Exception\NoPaymentIdException();
         }
 
         return $data['object']['id'];
@@ -64,11 +65,11 @@ class PaymentProcessor
         /** @var Payment $payment */
         $payment = $this->entityManager->getRepository(Payment::class)->findOneBy(['extId' => $id]);
         if (!$payment) {
-            throw new BadRequestHttpException();
+            throw new Exception\NoPaymentFoundException();
         }
 
         if ($payment->isPaid()) {
-            throw new BadRequestHttpException();
+            throw new Exception\PaymentAlreadyPayedException();
         }
 
         return $payment;
@@ -78,14 +79,14 @@ class PaymentProcessor
     {
         $paymentFromYandex = $this->paymentFetcher->fetch($id);
         if (!$paymentFromYandex) {
-            throw new BadRequestHttpException();
+            throw new Exception\PaymentNotFoundInYandexException();
         }
 
-        if (isset($paymentFromYandex['status']) && $paymentFromYandex['paid']) {
+        if (isset($paymentFromYandex['status']) && isset($paymentFromYandex['paid'])) {
             return $paymentFromYandex;
         }
 
-        throw new BadRequestHttpException();
+        throw new Exception\BadPaymentFromYandexException();
     }
 
     private function setPaymentPayed(Payment $payment, string $status)
