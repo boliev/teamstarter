@@ -62,15 +62,10 @@ class ProSetter
      */
     public function setUser(User $user)
     {
-        $nowDate = new \DateTime();
-        $nowDate->add(new \DateInterval('P1M'));
-        $user->setProUntil($nowDate);
+        $proUntil = $this->getUntilDate($user);
+        $user->setProUntil($proUntil);
         $this->entityManager->persist($user);
-
-        $statistic = new StatisticBuys();
-        $statistic->setUser($user);
-        $this->entityManager->persist($statistic);
-
+        $this->setToStatistic($user, $proUntil);
         $this->entityManager->flush();
 
         $message = (new \Swift_Message($this->translator->trans('pro.buy_success_email.subject')))
@@ -86,5 +81,35 @@ class ProSetter
             ->setBody($this->translator->trans('pro.buy_success_email_admins.message'), 'text/html');
 
         $this->mailer->send($message);
+    }
+
+    /**
+     * @param User $user
+     * @return \DateTime|null
+     * @throws \Exception
+     */
+    private function getUntilDate(User $user)
+    {
+        $userProDate = $user->getProUntil();
+        if (null === $userProDate) {
+            $userProDate =  new \DateTime();
+        }
+
+        $userProDate->add(new \DateInterval('P1M'));
+        return clone $userProDate;
+    }
+
+    /**
+     * @param User      $user
+     * @param \DateTime $proUntil
+     *
+     * @throws \Exception
+     */
+    private function setToStatistic(User $user, \DateTime $proUntil)
+    {
+        $statistic = new StatisticBuys();
+        $statistic->setUser($user);
+        $statistic->setUntil($proUntil);
+        $this->entityManager->persist($statistic);
     }
 }
