@@ -11,7 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class BillingController extends AbstractController
 {
     /**
-     * @Route("/billing/yandex", name="billing_yandex")
+     * @Route("/billing/yandex", name="billing_yandex", methods={"POST"})
      *
      * @param Request          $request
      * @param PaymentProcessor $paymentProcessor
