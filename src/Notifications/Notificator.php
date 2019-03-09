@@ -3,6 +3,7 @@
 namespace App\Notifications;
 
 use App\Entity\Project;
+use App\Entity\SupportRequest;
 use App\Entity\User;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -19,11 +20,14 @@ class Notificator
     /** @var \Swift_Mailer */
     private $mailer;
 
-    /** @var string */
+    /** @var array */
     private $reviewers;
 
-    /** @var string */
+    /** @var array */
     private $newProEmails;
+
+    /** @var array */
+    private $supportEmails;
 
     /** @var TranslatorInterface */
     private $translator;
@@ -38,6 +42,7 @@ class Notificator
         string $fromName,
         string $reviewers,
         string $newProEmails,
+        string $supportEmails,
         \Swift_Mailer $mailer,
         TranslatorInterface $translator,
         RouterInterface $router
@@ -48,6 +53,7 @@ class Notificator
         $this->translator = $translator;
         $this->reviewers = explode(',', $reviewers);
         $this->newProEmails = explode(',', $newProEmails);
+        $this->supportEmails = explode(',', $supportEmails);
         $this->router = $router;
     }
 
@@ -142,6 +148,23 @@ class Notificator
             $this->newProEmails,
             $this->trans('user.new_request_for_beta_email_admins.subject'),
             $this->trans('user.new_request_for_beta_email_admins.message')
+        );
+    }
+
+    public function newContactFormRequest(SupportRequest $supportRequest)
+    {
+        $this->sendEmail(
+            $this->supportEmails,
+            $this->trans('contact.support_email.subject'),
+            $this->trans('contact.support_email.message', [
+                '%id%' => $supportRequest->getId(),
+                '%email%' => $supportRequest->getEmail(),
+                '%name%' => $supportRequest->getUser() ? $supportRequest->getUser()->getFullName() : '-',
+                '%user_id%' => $supportRequest->getUser() ? $supportRequest->getUser()->getId() : '-',
+                '%user_pro%' => $supportRequest->getUser() && $supportRequest->getUser()->isPro() ? '+' : '-',
+                '%title%' => $supportRequest->getTitle(),
+                '%text%' => $supportRequest->getDescription(),
+            ])
         );
     }
 

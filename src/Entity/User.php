@@ -661,15 +661,17 @@ class User extends BaseUser
 
     /**
      * @return bool
-     *
-     * @throws \Exception
      */
     public function isPro(): bool
     {
         if (null === $this->getProUntil()) {
             return false;
         }
-        $nowDate = new \DateTime();
+        try {
+            $nowDate = new \DateTime();
+        } catch (\Exception $e) {
+            return false;
+        }
 
         return $this->getProUntil() >= $nowDate;
     }

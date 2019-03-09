@@ -45,12 +45,6 @@ services:
         bind:
             $price: '%pro_price%'
 
-    App\Controller\ContactController:
-        bind:
-            $fromEmailAddress: "%env(MAILER_ADDRESS)%"
-            $fromName: "%env(MAILER_SENDER_NAME)%"
-            $supportEmail: "%env(SUPPORT_EMAIL)%"
-
     app.form.registration:
         class: App\Form\RegistrationType
         tags:
@@ -189,6 +183,7 @@ services:
             $fromName: "%env(MAILER_SENDER_NAME)%"
             $reviewers: "%env(MAILS_REVIEWERS)%"
             $newProEmails: "%env(MAILS_NEW_PRO_USERS)%"
+            $supportEmails: "%env(MAILS_SUPPORT)%"
 
 
     Parsedown:
