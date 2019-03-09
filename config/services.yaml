@@ -152,11 +152,6 @@ services:
             - App\Entity\Country
             - '%env(ALWAYS_FIRST_COUNTRY)%'
 
-    App\EventSubscriber\ProjectChangeProgressStatusSubscriber:
-        arguments:
-            $fromEmailAddress: "%env(MAILER_ADDRESS)%"
-            $fromName: "%env(MAILER_SENDER_NAME)%"
-
     App\EventSubscriber\ProjectSearchIndexerSubscriber:
         tags:
         - { name: doctrine.event_subscriber, event: postPersist }
@@ -193,6 +188,13 @@ services:
             $fromEmailAddress: "%env(MAILER_ADDRESS)%"
             $fromName: "%env(MAILER_SENDER_NAME)%"
             $notifyNewProUsersEmails: "%env(NOTIFY_NEW_PRO_USER)%"
+
+    App\Notifications\Notificator:
+        bind:
+            $fromEmailAddress: "%env(MAILER_ADDRESS)%"
+            $fromName: "%env(MAILER_SENDER_NAME)%"
+            $reviewers: "%env(MAILS_REVIEWERS)%"
+
 
     Parsedown:
         class: \Parsedown
