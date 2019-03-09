@@ -28,6 +28,12 @@ class StatisticBuys
      * @var \DateTime
      * @ORM\Column(type="datetime", nullable=false)
      */
+    private $until;
+
+    /**
+     * @var \DateTime
+     * @ORM\Column(type="datetime", nullable=false)
+     */
     private $date;
 
     /**
@@ -86,5 +92,21 @@ class StatisticBuys
     public function setDate(\DateTime $date): void
     {
         $this->date = $date;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getUntil(): \DateTime
+    {
+        return $this->until;
+    }
+
+    /**
+     * @param \DateTime $until
+     */
+    public function setUntil(\DateTime $until): void
+    {
+        $this->until = $until;
     }
 }

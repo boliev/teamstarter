@@ -348,7 +348,9 @@ pro:
     unlimited_offers: Безлимитное кол-во предложений
     fast_moderation: Модерация и перемодерация проекта вне очереди
     open_specialists_list: Возможность искать специалистов не имея активного проекта
-    buy_success_message: PRO аккаунт куплен и успешно активирован
+    buy_success_message: PRO аккаунт успешно куплен и будет активирован через несколько минут!
+    buy_error_message: Возникла ошибка. Пожалуйста попробуйте через несколько минут.
+    payment_description: Покупка PRO аккаунта на сайте Teamstarter.ru
     buy_success_email:
         subject: Успешная покупка PRO аккаунта!
         message: |
@@ -363,6 +365,19 @@ pro:
             <p>Приветствуем, %username%!</p>
             <p>+1 PRO пользователь TeamStarter</p>
             <p>Сьешь мороженку красава!</p>
+            <br /><br />
+            <p>С наилучшими пожеланиями,<br />
+            TeamStarter.</p>
+    buy_error_email_admins:
+        subject: Ошибка при оплате ПРО акканута
+        message: |
+            <p>Приветствуем, looser</p>
+            <p>При попытке оплаты ПРО аккаунта возникла ошибка</p>
+            <p>Message: %message%</p>
+            <p>Code: %code%</p>
+            <p>Type: %type%</p>
+            <p>UserId: %user_id%</p>
+            <p>UserEmail: %user_email%</p>
             <br /><br />
             <p>С наилучшими пожеланиями,<br />
             TeamStarter.</p>
