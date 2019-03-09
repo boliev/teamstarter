@@ -8,7 +8,6 @@ use App\Billing\PaymentProcessor;
 use App\Billing\ProSetter;
 use App\Entity\Payment;
 use App\Entity\User;
-use App\Service\UserService;
 use Doctrine\Common\Persistence\ObjectRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use PHPUnit\Framework\TestCase;
@@ -18,7 +17,9 @@ class PaymentProcessorTest extends TestCase
     /**
      * @test
      * @dataProvider setProPaymentNoPaymentIdExceptionProvider
+     *
      * @param $data
+     *
      * @throws \Exception
      */
     public function setProPaymentNoPaymentIdException($data)
@@ -46,8 +47,10 @@ class PaymentProcessorTest extends TestCase
     /**
      * @test
      * @dataProvider setProPaymentNoPaymentFoundExceptionProvider
+     *
      * @param $data
      * @param $payment
+     *
      * @throws \Exception
      */
     public function setProPaymentNoPaymentFoundException($data, $payment)
@@ -78,7 +81,9 @@ class PaymentProcessorTest extends TestCase
     /**
      * @test
      * @dataProvider setProPaymentAlreadyPayedExceptionProvider
+     *
      * @param $data
+     *
      * @throws \Exception
      */
     public function setProPaymentAlreadyPayedException($data)
@@ -111,8 +116,10 @@ class PaymentProcessorTest extends TestCase
     /**
      * @test
      * @dataProvider setProPaymentPaymentNotFoundInYandexExceptionProvider
+     *
      * @param $data
      * @param $fromYandexPayment
+     *
      * @throws \Exception
      */
     public function setProPaymentPaymentNotFoundInYandexException($data, $fromYandexPayment)
@@ -147,8 +154,10 @@ class PaymentProcessorTest extends TestCase
     /**
      * @test
      * @dataProvider setProPaymentBadPaymentFromYandexExceptionProvider
+     *
      * @param $data
      * @param $fromYandexPayment
+     *
      * @throws \Exception
      */
     public function setProPaymentBadPaymentFromYandexException($data, $fromYandexPayment)
@@ -183,8 +192,10 @@ class PaymentProcessorTest extends TestCase
     /**
      * @test
      * @dataProvider setProPaymentReceivedButNotPayedExceptionProvider
+     *
      * @param $data
      * @param $fromYandexPayment
+     *
      * @throws \Exception
      */
     public function setProPaymentReceivedButNotPayedException($data, $fromYandexPayment)
@@ -219,8 +230,10 @@ class PaymentProcessorTest extends TestCase
     /**
      * @test
      * @dataProvider setProSuccessProvider
+     *
      * @param $data
      * @param $fromYandexPayment
+     *
      * @throws \Exception
      */
     public function setProSuccess($data, $fromYandexPayment)
@@ -255,5 +268,4 @@ class PaymentProcessorTest extends TestCase
             [['object' => ['id' => 1]], ['status' => Payment::STATUS_SUCCEEDED, 'paid' => true]],
         ];
     }
-
 }
