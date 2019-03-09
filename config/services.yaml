@@ -45,12 +45,6 @@ services:
         bind:
             $price: '%pro_price%'
 
-    App\Controller\UserPromoCodeController:
-        bind:
-            $fromEmailAddress: "%env(MAILER_ADDRESS)%"
-            $fromName: "%env(MAILER_SENDER_NAME)%"
-            $notifyNewBetaRequests: "%env(NOTIFY_NEW_PRO_USER)%"
-
     App\Controller\ContactController:
         bind:
             $fromEmailAddress: "%env(MAILER_ADDRESS)%"
@@ -194,6 +188,7 @@ services:
             $fromEmailAddress: "%env(MAILER_ADDRESS)%"
             $fromName: "%env(MAILER_SENDER_NAME)%"
             $reviewers: "%env(MAILS_REVIEWERS)%"
+            $newProEmails: "%env(MAILS_NEW_PRO_USERS)%"
 
 
     Parsedown:

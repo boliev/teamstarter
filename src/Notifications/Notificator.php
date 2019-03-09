@@ -22,6 +22,9 @@ class Notificator
     /** @var string */
     private $reviewers;
 
+    /** @var string */
+    private $newProEmails;
+
     /** @var TranslatorInterface */
     private $translator;
 
@@ -34,6 +37,7 @@ class Notificator
         string $fromEmailAddress,
         string $fromName,
         string $reviewers,
+        string $newProEmails,
         \Swift_Mailer $mailer,
         TranslatorInterface $translator,
         RouterInterface $router
@@ -43,6 +47,7 @@ class Notificator
         $this->mailer = $mailer;
         $this->translator = $translator;
         $this->reviewers = explode(',', $reviewers);
+        $this->newProEmails = explode(',', $newProEmails);
         $this->router = $router;
     }
 
@@ -128,6 +133,15 @@ class Notificator
             $this->reviewers,
             $this->trans('project.remoderate_declinned_admin_email.subject'),
             $this->trans('project.remoderate_declinned_admin_email.message')
+        );
+    }
+
+    public function newPromoCodeRequest()
+    {
+        $this->sendEmail(
+            $this->newProEmails,
+            $this->trans('user.new_request_for_beta_email_admins.subject'),
+            $this->trans('user.new_request_for_beta_email_admins.message')
         );
     }
 
