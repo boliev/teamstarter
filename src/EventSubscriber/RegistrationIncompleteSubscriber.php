@@ -19,7 +19,7 @@ class RegistrationIncompleteSubscriber implements EventSubscriberInterface
     const SPECIALIZATION_ROUTE = 'specify_specialization_form';
     const ABOUT_ROUTE = 'specify_about_form';
     const ABOUT_SKIP_ROUTE = 'specify_about_form_skip';
-    const CONTACTS_ROUTE = 'specify_contacts_form';
+    const CONTACTS_ROUTE = 'contact_form';
     const PROMO_CODE_ROUTE = 'user_promo_code_form';
     const PROMO_CODE_SIGN_UP_ROUTE = 'user_promo_code_sign_up';
     /**

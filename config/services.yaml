@@ -45,18 +45,6 @@ services:
         bind:
             $price: '%pro_price%'
 
-    App\Controller\UserPromoCodeController:
-        bind:
-            $fromEmailAddress: "%env(MAILER_ADDRESS)%"
-            $fromName: "%env(MAILER_SENDER_NAME)%"
-            $notifyNewBetaRequests: "%env(NOTIFY_NEW_PRO_USER)%"
-
-    App\Controller\ContactController:
-        bind:
-            $fromEmailAddress: "%env(MAILER_ADDRESS)%"
-            $fromName: "%env(MAILER_SENDER_NAME)%"
-            $supportEmail: "%env(SUPPORT_EMAIL)%"
-
     app.form.registration:
         class: App\Form\RegistrationType
         tags:
@@ -152,11 +140,6 @@ services:
             - App\Entity\Country
             - '%env(ALWAYS_FIRST_COUNTRY)%'
 
-    App\EventSubscriber\ProjectChangeProgressStatusSubscriber:
-        arguments:
-            $fromEmailAddress: "%env(MAILER_ADDRESS)%"
-            $fromName: "%env(MAILER_SENDER_NAME)%"
-
     App\EventSubscriber\ProjectSearchIndexerSubscriber:
         tags:
         - { name: doctrine.event_subscriber, event: postPersist }
@@ -184,15 +167,16 @@ services:
     App\Billing\PaymentCreator:
         bind:
             $proPrice: '%pro_price%'
-            $fromEmailAddress: "%env(MAILER_ADDRESS)%"
-            $fromName: "%env(MAILER_SENDER_NAME)%"
-            $notifyAboutErrorsEmails: "%env(NOTIFY_NEW_PRO_USER)%"
 
-    App\Billing\ProSetter:
+    App\Notifications\Notificator:
         bind:
             $fromEmailAddress: "%env(MAILER_ADDRESS)%"
             $fromName: "%env(MAILER_SENDER_NAME)%"
-            $notifyNewProUsersEmails: "%env(NOTIFY_NEW_PRO_USER)%"
+            $reviewers: "%env(MAILS_REVIEWERS)%"
+            $newProEmails: "%env(MAILS_NEW_PRO_USERS)%"
+            $supportEmails: "%env(MAILS_SUPPORT)%"
+            $paymentErrorsEmails: "%env(MAILS_PAYMENT_ERRORS)%"
+
 
     Parsedown:
         class: \Parsedown

@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\BetaRequest;
 use App\Entity\User;
 use App\Form\UserPromoCodeType;
+use App\Notifications\Notificator;
 use App\Repository\PromoCodeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -63,22 +64,14 @@ class UserPromoCodeController extends AbstractController
     /**
      * @Route("/user/promo-code/sign-up", name="user_promo_code_sign_up")
      *
-     * @param string                 $fromEmailAddress
-     * @param string                 $fromName
-     * @param string                 $notifyNewBetaRequests
      * @param EntityManagerInterface $em
-     * @param \Swift_Mailer          $mailer
-     * @param TranslatorInterface    $translator
+     * @param Notificator            $notificator
      *
      * @return Response
      */
     public function signUpForBeta(
-        string $fromEmailAddress,
-        string $fromName,
-        string $notifyNewBetaRequests,
         EntityManagerInterface $em,
-        \Swift_Mailer $mailer,
-        TranslatorInterface $translator
+        Notificator $notificator
     ) {
         try {
             $betaRequest = new BetaRequest();
@@ -88,13 +81,7 @@ class UserPromoCodeController extends AbstractController
         } catch (\Exception $e) {
         }
 
-        $notifyEmails = explode(',', $notifyNewBetaRequests);
-        $message = (new \Swift_Message($translator->trans('user.new_request_for_beta_email_admins.subject')))
-            ->setFrom($fromEmailAddress, $fromName)
-            ->setTo($notifyEmails)
-            ->setBody($translator->trans('user.new_request_for_beta_email_admins.message'), 'text/html');
-
-        $mailer->send($message);
+        $notificator->newPromoCodeRequest();
 
         return $this->render('user/promocode/request.html.twig', []);
     }

@@ -373,11 +373,11 @@ pro:
         message: |
             <p>Приветствуем, looser</p>
             <p>При попытке оплаты ПРО аккаунта возникла ошибка</p>
-            <p>Message: %message%</p>
             <p>Code: %code%</p>
             <p>Type: %type%</p>
             <p>UserId: %user_id%</p>
             <p>UserEmail: %user_email%</p>
+            <p>Message: %message%</p>
             <br /><br />
             <p>С наилучшими пожеланиями,<br />
             TeamStarter.</p>
