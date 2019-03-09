@@ -93,9 +93,6 @@ services:
         arguments:
             $kernelRoot: "%kernel.root_dir%"
             $avatarMaxSize: "%env(AVATAR_MAX_SIZE)%"
-            $fromEmailAddress: "%env(MAILER_ADDRESS)%"
-            $fromName: "%env(MAILER_SENDER_NAME)%"
-            $notifyNewProUsersEmails: "%env(NOTIFY_NEW_PRO_USER)%"
 
     App\Service\ProjectService:
         arguments:
@@ -179,6 +176,24 @@ services:
             $url: '%env(WEBSOCKET_URL_FOR_SERVER)%'
             $port: '%env(WEBSOCKET_PORT_FOR_SERVER)%'
 
+    App\Billing\PaymentClient:
+        bind:
+            $shopId: '%env(YANDEX_KASSA_SHOP)%'
+            $key: '%env(YANDEX_KASSA_KEY)%'
+
+    App\Billing\PaymentCreator:
+        bind:
+            $proPrice: '%pro_price%'
+            $fromEmailAddress: "%env(MAILER_ADDRESS)%"
+            $fromName: "%env(MAILER_SENDER_NAME)%"
+            $notifyAboutErrorsEmails: "%env(NOTIFY_NEW_PRO_USER)%"
+
+    App\Billing\ProSetter:
+        bind:
+            $fromEmailAddress: "%env(MAILER_ADDRESS)%"
+            $fromName: "%env(MAILER_SENDER_NAME)%"
+            $notifyNewProUsersEmails: "%env(NOTIFY_NEW_PRO_USER)%"
+
     Parsedown:
         class: \Parsedown
         autowire: true
@@ -192,3 +207,6 @@ services:
         class: Twig_Extensions_Extension_Intl
         tags:
         - { name: twig.extension }
+
+    GuzzleHttp\Client:
+        class: GuzzleHttp\Client

@@ -9,6 +9,8 @@ services:
       - ./docker/php/upload.ini:/usr/local/etc/php/conf.d/upload.ini:ro
     command:
       /bin/bash -c "exec php-fpm"
+    environment:
+      PHP_IDE_CONFIG: "serverName=ts.loc"
 
   ts_nginx:
     image: nginx:latest

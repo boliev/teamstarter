@@ -12,7 +12,8 @@ class SkillServiceTest extends TestCase
      */
     public function testGenerateSlug(string $input, string $output)
     {
-        $skillService = new \App\Service\SkillService();
+        $entityManager = $this->getMockBuilder(\Doctrine\ORM\EntityManagerInterface::class)->disableOriginalConstructor()->getMock();
+        $skillService = new \App\Service\SkillService($entityManager);
         $slug = $skillService->generateSlug($input);
         $this->assertEquals($slug, $output);
     }
