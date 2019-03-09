@@ -4,8 +4,8 @@ namespace App\Billing;
 
 use App\Entity\StatisticBuys;
 use App\Entity\User;
+use App\Notifications\Notificator;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Contracts\Translation\TranslatorInterface;
 
 class ProSetter
 {
@@ -15,44 +15,16 @@ class ProSetter
     private $entityManager;
 
     /**
-     * @var string
+     * @var Notificator
      */
-    private $fromEmailAddress;
-
-    /**
-     * @var string
-     */
-    private $fromName;
-
-    /**
-     * @var \Swift_Mailer
-     */
-    private $mailer;
-
-    /**
-     * @var string
-     */
-    private $notifyNewProUsersEmails;
-
-    /**
-     * @var TranslatorInterface
-     */
-    private $translator;
+    private $notificator;
 
     public function __construct(
         EntityManagerInterface $entityManager,
-        string $fromEmailAddress,
-        string $fromName,
-        \Swift_Mailer $mailer,
-        string $notifyNewProUsersEmails,
-        TranslatorInterface $translator
+        Notificator $notificator
     ) {
         $this->entityManager = $entityManager;
-        $this->fromEmailAddress = $fromEmailAddress;
-        $this->fromName = $fromName;
-        $this->mailer = $mailer;
-        $this->notifyNewProUsersEmails = explode(',', $notifyNewProUsersEmails);
-        $this->translator = $translator;
+        $this->notificator = $notificator;
     }
 
     /**
@@ -67,20 +39,7 @@ class ProSetter
         $this->entityManager->persist($user);
         $this->setToStatistic($user, $proUntil);
         $this->entityManager->flush();
-
-        $message = (new \Swift_Message($this->translator->trans('pro.buy_success_email.subject')))
-            ->setFrom($this->fromEmailAddress, $this->fromName)
-            ->setTo($user->getEmail())
-            ->setBody($this->translator->trans('pro.buy_success_email.message', ['%username%' => $user->getFirstName() ?? $user->getEmail()]), 'text/html');
-
-        $this->mailer->send($message);
-
-        $message = (new \Swift_Message($this->translator->trans('pro.buy_success_email_admins.subject')))
-            ->setFrom($this->fromEmailAddress, $this->fromName)
-            ->setTo($this->notifyNewProUsersEmails)
-            ->setBody($this->translator->trans('pro.buy_success_email_admins.message'), 'text/html');
-
-        $this->mailer->send($message);
+        $this->notificator->proUserSet($user);
     }
 
     /**

@@ -168,6 +168,23 @@ class Notificator
         );
     }
 
+    public function proUserSet(User $user)
+    {
+        $this->sendEmail(
+            [$user->getEmail()],
+            $this->trans('pro.buy_success_email.subject'),
+            $this->trans('pro.buy_success_email.message', [
+                '%username%' => $this->getUsername($user),
+            ])
+        );
+
+        $this->sendEmail(
+            $this->newProEmails,
+            $this->trans('pro.buy_success_email_admins.subject'),
+            $this->trans('pro.buy_success_email_admins.message')
+        );
+    }
+
     private function getAdminReviewProjectLink(Project $project)
     {
         return $this->router->generate(

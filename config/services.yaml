@@ -171,12 +171,6 @@ services:
             $fromName: "%env(MAILER_SENDER_NAME)%"
             $notifyAboutErrorsEmails: "%env(NOTIFY_NEW_PRO_USER)%"
 
-    App\Billing\ProSetter:
-        bind:
-            $fromEmailAddress: "%env(MAILER_ADDRESS)%"
-            $fromName: "%env(MAILER_SENDER_NAME)%"
-            $notifyNewProUsersEmails: "%env(NOTIFY_NEW_PRO_USER)%"
-
     App\Notifications\Notificator:
         bind:
             $fromEmailAddress: "%env(MAILER_ADDRESS)%"
