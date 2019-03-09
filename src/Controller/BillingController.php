@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Billing\Exception\BillingException;
 use App\Billing\PaymentProcessor;
+use App\Notifications\Notificator;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,12 +22,17 @@ class BillingController extends AbstractController
      *
      * @throws \Exception
      */
-    public function EventYandexAction(Request $request, PaymentProcessor $paymentProcessor)
+    public function EventYandexAction(Request $request, PaymentProcessor $paymentProcessor, Notificator $notificator)
     {
         $data = json_decode($request->getContent(), true);
-        $paymentProcessor->setProPayment($data);
         $response = new Response();
-        $response->setStatusCode(200);
+        try {
+            $paymentProcessor->setProPayment($data);
+            $response->setStatusCode(200);
+        } catch (BillingException $e) {
+            $response->setStatusCode(400);
+            $notificator->paymentProcessError($data, $e);
+        }
 
         return $response;
     }

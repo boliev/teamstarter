@@ -29,12 +29,13 @@ class Notificator
     /** @var array */
     private $supportEmails;
 
+    /** @var array */
+    private $paymentErrorsEmails;
+
     /** @var TranslatorInterface */
     private $translator;
 
-    /**
-     * @var RouterInterface
-     */
+    /** @var RouterInterface  */
     private $router;
 
     public function __construct(
@@ -43,6 +44,7 @@ class Notificator
         string $reviewers,
         string $newProEmails,
         string $supportEmails,
+        string $paymentErrorsEmails,
         \Swift_Mailer $mailer,
         TranslatorInterface $translator,
         RouterInterface $router
@@ -54,6 +56,7 @@ class Notificator
         $this->reviewers = explode(',', $reviewers);
         $this->newProEmails = explode(',', $newProEmails);
         $this->supportEmails = explode(',', $supportEmails);
+        $this->paymentErrorsEmails = explode(',', $paymentErrorsEmails);
         $this->router = $router;
     }
 
@@ -182,6 +185,36 @@ class Notificator
             $this->newProEmails,
             $this->trans('pro.buy_success_email_admins.subject'),
             $this->trans('pro.buy_success_email_admins.message')
+        );
+    }
+
+    public function paymentCreateError(User $user, \Exception $exception)
+    {
+        $this->sendEmail(
+            $this->paymentErrorsEmails,
+            $this->trans('pro.buy_error_email_admins.subject'),
+            $this->trans('pro.buy_error_email_admins.message', [
+                '%message%' => $exception->getMessage(),
+                '%code%' => $exception->getCode(),
+                '%type%' => get_class($exception),
+                '%user_id%' => $user->getId(),
+                '%user_email%' => $user->getEmail(),
+            ], 'text')
+        );
+    }
+
+    public function paymentProcessError(array $data, \Exception $exception)
+    {
+        $this->sendEmail(
+            $this->paymentErrorsEmails,
+            $this->trans('pro.buy_error_email_admins.subject'),
+            $this->trans('pro.buy_error_email_admins.message', [
+                '%message%' => print_r($data, true),
+                '%code%' => $exception->getCode(),
+                '%type%' => get_class($exception),
+                '%user_id%' => '-',
+                '%user_email%' => '-',
+            ], 'text')
         );
     }
 

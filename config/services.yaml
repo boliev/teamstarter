@@ -167,9 +167,6 @@ services:
     App\Billing\PaymentCreator:
         bind:
             $proPrice: '%pro_price%'
-            $fromEmailAddress: "%env(MAILER_ADDRESS)%"
-            $fromName: "%env(MAILER_SENDER_NAME)%"
-            $notifyAboutErrorsEmails: "%env(NOTIFY_NEW_PRO_USER)%"
 
     App\Notifications\Notificator:
         bind:
@@ -178,6 +175,7 @@ services:
             $reviewers: "%env(MAILS_REVIEWERS)%"
             $newProEmails: "%env(MAILS_NEW_PRO_USERS)%"
             $supportEmails: "%env(MAILS_SUPPORT)%"
+            $paymentErrorsEmails: "%env(MAILS_PAYMENT_ERRORS)%"
 
 
     Parsedown:
