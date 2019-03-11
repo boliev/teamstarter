@@ -24,6 +24,7 @@
                         <li><i class="fas fa-door-open"></i>{{ role.name }}</li>
                     {% endfor %}
                 </ul><div style="clear: both"></div></div>
+            <div class="margin-top-10"><a href="{{ path('project_more', {'project': project.id}) }}">{{ 'more' | trans }}</a></div>
         </div>
     </div>
 </article>
