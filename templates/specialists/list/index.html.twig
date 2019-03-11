@@ -19,7 +19,7 @@
                     <div class=" col-md-offset-3 col-md-6 form-group">
                         <input type="text" name="query" placeholder="{{ 'search_placeholder' | trans }}" class="input-block projects-search-input" value="{% if searchQuery %}{{ searchQuery }}{% endif %}">
                     </div>
-                    <div class="col-md-1 margin-left-1 padding-left-1">
+                    <div class="col-md-1 margin-left-1 padding-left-1 hidden-xs hidden-sm">
                         <a href="#" onclick="$('#search-form').submit()" class="projects-search-button"><i class="fas fa-search"></i></a>
                     </div>
                 </form>
@@ -36,19 +36,11 @@
                     <div class="entry-content">
                         <div class="entry-meta">
                             <div class="info">
-                                <div class="meta margin-top-1"><span><i class="fas fa-briefcase"></i>
-                                    {% for userSpecialization in user.userSpecializations %}
-                                        {{ userSpecialization.specialization.title }}{% if not loop.last %}, {% endif %}
-                                    {% endfor %}
-                                    </span>
-                                    {% if user.city %}
-                                        <span><i class="fas fa-map-marker"></i>{{ user.city }}{% if user.country%}, {{ user.country}}{% endif %}</span>
-                                    {% elseif user.country%}
-                                        <span><i class="fas fa-map-marker"></i>{{ user.country }}</span>
+                                <div class="meta margin-top-1"><span style="white-space: normal;"><i class="fas fa-briefcase"></i>{% for userSpecialization in user.userSpecializations %}{{ userSpecialization.specialization.title }}{% if not loop.last %}, {% endif %}{% endfor %}</span>
+                                    {% if user.city %}<span><i class="fas fa-map-marker padding-right-15"></i>{{ user.city }}{% if user.country%}, {{ user.country}}{% endif %}</span>
+                                    {% elseif user.country%}<span><i class="fas fa-map-marker"></i>{{ user.country }}</span>
                                     {% endif %}
-                                    {% if user.canContributeHours%}
-                                        <span><i class="far fa-clock"></i>{% if user.canContributeHours == 5 %} {{ 'user.5_hours_week' | trans }}{% elseif user.canContributeHours == 10 %} {{ 'user.10_hours_week' | trans }}{% elseif user.canContributeHours == 20 %} {{ 'user.20_hours_week' | trans }}{% elseif user.canContributeHours == 40 %} {{ 'user.40_hours_week' | trans }}{% endif %}</span>
-                                    {% endif %}
+                                    {% if user.canContributeHours%}<span><i class="far fa-clock"></i>{% if user.canContributeHours == 5 %}{{ 'user.5_hours_week' | trans }}{% elseif user.canContributeHours == 10 %}{{ 'user.10_hours_week' | trans }}{% elseif user.canContributeHours == 20 %}{{ 'user.20_hours_week' | trans }}{% elseif user.canContributeHours == 40 %}{{ 'user.40_hours_week' | trans }}{% endif %}</span>{% endif %}
                                 </div>
 
                                 <div class="row">
@@ -67,6 +59,7 @@
                                                 <div>
                                                     {% for userSkill in user.userSkills %} <span class="badge project-card-role-tag">{{ userSkill.skill.title }}</span> {% endfor %}
                                                 </div>
+                                                <div class="margin-top-10"><a href="{{ path('specialists_more', {'user': user.id}) }}">{{ 'more' | trans }}</a></div>
                                             </div>
                                         </div>
                                     </div>
