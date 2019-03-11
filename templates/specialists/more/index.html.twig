@@ -15,24 +15,19 @@
                         <div class="entry-meta">
                             <div class="row">
                                 <div class="col-md-2">
-                                    <div class="text-left padding-top-10">
-                                        <img class="specialists-list-avatar" src="{% if user.profilePicture %} {{ user.profilePicture }} {% else %}{{ asset(avatart_placeholder) }}{% endif %}" />
+                                    <div class="text-center padding-top-10">
+                                        <img class="specialists-more-avatar" src="{% if user.profilePicture %} {{ user.profilePicture }} {% else %}{{ asset(avatart_placeholder) }}{% endif %}" />
                                     </div>
                                 </div>
                                 <div class="col-md-10">
                                     <div class="info">
                                         <div class="meta margin-top-1">
-                                            <span><i class="fas fa-briefcase"></i>
-                                                {% for userSpecialization in user.userSpecializations %}
-                                                    {{ userSpecialization.specialization.title }}{% if not loop.last %}, {% endif %}
-                                                {% endfor %}
-                                            </span>
+                                            <span style="white-space: normal;"><i class="fas fa-briefcase"></i>{% for userSpecialization in user.userSpecializations %}{{ userSpecialization.specialization.title }}{% if not loop.last %}, {% endif %}{% endfor %}</span>
 
-                                            {% if user.city %}
-                                                <span><i class="fas fa-map-marker"></i>{{ user.city }}{% if user.country%}, {{ user.country}}{% endif %}</span>
-                                            {% elseif user.country%}
-                                                <span><i class="fas fa-map-marker"></i>{{ user.country }}</span>
+                                            {% if user.city %}<span><i class="fas fa-map-marker padding-right-16"></i>{{ user.city }}{% if user.country%}, {{ user.country}}{% endif %}</span>
+                                            {% elseif user.country%}<span><i class="fas fa-map-marker padding-right-16"></i>{{ user.country }}</span>
                                             {% endif %}
+                                            {% if user.canContributeHours%}<span><i class="far fa-clock"></i>{% if user.canContributeHours == 5 %}{{ 'user.5_hours_week' | trans }}{% elseif user.canContributeHours == 10 %}{{ 'user.10_hours_week' | trans }}{% elseif user.canContributeHours == 20 %}{{ 'user.20_hours_week' | trans }}{% elseif user.canContributeHours == 40 %}{{ 'user.40_hours_week' | trans }}{% endif %}</span>{% endif %}
                                         </div>
                                         <div class="row"><div class="col-sm-12"><h4 class="entry-title"><a href="#">{{ user.fullName }}</a></h4></div></div>
                                         <div class="margin-top-10">
