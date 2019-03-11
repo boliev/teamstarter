@@ -6,6 +6,7 @@ use App\Entity\Specialization;
 use App\Entity\User;
 use App\Entity\UserSkills;
 use App\Entity\UserSpecializations;
+use App\Repository\SpecializationRepository;
 use App\Service\SkillService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -21,14 +22,21 @@ class UserSpecializationController extends AbstractController
      * @Route("/user/specialization", name="user_specialization_form")
      * @Route("/specify/specialization", name="specify_specialization_form")
      *
-     * @param Request                $request
-     * @param SkillService           $skillService
+     * @param Request $request
+     * @param SkillService $skillService
+     * @param SpecializationRepository $specializationRepository
      * @param EntityManagerInterface $em
-     * @param TranslatorInterface    $translator
+     * @param TranslatorInterface $translator
      *
      * @return Response
      */
-    public function indexAction(Request $request, SkillService $skillService, EntityManagerInterface $em, TranslatorInterface $translator)
+    public function indexAction(
+        Request $request,
+        SkillService $skillService,
+        SpecializationRepository $specializationRepository,
+        EntityManagerInterface $em,
+        TranslatorInterface $translator
+    )
     {
         $user = $this->getUser();
 
@@ -67,7 +75,7 @@ class UserSpecializationController extends AbstractController
         }
 
         return $this->render('user/specialization/index.html.twig', [
-            'specializations' => $em->getRepository(Specialization::class)->findAll(),
+            'specializations' => $specializationRepository->getListForSelect(),
             'userSkills' => $userSkills,
             'userSpecialization' => $us,
         ]);
