@@ -130,7 +130,7 @@ class ProjectsController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            if (!$user->isPro() && $offerRepository->getSentForLast24HoursCount($user) >= 3) {
+            if (!$user->isPro() && $offerRepository->getSentForLast24HoursCount($user) >= 10) {
                 return $this->render('project/more/access_denied_add_proposal.html.twig', []);
             }
             $offer = $this->createOffer($user, $form, $project, $em);

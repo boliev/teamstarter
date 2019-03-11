@@ -55,5 +55,7 @@ security:
     - { path: ^/project/, role: IS_AUTHENTICATED_FULLY }
     - { path: ^/dialogs, role: IS_AUTHENTICATED_FULLY }
     - { path: ^/specify, role: IS_AUTHENTICATED_FULLY }
+    - { path: ^/specialists, role: IS_AUTHENTICATED_FULLY }
     - { path: ^/pro/checkout, role: IS_AUTHENTICATED_FULLY }
     - { path: ^/admin/, role: ROLE_ADMIN }
+    - { path: ^/pro/, role: ROLE_ADMIN }

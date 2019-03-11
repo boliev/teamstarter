@@ -2095,8 +2095,9 @@ ul.project-card-roles li a {
     text-decoration-style: dotted;
 }
 
-.project-card-role-tag {
+span.project-card-role-tag {
     background-color: #42a5f5;
+	color:#ffffff !important;
 }
 
 .project-card-role {

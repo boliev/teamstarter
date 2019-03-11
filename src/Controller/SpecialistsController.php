@@ -132,6 +132,7 @@ class SpecialistsController extends AbstractController
         OfferRepository $offerRepository
     )
     {
+        /** @var User $user */
         $user = $this->getUser();
         if (!$user || $projectRepository->getPublishedCount($user) < 1) {
             throw new AccessDeniedException();
@@ -141,7 +142,7 @@ class SpecialistsController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            if(!$user->isPro() && $offerRepository->getSentForLast24HoursCount($user) >= 3) {
+            if(!$user->isPro() && $offerRepository->getSentForLast24HoursCount($user) >= 10) {
                 return $this->render('specialists/more/access_denied_add_offer.html.twig', []);
             }
 
