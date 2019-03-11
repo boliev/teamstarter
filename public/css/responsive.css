@@ -137,6 +137,9 @@ Author:        HTMLmate
 		position: relative;
 		top: 0;
 	}
+	.post .entry-content .info .meta span {
+		display: block;
+	}
 }
 
 @media screen and (max-width: 680px) { 

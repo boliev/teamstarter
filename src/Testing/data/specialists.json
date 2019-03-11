@@ -73,7 +73,7 @@
 		"looking_for_project": true,
 		"looking_for_partner": false,
 		"canContributeHours": 40,
-		"like_to_do": "Ппрграммист-предприниматель со страстью к созданию новых проектов с самого начала. Кондидат математических наук. Fluent English speaker",
+		"like_to_do": "Программист-предприниматель со страстью к созданию новых проектов с самого начала. Кондидат математических наук. Fluent English speaker",
 		"expectation": "",
 		"expereience": "3 года Full-stack программирования.",
 		"specialization": [2,3,14],
@@ -530,7 +530,7 @@
 			"roles": [
 				{
 					"name": "Marketing",
-					"description": "Я возьму на себя все разработку. На примете есть также и инвестор. Нужен партнер, который умеет продавать.",
+					"description": "Я возьму на себя всю разработку. На примете есть также и инвестор. Нужен партнер, который умеет продавать.",
 					"specialization": 11,
 					"skills": ["Marketing"]
 				}
