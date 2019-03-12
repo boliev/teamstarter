@@ -20,8 +20,6 @@ class RegistrationIncompleteSubscriber implements EventSubscriberInterface
     const ABOUT_ROUTE = 'specify_about_form';
     const ABOUT_SKIP_ROUTE = 'specify_about_form_skip';
     const CONTACTS_ROUTE = 'contact_form';
-    const PROMO_CODE_ROUTE = 'user_promo_code_form';
-    const PROMO_CODE_SIGN_UP_ROUTE = 'user_promo_code_sign_up';
     /**
      * @var EntityManagerInterface
      */
@@ -75,13 +73,6 @@ class RegistrationIncompleteSubscriber implements EventSubscriberInterface
             return;
         }
 
-        // Promo Code
-        if (!$user->isAdmin() && null === $user->getPromoCode()) {
-            $event->setResponse(new RedirectResponse($this->router->generate(self::PROMO_CODE_ROUTE)));
-
-            return;
-        }
-
         // Specializations
         $userSpecializations = $this->em->getRepository(UserSpecializations::class)->findBy(['user' => $user]);
         if (count($userSpecializations) < 1) {
@@ -124,8 +115,6 @@ class RegistrationIncompleteSubscriber implements EventSubscriberInterface
             self::SPECIALIZATION_ROUTE,
             self::ABOUT_SKIP_ROUTE,
             self::CONTACTS_ROUTE,
-            self::PROMO_CODE_ROUTE,
-            self::PROMO_CODE_SIGN_UP_ROUTE,
         ])) {
             return false;
         }
