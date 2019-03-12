@@ -2464,6 +2464,10 @@ div.index-banner-button {
 	margin: 10px;
 }
 
+.link-button:visited {
+	color: #fff;
+}
+
 .footer-menu li {
 	float: left;
 	margin-right: 30px;
