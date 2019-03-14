@@ -2367,11 +2367,10 @@ div.pro-access-buttons {
 
 .index-banner-item {
 	width: 100%;
-	height: 700px;
+	height: 550px;
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: left top;
-	font-size: 36px;
 	color: #ffffff;
 	text-shadow: #000 2px 2px 2px;
 
@@ -2391,21 +2390,23 @@ div.pro-access-buttons {
 }
 
 .index-banner-text1 {
-	font-size: 24px;
-	padding-top: 90px;
-	transition: all;
 	transition-duration: 2s;
 }
 
 .index-banner-text2 {
-	padding-top: 50px;
-	font-size: 66px;
 	transition-duration: 3s;
 }
 
 .index-banner-text3 {
-	padding-top: 50px;
-	transition-duration: 2s;
+	transition-duration: 3s;
+}
+
+.index-banner-text4 {
+	transition-duration: 4s;
+}
+
+.index-banner-text4 {
+	transition-duration: 3s;
 }
 
 .index-banner-blue {
@@ -2419,28 +2420,47 @@ div.pro-access-buttons {
 }
 
 div.index-banner-button {
-	text-align: center;
-	margin-top: 50px;
+	text-align: left;
+	margin-top: 60px;
 	opacity: 0;
 	transition: opacity 2s ease-out;
+}
+
+div.index-banner-text-header {
+	padding-top: 90px;
+	color: #42a5f5;
+	font-size: 36px;
+}
+
+div.index-banner-text-row {
+	font-size: 24px;
+	padding-top: 30px;
+}
+
+div.index-banner-text-row ul li:before {
+	content: "\e914";
+	font-family: "monia";
+	padding-right: 16px;
+	color: #42a5f5;
+	vertical-align: middle;
 }
 
 .index-banner-button a {
 	background: #42a5f5;
 	color: #fff;
 	min-width: 240px;
-	padding: 10px 35px;
+	padding: 17px 20px;
 	margin: 10px;
 	text-shadow: none;
-	box-shadow: #000 4px 6px 10px;
+	margin-left: 110px;
 }
 
 .index-banner-button a:hover {
-	background: #42a5f5;
+	background: #205081;
 	color: #fff;
 	min-width: 240px;
-	padding: 10px 35px;
 	margin: 10px;
+	margin-left: 110px;
 }
 
 .info-description span {
