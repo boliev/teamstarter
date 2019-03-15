@@ -2373,10 +2373,30 @@ div.pro-access-buttons {
 	background-position: left top;
 	color: #ffffff;
 	text-shadow: #000 2px 2px 2px;
+	margin-left: auto;
+	margin-right: auto;
 
 	perspective: 1px;
 	overflow-x: hidden;
 	overflow-y: auto;
+}
+
+.index-banner-nav i {
+	font-size: 22px;
+	line-height: 550px;
+	cursor: pointer;
+}
+
+.index-banner-nav-right {
+	padding-left: 0px;
+}
+
+.index-banner-nav-left {
+	padding-right: 0px;
+}
+
+.index-banner-nav i:hover {
+	color: #42a5f5;
 }
 
 .index-banner1 {

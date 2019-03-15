@@ -3,32 +3,34 @@
 {% block body %}
 
     <div class="hidden-xs hidden-sm" style="background-color: #ffffff;">
-        <div class="index-page-carousel">
-            <div class="owl-carousel owl-theme">
-                <div class="index-banner-item index-banner1">
-                    <div class="index-banner-text-header index-banner-text1">TeamStarter</div>
-                    <div class="index-banner-text-row index-banner-text2">Онлайн-платформа для поиска единомышленников и интересных стартапов</div>
-                    <div class="index-banner-text-row index-banner-text3">Объединяемся в команды. Создаем проекты. <br/>Запускаем крутые стартапы. </div>
-                    <div class="index-banner-text-row index-banner-text4">Не откладывай свои идеи.<br /> Начни реализовывать их прямо сейчас!
+        <div class="row">
+            <div class="col-md-1 text-right index-banner-nav index-banner-nav-left"><i id="index-banner-nav-prev" class="fa fa-angle-left" aria-hidden="true"></i></div>
+            <div class="col-md-10 index-page-carousel">
+                <div class="owl-carousel owl-theme">
+                    <div class="index-banner-item index-banner1">
+                        <div class="index-banner-text-header index-banner-text1">TeamStarter</div>
+                        <div class="index-banner-text-row index-banner-text2">Онлайн-платформа для поиска единомышленников и интересных стартапов</div>
+                        <div class="index-banner-text-row index-banner-text3">Объединяемся в команды. Создаем проекты. <br/>Запускаем крутые стартапы. </div>
+                        <div class="index-banner-text-row index-banner-text4">Не откладывай свои идеи.<br /> Начни реализовывать их прямо сейчас!</div>
+                        {% if not app.user %}<div class="index-banner-button"><a class="" href="{{ path('fos_user_registration_register') }}">{{ 'join_us' | trans }}</a></div>{% endif %}
                     </div>
-                    {% if not app.user %}<div class="index-banner-button"><a class="" href="{{ path('fos_user_registration_register') }}">{{ 'join_us' | trans }}</a></div>{% endif %}
-                </div>
+                    <div class="index-banner-item index-banner2">
+                        <div class="index-banner-text-header index-banner-text1">TeamStarter</div>
+                        <div class="index-banner-text-row index-banner-text2">Если у тебя есть отличная идея, но нет денег на реализацию MVP</div>
+                        <div class="index-banner-text-row index-banner-text3"><ul><li>Создай проект на TeamStarter</li> <li>Найди заинтересованных специалистов</li><li>Собери команду с горящими глазами</li></ul></div>
+                        {% if not app.user %}<div class="index-banner-button"><a class="" href="{{ path('fos_user_registration_register') }}">Собери команду - это просто!</a></div>{% endif %}
+                    </div>
 
-                <div class="index-banner-item index-banner2">
-                    <div class="index-banner-text-header index-banner-text1">TeamStarter</div>
-                    <div class="index-banner-text-row index-banner-text2">Если у тебя есть отличная идея, но нет денег на реализацию MVP</div>
-                    <div class="index-banner-text-row index-banner-text3"><ul><li>Создай проект на TeamStarter</li> <li>Найди заинтересованных специалистов</li><li>Собери команду с горящими глазами</li></ul></div>
-                    {% if not app.user %}<div class="index-banner-button"><a class="" href="{{ path('fos_user_registration_register') }}">Собери команду - это просто!</a></div>{% endif %}
-                </div>
+                    <div class="index-banner-item index-banner3">
+                        <div class="index-banner-text-header index-banner-text1">TeamStarter</div>
+                        <div class="index-banner-text-row index-banner-text2">Если ты хочешь попробовать себя в новой роли в команде, тогда тебе точно на TeamStarter!</div>
+                        <div class="index-banner-text-row index-banner-text3"><ul><li>Найди интересный проект</li> <li>Присоединись к нему</li><li>Получи ценный опыт работы на настоящем боевом проекте!</li></ul></div>
+                        {% if not app.user %}<div class="index-banner-button"><a class="" href="{{ path('fos_user_registration_register') }}">{{ 'join_us' | trans }}</a></div>{% endif %}
 
-                <div class="index-banner-item index-banner3">
-                    <div class="index-banner-text-header index-banner-text1">TeamStarter</div>
-                    <div class="index-banner-text-row index-banner-text2">Если ты хочешь попробовать себя в новой роли в команде, тогда тебе точно на TeamStarter!</div>
-                    <div class="index-banner-text-row index-banner-text3"><ul><li>Найди интересный проект</li> <li>Присоединись к нему</li><li>Получи ценный опыт работы на настоящем боевом проекте!</li></ul></div>
-                    {% if not app.user %}<div class="index-banner-button"><a class="" href="{{ path('fos_user_registration_register') }}">{{ 'join_us' | trans }}</a></div>{% endif %}
-
+                    </div>
                 </div>
             </div>
+            <div class="col-md-1 align-middle index-banner-nav index-banner-nav-right" style="vertical-align: center"><i id="index-banner-nav-next" class="fa fa-angle-right" aria-hidden="true"></i></div>
         </div>
     </div>
 
@@ -60,6 +62,7 @@
                 autoplay: true,
                 autoplayTimeout: 10000,
                 autoplaySpeed: 500,
+                // navText : ['<i class="fa fa-angle-left" aria-hidden="true"></i>','<i class="fa fa-angle-right" aria-hidden="true"></i>'],
                 onInitialized: function() {
                     $(".index-banner1 .index-banner-text-row").css("transform", "translatex(110px)");
                     $(".index-banner1 .index-banner-text-header").css("transform", "translatex(110px)");
@@ -68,7 +71,8 @@
             });
 
             owl.on('changed.owl.carousel', function(event) {
-                $(".index-banner-item .index-banner-text").css("transform", "translatex(0px)");
+                $(".index-banner-item .index-banner-text-row").css("transform", "translatex(0px)");
+                $(".index-banner-item .index-banner-text-header").css("transform", "translatex(0px)");
                 $(".index-banner-item .index-banner-button").css("opacity", "0");
                 var page = event.item.index - 1;
                 if(page == 0) {
@@ -78,6 +82,15 @@
                 $(".index-banner"+page+" .index-banner-text-header").css("transform", "translatex(110px)");
                 $(".index-banner"+page+" .index-banner-button").css("opacity", "1");
             });
+
+            $("#index-banner-nav-prev").click(function(){
+                owl.trigger('prev.owl.carousel');
+            });
+
+            $("#index-banner-nav-next").click(function(){
+                owl.trigger('next.owl.carousel');
+            });
+
         });
     </script>
 {% endblock %}
