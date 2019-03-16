@@ -20,6 +20,9 @@ class Notificator
     /** @var \Swift_Mailer */
     private $mailer;
 
+    /** @var TelegramSender  */
+    private $telegramSender;
+
     /** @var array */
     private $reviewers;
 
@@ -31,6 +34,9 @@ class Notificator
 
     /** @var array */
     private $paymentErrorsEmails;
+
+    /** @var string  */
+    private $foundersChatTg;
 
     /** @var TranslatorInterface */
     private $translator;
@@ -45,18 +51,22 @@ class Notificator
         string $newProEmails,
         string $supportEmails,
         string $paymentErrorsEmails,
+        string $foundersChatTg,
         \Swift_Mailer $mailer,
+        TelegramSender $telegramSender,
         TranslatorInterface $translator,
         RouterInterface $router
     ) {
         $this->fromEmailAddress = $fromEmailAddress;
         $this->fromName = $fromName;
         $this->mailer = $mailer;
+        $this->telegramSender = $telegramSender;
         $this->translator = $translator;
         $this->reviewers = explode(',', $reviewers);
         $this->newProEmails = explode(',', $newProEmails);
         $this->supportEmails = explode(',', $supportEmails);
         $this->paymentErrorsEmails = explode(',', $paymentErrorsEmails);
+        $this->foundersChatTg = $foundersChatTg;
         $this->router = $router;
     }
 
@@ -76,6 +86,14 @@ class Notificator
                 ['%link%' => $this->getAdminReviewProjectLink($project)]
             )
         );
+
+        $this->telegramSender->sendMessage(
+            $this->foundersChatTg,
+            $this->trans('project.submit_success_admin_telegram', [
+                '%link%' => $this->getAdminReviewProjectLink($project),
+                '%title%' => $project->getName()
+            ])
+        );
     }
 
     public function projectRemoderate(Project $project)
@@ -94,6 +112,14 @@ class Notificator
             $this->trans('project.remoderate_admin_email.message',
                 ['%link%' => $this->getAdminReviewProjectLink($project)]
             )
+        );
+
+        $this->telegramSender->sendMessage(
+            $this->foundersChatTg,
+            $this->trans('project.remoderate_admin_telegram', [
+                '%link%' => $this->getAdminReviewProjectLink($project),
+                '%title%' => $project->getName()
+            ])
         );
     }
 
@@ -140,8 +166,17 @@ class Notificator
 
         $this->sendEmail(
             $this->reviewers,
-            $this->trans('project.remoderate_declinned_admin_email.subject'),
-            $this->trans('project.remoderate_declinned_admin_email.message')
+            $this->trans('project.remoderate_declined_admin_email.subject'),
+            $this->trans('project.remoderate_declined_admin_email.message')
+        );
+
+        $this->telegramSender->sendMessage(
+            $this->foundersChatTg,
+            $this->trans('project.remoderate_declined_admin_telegram', [
+                '%link%' => $this->getAdminReviewProjectLink($project),
+                '%title%' => $project->getName(),
+                '%comment%' => $project->getLastModeratorComment()->getComment()
+            ])
         );
     }
 
@@ -215,6 +250,20 @@ class Notificator
                 '%user_id%' => '-',
                 '%user_email%' => '-',
             ], 'text')
+        );
+    }
+
+    public function registrationSuccess(User $user)
+    {
+        $this->telegramSender->sendMessage(
+            $this->foundersChatTg,
+            $this->trans('user.telegram_new_registration_success', [
+                '%fullName%' => $user->getFullName(),
+                '%link%' => $this->router->generate(
+                    'specialists_more',
+                    ['user' => $user->getId()],
+                    UrlGeneratorInterface::ABSOLUTE_URL)
+            ])
         );
     }
 
