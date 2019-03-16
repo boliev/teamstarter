@@ -176,7 +176,12 @@ services:
             $newProEmails: "%env(MAILS_NEW_PRO_USERS)%"
             $supportEmails: "%env(MAILS_SUPPORT)%"
             $paymentErrorsEmails: "%env(MAILS_PAYMENT_ERRORS)%"
+            $foundersChatTg: "%env(TG_FOUNDERS_CHAT)%"
 
+    App\Notifications\TelegramSender:
+        bind:
+            $telegramUrl: "%env(TELEGRAM_URL)%"
+            $telegramBotToken: "%env(TELEGRAM_BOT_TOKEN)%"
 
     Parsedown:
         class: \Parsedown
