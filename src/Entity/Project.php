@@ -128,12 +128,19 @@ class Project
     private $moderatorsComments;
 
     /**
+     * @var integer
+     * @ORM\Column(type="integer", nullable=false, options={"default": 0})
+     */
+    private $commentsCount;
+
+    /**
      * Project constructor.
      */
     public function __construct()
     {
         $this->progressStatus = 'Unfinished';
         $this->setCreatedAt(new \DateTime('now'));
+        $this->setCommentsCount(0);
     }
 
     /**
@@ -433,7 +440,21 @@ class Project
         return $this->getModeratorsComments()->first();
     }
 
+    /**
+     * @return int
+     */
+    public function getCommentsCount(): int
+    {
+        return $this->commentsCount;
+    }
 
+    /**
+     * @param int $commentsCount
+     */
+    public function setCommentsCount(int $commentsCount): void
+    {
+        $this->commentsCount = $commentsCount;
+    }
 
     public function __toString() {
         return $this->name;

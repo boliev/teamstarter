@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use App\Entity\Comment;
 use App\Entity\Project;
 use App\Entity\SupportRequest;
 use App\Entity\User;
@@ -265,6 +266,31 @@ class Notificator
                     UrlGeneratorInterface::ABSOLUTE_URL)
             ])
         );
+    }
+
+    public function newProjectComment(Project $project, Comment $comment)
+    {
+        $user = $project->getUser();
+        $this->sendEmail(
+            [$user->getEmail()],
+            $this->trans('comments.new_project_comment_author_email.subject'),
+            $this->trans('comments.new_project_comment_author_email.message', [
+                '%username%' => $this->getUsername($user),
+                '%link%' => $this->getProjectLink($project)
+            ])
+        );
+
+        $sender = $comment->getFrom();
+        $this->telegramSender->sendMessage(
+            $this->foundersChatTg,
+            $this->trans('comments.new_project_comment_admin_tg', [
+                '%fullName%' => $sender->getFullName(),
+                '%link%' => $this->getProjectLink($project),
+                '%title%' => $project->getName(),
+                '%comment%' => $comment->getMessage(),
+            ])
+        );
+
     }
 
     private function getAdminReviewProjectLink(Project $project)

@@ -9,6 +9,12 @@
             </div>
         {% endfor %}
 
+        {% for message in app.flashes('add-comment-success') %}
+            <div class="success-message margin-top-20">
+                {{ message | raw}}
+            </div>
+        {% endfor %}
+
                 <article class="post">
                     <div class="entry-content">
                         <div class="entry-meta">
@@ -67,6 +73,8 @@
                         </div>
                         {% endif %}
                     </div>
+                    {% include 'project/common/comment_list.html.twig' %}
+                    {% include 'project/common/comment_form.html.twig' %}
                 </article>
     </div>
 {% endblock %}
