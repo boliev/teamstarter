@@ -2180,6 +2180,29 @@ article.new-message div.entry-content {
 	height: 120px;
 }
 
+.comments-avatar img {
+	margin: 10px;
+	border-radius: 50%;
+	height: 60px;
+}
+
+.comments-avatar {
+	height: 60px;
+}
+
+.comment-user-name {
+	color: #222222;
+	text-decoration: underline;
+}
+
+.comment-user-name:hover {
+	color: #222222;
+}
+
+.comment-user-name:visited {
+	color: #222222;
+}
+
 div.search-container {
 	display: block;
 }

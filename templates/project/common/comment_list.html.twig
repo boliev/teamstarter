@@ -1,0 +1,31 @@
+<div class="comments-list margin-top-30">
+    {% if comments %}
+        <div class="kc-elm kc-title-wrap  left dark">
+            <div class="title-wrapper">
+                <h3 class="kc_title">{{ 'comments.comment_title' | trans | raw }}</h3>
+            </div>
+        </div>
+    {% endif %}
+    {% for comment in comments %}
+        <article class="post">
+            <div class="entry-content">
+                <div class="entry-meta">
+                    <div class="row">
+                        <div class="col-md-1 comments-avatar text-center">
+                            <img alt="" src="{% if comment.from.profilePicture %} {{ comment.from.profilePicture }} {% else %}{{ asset(avatart_placeholder) }}{% endif %}">
+                        </div>
+                        <div class="info col-md-10">
+                            <div class="meta margin-top-1">
+                                <span class="date"><i class="mn-icon-1130"></i>{{ comment.createdAt|localizeddate('medium') }}</span>
+                            </div>
+                            <div class="row margin-top-5"><div class="col-sm-12 comment-text">
+                                    <b><a class="comment-user-name" href="{{ path('specialists_more', {'user': comment.from.id}) }}">{{ comment.from.fullName }}</a> </b><br/>
+                                    {{  comment.message }}
+                                </div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+    {% endfor %}
+</div>

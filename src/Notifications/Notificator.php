@@ -2,9 +2,11 @@
 
 namespace App\Notifications;
 
+use App\Entity\Comment;
 use App\Entity\Project;
 use App\Entity\SupportRequest;
 use App\Entity\User;
+use App\Repository\UserRepository;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Symfony\Component\Routing\RouterInterface;
@@ -20,7 +22,7 @@ class Notificator
     /** @var \Swift_Mailer */
     private $mailer;
 
-    /** @var TelegramSender  */
+    /** @var TelegramSender */
     private $telegramSender;
 
     /** @var array */
@@ -35,14 +37,17 @@ class Notificator
     /** @var array */
     private $paymentErrorsEmails;
 
-    /** @var string  */
+    /** @var string */
     private $foundersChatTg;
 
     /** @var TranslatorInterface */
     private $translator;
 
-    /** @var RouterInterface  */
+    /** @var RouterInterface */
     private $router;
+
+    /** @var UserRepository */
+    private $userRepository;
 
     public function __construct(
         string $fromEmailAddress,
@@ -55,7 +60,8 @@ class Notificator
         \Swift_Mailer $mailer,
         TelegramSender $telegramSender,
         TranslatorInterface $translator,
-        RouterInterface $router
+        RouterInterface $router,
+        UserRepository $userRepository
     ) {
         $this->fromEmailAddress = $fromEmailAddress;
         $this->fromName = $fromName;
@@ -68,6 +74,7 @@ class Notificator
         $this->paymentErrorsEmails = explode(',', $paymentErrorsEmails);
         $this->foundersChatTg = $foundersChatTg;
         $this->router = $router;
+        $this->userRepository = $userRepository;
     }
 
     public function projectOnReview(Project $project)
@@ -91,7 +98,7 @@ class Notificator
             $this->foundersChatTg,
             $this->trans('project.submit_success_admin_telegram', [
                 '%link%' => $this->getAdminReviewProjectLink($project),
-                '%title%' => $project->getName()
+                '%title%' => $project->getName(),
             ])
         );
     }
@@ -118,7 +125,7 @@ class Notificator
             $this->foundersChatTg,
             $this->trans('project.remoderate_admin_telegram', [
                 '%link%' => $this->getAdminReviewProjectLink($project),
-                '%title%' => $project->getName()
+                '%title%' => $project->getName(),
             ])
         );
     }
@@ -175,7 +182,7 @@ class Notificator
             $this->trans('project.remoderate_declined_admin_telegram', [
                 '%link%' => $this->getAdminReviewProjectLink($project),
                 '%title%' => $project->getName(),
-                '%comment%' => $project->getLastModeratorComment()->getComment()
+                '%comment%' => $project->getLastModeratorComment()->getComment(),
             ])
         );
     }
@@ -262,7 +269,49 @@ class Notificator
                 '%link%' => $this->router->generate(
                     'specialists_more',
                     ['user' => $user->getId()],
-                    UrlGeneratorInterface::ABSOLUTE_URL)
+                    UrlGeneratorInterface::ABSOLUTE_URL),
+            ])
+        );
+    }
+
+    public function newProjectComment(Project $project, Comment $comment)
+    {
+        $user = $project->getUser();
+        $this->sendEmail(
+            [$user->getEmail()],
+            $this->trans('comments.new_project_comment_author_email.subject'),
+            $this->trans('comments.new_project_comment_author_email.message', [
+                '%username%' => $this->getUsername($user),
+                '%link%' => $this->getProjectLink($project),
+            ])
+        );
+
+        $subscribedUsers = $this->userRepository->getAllUserSubscribedToProjectComments($project);
+        /** @var User $subscribedUser */
+        foreach($subscribedUsers as $subscribedUser) {
+            if($subscribedUser->getId() === $user->getId() || $subscribedUser->getId() == $comment->getFrom()->getId()) {
+                continue;
+            }
+
+            $this->sendEmail(
+                [$subscribedUser->getEmail()],
+                $this->trans('comments.new_project_comment_subscribed_email.subject'),
+                $this->trans('comments.new_project_comment_subscribed_email.message', [
+                    '%username%' => $this->getUsername($subscribedUser),
+                    '%link%' => $this->getProjectLink($project),
+                    '%title%' => $project->getName(),
+                ])
+            );
+        }
+
+        $sender = $comment->getFrom();
+        $this->telegramSender->sendMessage(
+            $this->foundersChatTg,
+            $this->trans('comments.new_project_comment_admin_tg', [
+                '%fullName%' => $sender->getFullName(),
+                '%link%' => $this->getProjectLink($project),
+                '%title%' => $project->getName(),
+                '%comment%' => $comment->getMessage(),
             ])
         );
     }
