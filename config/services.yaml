@@ -127,6 +127,12 @@ services:
         arguments:
             - App\Entity\Comment
 
+    App\Repository\UserSubscriptionsRepository:
+        class: App\Repository\MessageRepository
+        factory: ['@doctrine.orm.default_entity_manager', getRepository]
+        arguments:
+            - App\Entity\UserSubscriptions
+
     App\Repository\PromoCodeRepository:
         class: App\Repository\PromoCodeRepository
         factory: ['@doctrine.orm.default_entity_manager', getRepository]

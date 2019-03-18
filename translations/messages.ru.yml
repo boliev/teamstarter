@@ -375,6 +375,7 @@ dialogs:
 comments:
     comment_title: Комментарии
     comment: Комментарий
+    comments_subscription: Подписаться на комментарии
     new_comment_submit_button: Оправить
     comment_successfully_added: Ваш комментарий успешно добавлен
     new_project_comment_author_email:
@@ -382,6 +383,16 @@ comments:
         message: |
             <p>Приветствуем, %username%!</p>
             <p>У вашего проекта добавлен новый комментарий!</p>
+            <p><a href="%link%">Посмотреть комментарий</a></p>
+            <br /><br />
+            <p>С наилучшими пожеланиями,<br />
+            TeamStarter.</p>
+    new_project_comment_subscribed_email:
+        subject: Новый комментарий к проекту!
+        message: |
+            <p>Приветствуем, %username%!</p>
+            <p></p>
+            <p>У проекта "%title%" добавлен новый комментарий!</p>
             <p><a href="%link%">Посмотреть комментарий</a></p>
             <br /><br />
             <p>С наилучшими пожеланиями,<br />

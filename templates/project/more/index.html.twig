@@ -75,6 +75,14 @@
                     </div>
                     {% include 'project/common/comment_list.html.twig' %}
                     {% include 'project/common/comment_form.html.twig' %}
+
+                        <div class="row">
+                            <div class="col-xs-8 col-sm-offset-2 form-section">
+                                <div class="row"> <div class="col-md-12 form-group text-center">
+                                        <label class="form-check-label"><input type="checkbox" id="project-comments-subscriptions" {% if isUserSubscribed %} checked="checked" {% endif %}> {{ 'comments.comments_subscription' | trans }}</label>
+                                </div></div>
+                            </div>
+                        </div>
                 </article>
     </div>
 {% endblock %}
@@ -84,5 +92,19 @@
         function expandRole (roleId) {
             $('#project-card-role-'+roleId).toggle();
         }
+        
+        $(function () {
+            $("#project-comments-subscriptions").click(function() {
+                $("#project-comments-subscriptions").attr('disabled', 'disabled');
+                $.ajax({
+                    type: "POST",
+                    url: "{{ path('project_comment_subscription', {"project": project.id}) }}",
+                    data: '',
+                    success: function() {
+                        $("#project-comments-subscriptions").removeAttr('disabled');
+                    }
+                });
+            });
+        })
     </script>
 {% endblock %}

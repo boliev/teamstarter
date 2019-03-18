@@ -8,18 +8,21 @@ use App\Entity\Offer;
 use App\Entity\Project;
 use App\Entity\SearchQueries;
 use App\Entity\User;
+use App\Entity\UserSubscriptions;
 use App\Form\CommentType;
 use App\Form\ProposalToProjectType;
 use App\Notifications\Notificator;
 use App\Repository\CommentRepository;
 use App\Repository\OfferRepository;
 use App\Repository\ProjectRepository;
+use App\Repository\UserSubscriptionsRepository;
 use App\Search\ProjectSearcher\ProjectSearcherInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -86,9 +89,10 @@ class ProjectsController extends AbstractController
     /**
      * @Route("/projects/{project}/more", name="project_more")
      *
-     * @param OfferRepository   $offerRepository
+     * @param OfferRepository $offerRepository
      * @param CommentRepository $commentRepository
-     * @param Project           $project
+     * @param UserSubscriptionsRepository $subscriptionsRepository
+     * @param Project $project
      *
      * @return Response
      *
@@ -97,13 +101,19 @@ class ProjectsController extends AbstractController
     public function moreAction(
         OfferRepository $offerRepository,
         CommentRepository $commentRepository,
+        UserSubscriptionsRepository $subscriptionsRepository,
         Project $project
     ) {
+        $isUserSubscribed = $this->getUser()
+            ? (bool) $subscriptionsRepository->getUserSubscribedToProjectComments($this->getUser(), $project)
+            : false;
+
         return $this->render('project/more/index.html.twig', [
             'project' => $project,
             'offer' => ($this->getUser() ? $offerRepository->getUserOfferForProject($this->getUser(), $project) : null),
             'commentForm' => $this->createForm(CommentType::class)->createView(),
             'comments' => $commentRepository->getForProject($project),
+            'isUserSubscribed' => $isUserSubscribed
         ]);
     }
 
@@ -193,6 +203,44 @@ class ProjectsController extends AbstractController
         }
 
         return $this->redirectToRoute('project_more', ['project' => $project->getId()]);
+    }
+
+    /**
+     * @Route("/projects/{project}/comments/subscribe", name="project_comment_subscription", methods={"POST"})
+     *
+     * @param Project                     $project
+     * @param UserSubscriptionsRepository $subscriptionsRepository
+     * @param EntityManagerInterface      $entityManager
+     *
+     * @return JsonResponse
+     */
+    public function commentsSubscribe(
+        Project $project,
+        UserSubscriptionsRepository $subscriptionsRepository,
+        EntityManagerInterface $entityManager
+    ) {
+        $user = $this->getUser();
+
+        if (!$user) {
+            throw new AccessDeniedException();
+        }
+
+        $subscription = $subscriptionsRepository->getUserSubscribedToProjectComments($user, $project);
+        if (null !== $subscription) {
+            $entityManager->remove($subscription);
+            $entityManager->flush();
+
+            return new JsonResponse(['success' => true]);
+        }
+
+        $subscription = new UserSubscriptions();
+        $subscription->setUser($user);
+        $subscription->setEntityId($project->getId());
+        $subscription->setEvent(UserSubscriptions::EVENT_NEW_COMMENT_TO_POST_ADDED);
+        $entityManager->persist($subscription);
+        $entityManager->flush();
+
+        return new JsonResponse(['success' => true]);
     }
 
     /**
