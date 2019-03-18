@@ -20,6 +20,12 @@
                             </div>
                         {% endfor %}
 
+                        {% for message in app.flashes('success') %}
+                            <div class="success-message">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+
 
                         <div class="row"><div class="col-md-3 about-form-avatar text-center">
                         {% if (app.user.profilePicture) %}
