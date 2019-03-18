@@ -2,7 +2,9 @@
 
 namespace App\Repository;
 
+use App\Entity\Project;
 use App\Entity\UserSpecializations;
+use App\Entity\UserSubscriptions;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\EntityRepository;
 
@@ -33,5 +35,17 @@ class UserRepository extends EntityRepository
             ->getScalarResult();
 
         return array_column($emails, 'email');
+    }
+
+    public function getAllUserSubscribedToProjectComments(Project $project)
+    {
+        return $this->createQueryBuilder('u')
+            ->innerJoin(UserSubscriptions::class, 'us', 'WITH', 'us.user = u.id')
+            ->where('us.event = :event')
+            ->andWhere('us.entityId = :projectId')
+            ->setParameter('event', UserSubscriptions::EVENT_NEW_COMMENT_TO_POST_ADDED)
+            ->setParameter('projectId', $project->getId())
+            ->getQuery()
+            ->getResult();
     }
 }
