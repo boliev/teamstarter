@@ -29,7 +29,7 @@
                                         <span><i class="fas fa-map-marker"></i>{{ project.country }}</span>
                                     {% endif %}
                                 </div>
-                                <div class="row"><div class="col-sm-12"><h1 class="entry-title"><a href="#">{{ project.name }}</a></h1></div></div>
+                                <div class="row"><div class="col-sm-12"><h1 class="entry-title">{{ project.name }}</h1></div></div>
                                 {% if offer and app.flashes('do-not-show-proposal-already-message')|length == 0 %}
                                     <div class="hint-success text-center margin-top-10">{{ 'project.proposal_already_posted' | trans ({'{offer}': path('dialogs_more', {'offer': offer.id})}) | raw}}</div>
                                 {% endif %}
