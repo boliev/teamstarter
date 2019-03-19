@@ -3,6 +3,7 @@
 namespace App\Notifications;
 
 use App\Entity\Comment;
+use App\Entity\Message;
 use App\Entity\Project;
 use App\Entity\SupportRequest;
 use App\Entity\User;
@@ -312,6 +313,29 @@ class Notificator
                 '%link%' => $this->getProjectLink($project),
                 '%title%' => $project->getName(),
                 '%comment%' => $comment->getMessage(),
+            ])
+        );
+    }
+
+    public function newMessage(Message $message)
+    {
+        $user = $message->getTo();
+        $this->sendEmail(
+            [$user->getEmail()],
+            $this->trans('dialogs.new_message_email.subject'),
+            $this->trans('dialogs.new_message_email.message', [
+                '%username%' => $this->getUsername($user),
+                '%link%' => $this->router->generate('dialogs_list', [], UrlGeneratorInterface::ABSOLUTE_URL),
+            ])
+        );
+    }
+
+    public function newMessagesNotificationsWereSent(int $count)
+    {
+        $this->telegramSender->sendMessage(
+            $this->foundersChatTg,
+            $this->trans('dialogs.new_message_admin_telegram', [
+                '%count%' => $count
             ])
         );
     }
