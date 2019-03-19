@@ -10,6 +10,8 @@
 
 `bin/console fos:user:demote someuser@mail.com ROLE_ADMIN` - Забрать админские права
 
+`bin/console notifications:notify:new-messages` - Оповестить пользователей о новых непрочитанных сообщениях на сайте (работает по крону)
+
 # Deployer
 
 `dep test:specialists:add --u some@mail.ru dev` Добавить тестового пользователя some@mail.ru (Должен быть описан в `src/Testing/data/specialists.json`).

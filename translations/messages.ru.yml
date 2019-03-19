@@ -372,6 +372,23 @@ dialogs:
     no_access: Нет такого диалога
     new_message: Отправить сообщение
     new_message_submit_button: Оправить
+    new_message_email:
+        subject: Новое сообщение на сайте TeamStarter.ru!
+        message: |
+            <p>Приветствуем, %username%!</p>
+            <p>Вам прислали новое сообщение на сайте TeamStarter.ru!</p>
+            <p>Вы можете прочитать сообщение на <a href="%link%">странице диалогов</a></p>
+            <br /><br />
+            <p>С наилучшими пожеланиями,<br />
+            TeamStarter.</p>
+    new_message_admin_telegram: |
+        *Новые сообщения на сайте*
+
+        🙊🙊🙊🙊🙊🙊🙊🙊🙊
+        Оно живое! Оно говорит!
+        За последние 10 минут пользователи сервиса оставили *%count%* сообщений друг другу.
+        Жееееееееесть вооще 😫
+
 comments:
     comment_title: Комментарии
     comment: Комментарий

@@ -54,4 +54,14 @@ class MessageRepository extends EntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function getNewNotNotifiedMessages()
+    {
+        return $this->createQueryBuilder('m')
+            ->andWhere('m.status = :status')
+            ->andWhere('m.notificationSent = false')
+            ->setParameter('status', Message::STATUS_NEW)
+            ->getQuery()
+            ->getResult();
+    }
 }
