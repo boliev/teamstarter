@@ -54,6 +54,12 @@ class Message
     private $status;
 
     /**
+     * @var boolean
+     * @ORM\Column(type="boolean", nullable=false, options={"default": false})
+     */
+    private $notificationSent;
+
+    /**
      * @var \DateTime
      * @ORM\Column(type="datetime")
      */
@@ -71,6 +77,7 @@ class Message
     public function __construct()
     {
         $this->status = 'New';
+        $this->notificationSent = false;
         $this->setCreatedAt(new \DateTime('now'));
     }
 
@@ -209,5 +216,21 @@ class Message
     public function setUpdatedAt(\DateTime $updatedAt): void
     {
         $this->updatedAt = $updatedAt;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isNotificationSent(): bool
+    {
+        return $this->notificationSent;
+    }
+
+    /**
+     * @param bool $notificationSent
+     */
+    public function setNotificationSent(bool $notificationSent): void
+    {
+        $this->notificationSent = $notificationSent;
     }
 }

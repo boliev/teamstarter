@@ -6,6 +6,8 @@
 parameters:
     locale: 'ru'
     pro_price: '%env(PRO_PRICE)%'
+    router.request_context.host: '%env(SERVICE_URL)%'
+    router.request_context.scheme: '%env(SERVICE_SCHEME)%'
 
 services:
     # default configuration for services in *this* file
