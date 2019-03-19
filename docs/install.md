@@ -14,6 +14,8 @@ location /socket.io/ {
 ```
 **Настройки в env.local**
 ```
+SERVICE_URL=test.teamstarter.ru
+SERVICE_SCHEME=https
 WEBSOCKET_URL_FOR_SERVER=localhost
 WEBSOCKET_PORT_FOR_SERVER=8081
 WEBSOCKET_URL_FOR_CLIENT=https://test.teamstarter.ru
@@ -26,4 +28,9 @@ socket.io лежит в отдельной директории, т.к. почт
 cd /var/www/ts-socket-server/teamstarter/socket-server/
 npm install
 pm2 start index.js
+```
+
+**Крон**
+```
+*/10 * * * * php /var/www/teamstarter/current/bin/console notifications:notify:new-messages
 ```
