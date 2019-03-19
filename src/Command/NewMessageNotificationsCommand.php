@@ -50,9 +50,9 @@ class NewMessageNotificationsCommand extends Command
             $userId = $message->getTo()->getId();
             $message->setNotificationSent(true);
             $this->entityManager->persist($message);
-
+            $this->entityManager->flush();
+            
             if (isset($notified[$userId])) {
-                $this->entityManager->flush();
                 continue;
             }
 
