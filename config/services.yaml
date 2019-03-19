@@ -55,9 +55,7 @@ services:
     my_user_provider:
         class: App\Provider\FOSUBUserProvider
         arguments:
-        - "@fos_user.user_manager"
-        - "@fos_user.util.token_generator.default"
-        - {facebook: facebookId, google: googleId, github: githubId}
+            $properties: {facebook: facebookId, google: googleId, github: githubId}
 
     search.project_indexer:
         class: App\Search\ProjectIndexer\PostgresIndexer
