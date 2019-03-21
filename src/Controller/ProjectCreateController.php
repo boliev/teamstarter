@@ -52,6 +52,10 @@ class ProjectCreateController extends AbstractController
         ProjectService $projectService,
         CountryRepository $countryRepository
     ) {
+        if(!$this->getUser()) {
+            return $this->render('project/create/need_to_login.html.twig');
+        }
+
         if (!$project) {
             $project = new Project();
             $project->setUser($this->getUser());

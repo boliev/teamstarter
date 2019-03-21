@@ -43,10 +43,7 @@ class SpecialistsController extends AbstractController
         int $page = 1
     ) {
 
-        if(!$this->getUser()) {
-            return $this->render('specialists/list/access_denied.html.twig');
-        }
-        if(!$this->getUser()->isProOrHasActiveProjects()) {
+        if(!$this->getUser() || !$this->getUser()->isProOrHasActiveProjects()) {
             return $this->render('specialists/list/access_denied.html.twig');
         }
 
@@ -93,8 +90,8 @@ class SpecialistsController extends AbstractController
     ) {
 
         /** @var User $user */
-        if(!$this->getUser()->isProOrHasActiveProjects()) {
-            return $this->render('specialists/more/access_denied.html.twig');
+        if(!$this->getUser() || !$this->getUser()->isProOrHasActiveProjects()) {
+            return $this->render('specialists/list/access_denied.html.twig');
         }
 
         if (!$user->isSpecialist()) {
@@ -132,6 +129,10 @@ class SpecialistsController extends AbstractController
         OfferRepository $offerRepository
     )
     {
+        if(!$this->getUser() || !$this->getUser()->isProOrHasActiveProjects()) {
+            return $this->render('specialists/list/access_denied.html.twig');
+        }
+
         /** @var User $user */
         $user = $this->getUser();
         if (!$user || $projectRepository->getPublishedCount($user) < 1) {

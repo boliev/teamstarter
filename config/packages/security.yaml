@@ -51,11 +51,12 @@ security:
     - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
     - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
     - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: ^/project/create/rules/, role: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: ^/project/create/main/, role: IS_AUTHENTICATED_ANONYMOUSLY }
     - { path: ^/user, role: IS_AUTHENTICATED_FULLY }
     - { path: ^/project/, role: IS_AUTHENTICATED_FULLY }
     - { path: ^/dialogs, role: IS_AUTHENTICATED_FULLY }
     - { path: ^/specify, role: IS_AUTHENTICATED_FULLY }
-    - { path: ^/specialists, role: IS_AUTHENTICATED_FULLY }
     - { path: ^/pro/checkout, role: IS_AUTHENTICATED_FULLY }
     - { path: ^/admin/, role: ROLE_ADMIN }
     - { path: ^/pro/, role: ROLE_ADMIN }

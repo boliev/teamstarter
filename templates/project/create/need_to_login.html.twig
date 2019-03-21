@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+{% block title %} {{ 'title.specialists_list' | trans }} {% endblock %}
+{% block body %}
+    <div class ="container">
+        <div class="row section-content-2 padding-bottom-5">
+
+            <div class="col-sm-8 col-sm-offset-2">
+                <div class="kc-elm kc-title-wrap  left dark">
+                    <div class="title-wrapper">
+                        <h3 class="kc_title">{{ 'project.main_info' | trans | raw }}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="pro-access-error margin-bottom-80"> {{ 'project.need_to_login' | trans | raw }}</div>
+
+    </div>
+{% endblock %}
