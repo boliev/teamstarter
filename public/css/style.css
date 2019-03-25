@@ -571,6 +571,8 @@ a, a:visited {
 .entry-title a {
 	color: #222222;
 }
+
+
 a:hover {
 	color: #222222;
 }
@@ -1137,6 +1139,12 @@ button.btn.btn-primary.text-capitalize.active {
 .post .entry-content .info .meta span {
 	white-space: nowrap;
 }
+
+.post .entry-content .author a {
+	color: #222222;
+}
+
+
 .pagination li a {
 	margin-right: 20px;
 	border-radius: 100% !important;
