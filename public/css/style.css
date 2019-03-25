@@ -1590,6 +1590,15 @@ div.modal-login-social a, div.register-form-sn-login a {
 	text-align: center;
 	display: block;
 }
+
+.form-section input.btn-primary-green {
+	background: #14892c;
+}
+
+.form-section input.btn-primary-grey {
+	background: #42526e;
+}
+
 .form-section input.btn:hover {
 	background: #42a5f5;
 }

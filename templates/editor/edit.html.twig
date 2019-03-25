@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+{% block title %} {{ 'title.editor' | trans }} {% endblock %}
+{% form_theme form _self %}
+{% block body %}
+    <div class ="container">
+        <div class="row section-content-2">
+
+            <div class="form-section">
+                <div class="col-sm-12">
+                    <form method="post" action="">
+                        <div class="kc-elm kc-title-wrap  left dark">
+                            <div class="title-wrapper">
+                                <h3 class="kc_title">{{ 'editor.header' | trans | raw }}</h3>
+                            </div>
+                        </div>
+
+                        {% for message in app.flashes('editor-warning') %}
+                            <div class="warning-message margin-bottom-10">{{ message }}</div>
+                        {% endfor %}
+
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                {{ form_label(form.title, '', {'label_attr': {'class': 'bmd-label-floating'}}) }}
+                                {{ form_widget(form.title, {'attr': {'class': 'input-block'}}) }}
+                                {{ form_errors(form.title)}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                {{ form_label(form.text, '', {'label_attr': {'class': 'bmd-label-floating'}}) }}
+                                {{ form_widget(form.text, {'attr': {'class': 'input-block', 'rows': 30, 'style': 'height:1200px; max-height: 1200px;'}}) }}
+                                {{ form_errors(form.text)}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-offset-2 col-md-8 form-bottom">
+                                {{ form_row(form._token) }}
+                                <input type="submit" name="save" class="btn btn-primary btn-large" value="{{ 'editor.save_button'|trans }}">
+                                {% if article.isDraft %}
+                                    <input type="submit" name="publish" class="btn btn-primary btn-large btn-primary-green" value="{{ 'editor.publish_button'|trans }}">
+                                {% endif %}
+                                {% if article.isPublished %}
+                                    <input type="submit" name="draft" class="btn btn-primary btn-large btn-primary-grey" value="{{ 'editor.draft_button'|trans }}">
+                                {% endif %}
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block form_errors %}
+    {% spaceless %}
+        {% if errors|length > 0 %}
+            {% for error in errors %}
+                <div class="error">{{ error.message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endspaceless %}
+{% endblock form_errors %}

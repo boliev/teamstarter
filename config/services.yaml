@@ -152,6 +152,12 @@ services:
             - App\Entity\Country
             - '%env(ALWAYS_FIRST_COUNTRY)%'
 
+    App\Repository\ArticleRepository:
+        class: App\Repository\ArticleRepository
+        factory: ['@doctrine.orm.default_entity_manager', getRepository]
+        arguments:
+            - App\Entity\Article
+
     App\EventSubscriber\ProjectSearchIndexerSubscriber:
         tags:
         - { name: doctrine.event_subscriber, event: postPersist }

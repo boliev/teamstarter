@@ -60,3 +60,4 @@ security:
     - { path: ^/pro/checkout, role: IS_AUTHENTICATED_FULLY }
     - { path: ^/admin/, role: ROLE_ADMIN }
     - { path: ^/pro/, role: ROLE_ADMIN }
+    - { path: ^/editor/, role: ROLE_ADMIN }

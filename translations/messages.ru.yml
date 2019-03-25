@@ -48,6 +48,7 @@ title:
     enter_promo: Сервис находится на стадии Бета-тестирования
     promo_request: Я хочу записаться на бета-тестирование
     contact: Контакты
+    editor: Редактор статей
 
 registration:
     header: Регистрация
@@ -495,3 +496,10 @@ contact:
             <br /><br />
             <p>С наилучшими пожеланиями,<br />
             TeamStarter.</p>
+editor:
+    header: Новая <span>статья</span>
+    title: Заголовок
+    text: Текст статьи
+    save_button: Сохранить
+    publish_button: Опубликовать
+    draft_button: В черновик
