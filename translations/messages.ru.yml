@@ -372,7 +372,7 @@ dialogs:
     to_dialog: К диалогу...
     no_access: Нет такого диалога
     new_message: Отправить сообщение
-    new_message_submit_button: Оправить
+    new_message_submit_button: Отправить
     new_message_email:
         subject: Новое сообщение на сайте TeamStarter.ru!
         message: |
@@ -394,7 +394,7 @@ comments:
     comment_title: Комментарии
     comment: Комментарий
     comments_subscription: Подписаться на комментарии
-    new_comment_submit_button: Оправить
+    new_comment_submit_button: Отправить
     comment_successfully_added: Ваш комментарий успешно добавлен
     new_project_comment_author_email:
         subject: Новый комментарий к вашему проекту!
