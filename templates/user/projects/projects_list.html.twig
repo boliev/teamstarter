@@ -22,7 +22,11 @@
 
                         <div class="row role-list">
                             <div class="col-sm-5">
-                                {{ project.name }}
+                                {% if project.progressStatus == constant('App\\Entity\\Project::STATUS_PUBLISHED') %}
+                                    <a href="{{ path('project_more', {'project': project.id}) }}">{{ project.name }}</a>
+                                {% else %}
+                                    {{ project.name }}
+                                {% endif %}
                             </div>
                             <div class="col-sm-2">
                                 <span class="alert project-list-status project-list-status-{{ project.progressStatus }}">{{ project.progressStatus | trans }}</span>
