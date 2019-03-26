@@ -1772,7 +1772,7 @@ div.modal-login-social a, div.register-form-sn-login a {
 .form-section input.btn {
 	display: inline;
 	margin-bottom: 10px;
-	min-width: 240px;
+	min-width: 222px;
 }
 
 .form-bottom {
@@ -2191,11 +2191,12 @@ article.new-message div.entry-content {
 .comments-avatar img {
 	margin: 10px;
 	border-radius: 50%;
-	height: 60px;
+	height: 70px;
+	padding-bottom: 10px;
 }
 
 .comments-avatar {
-	height: 60px;
+	height: 70px;
 }
 
 .comment-user-name {
