@@ -30,8 +30,8 @@
                     <div class="entry-content">
                         <div class="entry-meta">
                             <div class="row">
-                                <div class="col-md-2 dialogs-avatar">
-                                    <img alt="" src="{% if sender.profilePicture %} {{ sender.profilePicture }} {% else %}{{ asset(avatart_placeholder) }}{% endif %}">
+                                <div class="col-md-2">
+                                    <div class="specialists-list-avatar" style="margin-top: 0px; background-image: url('{% if sender.profilePicture %} {{ sender.profilePicture }} {% else %}{{ asset(avatart_placeholder) }}{% endif %}')"></div>
                                 </div>
                                 <div class="info col-md-10">
                                     <div class="meta margin-top-1">

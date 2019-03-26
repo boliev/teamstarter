@@ -1799,9 +1799,15 @@ img.specialists-avatar {
 	border-radius: 50%;
 }
 
-img.specialists-list-avatar {
-	height: 100px;
+div.specialists-list-avatar {
+	display: inline-block;
+	height: 140px;
+	width: 150px;
 	border-radius: 50%;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
+	margin-top: 20px;
 }
 
 img.specialists-more-avatar {
@@ -2178,21 +2184,8 @@ article.new-message div.entry-content {
 	border-radius: 10px;
 }
 
-.dialogs-avatar img {
-	margin: 10px;
-	border-radius: 50%;
-	height: 100px;
-}
-
 .dialogs-avatar {
 	height: 120px;
-}
-
-.comments-avatar img {
-	margin: 10px;
-	border-radius: 50%;
-	height: 70px;
-	padding-bottom: 10px;
 }
 
 .comments-avatar {
