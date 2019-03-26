@@ -45,9 +45,7 @@
 
                                 <div class="row">
                                     <div class="col-sm-2">
-                                        <div class="specialists-list-avatar text-center padding-top-10">
-                                            <img class="specialists-avatar" src="{% if user.profilePicture %} {{ user.profilePicture }} {% else %}{{ asset(avatart_placeholder) }}{% endif %}" />
-                                        </div>
+                                        <div class="specialists-list-avatar" style="background-image: url('{% if user.profilePicture %} {{ user.profilePicture }} {% else %}{{ asset(avatart_placeholder) }}{% endif %}')"></div>
                                     </div>
                                     <div class="col-sm-10">
                                         <div class="row">

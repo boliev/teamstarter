@@ -11,8 +11,9 @@
             <div class="entry-content">
                 <div class="entry-meta">
                     <div class="row">
-                        <div class="col-md-1 comments-avatar text-center">
-                            <img alt="" src="{% if comment.from.profilePicture %} {{ comment.from.profilePicture }} {% else %}{{ asset(avatart_placeholder) }}{% endif %}">
+                        <div class="col-md-1">
+                            {#<img alt="" src="{% if comment.from.profilePicture %} {{ comment.from.profilePicture }} {% else %}{{ asset(avatart_placeholder) }}{% endif %}">#}
+                            <div class="specialists-list-avatar" style="height: 70px; width: 70px; margin-top: 0px; background-image: url('{% if comment.from.profilePicture %} {{ comment.from.profilePicture }} {% else %}{{ asset(avatart_placeholder) }}{% endif %}')"></div>
                         </div>
                         <div class="info col-md-10">
                             <div class="meta margin-top-1">

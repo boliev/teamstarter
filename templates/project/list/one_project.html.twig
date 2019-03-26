@@ -5,7 +5,7 @@
                 <div class="meta margin-top-1">
                     <span class="date"><i class="mn-icon-1130"></i>{{ project.createdAt|localizeddate('short', 'none') }}</span>
                     <span class="author"><i class="fas fa-user-tie"></i><a href="{{ path('specialists_more', {'user': project.user.id}) }}">{{ project.user.getFullName() }}</a></span>
-                    <span><i class="mn-icon-132"></i>{{ project.status.name }}</span>
+                    <span><i class="mn-icon-132"></i>{{ project.status.name | trans }}</span>
                     {% if project.city %}
                         <span><i class="fas fa-map-marker"></i>{{ project.city }}{% if project.country%}, {{ project.country}}{% endif %}</span>
                     {% elseif project.country%}

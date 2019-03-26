@@ -9,7 +9,7 @@
                         <div class="meta margin-top-1">
                             <span class="date"><i class="mn-icon-1130"></i>{{ dialog.project.createdAt|localizeddate('medium', 'none') }}</span>
                             <span class="author"><i class="fas fa-user-tie"></i><a href="{{ path('specialists_more', {'user': dialog.project.user.id}) }}">{{ dialog.project.user.getFullName() }}</a></span>
-                            <span><i class="mn-icon-132"></i>{{ dialog.project.status.name }}</span>
+                            <span><i class="mn-icon-132"></i>{{ dialog.project.status.name | trans }}</span>
                             {% if dialog.project.city %}
                                 <span><i class="fas fa-map-marker"></i>{{ dialog.project.city }}{% if dialog.project.country%}, {{ dialog.project.country}}{% endif %}</span>
                             {% elseif dialog.project.country%}
@@ -29,7 +29,7 @@
                         <div class="entry-meta">
                             <div class="row">
                                 <div class="col-md-2 dialogs-avatar text-center">
-                                    <img alt="" src="{% if message.from.profilePicture %} {{ message.from.profilePicture }} {% else %}{{ asset(avatart_placeholder) }}{% endif %}">
+                                    <div class="specialists-list-avatar" style="height: 150px; width: 150px; margin-top: 0px; background-image: url('{% if message.from.profilePicture %} {{ message.from.profilePicture }} {% else %}{{ asset(avatart_placeholder) }}{% endif %}')"></div>
                                 </div>
                                 <div class="info col-md-10">
                                     <div class="meta margin-top-1">
@@ -133,6 +133,7 @@
 
                 var row = $("<div class=\"row\"></div>");
                 var img = $("<div class=\"col-md-2 dialogs-avatar text-center\"><img src=\" "+profilePicture+"\" /></div>");
+                var img = $("<div class=\"col-md-2 dialogs-avatar text-center\"><div class=\"specialists-list-avatar\" style=\"height: 150px; width: 150px; margin-top: 0px; background-image: url('"+profilePicture+"')\"></div></div>");
                 var messageContent = $("<div class=\"info col-md-10\"></div>");
                 var date = $("<div class=\"meta margin-top-1\"><span class=\"date\"><i class=\"mn-icon-1130\"></i>"+message.createdAt+"</span></div>");
                 var text = $("<div class=\"row margin-top-5\"><div class=\"col-sm-12\"><b>"+name+": </b>"+message.message+"</div>");
