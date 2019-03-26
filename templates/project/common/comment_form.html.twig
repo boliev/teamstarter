@@ -1,6 +1,6 @@
 <div class="form-section add-comment-form">
     <div class="row">
-        <div class="col-xs-8 col-sm-offset-2">
+        <div class="col-md-8 col-md-offset-2">
             <form method="post" action="{{ path('project_add_comment', {'project': project.id}) }}">
                 <div class="row"> <div class="col-md-12 form-group">
                         {{ form_label(commentForm.comment, '', {'label_attr': {'class': 'bmd-label-floating'}}) }}
