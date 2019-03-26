@@ -104,13 +104,19 @@ class ProjectsController extends AbstractController
         UserSubscriptionsRepository $subscriptionsRepository,
         Project $project
     ) {
-        $isUserSubscribed = $this->getUser()
+        /** @var User $user */
+        $user = $this->getUser();
+        $isUserSubscribed = $user
             ? (bool) $subscriptionsRepository->getUserSubscribedToProjectComments($this->getUser(), $project)
             : false;
 
+        $userOfferForThisProject = $user && $user->getId() !== $project->getUser()->getId()
+            ? $offerRepository->getUserOfferForProject($this->getUser(), $project)
+            : null;
+
         return $this->render('project/more/index.html.twig', [
             'project' => $project,
-            'offer' => ($this->getUser() ? $offerRepository->getUserOfferForProject($this->getUser(), $project) : null),
+            'offer' => $userOfferForThisProject,
             'commentForm' => $this->createForm(CommentType::class)->createView(),
             'comments' => $commentRepository->getForProject($project),
             'isUserSubscribed' => $isUserSubscribed
