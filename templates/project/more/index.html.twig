@@ -21,8 +21,8 @@
                             <div class="info">
                                 <div class="meta margin-top-1">
                                     <span class="date"><i class="mn-icon-1130"></i>{{ project.createdAt|localizeddate('medium') }}</span>
-                                    <span class="date"><i class="fas fa-user-tie"></i>{{ project.user.getFullName() }}</span>
-                                    <span><i class="mn-icon-132"></i>{{ project.status.name }}</span>
+                                    <span class="author"><i class="fas fa-user-tie"></i><a href="{{ path('specialists_more', {'user': project.user.id}) }}">{{ project.user.getFullName() }}</a></span>
+                                    <span><i class="mn-icon-132"></i>{{ project.status.name | trans }}</span>
                                     {% if project.city %}
                                         <span><i class="fas fa-map-marker"></i>{{ project.city }}{% if project.country%}, {{ project.country}}{% endif %}</span>
                                     {% elseif project.country%}
@@ -77,9 +77,9 @@
                     {% include 'project/common/comment_form.html.twig' %}
 
                         <div class="row">
-                            <div class="col-xs-8 col-sm-offset-2 form-section">
+                            <div class="col-md-8 col-md-offset-2 form-section">
                                 <div class="row"> <div class="col-md-12 form-group text-center">
-                                        <label class="form-check-label"><input type="checkbox" id="project-comments-subscriptions" {% if isUserSubscribed %} checked="checked" {% endif %}> {{ 'comments.comments_subscription' | trans }}</label>
+                                        <label class="form-check-label hint"><input type="checkbox" id="project-comments-subscriptions" {% if isUserSubscribed %} checked="checked" {% endif %}> {{ 'comments.comments_subscription' | trans }}</label>
                                 </div></div>
                             </div>
                         </div>

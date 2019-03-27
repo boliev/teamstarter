@@ -1,7 +1,7 @@
 <div class="pull-right widget-social">
     <ul class="top-user-menu">
         {% if app.user %}
-            <li><img alt="" id="top-menu-avatar" src="{% if app.user.profilePicture %} {{ app.user.profilePicture }} {% else %}{{ asset(avatart_placeholder) }}{% endif %}" /></li>
+            <li style="padding: 0px"><div class="specialists-list-avatar" style="height: 45px; width: 45px; margin-top: 0px; background-image: url('{% if app.user.profilePicture %} {{ app.user.profilePicture }} {% else %}{{ asset(avatart_placeholder) }}{% endif %}')"></div></li>
             <li>
                 <div class="dropdown show">
                     <a class="btn btn-secondary dropdown-toggle top-menu-user" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

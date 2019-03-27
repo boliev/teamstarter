@@ -571,6 +571,8 @@ a, a:visited {
 .entry-title a {
 	color: #222222;
 }
+
+
 a:hover {
 	color: #222222;
 }
@@ -1137,6 +1139,12 @@ button.btn.btn-primary.text-capitalize.active {
 .post .entry-content .info .meta span {
 	white-space: nowrap;
 }
+
+.post .entry-content a {
+	color: #222222;
+}
+
+
 .pagination li a {
 	margin-right: 20px;
 	border-radius: 100% !important;
@@ -1773,7 +1781,7 @@ div.modal-login-social a, div.register-form-sn-login a {
 .form-section input.btn {
 	display: inline;
 	margin-bottom: 10px;
-	min-width: 240px;
+	min-width: 222px;
 }
 
 .form-bottom {
@@ -1800,9 +1808,15 @@ img.specialists-avatar {
 	border-radius: 50%;
 }
 
-img.specialists-list-avatar {
-	height: 100px;
+div.specialists-list-avatar {
+	display: inline-block;
+	height: 140px;
+	width: 150px;
 	border-radius: 50%;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
+	margin-top: 20px;
 }
 
 img.specialists-more-avatar {
@@ -2179,24 +2193,12 @@ article.new-message div.entry-content {
 	border-radius: 10px;
 }
 
-.dialogs-avatar img {
-	margin: 10px;
-	border-radius: 50%;
-	height: 100px;
-}
-
 .dialogs-avatar {
 	height: 120px;
 }
 
-.comments-avatar img {
-	margin: 10px;
-	border-radius: 50%;
-	height: 60px;
-}
-
 .comments-avatar {
-	height: 60px;
+	height: 70px;
 }
 
 .comment-user-name {
