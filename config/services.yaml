@@ -8,6 +8,7 @@ parameters:
     pro_price: '%env(PRO_PRICE)%'
     router.request_context.host: '%env(SERVICE_URL)%'
     router.request_context.scheme: '%env(SERVICE_SCHEME)%'
+    uploader.article_pic_max_size: 2000000
 
 services:
     # default configuration for services in *this* file
@@ -200,6 +201,14 @@ services:
         bind:
             $telegramUrl: "%env(TELEGRAM_URL)%"
             $telegramBotToken: "%env(TELEGRAM_BOT_TOKEN)%"
+
+    App\Uploader\FileUploader:
+        bind:
+            $kernelRoot: "%kernel.root_dir%"
+
+    App\Uploader\ArticleImageUploader:
+        bind:
+            $maxUploadedImageSize: "%uploader.article_pic_max_size%"
 
     Parsedown:
         class: \Parsedown

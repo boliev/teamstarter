@@ -503,3 +503,6 @@ editor:
     save_button: Сохранить
     publish_button: Опубликовать
     draft_button: В черновик
+    add_image_button: + Добавить изображение
+    upload_extension_exception: Неверный формат изображения
+    upload_max_size_exception: Максимальный размер изображения {size} MБ

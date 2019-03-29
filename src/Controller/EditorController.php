@@ -3,10 +3,14 @@
 namespace App\Controller;
 
 use App\Entity\Article;
+use App\Entity\User;
 use App\Form\Blog\ArticleType;
 use App\Repository\ArticleRepository;
+use App\Uploader\ArticleImageUploader;
+use App\Uploader\FileUploader;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -72,5 +76,41 @@ class EditorController extends AbstractController
             'form' => $form->createView(),
             'article' => $article,
         ]);
+    }
+
+    /**
+     * @Route("/editor/{article}/upload-image/", name="editor_edit_upload_image")
+     *
+     * @param Article $article
+     * @param EntityManagerInterface $em
+     *
+     * @param FileUploader $uploader
+     * @return JsonResponse
+     */
+    public function uploadScreenAction(Article $article, EntityManagerInterface $em, ArticleImageUploader $uploader)
+    {
+        /** @var User $user */
+        $user = $this->getUser();
+        if ($article->getAuthor()->getId() !== $user->getId()) {
+            $this->redirectToRoute('homepage');
+        }
+
+        if (isset($_FILES['qqfile'])) {
+            try {
+                $file = $uploader->upload($article, $_FILES['qqfile']);
+//                $projectScreen = new ProjectScreen();
+//                $projectScreen->setProject($project);
+//                $projectScreen->setScreenshot($file);
+            } catch (\Exception $e) {
+                return new JsonResponse(['error' => $e->getMessage()], 400);
+            }
+
+//            $em->persist($projectScreen);
+//            $em->flush();
+//            $uploader->reModerateIfNeeded($project);
+
+//            return new JsonResponse(['success' => true, 'picture' => $file.'?'.mt_rand(0, 5000), 'screenId' => $projectScreen->getId()]);
+            return new JsonResponse(['success' => true, 'picture' => $file.'?'.mt_rand(0, 5000)]);
+        }
     }
 }
