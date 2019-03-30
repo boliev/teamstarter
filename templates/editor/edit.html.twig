@@ -119,10 +119,10 @@
             })
         });
 
-        function deleteScreen(screenId)
+        function deleteScreen(imageId)
         {
-            $.post( "/project/edit/delete-screen/"+screenId, function( data ) {
-                $("#screen-"+screenId).remove();
+            $.post( "/editor/delete-image/"+imageId, function( data ) {
+                $("#screen-"+imageId).remove();
             });
         }
     </script>

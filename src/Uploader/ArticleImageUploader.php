@@ -3,6 +3,7 @@
 namespace App\Uploader;
 
 use App\Entity\Article;
+use App\Entity\ArticleImage;
 use Symfony\Component\Config\Exception\LoaderLoadException;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
@@ -46,5 +47,10 @@ class ArticleImageUploader
         }
 
         return $this->uploader->upload($image, 'articles', $article->getId());
+    }
+
+    public function remove(ArticleImage $image)
+    {
+        $this->uploader->remove($image->getImage());
     }
 }

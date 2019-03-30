@@ -2,6 +2,7 @@
 
 namespace App\Uploader;
 
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
@@ -13,10 +14,13 @@ class FileUploader
     /** @var string */
     private $kernelRoot;
 
+    /** @var Filesystem  */
+    private $fileSystem;
 
-    public function __construct(string $kernelRoot)
+    public function __construct(string $kernelRoot, Filesystem $filesystem)
     {
         $this->kernelRoot = $kernelRoot;
+        $this->fileSystem = $filesystem;
     }
 
     public function createUploadedFile(array $uploadedFileSource): UploadedFile
@@ -53,5 +57,11 @@ class FileUploader
         $file->move($newFileDir, $fileName);
 
         return '/'.$entityDir.'/'.$fileDir.'/'.$fileName;
+    }
+
+    public function remove(string $file)
+    {
+        $fileName = $this->kernelRoot.'/../public'.$file;
+        $this->fileSystem->remove($fileName);
     }
 }

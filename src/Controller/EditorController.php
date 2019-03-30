@@ -8,8 +8,8 @@ use App\Entity\User;
 use App\Form\Blog\ArticleType;
 use App\Repository\ArticleRepository;
 use App\Uploader\ArticleImageUploader;
-use App\Uploader\FileUploader;
 use Doctrine\ORM\EntityManagerInterface;
+use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -82,10 +82,10 @@ class EditorController extends AbstractController
     /**
      * @Route("/editor/{article}/upload-image/", name="editor_edit_upload_image")
      *
-     * @param Article $article
+     * @param Article                $article
      * @param EntityManagerInterface $em
+     * @param ArticleImageUploader   $uploader
      *
-     * @param FileUploader $uploader
      * @return JsonResponse
      */
     public function uploadScreenAction(Article $article, EntityManagerInterface $em, ArticleImageUploader $uploader)
@@ -102,7 +102,7 @@ class EditorController extends AbstractController
                 $articleImage = new ArticleImage();
                 $articleImage->setArticle($article);
                 $articleImage->setImage($image);
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 return new JsonResponse(['error' => $e->getMessage()], 400);
             }
 
@@ -111,5 +111,25 @@ class EditorController extends AbstractController
 
             return new JsonResponse(['success' => true, 'image' => $image.'?'.mt_rand(0, 5000), 'imageId' => $articleImage->getId()]);
         }
+
+        return new JsonResponse(['success' => false]);
+    }
+
+    /**
+     * @Route("/editor/delete-image/{image}", name="editor_edit_delete_image", methods="POST")
+     *
+     * @param ArticleImage           $image
+     * @param ArticleImageUploader   $uploader
+     * @param EntityManagerInterface $entityManager
+     *
+     * @return Response
+     */
+    public function deleteScreenAction(ArticleImage $image, ArticleImageUploader $uploader, EntityManagerInterface $entityManager)
+    {
+        $uploader->remove($image);
+        $entityManager->remove($image);
+        $entityManager->flush();
+
+        return new JsonResponse();
     }
 }
