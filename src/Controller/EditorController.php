@@ -27,6 +27,9 @@ class EditorController extends AbstractController
      */
     public function indexAction(ArticleRepository $articleRepository): Response
     {
+        return $this->render('editor/index.html.twig', [
+            'articlesList' => $articleRepository->findAll(),
+        ]);
     }
 
     /**

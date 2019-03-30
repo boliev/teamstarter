@@ -2079,6 +2079,20 @@ span.project-list-status-Unfinished {
 	border-color: #fff;
 }
 
+span.editor-article-list-status-Draft {
+	padding:2px 0px;
+	color: #222;
+	background-color: #fff;
+	border-color: #fff;
+}
+
+span.editor-article-list-status-Published {
+	padding:2px 5px;
+	color: #3c763d;
+	background-color: #dff0d8;
+	border-color: #d6e9c6;
+}
+
 span.project-list-status {
 	white-space: nowrap;
 }

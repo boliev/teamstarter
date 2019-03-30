@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+{% block title %} {{ 'title.editor' | trans }} {% endblock %}
+{% block body %}
+<div class ="container">
+    <div class="row section-content-2">
+
+        <div class="form-section">
+            <div class="col-sm-12">
+                <div class="kc-elm kc-title-wrap  left dark">
+                    <div class="title-wrapper">
+                        <h3 class="kc_title">{{ 'editor.header_list' | trans | raw }}</h3>
+                    </div>
+                </div>
+
+                <div class="row role-list">
+                    <div class="col-sm-12">
+                        <a href="{{ path('editor_new') }}">{{ 'editor.new_link' | trans }}</a>
+                    </div>
+                </div>
+                {% for article in articlesList %}
+
+                    <div class="row role-list">
+                        <div class="col-sm-5">
+                            <a href="#">{{ article.title }}</a>
+                        </div>
+                        <div class="col-sm-2">
+                            <span class="alert project-list-status editor-article-list-status-{{ article.status }}">{{ article.status | trans }}</span>
+                        </div>
+
+                        <div class="col-sm-2">
+                            {{ article.createdAt|localizeddate('short') }}
+                        </div>
+
+                        <div class="col-sm-3">
+                            <a class="table-list-actions" href="{{ path('editor_edit', {'article': article.id}) }}">{{ 'editor.edit_link' | trans }}</a>
+                            <a class="table-list-actions" href="{{ path('editor_edit', {'article': article.id}) }}">{{ 'editor.delete_link' | trans }}</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
