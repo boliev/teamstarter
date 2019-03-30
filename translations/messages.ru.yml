@@ -506,3 +506,4 @@ editor:
     add_image_button: + Добавить изображение
     upload_extension_exception: Неверный формат изображения
     upload_max_size_exception: Максимальный размер изображения {size} MБ
+    image_code_copied_to_buffer: Код изображения скопирован в буфер обмена

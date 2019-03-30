@@ -109,7 +109,7 @@ class EditorController extends AbstractController
             $em->persist($articleImage);
             $em->flush();
 
-            return new JsonResponse(['success' => true, 'image' => $image.'?'.mt_rand(0, 5000), 'imageId' => $articleImage->getId()]);
+            return new JsonResponse(['success' => true, 'image' => $image, 'imageId' => $articleImage->getId()]);
         }
 
         return new JsonResponse(['success' => false]);

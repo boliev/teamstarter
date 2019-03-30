@@ -30,7 +30,7 @@
                                 <div class="col-md-12 article-images">
                                     {% for image in article.images %}
                                         <div class="hovereffect" id="screen-{{ image.id }}">
-                                            <img class="img-responsive img-screens-gallery" src="{{ image.image }}" alt="">
+                                            <img class="img-responsive img-screens-gallery" src="{{ image.image }}" data-clipboard-text="![{{ article.title }}]({{ image.image }})">
                                             <div class="overlay">
                                                 <p class="icon-links text-center">
                                                     <a href="{{ image.image }}" data-lightbox="{{ article.title }}"><i class="fas fa-search-plus"></i></a>
@@ -104,7 +104,7 @@
                     onComplete: function(id, name, response) {
                         if(response.hasOwnProperty('image')) {
                             $(".article-images").append('<div class="hovereffect" id="screen-'+response['imageId']+'">\n' +
-                                '                                        <img class="img-responsive img-screens-gallery" src="'+response['image']+'" alt="">\n' +
+                                '                                        <img class="img-responsive img-screens-gallery" src="'+response['image']+'" alt="" data-clipboard-text="![{{ article.title }}]('+response['image']+')">\n' +
                                 '                                        <div class="overlay">\n' +
                                 '                                            <p class="icon-links text-center">\n' +
                                 '                                                <a href="'+response['image']+'" data-lightbox="{{ article.title }}"><i class="fas fa-search-plus"></i></a>\n' +
@@ -125,6 +125,25 @@
                 $("#screen-"+imageId).remove();
             });
         }
+
+        var clipboard = new ClipboardJS('.img-screens-gallery');
+
+        clipboard.on('success', function(e) {
+            if(e.action === 'copy') {
+                $(e.trigger)
+                    .tooltipster({
+                        animation: 'swing',
+                    })
+                    .tooltipster('content', '{{ 'editor.image_code_copied_to_buffer' | trans }}')
+                    .tooltipster('open');
+                setTimeout(function () {
+                    $(e.trigger).tooltipster('close');
+                    $(e.trigger).tooltipster('destroy');
+                }, 3000);
+            }
+
+            e.clearSelection();
+        });
     </script>
 
     <script type="text/template" id="qq-template">
