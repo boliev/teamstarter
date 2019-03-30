@@ -28,17 +28,17 @@
                         <div class = "row">
                             <div class="row margin-top-20">
                                 <div class="col-md-12 article-images">
-                                    {#{% for screen in article.images %}#}
-                                        {#<div class="hovereffect" id="screen-{{ screen.id }}">#}
-                                            {#<img class="img-responsive img-screens-gallery" src="{{ screen.screenshot }}" alt="">#}
-                                            {#<div class="overlay">#}
-                                                {#<p class="icon-links text-center">#}
-                                                    {#<a href="{{ screen.screenshot }}" data-lightbox="{{ article.title }}"><i class="fas fa-search-plus"></i></a>#}
-                                                    {#<a href="#null" onclick="deleteScreen({{ screen.id }})"><i class="fas fa-trash-alt"></i></a>#}
-                                                {#</p>#}
-                                            {#</div>#}
-                                        {#</div>#}
-                                    {#{% endfor %}#}
+                                    {% for image in article.images %}
+                                        <div class="hovereffect" id="screen-{{ image.id }}">
+                                            <img class="img-responsive img-screens-gallery" src="{{ image.image }}" alt="">
+                                            <div class="overlay">
+                                                <p class="icon-links text-center">
+                                                    <a href="{{ image.image }}" data-lightbox="{{ article.title }}"><i class="fas fa-search-plus"></i></a>
+                                                    <a href="#null" onclick="deleteScreen({{ image.id }})"><i class="fas fa-trash-alt"></i></a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
                                 </div>
                             </div>
                         </div>
@@ -102,13 +102,13 @@
                         $(".qq-upload-fail").remove()
                     },
                     onComplete: function(id, name, response) {
-                        if(response.hasOwnProperty('picture')) {
-                            $(".article-images").append('<div class="hovereffect" id="screen-'+response['screenId']+'">\n' +
-                                '                                        <img class="img-responsive img-screens-gallery" src="'+response['picture']+'" alt="">\n' +
+                        if(response.hasOwnProperty('image')) {
+                            $(".article-images").append('<div class="hovereffect" id="screen-'+response['imageId']+'">\n' +
+                                '                                        <img class="img-responsive img-screens-gallery" src="'+response['image']+'" alt="">\n' +
                                 '                                        <div class="overlay">\n' +
                                 '                                            <p class="icon-links text-center">\n' +
-                                '                                                <a href="'+response['picture']+'" data-lightbox="{{ article.title }}"><i class="fas fa-search-plus"></i></a>\n' +
-                                '                                                <a href="#null" onclick="deleteScreen('+response['screenId']+')"><i class="fas fa-trash-alt"></i></a>\n' +
+                                '                                                <a href="'+response['image']+'" data-lightbox="{{ article.title }}"><i class="fas fa-search-plus"></i></a>\n' +
+                                '                                                <a href="#null" onclick="deleteScreen('+response['imageId']+')"><i class="fas fa-trash-alt"></i></a>\n' +
                                 '                                            </p>\n' +
                                 '                                        </div>\n' +
                                 '                                    </div>');

@@ -1927,11 +1927,11 @@ div.bootstrap-tagsinput {
 	color: #42a5f5;
 }
 
-div.project-screenshots .img-screens-gallery {
+.img-screens-gallery {
 	height: 200px;
 }
 
-div.project-screenshots .screens-img span.delete-screen {
+.screens-img span.delete-screen {
 	font-size: 25px;
 	position: relative;
 	top: -27px;
@@ -1939,7 +1939,7 @@ div.project-screenshots .screens-img span.delete-screen {
 }
 
 
-div.project-screenshots .hovereffect {
+.hovereffect {
 	width: auto;
 	height: 100%;
 	float: left;
@@ -1949,7 +1949,7 @@ div.project-screenshots .hovereffect {
 	cursor: default;
 	margin: 5px;
 }
-div.project-screenshots .hovereffect .overlay {
+.hovereffect .overlay {
 	width: 100%;
 	position: absolute;
 	overflow: hidden;
@@ -1968,19 +1968,19 @@ div.project-screenshots .hovereffect .overlay {
 
 }
 
-div.project-screenshots .hovereffect img {
+.hovereffect img {
 	display: block;
 	position: relative;
 	-webkit-transition: -webkit-transform 0.35s;
 	transition: transform 0.35s;
 }
 
-div.project-screenshots .hovereffect:hover img {
+.hovereffect:hover img {
 	-webkit-transform: translate3d(0,-10%,0);
 	transform: translate3d(0,-10%,0);
 }
 
-div.project-screenshots .hovereffect a.info {
+.hovereffect a.info {
 	display: inline-block;
 	text-decoration: none;
 	padding: 7px 14px;
@@ -1990,23 +1990,23 @@ div.project-screenshots .hovereffect a.info {
 	margin: 50px 0 0 0;
 	background-color: transparent;
 }
-div.project-screenshots .hovereffect a.info:hover {
+.hovereffect a.info:hover {
 	box-shadow: 0 0 5px #fff;
 }
 
 
-div.project-screenshots .hovereffect p.icon-links a {
+.hovereffect p.icon-links a {
 	color: #ffffff;
 	font-size: 1.4em;
 	opacity: 1;
 }
 
-div.project-screenshots .hovereffect:hover p.icon-links a:hover,
-div.project-screenshots .hovereffect:hover p.icon-links a:focus {
+.hovereffect:hover p.icon-links a:hover,
+.hovereffect:hover p.icon-links a:focus {
 	color: #ffffff;
 }
 
-div.project-screenshots .hovereffect p.icon-links a {
+.hovereffect p.icon-links a {
 	-webkit-transition: -webkit-transform 0.35s;
 	transition: transform 0.35s;
 	-webkit-transform: translate3d(0,200%,0);
@@ -2015,7 +2015,7 @@ div.project-screenshots .hovereffect p.icon-links a {
 	margin-right: 15px;
 }
 
-div.project-screenshots .hovereffect p.icon-links a span:before {
+.hovereffect p.icon-links a span:before {
 	display: inline-block;
 	padding: 8px 10px;
 	speak: none;
@@ -2024,29 +2024,29 @@ div.project-screenshots .hovereffect p.icon-links a span:before {
 }
 
 
-div.project-screenshots .hovereffect:hover .overlay,
-div.project-screenshots .hovereffect:hover h2,
-div.project-screenshots .hovereffect:hover p.icon-links a {
+.hovereffect:hover .overlay,
+.hovereffect:hover h2,
+.hovereffect:hover p.icon-links a {
 	-webkit-transform: translate3d(0,0,0);
 	transform: translate3d(0,0,0);
 }
 
-div.project-screenshots .hovereffect:hover h2 {
+.hovereffect:hover h2 {
 	-webkit-transition-delay: 0.05s;
 	transition-delay: 0.05s;
 }
 
-div.project-screenshots .hovereffect:hover p.icon-links a:nth-child(3) {
+.hovereffect:hover p.icon-links a:nth-child(3) {
 	-webkit-transition-delay: 0.1s;
 	transition-delay: 0.1s;
 }
 
-div.project-screenshots .hovereffect:hover p.icon-links a:nth-child(2) {
+.hovereffect:hover p.icon-links a:nth-child(2) {
 	-webkit-transition-delay: 0.15s;
 	transition-delay: 0.15s;
 }
 
-div.project-screenshots .hovereffect:hover p.icon-links a:first-child {
+.hovereffect:hover p.icon-links a:first-child {
 	-webkit-transition-delay: 0.2s;
 	transition-delay: 0.2s;
 }

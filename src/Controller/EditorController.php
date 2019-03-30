@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Article;
+use App\Entity\ArticleImage;
 use App\Entity\User;
 use App\Form\Blog\ArticleType;
 use App\Repository\ArticleRepository;
@@ -97,20 +98,18 @@ class EditorController extends AbstractController
 
         if (isset($_FILES['qqfile'])) {
             try {
-                $file = $uploader->upload($article, $_FILES['qqfile']);
-//                $projectScreen = new ProjectScreen();
-//                $projectScreen->setProject($project);
-//                $projectScreen->setScreenshot($file);
+                $image = $uploader->upload($article, $_FILES['qqfile']);
+                $articleImage = new ArticleImage();
+                $articleImage->setArticle($article);
+                $articleImage->setImage($image);
             } catch (\Exception $e) {
                 return new JsonResponse(['error' => $e->getMessage()], 400);
             }
 
-//            $em->persist($projectScreen);
-//            $em->flush();
-//            $uploader->reModerateIfNeeded($project);
+            $em->persist($articleImage);
+            $em->flush();
 
-//            return new JsonResponse(['success' => true, 'picture' => $file.'?'.mt_rand(0, 5000), 'screenId' => $projectScreen->getId()]);
-            return new JsonResponse(['success' => true, 'picture' => $file.'?'.mt_rand(0, 5000)]);
+            return new JsonResponse(['success' => true, 'image' => $image.'?'.mt_rand(0, 5000), 'imageId' => $articleImage->getId()]);
         }
     }
 }

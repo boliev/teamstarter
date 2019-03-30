@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -44,6 +45,12 @@ class Article
      * @ORM\Column(type="text", nullable=true)
      */
     private $text;
+
+    /**
+     * @var Collection
+     * @ORM\OneToMany(targetEntity="App\Entity\ArticleImage", mappedBy="article")
+     */
+    private $images;
 
     /**
      * @var bool
@@ -217,5 +224,21 @@ class Article
     public function isPublished()
     {
         return self::STATUS_PUBLISHED === $this->getStatus();
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getImages(): Collection
+    {
+        return $this->images;
+    }
+
+    /**
+     * @param Collection $images
+     */
+    public function setImages(Collection $images): void
+    {
+        $this->images = $images;
     }
 }
