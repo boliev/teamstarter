@@ -135,4 +135,21 @@ class EditorController extends AbstractController
 
         return new JsonResponse();
     }
+
+    /**
+     * @Route("/editor/{article}/delete", name="editor_delete")
+     *
+     * @param Article                $article
+     * @param EntityManagerInterface $entityManager
+     *
+     * @return Response
+     */
+    public function removeAction(Article $article, EntityManagerInterface $entityManager): Response
+    {
+        $article->setRemoved(true);
+        $entityManager->persist($article);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('editor_list');
+    }
 }

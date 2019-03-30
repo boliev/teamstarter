@@ -512,3 +512,4 @@ editor:
     edit_link: Редактировать
     delete_link: Удалить
     new_link: + Создать новую статью
+    article_remove_confirm: Точно-точно удалить статью?
