@@ -59,6 +59,12 @@ class Article
     private $removed;
 
     /**
+     * @var integer
+     * @ORM\Column(type="integer", nullable=false, options={"default": 0})
+     */
+    private $commentsCount;
+
+    /**
      * @var \DateTime
      * @ORM\Column(type="datetime")
      */
@@ -240,5 +246,21 @@ class Article
     public function setImages(Collection $images): void
     {
         $this->images = $images;
+    }
+
+    /**
+     * @return int
+     */
+    public function getCommentsCount(): int
+    {
+        return $this->commentsCount;
+    }
+
+    /**
+     * @param int $commentsCount
+     */
+    public function setCommentsCount(int $commentsCount): void
+    {
+        $this->commentsCount = $commentsCount;
     }
 }

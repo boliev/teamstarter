@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+{% block title %} {{ 'title.blog' | trans }} {% endblock %}
+{% block body %}
+    <div class ="container">
+        {% if pagination is empty  %}
+            <div class="no-projects-found">{{ 'blog.no_one_found' | trans }}</div>
+        {% endif %}
+
+            {% for article in pagination %}
+                {% include 'blog/one_post.html.twig' with {'article': article} %}
+            {% endfor %}
+
+        <div class="navigation">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+    </div>
+{% endblock %}

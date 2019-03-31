@@ -50,6 +50,7 @@ title:
     promo_request: Я хочу записаться на бета-тестирование
     contact: Контакты
     editor: Редактор статей
+    blog: Блог
 
 registration:
     header: Регистрация
@@ -513,3 +514,6 @@ editor:
     delete_link: Удалить
     new_link: + Создать новую статью
     article_remove_confirm: Точно-точно удалить статью?
+
+blog:
+    no_one_found: Статей пока нет
