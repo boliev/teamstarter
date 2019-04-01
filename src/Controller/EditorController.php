@@ -44,6 +44,7 @@ class EditorController extends AbstractController
         $article = new Article();
         $article->setStatus(Article::STATUS_DRAFT);
         $article->setAuthor($this->getUser());
+        $article->setCommentsCount(0);
         $entityManager->persist($article);
         $entityManager->flush();
 

@@ -263,4 +263,13 @@ class Article
     {
         $this->commentsCount = $commentsCount;
     }
+
+    public function getShort(): string
+    {
+        preg_match("/^(.*)<cut \/>/uis", $this->text, $matches);
+        if(isset($matches[1])) {
+            return $matches[1];
+        }
+        return $this->text;
+    }
 }

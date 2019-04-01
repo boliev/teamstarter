@@ -48,6 +48,17 @@
                             </div>
                         </div>
                         <div class="row">
+                            <div class="col-md-11 form-group text-right editor-toolbar">
+                                <a href="#null" id="toolbar-cut"><i class="fas fa-cut"></i></a>
+                                <a href="#null" id="toolbar-cut_h1"><i class="fas fa-heading"></i></a>
+                                <a href="#null" id="toolbar-cut_h2" style="font-size: 14pt;"><i class="fas fa-heading"></i></a>
+                                <a href="#null" id="toolbar-cut_h3" style="font-size: 12pt;"><i class="fas fa-heading"></i></a>
+                                <a href="#null" id="toolbar-cut_bold"><i class="fas fa-bold"></i></a>
+                                <a href="#null" id="toolbar-cut_italic"><i class="fas fa-italic"></i></a>
+                                <a href="#null" id="toolbar-cut_quote"><i class="fas fa-quote-right"></i></a>
+                            </div>
+                        </div>
+                        <div class="row">
                             <div class="col-md-12 form-group">
                                 {{ form_label(form.text, '', {'label_attr': {'class': 'bmd-label-floating'}}) }}
                                 {{ form_widget(form.text, {'attr': {'class': 'input-block', 'rows': 30, 'style': 'height:1200px; max-height: 1200px;'}}) }}
@@ -87,6 +98,53 @@
 {% block javascripts %}
     <script>
         $(function() {
+
+            $("#toolbar-cut").click(function() {
+                addToTextearea('<cut />');
+            });
+
+            $("#toolbar-cut_h1").click(function() {
+                addToTextearea('#');
+            });
+
+            $("#toolbar-cut_h2").click(function() {
+                addToTextearea('##');
+            });
+
+            $("#toolbar-cut_h3").click(function() {
+                addToTextearea('###');
+            });
+
+            $("#toolbar-cut_bold").click(function() {
+                wrapSelected('**', '**');
+            });
+
+            $("#toolbar-cut_italic").click(function() {
+                wrapSelected('*', '*');
+            });
+
+            $("#toolbar-cut_quote").click(function() {
+                wrapSelected('```', '```');
+            });
+
+            function addToTextearea(txtToAdd)
+            {
+                var area = $("#article_text");
+                var caretStart = area[0].selectionStart;
+                var textAreaTxt = area.val();
+                area.val(textAreaTxt.substring(0, caretStart) + txtToAdd + textAreaTxt.substring(caretStart) );
+            }
+
+            function wrapSelected(start, end) {
+                var area = $("#article_text");
+                var caretStart = area[0].selectionStart;
+                var caretEnd = area[0].selectionEnd;
+                var textAreaTxt = area.val();
+                area.val(textAreaTxt.substring(0, caretStart) + start + textAreaTxt.substring(caretStart) );
+                var textAreaTxt = area.val();
+                area.val(textAreaTxt.substring(0, caretEnd+start.length) + end + textAreaTxt.substring(caretEnd+start.length) );
+            }
+
             var uploader = new qq.FineUploader({
                 element: document.getElementById("uploader"),
                 debug: {{ fineUploader.debug }},

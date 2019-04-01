@@ -12,7 +12,7 @@
             </div>
         </div>
         <div class="info-bottom">
-            <div class="info-description">{{ markdown (article.text) | raw }}</div>
+            <div class="info-description">{{ markdown (article.short) | raw }}</div>
             <div class="margin-top-10"><a href="{{ path('blog_more', {'article': article.id}) }}">{{ 'more' | trans }}</a></div>
         </div>
     </div>

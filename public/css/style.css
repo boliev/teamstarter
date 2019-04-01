@@ -2575,3 +2575,18 @@ div.index-banner-text-row ul li:before {
 	font-size: 12px;
 	margin-bottom: 30px;
 }
+
+.editor-toolbar {
+	margin-bottom: 0px;
+}
+
+.editor-toolbar a {
+	color: #222;
+	font-size: 16pt;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.editor-toolbar a:hover {
+	color: #42a5f5;
+}
