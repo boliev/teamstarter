@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use DateTime;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -65,13 +66,19 @@ class Article
     private $commentsCount;
 
     /**
-     * @var \DateTime
+     * @var DateTime|null
+     * @ORM\Column(type="datetime")
+     */
+    private $publishedAt;
+
+    /**
+     * @var DateTime
      * @ORM\Column(type="datetime")
      */
     private $createdAt;
 
     /**
-     * @var \DateTime
+     * @var DateTime
      * @ORM\Column(type="datetime")
      */
     private $updatedAt;
@@ -81,7 +88,7 @@ class Article
      */
     public function __construct()
     {
-        $this->setCreatedAt(new \DateTime('now'));
+        $this->setCreatedAt(new DateTime('now'));
         $this->setRemoved(false);
     }
 
@@ -91,7 +98,7 @@ class Article
      */
     public function updatedTimestamps(): void
     {
-        $this->setUpdatedAt(new \DateTime('now'));
+        $this->setUpdatedAt(new DateTime('now'));
     }
 
     /**
@@ -191,33 +198,33 @@ class Article
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt(): DateTime
     {
         return $this->createdAt;
     }
 
     /**
-     * @param \DateTime $createdAt
+     * @param DateTime $createdAt
      */
-    public function setCreatedAt(\DateTime $createdAt): void
+    public function setCreatedAt(DateTime $createdAt): void
     {
         $this->createdAt = $createdAt;
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
-    public function getUpdatedAt(): \DateTime
+    public function getUpdatedAt(): DateTime
     {
         return $this->updatedAt;
     }
 
     /**
-     * @param \DateTime $updatedAt
+     * @param DateTime $updatedAt
      */
-    public function setUpdatedAt(\DateTime $updatedAt): void
+    public function setUpdatedAt(DateTime $updatedAt): void
     {
         $this->updatedAt = $updatedAt;
     }
@@ -271,5 +278,21 @@ class Article
             return $matches[1];
         }
         return $this->text;
+    }
+
+    /**
+     * @return DateTime
+     */
+    public function getPublishedAt(): ?DateTime
+    {
+        return $this->publishedAt;
+    }
+
+    /**
+     * @param DateTime $publishedAt
+     */
+    public function setPublishedAt(?DateTime $publishedAt=null): void
+    {
+        $this->publishedAt = $publishedAt;
     }
 }

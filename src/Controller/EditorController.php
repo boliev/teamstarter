@@ -8,6 +8,7 @@ use App\Entity\User;
 use App\Form\Blog\ArticleType;
 use App\Repository\ArticleRepository;
 use App\Uploader\ArticleImageUploader;
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -54,11 +55,12 @@ class EditorController extends AbstractController
     /**
      * @Route("/editor/{article}/edit", name="editor_edit")
      *
-     * @param Article                $article
-     * @param Request                $request
+     * @param Article $article
+     * @param Request $request
      * @param EntityManagerInterface $entityManager
      *
      * @return Response
+     * @throws Exception
      */
     public function editAction(Article $article, Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -67,6 +69,7 @@ class EditorController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             if (null !== $request->request->get('publish')) {
                 $article->setStatus(Article::STATUS_PUBLISHED);
+                $article->setPublishedAt(new DateTime());
             }
 
             if (null !== $request->request->get('draft')) {

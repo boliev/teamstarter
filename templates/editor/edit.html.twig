@@ -30,7 +30,7 @@
                                 <div class="col-md-12 article-images">
                                     {% for image in article.images %}
                                         <div class="hovereffect" id="screen-{{ image.id }}">
-                                            <img class="img-responsive img-screens-gallery" src="{{ image.image }}" data-clipboard-text="![{{ article.title }}]({{ image.image }})">
+                                            <img class="img-responsive img-screens-gallery" src="{{ image.image }}" data-clipboard-text="<img alt='{{ article.title }}' src='{{ image.image }}'>">
                                             <div class="overlay">
                                                 <p class="icon-links text-center">
                                                     <a href="{{ image.image }}" data-lightbox="{{ article.title }}"><i class="fas fa-search-plus"></i></a>
@@ -162,7 +162,7 @@
                     onComplete: function(id, name, response) {
                         if(response.hasOwnProperty('image')) {
                             $(".article-images").append('<div class="hovereffect" id="screen-'+response['imageId']+'">\n' +
-                                '                                        <img class="img-responsive img-screens-gallery" src="'+response['image']+'" alt="" data-clipboard-text="![{{ article.title }}]('+response['image']+')">\n' +
+                                '                                        <img class="img-responsive img-screens-gallery" src="'+response['image']+'" alt="" data-clipboard-text="<img alt=\'{{ article.title }}\' src=\''+response['image']+'\'>">\n' +
                                 '                                        <div class="overlay">\n' +
                                 '                                            <p class="icon-links text-center">\n' +
                                 '                                                <a href="'+response['image']+'" data-lightbox="{{ article.title }}"><i class="fas fa-search-plus"></i></a>\n' +

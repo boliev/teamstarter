@@ -2592,7 +2592,8 @@ div.index-banner-text-row ul li:before {
 }
 
 .blog-post .blog-text img {
-	padding:10px;
+	padding-top:10px;
+	padding-right:10px;
 }
 
 .post .entry-content a.more-link {

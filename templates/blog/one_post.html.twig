@@ -3,7 +3,7 @@
         <div class="entry-meta">
             <div class="info">
                 <div class="meta margin-top-1">
-                    <span class="date"><i class="mn-icon-1130"></i>{{ article.createdAt|localizeddate('short', 'none') }}</span>
+                    <span class="date"><i class="mn-icon-1130"></i>{{ article.publishedAt|localizeddate('short', 'none') }}</span>
                     {% if article.commentsCount > 0 %}
                         <span><a href="{{ path('blog_more', {'article': article.id}) }}#comments"><i class="far fa-comments"></i>{{ project.commentsCount }}</a></span>
                     {% endif %}
