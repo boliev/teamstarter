@@ -75,7 +75,7 @@
                     </div>
                     {% include 'project/common/comment_list.html.twig' %}
                     {% include 'project/common/comment_form.html.twig' %}
-
+                    {% if app.user %}
                         <div class="row">
                             <div class="col-md-8 col-md-offset-2 form-section">
                                 <div class="row"> <div class="col-md-12 form-group text-center">
@@ -83,6 +83,7 @@
                                 </div></div>
                             </div>
                         </div>
+                    {% endif %}
                 </article>
     </div>
 {% endblock %}

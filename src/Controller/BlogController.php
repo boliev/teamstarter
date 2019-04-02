@@ -6,15 +6,18 @@ use App\Entity\Article;
 use App\Entity\Comment;
 use App\Entity\Project;
 use App\Entity\User;
+use App\Entity\UserSubscriptions;
 use App\Form\CommentType;
 use App\Notifications\Notificator;
 use App\Repository\ArticleRepository;
 use App\Repository\CommentRepository;
-use App\Repository\ProjectRepository;
+use App\Repository\UserSubscriptionsRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\NonUniqueResultException;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
@@ -37,7 +40,6 @@ class BlogController extends AbstractController
         PaginatorInterface $paginator,
         int $page = 1
     ) {
-        /** @var ProjectRepository $projectRepository */
         $articles = $articleRepository->getPublishedQuery();
 
         $pagination = $paginator->paginate(
@@ -53,17 +55,31 @@ class BlogController extends AbstractController
     /**
      * @Route("/blog/{article}/more", name="blog_more")
      *
-     * @param Article           $article
-     * @param CommentRepository $commentRepository
+     * @param Article                     $article
+     * @param CommentRepository           $commentRepository
+     * @param UserSubscriptionsRepository $subscriptionsRepository
      *
      * @return Response
+     *
+     * @throws NonUniqueResultException
      */
-    public function moreAction(Article $article, CommentRepository $commentRepository)
+    public function moreAction(
+        Article $article,
+        CommentRepository $commentRepository,
+        UserSubscriptionsRepository $subscriptionsRepository)
     {
+        /** @var User $user */
+        $user = $this->getUser();
+
+        $isUserSubscribed = $user
+            ? (bool) $subscriptionsRepository->getUserSubscribedToArticleComments($this->getUser(), $article)
+            : false;
+
         return $this->render('blog/more/index.html.twig', [
             'article' => $article,
             'commentForm' => $this->createForm(CommentType::class)->createView(),
             'comments' => $commentRepository->getForArticle($article),
+            'isUserSubscribed' => $isUserSubscribed,
         ]);
     }
 
@@ -126,5 +142,45 @@ class BlogController extends AbstractController
         $em->flush();
 
         return $comment;
+    }
+
+    /**
+     * @Route("/blog/{article}/comments/subscribe", name="article_comment_subscription", methods={"POST"})
+     *
+     * @param Article                     $article
+     * @param UserSubscriptionsRepository $subscriptionsRepository
+     * @param EntityManagerInterface      $entityManager
+     *
+     * @return JsonResponse
+     *
+     * @throws NonUniqueResultException
+     */
+    public function commentsSubscribe(
+        Article $article,
+        UserSubscriptionsRepository $subscriptionsRepository,
+        EntityManagerInterface $entityManager
+    ) {
+        $user = $this->getUser();
+
+        if (!$user) {
+            throw new AccessDeniedException();
+        }
+
+        $subscription = $subscriptionsRepository->getUserSubscribedToArticleComments($user, $article);
+        if (null !== $subscription) {
+            $entityManager->remove($subscription);
+            $entityManager->flush();
+
+            return new JsonResponse(['success' => true]);
+        }
+
+        $subscription = new UserSubscriptions();
+        $subscription->setUser($user);
+        $subscription->setEntityId($article->getId());
+        $subscription->setEvent(UserSubscriptions::EVENT_NEW_COMMENT_TO_ARTICLE_ADDED);
+        $entityManager->persist($subscription);
+        $entityManager->flush();
+
+        return new JsonResponse(['success' => true]);
     }
 }

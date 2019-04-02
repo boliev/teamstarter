@@ -25,36 +25,39 @@
                         </div>
                         <div class="info-bottom">
                             <div class="info-description blog-text">{{ markdown (article.text) | raw }}</div>
+                        </div>
                     </div>
+                </article>
+
                     {% include 'blog/common/comment_list.html.twig' %}
                     {% include 'blog/common/comment_form.html.twig' %}
+                    {% if app.user %}
+                        <div class="row">
+                            <div class="col-md-8 col-md-offset-2 form-section">
+                                <div class="row"> <div class="col-md-12 form-group text-center">
+                                        <label class="form-check-label hint"><input type="checkbox" id="article-comments-subscriptions" {% if isUserSubscribed %} checked="checked" {% endif %}> {{ 'comments.comments_subscription' | trans }}</label>
+                                </div></div>
+                            </div>
+                        </div>
+                    {% endif %}
 
-{#                        <div class="row">#}
-{#                            <div class="col-md-8 col-md-offset-2 form-section">#}
-{#                                <div class="row"> <div class="col-md-12 form-group text-center">#}
-{#                                        <label class="form-check-label hint"><input type="checkbox" id="project-comments-subscriptions" {% if isUserSubscribed %} checked="checked" {% endif %}> {{ 'comments.comments_subscription' | trans }}</label>#}
-{#                                </div></div>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                </article>#}
     </div>
 {% endblock %}
 
 {% block javascripts %}
     <script>
-
-        // $(function () {
-        //     $("#project-comments-subscriptions").click(function() {
-        //         $("#project-comments-subscriptions").attr('disabled', 'disabled');
-        //         $.ajax({
-        //             type: "POST",
-        {#            url: "{{ path('project_comment_subscription', {"project": project.id}) }}",#}
-        //             data: '',
-        //             success: function() {
-        //                 $("#project-comments-subscriptions").removeAttr('disabled');
-        //             }
-        //         });
-        //     });
-        // })
+        $(function () {
+            $("#article-comments-subscriptions").click(function() {
+                $("#article-comments-subscriptions").attr('disabled', 'disabled');
+                $.ajax({
+                    type: "POST",
+                    url: "{{ path('article_comment_subscription', {"article": article.id}) }}",
+                    data: '',
+                    success: function() {
+                        $("#article-comments-subscriptions").removeAttr('disabled');
+                    }
+                });
+            });
+        })
     </script>
 {% endblock %}
