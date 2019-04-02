@@ -20,7 +20,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class BlogController extends AbstractController
 {
     /**
-     * @Route("/blog", name="blog_list")
+     * @Route("/blog/{page}", name="blog_list", defaults={"page": 1})
      *
      * @param ArticleRepository $articleRepository
      * @param PaginatorInterface $paginator

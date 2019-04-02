@@ -3105,17 +3105,6 @@ ul.style-ul li span {
   border-color: #42a5f5;
 }
 
-.more-link {
-  color: #42a5f5;
-  display: inline-block;
-  font-weight: 700;
-  margin: 10px 0;
-  text-transform: capitalize;
-}
-.more-link:hover {
-  text-decoration: none;
-}
-
 /* Search
 ------------------------------------------------*/
 .search-popup .dropdown-menu {

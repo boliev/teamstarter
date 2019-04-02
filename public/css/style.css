@@ -2590,3 +2590,15 @@ div.index-banner-text-row ul li:before {
 .editor-toolbar a:hover {
 	color: #42a5f5;
 }
+
+.blog-post .blog-text img {
+	padding:10px;
+}
+
+.post .entry-content a.more-link {
+	color: #42a5f5;
+}
+
+.post .entry-content a.more-link:hover {
+	color: #222;
+}
