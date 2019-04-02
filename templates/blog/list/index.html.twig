@@ -7,7 +7,7 @@
         {% endif %}
 
             {% for article in pagination %}
-                {% include 'blog/one_post.html.twig' with {'article': article} %}
+                {% include 'blog/list/one_post.html.twig' with {'article': article} %}
             {% endfor %}
 
         <div class="navigation">

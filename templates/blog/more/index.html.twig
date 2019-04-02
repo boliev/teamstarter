@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+{% block title %} {{ article.title }} {% endblock %}
+{% block body %}
+    <div class ="container">
+
+        {% for message in app.flashes('add-comment-success') %}
+            <div class="success-message margin-top-20">
+                {{ message | raw}}
+            </div>
+        {% endfor %}
+
+                <article class="post blog-post">
+                    <div class="entry-content">
+                        <div class="entry-meta">
+                            <div class="info">
+                                <div class="meta margin-top-1">
+                                    {% if article.publishedAt %}
+                                    <span class="date"><i class="mn-icon-1130"></i>{{ article.publishedAt|localizeddate('short', 'none') }}</span>
+                                    {% else %}
+                                    <span class="date"><i class="mn-icon-1130"></i>{{ article.createdAt|localizeddate('short', 'none') }}</span>
+                                    {% endif %}
+                                </div>
+                                <div class="row"><div class="col-sm-12"><h1 class="entry-title">{{ article.title }}</h1></div></div>
+                            </div>
+                        </div>
+                        <div class="info-bottom">
+                            <div class="info-description blog-text">{{ markdown (article.text) | raw }}</div>
+                    </div>
+                    {% include 'blog/common/comment_list.html.twig' %}
+                    {% include 'blog/common/comment_form.html.twig' %}
+
+{#                        <div class="row">#}
+{#                            <div class="col-md-8 col-md-offset-2 form-section">#}
+{#                                <div class="row"> <div class="col-md-12 form-group text-center">#}
+{#                                        <label class="form-check-label hint"><input type="checkbox" id="project-comments-subscriptions" {% if isUserSubscribed %} checked="checked" {% endif %}> {{ 'comments.comments_subscription' | trans }}</label>#}
+{#                                </div></div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                </article>#}
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+
+        // $(function () {
+        //     $("#project-comments-subscriptions").click(function() {
+        //         $("#project-comments-subscriptions").attr('disabled', 'disabled');
+        //         $.ajax({
+        //             type: "POST",
+        {#            url: "{{ path('project_comment_subscription', {"project": project.id}) }}",#}
+        //             data: '',
+        //             success: function() {
+        //                 $("#project-comments-subscriptions").removeAttr('disabled');
+        //             }
+        //         });
+        //     });
+        // })
+    </script>
+{% endblock %}

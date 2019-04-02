@@ -1,0 +1,19 @@
+<div class="form-section add-comment-form">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <form method="post" action="{{ path('blog_add_comment', {'article': article.id}) }}">
+                <div class="row"> <div class="col-md-12 form-group">
+                        {{ form_label(commentForm.comment, '', {'label_attr': {'class': 'bmd-label-floating'}}) }}
+                        {{ form_widget(commentForm.comment, {'attr': {'class': 'input-block'}}) }}
+                        {{ form_errors(commentForm.comment)}}
+                    </div></div>
+                <div class="row">
+                    <div class="col-md-12 form-bottom">
+                        {{ form_row(commentForm._token) }}
+                        <input type="submit" class="btn btn-primary btn-large" value="{{ 'comments.new_comment_submit_button'|trans }}">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
