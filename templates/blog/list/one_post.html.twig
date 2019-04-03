@@ -13,7 +13,7 @@
         </div>
         <div class="info-bottom">
             <div class="info-description blog-text">{{ markdown (article.short) | raw }}</div>
-            <div class="margin-top-10"><a class="more-link" href="{{ path('blog_more', {'article': article.id}) }}">{{ 'more' | trans }}</a></div>
+            <div class="margin-top-10"><a class="more-link" href="{{ path('blog_more', {'article': article.id}) }}">{{ 'blog.more' | trans }}</a></div>
         </div>
     </div>
 </article>
