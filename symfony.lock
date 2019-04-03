@@ -2,6 +2,9 @@
     "clue/stream-filter": {
         "version": "v1.4.0"
     },
+    "debril/feed-io": {
+        "version": "v4.3.6"
+    },
     "doctrine/annotations": {
         "version": "1.0",
         "recipe": {

@@ -14,13 +14,21 @@ class ArticleRepository extends EntityRepository
 
     public function getPublishedQuery()
     {
-        $query = $this->getPublished()
-            ->orderBy('a.createdAt', 'DESC');
+        $query = $this->getPublishedQueryBuilder()
+            ->orderBy('a.publishedAt', 'DESC');
 
         return $query->getQuery();
     }
 
-    private function getPublished()
+    public function getPublished()
+    {
+        return $this->getPublishedQueryBuilder()
+            ->orderBy('a.publishedAt', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    private function getPublishedQueryBuilder()
     {
         return $this->createQueryBuilder('a')
             ->where('a.status = :publishedStatus')

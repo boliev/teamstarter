@@ -11,9 +11,12 @@ use App\Notifications\Notificator;
 use App\Repository\ArticleRepository;
 use App\Repository\CommentRepository;
 use App\Repository\UserSubscriptionsRepository;
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\NonUniqueResultException;
+use FeedIo;
 use Knp\Component\Pager\PaginatorInterface;
+use Psr\Http\Message\ResponseInterface;
 use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -21,6 +24,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 class BlogController extends AbstractController
@@ -181,5 +185,42 @@ class BlogController extends AbstractController
         $entityManager->flush();
 
         return new JsonResponse(['success' => true]);
+    }
+
+    /**
+     * @Route("/blog/feed/rss", name="blog_rss", methods={"GET"})
+     *
+     * @param TranslatorInterface $translator
+     * @param ArticleRepository   $articleRepository
+     *
+     * @return ResponseInterface
+     *
+     * @throws \Exception
+     */
+    public function rssAction(TranslatorInterface $translator, ArticleRepository $articleRepository)
+    {
+        $feedIo = FeedIo\Factory::create()->getFeedIo();
+        $feed = new FeedIo\Feed();
+        $feed->setTitle($translator->trans('blog.feed_title'));
+        $articles = $articleRepository->getPublished();
+        /** @var Article $article */
+        foreach ($articles as $article) {
+            $item = new FeedIo\Feed\Item();
+            $item->setTitle($article->getTitle());
+            $item->setDescription($article->getShort());
+            $item->setLastModified($article->getUpdatedAt());
+            $item->setPublicId($article->getId());
+            $item->setLink($this->generateUrl(
+                'blog_more',
+                ['article' => $article->getId()],
+                UrlGeneratorInterface::ABSOLUTE_URL
+            ));
+            $feed->add($item);
+        }
+        $feed->setLastModified(new DateTime());
+
+        $feedResponse = $feedIo->getPsrResponse($feed, 'rss');
+
+        return new Response($feedResponse->getBody()->getContents(), Response::HTTP_OK, $feedResponse->getHeaders());
     }
 }
