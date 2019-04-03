@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Article;
 use App\Entity\Comment;
-use App\Entity\Project;
 use App\Entity\User;
 use App\Entity\UserSubscriptions;
 use App\Form\CommentType;
@@ -113,7 +112,7 @@ class BlogController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $comment = $this->createComment($user, $form, $article, $em);
             $this->addFlash('add-comment-success', $translator->trans('comments.comment_successfully_added'));
-//            $notificator->newProjectComment($project, $comment);
+            $notificator->newArticleComment($article, $comment);
         }
 
         return $this->redirectToRoute('blog_more', ['article' => $article->getId()]);
