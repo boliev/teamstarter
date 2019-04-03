@@ -600,5 +600,34 @@
 		"specialization": [1],
 		"country": "RU",
 		"city": "Санкт-Петербург"
+	},
+	{
+		"email": "vboliev+28@teamstarter.ru",
+		"first_name": "Сурен",
+		"last_name": "Горцунян",
+		"avatar": "p13.jpg",
+		"expereience": "Backend Java developer 12 лет. Сейчас раотаю в крупной американской компании. Геграфически нахожусь в МСК",
+		"like_to_do": "Сам буду отвечать за бэк и фронт. Нужен сильный business developer/product owner с хорошим опытом",
+		"looking_for_project": false,
+		"looking_for_partner": true,
+		"canContributeHours": 20,
+		"projects": [{
+			"name": "TZшная",
+			"mission": "Помогать начинающим программистам устраиваться на работу",
+			"description": "В первом приближении это большая БД различных технических заданий, разбитая по тегам, технологиям, языкам. Сейчас есть порядка двух тысяч заданий (мое маленькое хобби). Далее можно монетизировать за счет создания платформы, помогающей компаниям легко выбирать, отправлять ТЗ своим кондидатам.",
+			"status": "2",
+			"country": "RU",
+			"roles": [
+				{
+					"name": "BusinessDev",
+					"description": "Нужен сильный business developer/product owner с хорошим опытом",
+					"specialization": 10,
+					"skills": ["Business", "Management", "Product owner"]
+				}
+			]
+		}],
+		"specialization": [2],
+		"country": "RU",
+		"city": "Москва"
 	}
 ]
