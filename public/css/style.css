@@ -2603,3 +2603,8 @@ div.index-banner-text-row ul li:before {
 .post .entry-content a.more-link:hover {
 	color: #222;
 }
+
+.post .entry-content a.social-share-buttons {
+	color: #42a5f5;
+	font-size: 45pt;
+}

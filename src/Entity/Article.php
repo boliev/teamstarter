@@ -50,6 +50,7 @@ class Article
     /**
      * @var Collection
      * @ORM\OneToMany(targetEntity="App\Entity\ArticleImage", mappedBy="article")
+     * @ORM\OrderBy({"id" = "ASC"})
      */
     private $images;
 

@@ -26,6 +26,28 @@
                         <div class="info-bottom">
                             <div class="info-description blog-text">{{ markdown (article.text) | raw }}</div>
                         </div>
+                        <div class="row padding-top-15">
+                            <div class="offset-md-3 col-md-9">
+                                <h2>{{ 'blog.share' | trans }}</h2>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="offset-md-3 col-md-2">
+                                <a target="href" href="https://www.facebook.com/sharer/sharer.php?u={{ url('blog_more', {"article": article.id}) }}" class="fb-share-button social-share-buttons"><i class="fab fa-facebook"></i></a>
+                            </div>
+                            <div class="col-md-2">
+                                <a target="href" href="http://vkontakte.ru/share.php?url={{ url('blog_more', {"article": article.id}) }}" class="social-share-buttons"><i class="fab fa-vk"></i></a>
+                            </div>
+                            <div class="col-md-2">
+                                <a class="social-share-buttons"
+                                   href="https://twitter.com/intent/tweet?text={{ article.title }}&url={{ url('blog_more', {"article": article.id}) }}&hashtags=teamstarter,startup"
+                                   data-size="large"
+                                   target="_blank"
+                                >
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </article>
 
@@ -60,4 +82,15 @@
             });
         })
     </script>
+{% endblock %}
+
+{% block meta %}
+    <meta property="og:url"                content="{{ url('blog_more', {"article": article.id}) }}" />
+    <meta property="og:type"               content="website" />
+    <meta property="og:title"              content="{{ article.title }}" />
+    <meta property="og:description"        content="" />
+    <meta property="fb:app_id" content="524207097955709" />
+    {% if article.images[0] is defined %}
+    <meta property="og:image"              content="{{ app.request.getSchemeAndHttpHost() ~  article.images[0] }}" />
+    {% endif %}
 {% endblock %}
