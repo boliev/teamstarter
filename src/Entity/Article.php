@@ -61,7 +61,13 @@ class Article
     private $removed;
 
     /**
-     * @var integer
+     * @var string
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $tempLink;
+
+    /**
+     * @var integer|null
      * @ORM\Column(type="integer", nullable=false, options={"default": 0})
      */
     private $commentsCount;
@@ -295,5 +301,21 @@ class Article
     public function setPublishedAt(?DateTime $publishedAt=null): void
     {
         $this->publishedAt = $publishedAt;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTempLink(): ?string
+    {
+        return $this->tempLink;
+    }
+
+    /**
+     * @param string $tempLink
+     */
+    public function setTempLink(?string $tempLink): void
+    {
+        $this->tempLink = $tempLink;
     }
 }

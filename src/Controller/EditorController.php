@@ -39,12 +39,15 @@ class EditorController extends AbstractController
      * @param EntityManagerInterface $entityManager
      *
      * @return Response
+     *
+     * @throws Exception
      */
     public function newAction(EntityManagerInterface $entityManager): Response
     {
         $article = new Article();
         $article->setStatus(Article::STATUS_DRAFT);
         $article->setAuthor($this->getUser());
+        $article->setTempLink(sha1(random_bytes(32)));
         $article->setCommentsCount(0);
         $entityManager->persist($article);
         $entityManager->flush();
@@ -55,11 +58,12 @@ class EditorController extends AbstractController
     /**
      * @Route("/editor/{article}/edit", name="editor_edit")
      *
-     * @param Article $article
-     * @param Request $request
+     * @param Article                $article
+     * @param Request                $request
      * @param EntityManagerInterface $entityManager
      *
      * @return Response
+     *
      * @throws Exception
      */
     public function editAction(Article $article, Request $request, EntityManagerInterface $entityManager): Response
@@ -74,6 +78,9 @@ class EditorController extends AbstractController
 
             if (null !== $request->request->get('draft')) {
                 $article->setStatus(Article::STATUS_DRAFT);
+                if(null === $article->getTempLink()) {
+                    $article->setTempLink(sha1(random_bytes(32)));
+                }
             }
 
             $entityManager->persist($article);

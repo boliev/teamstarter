@@ -21,6 +21,7 @@ use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -78,11 +79,38 @@ class BlogController extends AbstractController
             ? (bool) $subscriptionsRepository->getUserSubscribedToArticleComments($this->getUser(), $article)
             : false;
 
+        if(Article::STATUS_PUBLISHED !== $article->getStatus()) {
+            throw new NotFoundHttpException();
+        }
+
         return $this->render('blog/more/index.html.twig', [
             'article' => $article,
             'commentForm' => $this->createForm(CommentType::class)->createView(),
             'comments' => $commentRepository->getForArticle($article),
             'isUserSubscribed' => $isUserSubscribed,
+        ]);
+    }
+
+    /**
+     * @Route("/blog/{tempId}/draft", name="blog_draft")
+     *
+     * @param string $tempId
+     * @param ArticleRepository $articleRepository
+     * @return Response
+     *
+     */
+    public function draftAction(string $tempId, ArticleRepository $articleRepository)
+    {
+        $article = $articleRepository->findOneBy(['tempLink' => $tempId]);
+        if(null === $article) {
+            throw new NotFoundHttpException();
+        }
+
+        return $this->render('blog/more/index.html.twig', [
+            'article' => $article,
+            'commentForm' => $this->createForm(CommentType::class)->createView(),
+            'comments' => [],
+            'isUserSubscribed' => false,
         ]);
     }
 

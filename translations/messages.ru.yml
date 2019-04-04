@@ -533,6 +533,7 @@ editor:
     delete_link: Удалить
     new_link: + Создать новую статью
     article_remove_confirm: Точно-точно удалить статью?
+    article_link: "Ссылка на статью:"
 
 blog:
     no_one_found: Статей пока нет

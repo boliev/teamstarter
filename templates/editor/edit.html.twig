@@ -25,6 +25,18 @@
                                 {{ form_errors(form.title)}}
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-md-12 form-group margin-top-20">
+                                <span class="hint"> {{ 'editor.article_link' | trans }}
+                                {% if article.isPublished %}
+                                    <a target="_blank" href="{{ url('blog_more', {"article": article.id}) }}">{{ url('blog_more', {"article": article.id}) }}</a>
+                                {% endif %}
+                                {% if article.isDraft and article.tempLink %}
+                                    <a target="_blank" href="{{ url('blog_draft', {"tempId": article.tempLink}) }}">{{ url('blog_draft', {"tempId": article.tempLink}) }}</a>
+                                {% endif %}
+                                </span>
+                            </div>
+                        </div>
                         <div class = "row">
                             <div class="row margin-top-20">
                                 <div class="col-md-12 article-images">
