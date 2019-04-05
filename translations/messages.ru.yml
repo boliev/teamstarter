@@ -37,12 +37,11 @@ title:
     project_create_roles: Открытые роли
     project_create_add_role: Добавить роль
     project_create_screens: Скриншоты проекта
-    project_add_proposal: Предложить сотрудничество
+    project_add_proposal: Сообщение
     project_list: Открытые проекты
     project_more: '%title%'
     specialists_list: Доступные специалисты
     specialists_more: '%name%'
-    specialists_add_offer: Предложить сотрудничество
     dialogs_list: Ваши диалоги
     dialogs_more: 'Диалог: %name%'
     terms: 'Пользовательское соглашение сайта %site_name%'
@@ -338,16 +337,16 @@ project:
     list: Открытые <span>проекты</span>
     list_menu_item: Проекты
     no_one_found: Нет открытых проектов
-    submit_proposal_button: Предложить сотрудничество
+    submit_proposal_button: Вступить в команду
     proposal_header: <span>Создание</span> предложения
     proposal_choose_role: Другая роль
-    proposal_message: Предложение
-    proposal_posted_success: <a href="{offer}">Предложение</a> отправлено
+    proposal_message: Сообщение
+    proposal_posted_success: <a href="{offer}">Сообщение</a> отправлено
     proposal_already_posted: Вы уже отправили <a href="{offer}">предложение</a> на этот проект
     offer_choose_project: Выбрать проект
     offer_choose_role: Другая роль
-    offer_message: Предложение
-    offer_posted_success: <a href="{offer}">Предложение</a> оправлено
+    offer_message: Сообщение
+    offer_posted_success: <a href="{offer}">Сообщение</a> оправлено
     offer_already_posted: Вы уже отправили <a href="{offer}">предложение</a> этому специалисту
     our_mission: Наша миссия
     get_more_projects: Больше проектов
@@ -363,8 +362,8 @@ specialists:
     submit_offer: Предложить сотрудничество
     offer_header: <span>Создание</span> предложения
     offer_choose_role: Другая роль
-    offer_message: Предложение
-    offer_posted_success: <a href="{offer}">Предложение</a> оправлено
+    offer_message: Сообщение
+    offer_posted_success: <a href="{offer}">Сообщение</a> оправлено
     offer_already_posted: Вы уже отправили <a href="{offer}">предложение</a> этотму специалисту
     need_to_have_projects: Необходимо иметь хотя бы один активный проект для отправки предложения
 dialogs:
