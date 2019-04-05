@@ -10,7 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class UserSubscriptions
 {
-    const EVENT_NEW_COMMENT_TO_POST_ADDED = 'new_comment_to_post_added';
+    const EVENT_NEW_COMMENT_TO_PROJECT_ADDED = 'new_comment_to_post_added';
+    const EVENT_NEW_COMMENT_TO_ARTICLE_ADDED = 'new_comment_to_article_added';
 
     /**
      * @var int

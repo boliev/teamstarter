@@ -23,6 +23,7 @@ add('shared_dirs', [
     'var/log',
     'public/avatars',
     'public/screens',
+    'public/articles',
 ]);
 
 // Writable dirs by web server
@@ -30,6 +31,7 @@ add('writable_dirs', [
     'var',
     'public/avatars',
     'public/screens',
+    'public/articles',
 ]);
 set('allow_anonymous_stats', false);
 set('writable_use_sudo', true);

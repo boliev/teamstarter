@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use App\Entity\Article;
 use App\Entity\Comment;
 use App\Entity\Message;
 use App\Entity\Project;
@@ -317,6 +318,38 @@ class Notificator
         );
     }
 
+    public function newArticleComment(Article $article, Comment $comment)
+    {
+        $subscribedUsers = $this->userRepository->getAllUserSubscribedToArticleComments($article);
+        /** @var User $subscribedUser */
+        foreach($subscribedUsers as $subscribedUser) {
+            if($subscribedUser->getId() == $comment->getFrom()->getId()) {
+                continue;
+            }
+
+            $this->sendEmail(
+                [$subscribedUser->getEmail()],
+                $this->trans('comments.new_article_comment_subscribed_email.subject'),
+                $this->trans('comments.new_article_comment_subscribed_email.message', [
+                    '%username%' => $this->getUsername($subscribedUser),
+                    '%link%' => $this->getArticleLink($article),
+                    '%title%' => $article->getTitle(),
+                ])
+            );
+        }
+
+        $sender = $comment->getFrom();
+        $this->telegramSender->sendMessage(
+            $this->foundersChatTg,
+            $this->trans('comments.new_article_comment_admin_tg', [
+                '%fullName%' => $sender->getFullName(),
+                '%link%' => $this->getArticleLink($article),
+                '%title%' => $article->getTitle(),
+                '%comment%' => $comment->getMessage(),
+            ])
+        );
+    }
+
     public function newMessage(Message $message)
     {
         $user = $message->getTo();
@@ -354,6 +387,15 @@ class Notificator
         return $this->router->generate(
             'project_more',
             ['project' => $project->getId()],
+            UrlGeneratorInterface::ABSOLUTE_URL
+        );
+    }
+
+    private function getArticleLink(Article $article)
+    {
+        return $this->router->generate(
+            'blog_more',
+            ['article' => $article->getId()],
             UrlGeneratorInterface::ABSOLUTE_URL
         );
     }

@@ -12,6 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Comment
 {
     const ENTITY_PROJECT = 'Project';
+    const ENTITY_ARTICLE = 'Article';
     /**
      * @var int
      * @ORM\Id

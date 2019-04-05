@@ -18,6 +18,7 @@ use App\Repository\ProjectRepository;
 use App\Repository\UserSubscriptionsRepository;
 use App\Search\ProjectSearcher\ProjectSearcherInterface;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\NonUniqueResultException;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Finder\Exception\AccessDeniedException;
@@ -96,7 +97,7 @@ class ProjectsController extends AbstractController
      *
      * @return Response
      *
-     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @throws NonUniqueResultException
      */
     public function moreAction(
         OfferRepository $offerRepository,
@@ -134,7 +135,7 @@ class ProjectsController extends AbstractController
      *
      * @return Response
      *
-     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @throws NonUniqueResultException
      * @throws \Exception
      */
     public function submitProposal(
@@ -214,11 +215,12 @@ class ProjectsController extends AbstractController
     /**
      * @Route("/projects/{project}/comments/subscribe", name="project_comment_subscription", methods={"POST"})
      *
-     * @param Project                     $project
+     * @param Project $project
      * @param UserSubscriptionsRepository $subscriptionsRepository
-     * @param EntityManagerInterface      $entityManager
+     * @param EntityManagerInterface $entityManager
      *
      * @return JsonResponse
+     * @throws NonUniqueResultException
      */
     public function commentsSubscribe(
         Project $project,
@@ -242,7 +244,7 @@ class ProjectsController extends AbstractController
         $subscription = new UserSubscriptions();
         $subscription->setUser($user);
         $subscription->setEntityId($project->getId());
-        $subscription->setEvent(UserSubscriptions::EVENT_NEW_COMMENT_TO_POST_ADDED);
+        $subscription->setEvent(UserSubscriptions::EVENT_NEW_COMMENT_TO_PROJECT_ADDED);
         $entityManager->persist($subscription);
         $entityManager->flush();
 

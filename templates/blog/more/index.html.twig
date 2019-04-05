@@ -1,0 +1,97 @@
+{% extends 'base.html.twig' %}
+{% block title %} {{ article.title }} {% endblock %}
+{% block meta_description %} {{ article.short | striptags }} {% endblock %}
+{% block body %}
+    <div class ="container">
+
+        {% for message in app.flashes('add-comment-success') %}
+            <div class="success-message margin-top-20">
+                {{ message | raw}}
+            </div>
+        {% endfor %}
+
+                <article class="post blog-post">
+                    <div class="entry-content">
+                        <div class="entry-meta">
+                            <div class="info">
+                                <div class="meta margin-top-1">
+                                    {% if article.publishedAt %}
+                                    <span class="date"><i class="mn-icon-1130"></i>{{ article.publishedAt|localizeddate('short', 'none') }}</span>
+                                    {% else %}
+                                    <span class="date"><i class="mn-icon-1130"></i>{{ article.createdAt|localizeddate('short', 'none') }}</span>
+                                    {% endif %}
+                                </div>
+                                <div class="row"><div class="col-sm-12"><h1 class="entry-title">{{ article.title }}</h1></div></div>
+                            </div>
+                        </div>
+                        <div class="info-bottom">
+                            <div class="info-description blog-text">{{ markdown (article.text) | raw }}</div>
+                        </div>
+                        <div class="row padding-top-15">
+                            <div class="offset-md-3 col-md-9">
+                                <h2>{{ 'blog.share' | trans }}</h2>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="offset-md-3 col-md-2">
+                                <a target="href" href="https://www.facebook.com/sharer/sharer.php?u={{ url('blog_more', {"article": article.id}) }}" class="fb-share-button social-share-buttons"><i class="fab fa-facebook"></i></a>
+                            </div>
+                            <div class="col-md-2">
+                                <a target="href" href="http://vkontakte.ru/share.php?url={{ url('blog_more', {"article": article.id}) }}" class="social-share-buttons"><i class="fab fa-vk"></i></a>
+                            </div>
+                            <div class="col-md-2">
+                                <a class="social-share-buttons"
+                                   href="https://twitter.com/intent/tweet?text={{ article.title }}&url={{ url('blog_more', {"article": article.id}) }}&hashtags=teamstarter,startup"
+                                   data-size="large"
+                                   target="_blank"
+                                >
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                    {% include 'blog/common/comment_list.html.twig' %}
+                    {% include 'blog/common/comment_form.html.twig' %}
+                    {% if app.user %}
+                        <div class="row">
+                            <div class="col-md-8 col-md-offset-2 form-section">
+                                <div class="row"> <div class="col-md-12 form-group text-center">
+                                        <label class="form-check-label hint"><input type="checkbox" id="article-comments-subscriptions" {% if isUserSubscribed %} checked="checked" {% endif %}> {{ 'comments.comments_subscription' | trans }}</label>
+                                </div></div>
+                            </div>
+                        </div>
+                    {% endif %}
+
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $(function () {
+            $("#article-comments-subscriptions").click(function() {
+                $("#article-comments-subscriptions").attr('disabled', 'disabled');
+                $.ajax({
+                    type: "POST",
+                    url: "{{ path('article_comment_subscription', {"article": article.id}) }}",
+                    data: '',
+                    success: function() {
+                        $("#article-comments-subscriptions").removeAttr('disabled');
+                    }
+                });
+            });
+        })
+    </script>
+{% endblock %}
+
+{% block meta %}
+    <meta property="og:url"                content="{{ url('blog_more', {"article": article.id}) }}" />
+    <meta property="og:type"               content="website" />
+    <meta property="og:title"              content="{{ article.title }}" />
+    <meta property="og:description"        content="{{ article.short | striptags }}" />
+    <meta property="fb:app_id" content="524207097955709" />
+    {% if article.images[0] is defined %}
+    <meta property="og:image"              content="{{ app.request.getSchemeAndHttpHost() ~  article.images[0] }}" />
+    {% endif %}
+{% endblock %}
