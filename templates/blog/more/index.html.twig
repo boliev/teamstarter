@@ -1,5 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block title %} {{ article.title }} {% endblock %}
+{% block meta_description %} {{ article.short | striptags }} {% endblock %}
 {% block body %}
     <div class ="container">
 
@@ -88,7 +89,7 @@
     <meta property="og:url"                content="{{ url('blog_more', {"article": article.id}) }}" />
     <meta property="og:type"               content="website" />
     <meta property="og:title"              content="{{ article.title }}" />
-    <meta property="og:description"        content="" />
+    <meta property="og:description"        content="{{ article.short | striptags }}" />
     <meta property="fb:app_id" content="524207097955709" />
     {% if article.images[0] is defined %}
     <meta property="og:image"              content="{{ app.request.getSchemeAndHttpHost() ~  article.images[0] }}" />

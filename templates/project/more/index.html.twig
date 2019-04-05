@@ -1,5 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block title %} {{ 'title.project_more' | trans({"%title%": project.name}) }} {% endblock %}
+{% block meta_description %} {{ project.description }} {% endblock %}
 {% block body %}
     <div class ="container">
 
