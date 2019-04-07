@@ -34,8 +34,35 @@
                 {% include 'project/list/one_project.html.twig' with {'project': project} %}
             {% endfor %}
 
+        <div class="form-section">
+            <div class="row">
+                <div class="col-md-12 form-group text-center margin-top-10" id="subscribe-to-digest-container">
+                    {% if not app.user %}
+                        <a href="{{ path('fos_user_registration_register') }}">{{ 'project.register_for_digest' | trans }}</a>
+                    {% elseif not isUserSubscribedToDigest %}
+                        <a href="#null" id="subscribe-to-digest-link">{{ 'project.signup_for_digest' | trans }}</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
         <div class="navigation">
             {{ knp_pagination_render(pagination) }}
         </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+<script>
+    $("#subscribe-to-digest-link").click(function(){
+        $.ajax({
+            type: "POST",
+            url: "{{ path('subscribe_to_digest') }}",
+            data: '',
+            success: function() {
+                $("#subscribe-to-digest-container").html('<span class="hint-success">{{ 'project.signup_for_digest_success' | trans }}</span>');
+            }
+        });
+    });
+</script>
 {% endblock %}

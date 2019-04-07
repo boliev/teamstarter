@@ -350,6 +350,9 @@ project:
     offer_already_posted: Вы уже отправили <a href="{offer}">предложение</a> этому специалисту
     our_mission: Наша миссия
     get_more_projects: Больше проектов
+    register_for_digest: Зарегистрируйтесь, чтобы получать еженедельный дайджест проектов
+    signup_for_digest: Подписаться на еженедельный дайджест проектов
+    signup_for_digest_success: Вы успешно подписались на еженедельный дайджест
 specialists:
     list_title: Доступные <span>специалисты</span>
     menu_list: Специалисты

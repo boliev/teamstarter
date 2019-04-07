@@ -38,6 +38,23 @@ class UserSubscriptionsRepository extends EntityRepository
     }
 
     /**
+     * @param User $user
+     * @return bool
+     * @throws NonUniqueResultException
+     */
+    public function isUserSubscribedToDigest(User $user): bool
+    {
+        return (bool) $this->createQueryBuilder('us')
+        ->where('us.event = :event')
+        ->andWhere('us.user = :user')
+        ->setParameter('event', UserSubscriptions::DIGEST)
+        ->setParameter('user', $user)
+        ->getQuery()
+        ->getOneOrNullResult();
+
+    }
+
+    /**
      * @param User   $user
      * @param string $event
      * @param int    $entityId
