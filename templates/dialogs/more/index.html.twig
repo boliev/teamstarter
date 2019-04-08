@@ -37,7 +37,7 @@
                                     </div>
                                     <div class="row margin-top-5"><div class="col-sm-12">
                                             <b>{% if  message.from.id == app.user.id %}{{ 'dialogs.you' | trans }}{% else %}{{ message.from.firstName }}{% endif %}:</b>
-                                            {{  message.message }}
+                                            {{  message.message | nl2br }}
                                         </div></div>
                                 </div>
                             </div>

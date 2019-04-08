@@ -47,22 +47,22 @@
                         <div class="info-bottom">
                             {% if user.about %}
                                 <div class="info-description-title">{{ 'specialists.about' | trans }}</div>
-                                <div class="info-description">{{ user.about }}</div>
+                                <div class="info-description">{{ user.about | nl2br }}</div>
                             {% endif %}
                             {% if user.experience %}
                                 <div class="info-description-title">{{ 'specialists.experience' | trans }}</div>
-                                <div class="info-description">{{ user.experience }}</div>
+                                <div class="info-description">{{ user.experience | nl2br}}</div>
                             {% endif %}
                             {% if user.likeToDo %}
                                 <div class="info-description-title">{{ 'specialists.like_to_do' | trans }}</div>
-                                <div class="info-description">{{ user.likeToDo }}</div>
+                                <div class="info-description">{{ user.likeToDo | nl2br }}</div>
                             {% endif %}
                             <div class="info-bottom">
-                                <div class="info-description">{{ user.about }}</div>
+                                <div class="info-description">{{ user.about | nl2br }}</div>
                             </div>
                             {% if user.expectation %}
                                 <div class="info-description-title">{{ 'specialists.expectation' | trans }}</div>
-                                <div class="info-description">{{ user.expectation }}</div>
+                                <div class="info-description">{{ user.expectation | nl2br }}</div>
                             {% endif %}
                             {% if not offer and app.user.id != user.id  and projectsCount > 0 %}
                                 <div class="info-description">

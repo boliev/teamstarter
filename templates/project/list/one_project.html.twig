@@ -20,7 +20,7 @@
         </div>
         <div class="info-bottom">
             <div class="info-description">{{ 'project.our_mission' | trans }}: {{ project.mission }}</div>
-            <div class="info-description">{{ project.description | truncate(250, true) }}</div>
+            <div class="info-description">{{ project.description | truncate(250, true) | nl2br }}</div>
             <div class="info-description">
                 <ul class="projects-list-roles">
                     {% for role in project.openRoles %}

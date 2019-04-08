@@ -51,9 +51,9 @@
                                         <div class="row">
                                             <div class="col-sm-12 padding-left-1"><h4 class="entry-title"><a href="{{ path('specialists_more', {'user': user.id}) }}">{{ user.fullName }}</a></h4></div>
                                             <div class="info-bottom">
-                                                {% if user.experience %}<div class="info-description">{{ user.experience | truncate(250, true) }}</div> {% endif %}
-                                                {% if user.expectation %}<div class="info-description">{{ user.expectation | truncate(250, true) }}</div> {% endif %}
-                                                {% if user.likeToDo %}<div class="info-description">{{ user.likeToDo | truncate(250, true) }}</div> {% endif %}
+                                                {% if user.experience %}<div class="info-description">{{ user.experience | truncate(250, true) | nl2br }}</div> {% endif %}
+                                                {% if user.expectation %}<div class="info-description">{{ user.expectation | truncate(250, true) | nl2br }}</div> {% endif %}
+                                                {% if user.likeToDo %}<div class="info-description">{{ user.likeToDo | truncate(250, true) | nl2br }}</div> {% endif %}
                                                 <div>
                                                     {% for userSkill in user.userSkills %} <span class="badge project-card-role-tag">{{ userSkill.skill.title }}</span> {% endfor %}
                                                 </div>
