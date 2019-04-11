@@ -5,6 +5,8 @@ namespace App\Entity;
 use Doctrine\Common\Collections\Collection;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\UuidInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
@@ -199,6 +201,13 @@ class User extends BaseUser
      * @ORM\Column(type="integer")
      */
     private $canContributeHours;
+
+    /**
+     * @var UuidInterface
+     * @ORM\Column(type="uuid", unique=true, nullable=false)
+     */
+    private $unsubscribeLink;
+
     /**
      * User constructor.
      */
@@ -208,6 +217,7 @@ class User extends BaseUser
         $this->setCreatedAt(new \DateTime('now'));
         $this->lookingForPartner = false;
         $this->lookingForProject = true;
+        $this->unsubscribeLink = Uuid::uuid4();
     }
 
     /**
@@ -744,5 +754,21 @@ class User extends BaseUser
     public function setLookingForProject(bool $lookingForProject): void
     {
         $this->lookingForProject = $lookingForProject;
+    }
+
+    /**
+     * @return UuidInterface
+     */
+    public function getUnsubscribeLink(): UuidInterface
+    {
+        return $this->unsubscribeLink;
+    }
+
+    /**
+     * @param UuidInterface $unsubscribeLink
+     */
+    public function setUnsubscribeLink(UuidInterface $unsubscribeLink): void
+    {
+        $this->unsubscribeLink = $unsubscribeLink;
     }
 }
