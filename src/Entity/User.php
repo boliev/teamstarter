@@ -206,7 +206,7 @@ class User extends BaseUser
      * @var UuidInterface
      * @ORM\Column(type="uuid", unique=true, nullable=false)
      */
-    private $unsubscribeLink;
+    private $unsubscribeHash;
 
     /**
      * User constructor.
@@ -217,7 +217,7 @@ class User extends BaseUser
         $this->setCreatedAt(new \DateTime('now'));
         $this->lookingForPartner = false;
         $this->lookingForProject = true;
-        $this->unsubscribeLink = Uuid::uuid4();
+        $this->unsubscribeHash = Uuid::uuid4();
     }
 
     /**
@@ -759,16 +759,16 @@ class User extends BaseUser
     /**
      * @return UuidInterface
      */
-    public function getUnsubscribeLink(): UuidInterface
+    public function getUnsubscribeHash(): UuidInterface
     {
-        return $this->unsubscribeLink;
+        return $this->unsubscribeHash;
     }
 
     /**
-     * @param UuidInterface $unsubscribeLink
+     * @param UuidInterface $unsubscribeHash
      */
-    public function setUnsubscribeLink(UuidInterface $unsubscribeLink): void
+    public function setUnsubscribeHash(UuidInterface $unsubscribeHash): void
     {
-        $this->unsubscribeLink = $unsubscribeLink;
+        $this->unsubscribeHash = $unsubscribeHash;
     }
 }
