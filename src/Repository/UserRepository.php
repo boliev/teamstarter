@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Article;
 use App\Entity\Project;
+use App\Entity\User;
 use App\Entity\UserSpecializations;
 use App\Entity\UserSubscriptions;
 use Doctrine\ORM\EntityRepository;
@@ -47,9 +48,9 @@ class UserRepository extends EntityRepository
         return $this->getAllUserSubscribedToEntityComments(UserSubscriptions::EVENT_NEW_COMMENT_TO_ARTICLE_ADDED, $article->getId());
     }
 
-    public function getUserByUnsubscribeHash(string $hash)
+    public function getUserByUnsubscribeHash(string $hash): ?User
     {
-        if(!Uuid::isValid($hash)) {
+        if (!Uuid::isValid($hash)) {
             return null;
         }
 

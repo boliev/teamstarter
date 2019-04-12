@@ -550,3 +550,4 @@ subscriptions:
     unsubscribe_header: Отписка от <span>новостей</span>
     unsubscribe_message: Здравствуйте, %name%. Вы действительно хотите отписаться от нашей замечательной рассылки?
     unsubscribe_button: Отписаться
+    unsubscribe_success: Вы успешно отписались от рассылки
