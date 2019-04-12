@@ -664,5 +664,46 @@
 		"specialization": [15],
 		"country": "RU",
 		"city": "Москва"
+	},
+	{
+		"email": "vboliev+30@teamstarter.ru",
+		"first_name": "Юрий",
+		"last_name": "Астахов",
+		"avatar": "p15.jpg",
+		"expereience": "Много лет занимаюсь разработкой backend для крупных e-commerce проектов.",
+		"like_to_do": "CTO, Head of Backend",
+		"looking_for_project": false,
+		"looking_for_partner": true,
+		"canContributeHours": 20,
+		"projects": [{
+			"name": "Новая Algolia",
+			"mission": "Помогать e-commerce проектам",
+			"description": "Algolia это SAAS для организации поиска на сайте. Быстрый и гибкий поиск по товарам - это головная боль любого e-commerce продукта. Большинство проектов над которыми я работал использовали Алголию, и платили порядка $500-$2000 в месяц. Достойных альтернатив этому сервису нет. Я могу полностью закрыть все технические вопросы (набор команды, разработка).",
+			"status": "1",
+			"country": "RU",
+			"roles": [
+				{
+					"name": "Маркетолог/BusinessDev",
+					"description": "Я могу закрыть все технические вопросы, но в вопросах построения и ведения бизнеса у меня опыта совсем нет. Продукт я создам, но продавать его придется тебе",
+					"specialization": 11,
+					"skills": ["Marketing", "BusinessDeveloper", "CastDev", "Manager"]
+				},
+				{
+					"name": "Devops",
+					"description": "Нужно уметь быстро разворачивать новые инстансы (Amazon или DO). Уметь оптимизировать Elasticsearch, читать графики, заранее видеть возможные проблемы, не допускать отказов",
+					"specialization": 7,
+					"skills": ["Python", "Amazon", "Elasticsearch"]
+				},
+				{
+					"name": "Backend developer",
+					"description": "Написание личного кабинета. Unit тесты. Можно уровня Junior",
+					"specialization": 2,
+					"skills": ["PHP", "Symfony", "Doctrine", "Rest API", "Twig", "jQuery", "PHPUnit"]
+				}
+			]
+		}],
+		"specialization": [1,2],
+		"country": "RU",
+		"city": "Москва"
 	}
 ]
