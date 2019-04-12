@@ -50,6 +50,7 @@ title:
     contact: Контакты
     editor: Редактор статей
     blog: Блог
+    unsubscribe: Отписка от новостей teamstarter.ru
 
 registration:
     header: Регистрация
@@ -544,3 +545,9 @@ blog:
     more: Читать дальше
     feed_title: TeamStarter.ru
     share: Поделитесь статьей с друзьями
+
+subscriptions:
+    unsubscribe_header: Отписка от <span>новостей</span>
+    unsubscribe_message: Здравствуйте, %name%. Вы действительно хотите отписаться от нашей замечательной рассылки?
+    unsubscribe_button: Отписаться
+    unsubscribe_success: Вы успешно отписались от рассылки

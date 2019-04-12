@@ -39,7 +39,27 @@ class UserSubscriptionsRepository extends EntityRepository
 
     /**
      * @param User $user
+     *
+     * @return UserSubscriptions|null
+     *
+     * @throws NonUniqueResultException
+     */
+    public function getUserSubscribedToDigest(User $user): ?UserSubscriptions
+    {
+        return $this->createQueryBuilder('us')
+            ->where('us.event = :event')
+            ->andWhere('us.user = :user')
+            ->setParameter('event', UserSubscriptions::DIGEST)
+            ->setParameter('user', $user)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
+    /**
+     * @param User $user
+     *
      * @return bool
+     *
      * @throws NonUniqueResultException
      */
     public function isUserSubscribedToDigest(User $user): bool
@@ -51,7 +71,6 @@ class UserSubscriptionsRepository extends EntityRepository
         ->setParameter('user', $user)
         ->getQuery()
         ->getOneOrNullResult();
-
     }
 
     /**
