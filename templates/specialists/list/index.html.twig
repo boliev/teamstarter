@@ -41,6 +41,7 @@
                                     {% elseif user.country%}<span><i class="fas fa-map-marker"></i>{{ user.country }}</span>
                                     {% endif %}
                                     {% if user.canContributeHours%}<span><i class="far fa-clock"></i>{% if user.canContributeHours == 5 %}{{ 'user.5_hours_week' | trans }}{% elseif user.canContributeHours == 10 %}{{ 'user.10_hours_week' | trans }}{% elseif user.canContributeHours == 20 %}{{ 'user.20_hours_week' | trans }}{% elseif user.canContributeHours == 40 %}{{ 'user.40_hours_week' | trans }}{% endif %}</span>{% endif %}
+                                    <span><i class="far fa-eye"></i>{{ user.viewsCount }}</span>
                                 </div>
 
                                 <div class="row">

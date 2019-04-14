@@ -73,6 +73,12 @@ class Article
     private $commentsCount;
 
     /**
+     * @var integer|null
+     * @ORM\Column(type="integer", nullable=false, options={"default": 0})
+     */
+    private $viewsCount;
+
+    /**
      * @var DateTime|null
      * @ORM\Column(type="datetime")
      */
@@ -317,5 +323,21 @@ class Article
     public function setTempLink(?string $tempLink): void
     {
         $this->tempLink = $tempLink;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getViewsCount(): ?int
+    {
+        return $this->viewsCount;
+    }
+
+    /**
+     * @param int|null $viewsCount
+     */
+    public function setViewsCount(?int $viewsCount): void
+    {
+        $this->viewsCount = $viewsCount;
     }
 }

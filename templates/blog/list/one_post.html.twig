@@ -7,6 +7,7 @@
                     {% if article.commentsCount > 0 %}
                         <span><a href="{{ path('blog_more', {'article': article.id}) }}#comments"><i class="far fa-comments"></i>{{ article.commentsCount }}</a></span>
                     {% endif %}
+                    <span><i class="far fa-eye"></i>{{ article.viewsCount }}</span>
                 </div>
                 <div class="row"><div class="col-sm-12"><h4 class="entry-title"><a href="{{ path('blog_more', {'article': article.id}) }}">{{ article.title }}</a></h4></div></div>
             </div>

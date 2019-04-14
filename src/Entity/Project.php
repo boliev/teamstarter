@@ -134,6 +134,12 @@ class Project
     private $commentsCount;
 
     /**
+     * @var integer|null
+     * @ORM\Column(type="integer", nullable=false, options={"default": 0})
+     */
+    private $viewsCount;
+
+    /**
      * Project constructor.
      */
     public function __construct()
@@ -454,6 +460,22 @@ class Project
     public function setCommentsCount(int $commentsCount): void
     {
         $this->commentsCount = $commentsCount;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getViewsCount(): ?int
+    {
+        return $this->viewsCount;
+    }
+
+    /**
+     * @param int|null $viewsCount
+     */
+    public function setViewsCount(?int $viewsCount): void
+    {
+        $this->viewsCount = $viewsCount;
     }
 
     public function __toString() {

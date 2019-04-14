@@ -221,6 +221,12 @@ class User extends BaseUser
     private $unsubscribeHash;
 
     /**
+     * @var integer|null
+     * @ORM\Column(type="integer", nullable=false, options={"default": 0})
+     */
+    private $viewsCount;
+
+    /**
      * User constructor.
      */
     public function __construct()
@@ -814,5 +820,21 @@ class User extends BaseUser
     public function setUnsubscribeHash(UuidInterface $unsubscribeHash): void
     {
         $this->unsubscribeHash = $unsubscribeHash;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getViewsCount(): ?int
+    {
+        return $this->viewsCount;
+    }
+
+    /**
+     * @param int|null $viewsCount
+     */
+    public function setViewsCount(?int $viewsCount): void
+    {
+        $this->viewsCount = $viewsCount;
     }
 }
