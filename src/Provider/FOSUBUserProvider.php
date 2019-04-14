@@ -33,11 +33,11 @@ class FOSUBUserProvider extends BaseClass
     /**
      * FOSUBUserProvider constructor.
      *
-     * @param UserManagerInterface $userManager
+     * @param UserManagerInterface    $userManager
      * @param TokenGeneratorInterface $tokenGenerator
-     * @param Notificator $notificator
-     * @param Subscriber $subscriber
-     * @param array $properties
+     * @param Notificator             $notificator
+     * @param Subscriber              $subscriber
+     * @param array                   $properties
      */
     public function __construct(
         UserManagerInterface $userManager,
@@ -45,8 +45,7 @@ class FOSUBUserProvider extends BaseClass
         Notificator $notificator,
         Subscriber $subscriber,
         array $properties
-    )
-    {
+    ) {
         parent::__construct($userManager, $properties);
         $this->tokenGenerator = $tokenGenerator;
         $this->notificator = $notificator;
@@ -79,8 +78,11 @@ class FOSUBUserProvider extends BaseClass
 
     /**
      * {@inheritdoc}
+     *
      * @param UserResponseInterface $response
+     *
      * @return User|\FOS\UserBundle\Model\UserInterface|null
+     *
      * @throws LoginDataProviderNoDataException
      * @throws NonUniqueResultException
      */
@@ -95,14 +97,25 @@ class FOSUBUserProvider extends BaseClass
         if (null === $profilePicture) {
             $profilePicture = $response->getProfilePicture(); //facebook
         }
+
         if ('' == $firstName && '' === $lastName) {
             $firstName = $data['name'] ?? ''; // github
         }
+        $id = null;
+        if (isset($data['id'])) {
+            $id = $data['id'];
+        }
 
-        if (!isset($data['id'])) {
+        if ('vkontakte' === $service && isset($data['response'][0])) {
+            $id = $data['response'][0]['id'];
+            if (isset($data['response'][0]['photo_max'])) {
+                $profilePicture = $data['response'][0]['photo_max'];
+            }
+        }
+        if (null === $id) {
             throw new LoginDataProviderNoDataException('There is no id in response data from '.$service);
         }
-        $id = $data['id'];
+
         $user = $this->userManager->findUserBy(array($this->getProperty($response) => $id));
 
         if (null === $user) {
