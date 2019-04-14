@@ -31,6 +31,7 @@ security:
                     facebook:           "/login/check-facebook"
                     google:             "/login/check-google"
                     github:             "/login/check-github"
+                    vkontakte:          "/login/check-vkontakte"
                 login_path:        /login
                 failure_path:      /login
                 oauth_user_provider:

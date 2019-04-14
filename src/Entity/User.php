@@ -85,6 +85,18 @@ class User extends BaseUser
     private $githubId;
 
     /**
+     * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $vkontakteAccessToken;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $vkontakteId;
+
+    /**
      * @var Country|null
      * @ORM\ManyToOne(targetEntity="App\Entity\Country", inversedBy="users")
      * @ORM\JoinColumn(name="country", referencedColumnName="code")
@@ -387,6 +399,38 @@ class User extends BaseUser
     public function setGithubId(string $githubId)
     {
         $this->githubId = $githubId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getVkontakteAccessToken(): string
+    {
+        return $this->vkontakteAccessToken;
+    }
+
+    /**
+     * @param string $vkontakteAccessToken
+     */
+    public function setVkontakteAccessToken(string $vkontakteAccessToken): void
+    {
+        $this->vkontakteAccessToken = $vkontakteAccessToken;
+    }
+
+    /**
+     * @return string
+     */
+    public function getVkontakteId(): string
+    {
+        return $this->vkontakteId;
+    }
+
+    /**
+     * @param string $vkontakteId
+     */
+    public function setVkontakteId(string $vkontakteId): void
+    {
+        $this->vkontakteId = $vkontakteId;
     }
 
     /**
