@@ -34,14 +34,15 @@ class ProjectsController extends AbstractController
     /**
      * @Route("/projects/{page}", name="projects_list", defaults={"page": 1})
      *
-     * @param Request $request
-     * @param EntityManagerInterface $entityManager
-     * @param ProjectSearcherInterface $projectSearcher
-     * @param PaginatorInterface $paginator
+     * @param Request                     $request
+     * @param EntityManagerInterface      $entityManager
+     * @param ProjectSearcherInterface    $projectSearcher
+     * @param PaginatorInterface          $paginator
      * @param UserSubscriptionsRepository $userSubscriptionsRepository
-     * @param int $page
+     * @param int                         $page
      *
      * @return Response
+     *
      * @throws NonUniqueResultException
      */
     public function indexAction(
@@ -70,7 +71,7 @@ class ProjectsController extends AbstractController
         );
 
         $isUserSubscribedToDigest = false;
-        if($this->getUser()) {
+        if ($this->getUser()) {
             $isUserSubscribedToDigest = $userSubscriptionsRepository->isUserSubscribedToDigest($this->getUser());
         }
 
@@ -99,10 +100,11 @@ class ProjectsController extends AbstractController
     /**
      * @Route("/projects/{project}/more", name="project_more")
      *
-     * @param OfferRepository $offerRepository
-     * @param CommentRepository $commentRepository
+     * @param OfferRepository             $offerRepository
+     * @param CommentRepository           $commentRepository
      * @param UserSubscriptionsRepository $subscriptionsRepository
-     * @param Project $project
+     * @param Project                     $project
+     * @param EntityManagerInterface      $entityManager
      *
      * @return Response
      *
@@ -112,10 +114,16 @@ class ProjectsController extends AbstractController
         OfferRepository $offerRepository,
         CommentRepository $commentRepository,
         UserSubscriptionsRepository $subscriptionsRepository,
-        Project $project
+        Project $project,
+        EntityManagerInterface $entityManager
     ) {
         /** @var User $user */
         $user = $this->getUser();
+
+        $project->setViewsCount($project->getViewsCount() + 1);
+        $entityManager->persist($project);
+        $entityManager->flush();
+
         $isUserSubscribed = $user
             ? (bool) $subscriptionsRepository->getUserSubscribedToProjectComments($this->getUser(), $project)
             : false;
@@ -129,7 +137,7 @@ class ProjectsController extends AbstractController
             'offer' => $userOfferForThisProject,
             'commentForm' => $this->createForm(CommentType::class)->createView(),
             'comments' => $commentRepository->getForProject($project),
-            'isUserSubscribed' => $isUserSubscribed
+            'isUserSubscribed' => $isUserSubscribed,
         ]);
     }
 
@@ -224,11 +232,12 @@ class ProjectsController extends AbstractController
     /**
      * @Route("/projects/{project}/comments/subscribe", name="project_comment_subscription", methods={"POST"})
      *
-     * @param Project $project
+     * @param Project                     $project
      * @param UserSubscriptionsRepository $subscriptionsRepository
-     * @param EntityManagerInterface $entityManager
+     * @param EntityManagerInterface      $entityManager
      *
      * @return JsonResponse
+     *
      * @throws NonUniqueResultException
      */
     public function commentsSubscribe(

@@ -59,9 +59,10 @@ class BlogController extends AbstractController
     /**
      * @Route("/blog/{article}/more", name="blog_more")
      *
-     * @param Article                     $article
-     * @param CommentRepository           $commentRepository
+     * @param Article $article
+     * @param CommentRepository $commentRepository
      * @param UserSubscriptionsRepository $subscriptionsRepository
+     * @param EntityManagerInterface $entityManager
      *
      * @return Response
      *
@@ -70,16 +71,22 @@ class BlogController extends AbstractController
     public function moreAction(
         Article $article,
         CommentRepository $commentRepository,
-        UserSubscriptionsRepository $subscriptionsRepository)
+        UserSubscriptionsRepository $subscriptionsRepository,
+        EntityManagerInterface $entityManager
+    )
     {
         /** @var User $user */
         $user = $this->getUser();
+
+        $article->setViewsCount($article->getViewsCount() + 1);
+        $entityManager->persist($article);
+        $entityManager->flush();
 
         $isUserSubscribed = $user
             ? (bool) $subscriptionsRepository->getUserSubscribedToArticleComments($this->getUser(), $article)
             : false;
 
-        if(Article::STATUS_PUBLISHED !== $article->getStatus()) {
+        if (Article::STATUS_PUBLISHED !== $article->getStatus()) {
             throw new NotFoundHttpException();
         }
 
@@ -94,15 +101,15 @@ class BlogController extends AbstractController
     /**
      * @Route("/blog/{tempId}/draft", name="blog_draft")
      *
-     * @param string $tempId
+     * @param string            $tempId
      * @param ArticleRepository $articleRepository
-     * @return Response
      *
+     * @return Response
      */
     public function draftAction(string $tempId, ArticleRepository $articleRepository)
     {
         $article = $articleRepository->findOneBy(['tempLink' => $tempId]);
-        if(null === $article) {
+        if (null === $article) {
             throw new NotFoundHttpException();
         }
 

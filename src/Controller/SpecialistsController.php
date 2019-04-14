@@ -12,6 +12,7 @@ use App\Repository\ProjectRepository;
 use App\Repository\UserRepository;
 use App\Search\SpecialistSearcher\SpecialistSearcherInterface;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\NonUniqueResultException;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Finder\Exception\AccessDeniedException;
@@ -42,8 +43,7 @@ class SpecialistsController extends AbstractController
         PaginatorInterface $paginator,
         int $page = 1
     ) {
-
-        if(!$this->getUser() || !$this->getUser()->isProOrHasActiveProjects()) {
+        if (!$this->getUser() || !$this->getUser()->isProOrHasActiveProjects()) {
             return $this->render('specialists/list/access_denied.html.twig');
         }
 
@@ -73,24 +73,25 @@ class SpecialistsController extends AbstractController
     /**
      * @Route("/specialists/{user}/more", name="specialists_more")
      *
-     * @param User $user
-     * @param TranslatorInterface $translator
-     * @param OfferRepository $offerRepository
-     * @param ProjectRepository $projectRepository
-     *
-     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @param User                   $user
+     * @param TranslatorInterface    $translator
+     * @param OfferRepository        $offerRepository
+     * @param ProjectRepository      $projectRepository
+     * @param EntityManagerInterface $entityManager
      *
      * @return Response
+     *
+     * @throws NonUniqueResultException
      */
     public function moreAction(
         User $user,
         TranslatorInterface $translator,
         OfferRepository $offerRepository,
-        ProjectRepository $projectRepository
+        ProjectRepository $projectRepository,
+        EntityManagerInterface $entityManager
     ) {
-
-        /** @var User $user */
-        if(!$this->getUser() || !$this->getUser()->isProOrHasActiveProjects()) {
+        /* @var User $user */
+        if (!$this->getUser() || !$this->getUser()->isProOrHasActiveProjects()) {
             return $this->render('specialists/list/access_denied.html.twig');
         }
 
@@ -99,25 +100,30 @@ class SpecialistsController extends AbstractController
             throw new NotFoundHttpException($translator->trans('specialists.not_found'));
         }
 
+        $user->setViewsCount($user->getViewsCount() + 1);
+        $entityManager->persist($user);
+        $entityManager->flush();
+
         return $this->render('specialists/more/index.html.twig', [
             'user' => $user,
             'offer' => ($this->getUser() ? $offerRepository->getUserOfferForSpecialist($this->getUser(), $user) : null),
-            'projectsCount' => ($this->getUser() ? $projectRepository->getPublishedCount($this->getUser()) : 0)
+            'projectsCount' => ($this->getUser() ? $projectRepository->getPublishedCount($this->getUser()) : 0),
         ]);
     }
 
     /**
      * @Route("/specialists/{specialist}/offer/submit", name="specialist_add_offer")
      *
-     * @param Request $request
+     * @param Request                $request
      * @param EntityManagerInterface $em
-     * @param TranslatorInterface $translator
-     * @param User $specialist
-     * @param ProjectRepository $projectRepository
-     * @param OfferRepository $offerRepository
+     * @param TranslatorInterface    $translator
+     * @param User                   $specialist
+     * @param ProjectRepository      $projectRepository
+     * @param OfferRepository        $offerRepository
      *
      * @return Response
-     * @throws \Doctrine\ORM\NonUniqueResultException
+     *
+     * @throws NonUniqueResultException
      * @throws \Exception
      */
     public function submitOffer(
@@ -127,9 +133,8 @@ class SpecialistsController extends AbstractController
         User $specialist,
         ProjectRepository $projectRepository,
         OfferRepository $offerRepository
-    )
-    {
-        if(!$this->getUser() || !$this->getUser()->isProOrHasActiveProjects()) {
+    ) {
+        if (!$this->getUser() || !$this->getUser()->isProOrHasActiveProjects()) {
             return $this->render('specialists/list/access_denied.html.twig');
         }
 
@@ -143,7 +148,7 @@ class SpecialistsController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            if(!$user->isPro() && $offerRepository->getSentForLast24HoursCount($user) >= 10) {
+            if (!$user->isPro() && $offerRepository->getSentForLast24HoursCount($user) >= 10) {
                 return $this->render('specialists/more/access_denied_add_offer.html.twig', []);
             }
 
