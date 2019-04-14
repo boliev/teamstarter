@@ -11,7 +11,7 @@
 
                     <div class="kc-elm kc-css-839835 kc-title-wrap  left dark">
                         <div class="title-wrapper">
-                            <h3 class="kc_title"><span>Sign</span> In</h3>
+                            <h3 class="kc_title">{{ 'sign_in' | trans ({}, 'messages') }}</h3>
                         </div>
                     </div>
 
@@ -32,17 +32,18 @@
                         </div>
 
                         <div class="row">
-                            <div class="login-remember-me col-sm-4 padding-top-16 padding-left-18">
-                                <input type="checkbox" class="login-remember-me margin-bottom-1" id="remember_me" name="_remember_me" value="on" />
-                                <label for="remember_me" class="form-label login-remember-me">{{ 'security.login.remember_me'|trans }}</label>
-                            </div>
+{#                            <div class="login-remember-me col-sm-4 padding-top-16 padding-left-18">#}
+{#                                <input type="checkbox" class="login-remember-me margin-bottom-1" id="remember_me" name="_remember_me" value="on" />#}
+{#                                <label for="remember_me" class="form-label login-remember-me">{{ 'security.login.remember_me'|trans }}</label>#}
+{#                            </div>#}
 
-                            <div class="login-remember-me col-sm-4 padding-top-16 padding-left-18">
+                            <div class="login-remember-me col-sm-6 padding-top-16 padding-left-35">
 
                                 <a href="{{ path('fos_user_resetting_request') }}">{{ 'user.lost_password' | trans({}, 'messages') }}</a>
                             </div>
 
-                            <div class="register-form-sn-login text-right col-sm-4">
+                            <div class="register-form-sn-login text-right col-sm-6 padding-right-35">
+                                <a href="/login/vkontakte"><i class="fab fa-vk" aria-hidden="true"></i></a>
                                 <a href="/login/facebook"><i class="fab fa-facebook" aria-hidden="true"></i></a>
                                 <a href="/login/google"><i class="fab fa-google" aria-hidden="true"></i></a>
                                 <a href="/login/github"><i class="fab fa-github" aria-hidden="true"></i></a>

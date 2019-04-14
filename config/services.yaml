@@ -56,7 +56,7 @@ services:
     my_user_provider:
         class: App\Provider\FOSUBUserProvider
         arguments:
-            $properties: {facebook: facebookId, google: googleId, github: githubId}
+            $properties: {facebook: facebookId, google: googleId, github: githubId, vkontakte: vkontakteId}
 
     search.project_indexer:
         class: App\Search\ProjectIndexer\PostgresIndexer
