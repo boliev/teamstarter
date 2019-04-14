@@ -5,6 +5,8 @@ namespace App\Provider;
 use App\Entity\User;
 use App\Exception\LoginDataProviderNoDataException;
 use App\Notifications\Notificator;
+use App\Subscriber\Subscriber;
+use Doctrine\ORM\NonUniqueResultException;
 use FOS\UserBundle\Model\UserManagerInterface;
 use FOS\UserBundle\Util\TokenGeneratorInterface;
 use HWI\Bundle\OAuthBundle\OAuth\Response\UserResponseInterface;
@@ -24,23 +26,31 @@ class FOSUBUserProvider extends BaseClass
     private $notificator;
 
     /**
+     * @var Subscriber
+     */
+    private $subscriber;
+
+    /**
      * FOSUBUserProvider constructor.
      *
      * @param UserManagerInterface $userManager
      * @param TokenGeneratorInterface $tokenGenerator
-     * @param array $properties
      * @param Notificator $notificator
+     * @param Subscriber $subscriber
+     * @param array $properties
      */
     public function __construct(
         UserManagerInterface $userManager,
         TokenGeneratorInterface $tokenGenerator,
         Notificator $notificator,
+        Subscriber $subscriber,
         array $properties
     )
     {
         parent::__construct($userManager, $properties);
         $this->tokenGenerator = $tokenGenerator;
         $this->notificator = $notificator;
+        $this->subscriber = $subscriber;
     }
 
     /**
@@ -69,6 +79,10 @@ class FOSUBUserProvider extends BaseClass
 
     /**
      * {@inheritdoc}
+     * @param UserResponseInterface $response
+     * @return User|\FOS\UserBundle\Model\UserInterface|null
+     * @throws LoginDataProviderNoDataException
+     * @throws NonUniqueResultException
      */
     public function loadUserByOAuthUserResponse(UserResponseInterface $response)
     {
@@ -109,6 +123,7 @@ class FOSUBUserProvider extends BaseClass
                 $user->setEnabled(true);
                 $this->userManager->updateUser($user);
                 $this->notificator->registrationSuccess($user);
+                $this->subscriber->subscribeToDigest($user);
             }
 
             $user->$setter_id($id);

@@ -11,7 +11,7 @@
                     </div>
                     <div class="row margin-top-5"><div class="col-sm-12 comment-text">
                             <b><a class="comment-user-name" href="{{ path('specialists_more', {'user': comment.from.id}) }}">{{ comment.from.fullName }}</a> </b><br/>
-                            {{  comment.message }}
+                            {{  comment.message  | nl2br }}
                         </div></div>
                 </div>
             </div>

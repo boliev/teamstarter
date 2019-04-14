@@ -34,19 +34,22 @@ class ProjectsController extends AbstractController
     /**
      * @Route("/projects/{page}", name="projects_list", defaults={"page": 1})
      *
-     * @param Request                  $request
-     * @param EntityManagerInterface   $entityManager
+     * @param Request $request
+     * @param EntityManagerInterface $entityManager
      * @param ProjectSearcherInterface $projectSearcher
-     * @param PaginatorInterface       $paginator
-     * @param int                      $page
+     * @param PaginatorInterface $paginator
+     * @param UserSubscriptionsRepository $userSubscriptionsRepository
+     * @param int $page
      *
      * @return Response
+     * @throws NonUniqueResultException
      */
     public function indexAction(
         Request $request,
         EntityManagerInterface $entityManager,
         ProjectSearcherInterface $projectSearcher,
         PaginatorInterface $paginator,
+        UserSubscriptionsRepository $userSubscriptionsRepository,
         int $page = 1
     ) {
         $searchQuery = $request->query->get('query');
@@ -66,9 +69,15 @@ class ProjectsController extends AbstractController
             $page
         );
 
+        $isUserSubscribedToDigest = false;
+        if($this->getUser()) {
+            $isUserSubscribedToDigest = $userSubscriptionsRepository->isUserSubscribedToDigest($this->getUser());
+        }
+
         return $this->render('project/list/index.html.twig', [
             'pagination' => $pagination,
             'searchQuery' => $searchQuery,
+            'isUserSubscribedToDigest' => $isUserSubscribedToDigest,
         ]);
     }
 

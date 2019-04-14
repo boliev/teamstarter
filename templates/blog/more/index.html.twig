@@ -52,7 +52,8 @@
                     </div>
                 </article>
 
-                    {% include 'blog/common/comment_list.html.twig' %}
+                {% include 'blog/common/comment_list.html.twig' %}
+                {% if app.user %}
                     {% include 'blog/common/comment_form.html.twig' %}
                     {% if app.user %}
                         <div class="row">
@@ -63,6 +64,15 @@
                             </div>
                         </div>
                     {% endif %}
+                {% else %}
+                    <div class="row">
+                        <div class="col-md-12 form-section margin-top-20 margin-bottom-20">
+                            <div class="row"> <div class="col-md-12 form-group text-center">
+                                    {{ 'comments.comment_form_authorise_message' | trans ({"%link%": "/login"}) | raw }}
+                                </div></div>
+                        </div>
+                    </div>
+                {% endif %}
 
     </div>
 {% endblock %}

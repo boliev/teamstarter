@@ -4,10 +4,12 @@ namespace App\Repository;
 
 use App\Entity\Article;
 use App\Entity\Project;
+use App\Entity\User;
 use App\Entity\UserSpecializations;
 use App\Entity\UserSubscriptions;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query;
+use Ramsey\Uuid\Uuid;
 
 class UserRepository extends EntityRepository
 {
@@ -44,6 +46,15 @@ class UserRepository extends EntityRepository
     public function getAllUserSubscribedToArticleComments(Article $article)
     {
         return $this->getAllUserSubscribedToEntityComments(UserSubscriptions::EVENT_NEW_COMMENT_TO_ARTICLE_ADDED, $article->getId());
+    }
+
+    public function getUserByUnsubscribeHash(string $hash): ?User
+    {
+        if (!Uuid::isValid($hash)) {
+            return null;
+        }
+
+        return $this->findOneBy(['unsubscribeHash' => $hash]);
     }
 
     private function getAllUserSubscribedToEntityComments(string $event, int $entityId)
