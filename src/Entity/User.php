@@ -236,6 +236,7 @@ class User extends BaseUser
         $this->lookingForPartner = false;
         $this->lookingForProject = true;
         $this->unsubscribeHash = Uuid::uuid4();
+        $this->setViewsCount(0);
     }
 
     /**

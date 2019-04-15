@@ -147,6 +147,7 @@ class Project
         $this->progressStatus = 'Unfinished';
         $this->setCreatedAt(new \DateTime('now'));
         $this->setCommentsCount(0);
+        $this->setViewsCount(0);
     }
 
     /**
