@@ -103,6 +103,7 @@ class Article
     {
         $this->setCreatedAt(new DateTime('now'));
         $this->setRemoved(false);
+        $this->setViewsCount(0);
     }
 
     /**
