@@ -159,6 +159,13 @@ services:
         arguments:
             - App\Entity\Article
 
+
+    App\Repository\AchievementRepository:
+        class: App\Repository\AchievementRepository
+        factory: ['@doctrine.orm.default_entity_manager', getRepository]
+        arguments:
+            - App\Entity\Achievement
+
     App\EventSubscriber\ProjectSearchIndexerSubscriber:
         tags:
         - { name: doctrine.event_subscriber, event: postPersist }

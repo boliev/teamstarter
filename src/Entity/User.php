@@ -167,6 +167,16 @@ class User extends BaseUser
     private $projects;
 
     /**
+     * @var Collection
+     * @ORM\ManyToMany(targetEntity="App\Entity\Achievement")
+     * @ORM\JoinTable(name="user_achievements",
+     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="achievement_id", referencedColumnName="id")}
+     *      )
+     */
+    private $achievements;
+
+    /**
      * @var \DateTime|null
      * @ORM\Column(type="datetime", nullable=true)
      */
@@ -221,7 +231,7 @@ class User extends BaseUser
     private $unsubscribeHash;
 
     /**
-     * @var integer|null
+     * @var int|null
      * @ORM\Column(type="integer", nullable=false, options={"default": 0})
      */
     private $viewsCount;
@@ -837,5 +847,28 @@ class User extends BaseUser
     public function setViewsCount(?int $viewsCount): void
     {
         $this->viewsCount = $viewsCount;
+    }
+
+    /**
+     * @param Achievement $achievement
+     */
+    public function addAchievement(Achievement $achievement)
+    {
+        $this->achievements->add($achievement);
+    }
+
+    /**
+     * @param Achievement $achievement
+     *
+     * @return bool
+     */
+    public function hasAchievement(Achievement $achievement): bool
+    {
+        return $this->achievements->contains($achievement);
+    }
+
+    public function removeAchievement(Achievement $achievement)
+    {
+        $this->achievements->removeElement($achievement);
     }
 }

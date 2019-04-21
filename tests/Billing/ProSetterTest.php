@@ -4,9 +4,9 @@ namespace App\Tests;
 
 use App\Billing\ProSetter;
 use App\Entity\User;
+use App\Notifications\Notificator;
 use Doctrine\ORM\EntityManagerInterface;
 use PHPUnit\Framework\TestCase;
-use Symfony\Contracts\Translation\TranslatorInterface;
 
 class ProSetterTest extends TestCase
 {
@@ -21,9 +21,8 @@ class ProSetterTest extends TestCase
     public function setUserSuccess(?string $proDate)
     {
         $entityManager = $this->getMockBuilder(EntityManagerInterface::class)->disableOriginalConstructor()->getMock();
-        $mailer = $this->getMockBuilder(\Swift_Mailer::class)->disableOriginalConstructor()->getMock();
-        $translator = $this->getMockBuilder(TranslatorInterface::class)->disableOriginalConstructor()->getMock();
-        $setter = new ProSetter($entityManager, 'test@test.com', 'test@test.com', $mailer, 'test@test.com', $translator);
+        $notificator = $this->getMockBuilder(Notificator::class)->disableOriginalConstructor()->getMock();
+        $setter = new ProSetter($entityManager, $notificator);
         $dateBefore = new \DateTime($proDate);
         $dateBefore->add(new \DateInterval('P1M'));
         $time = $dateBefore->getTimestamp();
