@@ -5,6 +5,7 @@ namespace App\Achievements;
 use App\Entity;
 use App\Repository\AchievementRepository;
 use App\Repository\CommentRepository;
+use App\Repository\ProjectRepository;
 use Doctrine\ORM\EntityManagerInterface;
 
 class Factory
@@ -18,14 +19,19 @@ class Factory
     /** @var CommentRepository */
     private $commentRepository;
 
+    /** @var ProjectRepository */
+    private $projectRepository;
+
     public function __construct(
         AchievementRepository $achievementRepository,
         EntityManagerInterface $entityManager,
-        CommentRepository $commentRepository
+        CommentRepository $commentRepository,
+        ProjectRepository $projectRepository
     ) {
         $this->achievementRepository = $achievementRepository;
         $this->entityManager = $entityManager;
         $this->commentRepository = $commentRepository;
+        $this->projectRepository = $projectRepository;
     }
 
     /**
@@ -56,10 +62,10 @@ class Factory
                 return new SeniorComments($entity, $this->entityManager, $this->achievementRepository, $this->commentRepository);
                 break;
             case Entity\Achievement::ENTREPRENEUR:
-                return new Entrepreneur($entity, $this->entityManager, $this->achievementRepository);
+                return new Entrepreneur($entity, $this->entityManager, $this->achievementRepository, $this->projectRepository);
                 break;
             case Entity\Achievement::SERIAL_ENTREPRENEUR:
-                return new SerialEntrepreneur($entity, $this->entityManager, $this->achievementRepository);
+                return new SerialEntrepreneur($entity, $this->entityManager, $this->achievementRepository, $this->projectRepository);
                 break;
             case Entity\Achievement::PROACTIVE:
                 return new Proactive($entity, $this->entityManager, $this->achievementRepository, $this->commentRepository);
