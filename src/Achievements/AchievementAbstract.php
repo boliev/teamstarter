@@ -41,4 +41,9 @@ abstract class AchievementAbstract implements AchievementInterface
     {
         return $user->hasAchievement($achievement);
     }
+
+    protected function removeAchievement(Achievement $achievement, User $user)
+    {
+        return $user->removeAchievement($achievement);
+    }
 }
