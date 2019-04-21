@@ -51,4 +51,26 @@ class CommentRepository extends EntityRepository
             ->getQuery()
             ->getSingleScalarResult();
     }
+
+    /**
+     * @param User $user
+     *
+     * @return int
+     */
+    public function getCommentedProjectsCount(User $user): int
+    {
+        $result = $this->createQueryBuilder('c')
+            ->select('count(c.id)')
+            ->where('c.from = :user')
+            ->andWhere('c.entity = :entity')
+            ->andWhere('c.removed = false')
+            ->addGroupBy('c.from')
+            ->addGroupBy('c.toId')
+            ->setParameter('user', $user)
+            ->setParameter('entity', Comment::ENTITY_PROJECT)
+            ->getQuery()
+            ->getResult();
+
+        return count($result);
+    }
 }

@@ -62,7 +62,7 @@ class Factory
                 return new SerialEntrepreneur($entity, $this->entityManager, $this->achievementRepository);
                 break;
             case Entity\Achievement::PROACTIVE:
-                return new Proactive($entity, $this->entityManager, $this->achievementRepository);
+                return new Proactive($entity, $this->entityManager, $this->achievementRepository, $this->commentRepository);
                 break;
         }
 
