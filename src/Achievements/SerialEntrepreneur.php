@@ -4,6 +4,7 @@ namespace App\Achievements;
 
 use App\Entity\Achievement;
 use App\Entity\User;
+use App\Notifications\AchievementNotificator;
 use App\Repository\AchievementRepository;
 use App\Repository\ProjectRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -18,10 +19,11 @@ class SerialEntrepreneur extends AchievementAbstract
         Achievement $achievementEntity,
         EntityManagerInterface $entityManager,
         AchievementRepository $achievementRepository,
+        AchievementNotificator $notificator,
         ProjectRepository $projectRepository
     ) {
         $this->projectRepository = $projectRepository;
-        parent::__construct($achievementEntity, $entityManager, $achievementRepository);
+        parent::__construct($achievementEntity, $entityManager, $achievementRepository, $notificator);
     }
 
     public function isNeeded(User $user): bool

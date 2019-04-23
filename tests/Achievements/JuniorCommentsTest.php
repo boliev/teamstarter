@@ -6,6 +6,7 @@ use App\Achievements\JuniorComments;
 use App\Achievements\MiddleComments;
 use App\Entity\Achievement;
 use App\Entity\User;
+use App\Notifications\AchievementNotificator;
 use App\Repository\AchievementRepository;
 use App\Repository\CommentRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -29,6 +30,9 @@ class JuniorCommentsTest extends TestCase
     /** @var MockObject */
     private $user;
 
+    /** @var MockObject */
+    private $notificator;
+
     protected function setUp(): void
     {
         $this->achievementEntity = $this->createMock(Achievement::class);
@@ -36,6 +40,7 @@ class JuniorCommentsTest extends TestCase
         $this->achievementRepository = $this->createMock(AchievementRepository::class);
         $this->commentRepository = $this->createMock(CommentRepository::class);
         $this->user = $this->createMock(User::class);
+        $this->notificator = $this->createMock(AchievementNotificator::class);
     }
 
     /**
@@ -152,6 +157,7 @@ class JuniorCommentsTest extends TestCase
             $this->achievementEntity,
             $this->entityManager,
             $this->achievementRepository,
+            $this->notificator,
             $this->commentRepository
         );
     }

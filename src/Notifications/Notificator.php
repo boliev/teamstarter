@@ -16,40 +16,40 @@ use Symfony\Component\Routing\RouterInterface;
 class Notificator
 {
     /** @var string */
-    private $fromEmailAddress;
+    protected $fromEmailAddress;
 
     /** @var string */
-    private $fromName;
+    protected $fromName;
 
     /** @var \Swift_Mailer */
-    private $mailer;
+    protected $mailer;
 
     /** @var TelegramSender */
-    private $telegramSender;
+    protected $telegramSender;
 
     /** @var array */
-    private $reviewers;
+    protected $reviewers;
 
     /** @var array */
-    private $newProEmails;
+    protected $newProEmails;
 
     /** @var array */
-    private $supportEmails;
+    protected $supportEmails;
 
     /** @var array */
-    private $paymentErrorsEmails;
+    protected $paymentErrorsEmails;
 
     /** @var string */
-    private $foundersChatTg;
+    protected $foundersChatTg;
 
     /** @var TranslatorInterface */
-    private $translator;
+    protected $translator;
 
     /** @var RouterInterface */
-    private $router;
+    protected $router;
 
     /** @var UserRepository */
-    private $userRepository;
+    protected $userRepository;
 
     public function __construct(
         string $fromEmailAddress,
@@ -373,7 +373,7 @@ class Notificator
         );
     }
 
-    private function getAdminReviewProjectLink(Project $project)
+    protected function getAdminReviewProjectLink(Project $project)
     {
         return $this->router->generate(
             'easyadmin',
@@ -382,7 +382,7 @@ class Notificator
         );
     }
 
-    private function getProjectLink(Project $project)
+    protected function getProjectLink(Project $project)
     {
         return $this->router->generate(
             'project_more',
@@ -391,7 +391,7 @@ class Notificator
         );
     }
 
-    private function getArticleLink(Article $article)
+    protected function getArticleLink(Article $article)
     {
         return $this->router->generate(
             'blog_more',
@@ -400,7 +400,7 @@ class Notificator
         );
     }
 
-    private function sendEmail(array $emails, string $subject, string $body)
+    protected function sendEmail(array $emails, string $subject, string $body)
     {
         $message = (new \Swift_Message($subject))
             ->setFrom($this->fromEmailAddress, $this->fromName)
@@ -410,12 +410,12 @@ class Notificator
         $this->mailer->send($message);
     }
 
-    private function getUsername(User $user)
+    protected function getUsername(User $user)
     {
         return $user->getFirstName() ?? $user->getEmail();
     }
 
-    private function trans(string $key, array $params = [])
+    protected function trans(string $key, array $params = [])
     {
         return $this->translator->trans($key, $params);
     }

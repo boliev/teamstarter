@@ -4,6 +4,7 @@ namespace App\Achievements;
 
 use App\Entity\Achievement;
 use App\Entity\User;
+use App\Notifications\AchievementNotificator;
 use App\Repository\AchievementRepository;
 use Doctrine\ORM\EntityManagerInterface;
 
@@ -18,14 +19,19 @@ abstract class AchievementAbstract implements AchievementInterface
     /** @var AchievementRepository */
     protected $achievementRepository;
 
+    /** @var AchievementNotificator  */
+    protected $notificator;
+
     public function __construct(
         Achievement $achievementEntity,
         EntityManagerInterface $entityManager,
-        AchievementRepository $achievementRepository
+        AchievementRepository $achievementRepository,
+        AchievementNotificator $notificator
     ) {
         $this->entityManager = $entityManager;
         $this->achievementEntity = $achievementEntity;
         $this->achievementRepository = $achievementRepository;
+        $this->notificator = $notificator;
     }
 
     public function apply(User $user): bool

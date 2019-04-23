@@ -6,6 +6,7 @@ use App\Achievements\Entrepreneur;
 use App\Achievements\SerialEntrepreneur;
 use App\Entity\Achievement;
 use App\Entity\User;
+use App\Notifications\AchievementNotificator;
 use App\Repository\AchievementRepository;
 use App\Repository\ProjectRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -29,12 +30,16 @@ class EntrepreneurTest extends TestCase
     /** @var MockObject */
     private $user;
 
+    /** @var MockObject */
+    private $notificator;
+
     protected function setUp(): void
     {
         $this->achievementEntity = $this->createMock(Achievement::class);
         $this->entityManager = $this->createMock(EntityManagerInterface::class);
         $this->achievementRepository = $this->createMock(AchievementRepository::class);
         $this->projectRepository = $this->createMock(ProjectRepository::class);
+        $this->notificator = $this->createMock(AchievementNotificator::class);
         $this->user = $this->createMock(User::class);
     }
 
@@ -130,6 +135,7 @@ class EntrepreneurTest extends TestCase
             $this->achievementEntity,
             $this->entityManager,
             $this->achievementRepository,
+            $this->notificator,
             $this->projectRepository
         );
     }

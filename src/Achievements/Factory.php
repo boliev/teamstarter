@@ -3,6 +3,7 @@
 namespace App\Achievements;
 
 use App\Entity;
+use App\Notifications\AchievementNotificator;
 use App\Repository\AchievementRepository;
 use App\Repository\CommentRepository;
 use App\Repository\ProjectRepository;
@@ -22,16 +23,21 @@ class Factory
     /** @var ProjectRepository */
     private $projectRepository;
 
+    /** @var AchievementNotificator  */
+    private $notificator;
+
     public function __construct(
         AchievementRepository $achievementRepository,
         EntityManagerInterface $entityManager,
         CommentRepository $commentRepository,
-        ProjectRepository $projectRepository
+        ProjectRepository $projectRepository,
+        AchievementNotificator $notificator
     ) {
         $this->achievementRepository = $achievementRepository;
         $this->entityManager = $entityManager;
         $this->commentRepository = $commentRepository;
         $this->projectRepository = $projectRepository;
+        $this->notificator = $notificator;
     }
 
     /**
@@ -53,22 +59,22 @@ class Factory
     {
         switch ($entity->getName()) {
             case Entity\Achievement::JUNIOR_COMMENTS:
-                return new JuniorComments($entity, $this->entityManager, $this->achievementRepository, $this->commentRepository);
+                return new JuniorComments($entity, $this->entityManager, $this->achievementRepository, $this->notificator, $this->commentRepository);
                 break;
             case Entity\Achievement::MIDDLE_COMMENTS:
-                return new MiddleComments($entity, $this->entityManager, $this->achievementRepository, $this->commentRepository);
+                return new MiddleComments($entity, $this->entityManager, $this->achievementRepository, $this->notificator, $this->commentRepository);
                 break;
             case Entity\Achievement::SENIOR_COMMENTS:
-                return new SeniorComments($entity, $this->entityManager, $this->achievementRepository, $this->commentRepository);
+                return new SeniorComments($entity, $this->entityManager, $this->achievementRepository, $this->notificator, $this->commentRepository);
                 break;
             case Entity\Achievement::ENTREPRENEUR:
-                return new Entrepreneur($entity, $this->entityManager, $this->achievementRepository, $this->projectRepository);
+                return new Entrepreneur($entity, $this->entityManager, $this->achievementRepository, $this->notificator, $this->projectRepository);
                 break;
             case Entity\Achievement::SERIAL_ENTREPRENEUR:
-                return new SerialEntrepreneur($entity, $this->entityManager, $this->achievementRepository, $this->projectRepository);
+                return new SerialEntrepreneur($entity, $this->entityManager, $this->achievementRepository, $this->notificator, $this->projectRepository);
                 break;
             case Entity\Achievement::PROACTIVE:
-                return new Proactive($entity, $this->entityManager, $this->achievementRepository, $this->commentRepository);
+                return new Proactive($entity, $this->entityManager, $this->achievementRepository, $this->notificator, $this->commentRepository);
                 break;
         }
 

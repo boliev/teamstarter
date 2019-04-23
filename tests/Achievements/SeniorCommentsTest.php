@@ -5,6 +5,7 @@ namespace App\Tests;
 use App\Achievements\SeniorComments;
 use App\Entity\Achievement;
 use App\Entity\User;
+use App\Notifications\AchievementNotificator;
 use App\Repository\AchievementRepository;
 use App\Repository\CommentRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -28,6 +29,9 @@ class SeniorCommentsTest extends TestCase
     /** @var MockObject */
     private $user;
 
+    /** @var MockObject */
+    private $notificator;
+
     protected function setUp(): void
     {
         $this->achievementEntity = $this->createMock(Achievement::class);
@@ -36,6 +40,8 @@ class SeniorCommentsTest extends TestCase
         $this->commentRepository = $this->createMock(CommentRepository::class);
         $this->user = $this->createMock(User::class);
         $this->user->method('removeAchievement')->willReturn(true);
+        $this->notificator = $this->createMock(AchievementNotificator::class);
+
     }
 
     /**
@@ -165,6 +171,7 @@ class SeniorCommentsTest extends TestCase
             $this->achievementEntity,
             $this->entityManager,
             $this->achievementRepository,
+            $this->notificator,
             $this->commentRepository
         );
     }

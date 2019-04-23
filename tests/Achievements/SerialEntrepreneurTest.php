@@ -5,6 +5,7 @@ namespace App\Tests;
 use App\Achievements\SerialEntrepreneur;
 use App\Entity\Achievement;
 use App\Entity\User;
+use App\Notifications\AchievementNotificator;
 use App\Repository\AchievementRepository;
 use App\Repository\ProjectRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -28,6 +29,9 @@ class SerialEntrepreneurTest extends TestCase
     /** @var MockObject */
     private $user;
 
+    /** @var MockObject */
+    private $notificator;
+
     protected function setUp(): void
     {
         $this->achievementEntity = $this->createMock(Achievement::class);
@@ -35,6 +39,8 @@ class SerialEntrepreneurTest extends TestCase
         $this->achievementRepository = $this->createMock(AchievementRepository::class);
         $this->projectRepository = $this->createMock(ProjectRepository::class);
         $this->user = $this->createMock(User::class);
+        $this->notificator = $this->createMock(AchievementNotificator::class);
+
     }
 
     /**
@@ -134,6 +140,7 @@ class SerialEntrepreneurTest extends TestCase
             $this->achievementEntity,
             $this->entityManager,
             $this->achievementRepository,
+            $this->notificator,
             $this->projectRepository
         );
     }
