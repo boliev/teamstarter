@@ -400,6 +400,16 @@ class Notificator
         );
     }
 
+    protected function getSpecialistLink(User $user)
+    {
+        // specialists_more
+        return $this->router->generate(
+            'specialists_more',
+            ['user' => $user->getId()],
+            UrlGeneratorInterface::ABSOLUTE_URL
+        );
+    }
+
     protected function sendEmail(array $emails, string $subject, string $body)
     {
         $message = (new \Swift_Message($subject))

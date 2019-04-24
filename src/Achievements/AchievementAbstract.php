@@ -40,6 +40,7 @@ abstract class AchievementAbstract implements AchievementInterface
         $this->entityManager->persist($user);
         $this->entityManager->flush();
 
+        $this->notificator->newAchievement($user, $this->achievementEntity);
         return true;
     }
 

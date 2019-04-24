@@ -204,6 +204,12 @@ services:
             $paymentErrorsEmails: "%env(MAILS_PAYMENT_ERRORS)%"
             $foundersChatTg: "%env(TG_FOUNDERS_CHAT)%"
 
+    App\Notifications\AchievementNotificator:
+        parent: App\Notifications\Notificator
+        public: true
+        autowire: true
+        autoconfigure: false
+
     App\Notifications\TelegramSender:
         bind:
             $telegramUrl: "%env(TELEGRAM_URL)%"
