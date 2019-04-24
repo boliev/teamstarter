@@ -871,4 +871,9 @@ class User extends BaseUser
     {
         $this->achievements->removeElement($achievement);
     }
+
+    public function getAchievements()
+    {
+        return $this->achievements;
+    }
 }
