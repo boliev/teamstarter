@@ -57,6 +57,11 @@ class UserRepository extends EntityRepository
         return $this->findOneBy(['unsubscribeHash' => $hash]);
     }
 
+    public function getEnabled()
+    {
+        return $this->findBy(['enabled' => true]);
+    }
+
     private function getAllUserSubscribedToEntityComments(string $event, int $entityId)
     {
         return $this->createQueryBuilder('u')

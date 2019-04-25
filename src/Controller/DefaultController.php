@@ -51,4 +51,23 @@ class DefaultController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/achievements", name="achievements_page")
+     *
+     * @param Request $request
+     * @param string $locale
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function achievementsAction(Request $request, string $locale, \Parsedown $parsedown)
+    {
+        $content = $this->renderView('texts/'.$locale.'/achievements.html.twig');
+
+        $content = $parsedown->text($content);
+
+        return $this->render('default/achievements.html.twig', [
+            'content' => $content
+        ]);
+    }
+
 }

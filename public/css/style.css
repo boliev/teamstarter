@@ -2608,3 +2608,31 @@ div.index-banner-text-row ul li:before {
 	color: #42a5f5;
 	font-size: 45pt;
 }
+
+.profile-achievement {
+    display: inline-block;
+	box-sizing: border-box;
+	font-size: 12px;
+	font-weight: 500;
+	height: 32px;
+	padding: 6px 14px;
+	border-radius: 18px;
+    border: 1px #42a5f5 solid;
+	margin-right: 8px;
+	margin-top:10px;
+	color:#42a5f5;
+	white-space: nowrap;
+}
+
+.profile-achievement a {
+    font-size: 12px;
+    font-weight: 500;
+    color:#42a5f5;
+}
+
+.post .entry-content .profile-achievement a {
+	font-size: 12px;
+	font-weight: 500;
+	color:#42a5f5;
+}
+

@@ -33,6 +33,9 @@
                                         <div class="margin-top-10">
                                             {% for userSkill in user.userSkills %} <span class="badge project-card-role-tag">{{ userSkill.skill.title }}</span> {% endfor %}
                                         </div>
+                                        <div class="margin-top-10">
+                                            {% for achievement in user.achievements %} <span class="profile-achievement"><a href="{{ path('achievements_page') }}">{{ ('achievements.' ~ achievement.name) | trans }}</a></span> {% endfor %}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
