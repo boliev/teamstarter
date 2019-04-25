@@ -61,15 +61,12 @@ class DefaultController extends AbstractController
      */
     public function achievementsAction(Request $request, string $locale, \Parsedown $parsedown)
     {
-        $terms = $this->renderView('texts/'.$locale.'/terms.html.twig', [
-            'domain' => $request->getHost(),
-        ]);
+        $content = $this->renderView('texts/'.$locale.'/achievements.html.twig');
 
-        $terms = $parsedown->text($terms);
+        $content = $parsedown->text($content);
 
-        return $this->render('default/terms.html.twig', [
-            'domain' => $request->getHost(),
-            'terms' => $terms
+        return $this->render('default/achievements.html.twig', [
+            'content' => $content
         ]);
     }
 

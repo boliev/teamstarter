@@ -51,6 +51,7 @@ title:
     editor: Редактор статей
     blog: Блог
     unsubscribe: Отписка от новостей teamstarter.ru
+    achievements: Достижения
 
 registration:
     header: Регистрация
@@ -553,6 +554,7 @@ subscriptions:
     unsubscribe_success: Вы успешно отписались от рассылки
 
 achievements:
+    header: <span>Достижения</span>
     junior_comments: Начинающий стартапер
     middle_comments: Опытный стартапер
     senior_comments: Гуру стартапов

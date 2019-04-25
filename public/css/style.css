@@ -2621,6 +2621,7 @@ div.index-banner-text-row ul li:before {
 	margin-right: 8px;
 	margin-top:10px;
 	color:#42a5f5;
+	white-space: nowrap;
 }
 
 .profile-achievement a {
