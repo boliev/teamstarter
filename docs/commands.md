@@ -1,6 +1,6 @@
 # Symfony console
 
-`bin/console test:specialists:add some@mail.ru` Добавить тестового пользователя some@mail.ru (Должен быть описан в `src/Testing/data/specialists.json`).
+`bin/console test:specialists:add vboliev+1@teamstarter.ru` Добавить тестового пользователя some@mail.ru (Должен быть описан в `src/Testing/data/specialists.json`).
 
 `bin/console projects:index` Поисковая индексация всех проектов
 
@@ -22,4 +22,4 @@
 
 `dep user:make:admin --u someuser@mail.com dev` - Дать админские права
 
-`dep user:remove:admin --u someuser@mail.com dev` - Забрать админские права
+`dep user:remove:admin --u vboliev+1@teamstarter.ru prod` - Забрать админские права
