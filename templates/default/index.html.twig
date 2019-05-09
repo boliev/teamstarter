@@ -79,21 +79,35 @@
                 </div>
             </div>
         </div>
-        <p><b><span class="blue">Teamstarter</span> - </b> это онлайн-платформа для поиска единомышленников и интересных
-            стартапов.</p>
-        <p>Мы знаем, что у многих людей есть крутые идеи для стартапов, которые они не могут воплотить в жизнь без
-            крупных вложений хотя бы на специалистов (не говоря уже о маркетинге, рекламе и прочих затратах).</p>
 
-        <p>И знаем, что есть начинающие специалисты, горящие желанием получить опыт работы на боевом проекте.</p>
+        <div class="card index-page-card-hover">
+            <div class="card-body">
+                <p><b><span class="blue">Teamstarter</span> - </b> это онлайн-платформа для поиска единомышленников и
+                    интересных
+                    стартапов.</p>
+                <p>Мы знаем, что у многих людей есть крутые идеи для стартапов, которые они не могут воплотить в жизнь
+                    без
+                    крупных вложений хотя бы на специалистов (не говоря уже о маркетинге, рекламе и прочих
+                    затратах).</p>
 
-        <p>А еще есть специалисты, которые немного заскучали на основной работе, а чем занять себя вне офиса - пока не
-            поняли.</p>
-        <p>Которым хочется пилить какой-нибудь сторонний проект, хочется чего-то светлого и нового, но где взять и как
-            придумать этот проект - не представляют.</p>
+                <p>И знаем, что есть начинающие специалисты, горящие желанием получить опыт работы на боевом
+                    проекте.</p>
 
-        <p>Мы подумали, что объединить всех этих людей - уже отличная идея!</p>
+                <p>А еще есть специалисты, которые немного заскучали на основной работе, а чем занять себя вне офиса -
+                    пока не
+                    поняли.</p>
+                <p>Которым хочется пилить какой-нибудь сторонний проект, хочется чего-то светлого и нового, но где взять
+                    и как
+                    придумать этот проект - не представляют.</p>
 
-        <h3>Поэтому давайте попробуем!</h3>
+                <p>Мы подумали, что объединить всех этих людей - уже отличная идея!</p>
+
+                {% if not app.user %}
+                    <div class="index-banner-button"><a class=""
+                                                        href="{{ path('fos_user_registration_register') }}">Поэтому давайте попробуем!</a>
+                    </div>{% endif %}
+            </div>
+        </div>
 
         <div class="row margin-top-20 padding-bottom-5">
             <div class="col-sm-8">
@@ -105,15 +119,18 @@
             </div>
         </div>
 
-        <p>Развивать российский рынок стартапов, помогать малому и среднему предпринимательству</p>
+        <div class="card index-page-card-hover">
+            <div class="card-body">
+                <p>Развивать российский рынок стартапов, помогать малому и среднему предпринимательству</p>
 
-        <p>Мы считаем, что можно делать крутые проекты и воплощать смелые идеи без миллионных вложений</p>
+                <p>Мы считаем, что можно делать крутые проекты и воплощать смелые идеи без миллионных вложений</p>
 
-        <p>Стоит только начать!</p>
+                <p>Стоит только начать!</p>
 
-        <p>Это не поиск работы, это поиск команды<br/>
-            Это не про бизнес, это про людей</p>
-
+                <p>Это не поиск работы, это поиск команды<br/>
+                    Это не про бизнес, это про людей</p>
+            </div>
+        </div>
 
         <div class="row margin-top-20 padding-bottom-5">
             <div class="col-sm-8">
@@ -132,8 +149,9 @@
             <div class="col-md-3">
 
 
-                <div class="card index-page-card" style="">
-                    <div class="card-header"><img src="/images/index-page-filler.jpg" /><h3>Создай аккаунт</h3></div>
+                <div class="card index-page-card index-page-card-hover" style="">
+                    <div class="card-header"><img src="/images/index-page-filler.jpg"/>
+                        <h3>Создай аккаунт</h3></div>
                     <div class="card-body">
                         <p class="card-text">При создании аккаунта у вас будет возможность проставить чекбокс «Хочу
                             найти партнера в свой
@@ -143,8 +161,9 @@
 
             </div>
             <div class="col-md-3">
-                <div class="card index-page-card">
-                    <div class="card-header"><img src="/images/index-page-filler.jpg" /><h3>Создай свой проект</h3></div>
+                <div class="card index-page-card index-page-card-hover">
+                    <div class="card-header"><img src="/images/index-page-filler.jpg"/>
+                        <h3>Создай свой проект</h3></div>
                     <div class="card-body">
                         <p class="card-text">После регистрации аккаунта, вы можете создать свой проект в разделе
                             «Добавить проект» Добавить основы
@@ -154,8 +173,9 @@
                 </div>
             </div>
             <div class="col-md-3">
-                <div class="card index-page-card" style="">
-                    <div class="card-header"><img src="/images/index-page-filler.jpg" /><h3>Найди нужных специалистов и добавь их в команду проекта</h3></div>
+                <div class="card index-page-card index-page-card-hover" style="">
+                    <div class="card-header"><img src="/images/index-page-filler.jpg"/>
+                        <h3>Найди нужных специалистов и добавь их в команду проекта</h3></div>
                     <div class="card-body">
                         <p class="card-text">Найти единомышленников можно в разделе «Специалисты». Там вы можете
                             пригласить нужного специалиста в
@@ -166,8 +186,9 @@
                 </div>
             </div>
             <div class="col-md-3">
-                <div class="card index-page-card" style="">
-                    <div class="card-header"><img src="/images/index-page-filler.jpg" /><h3>Ты великолепен!</h3></div>
+                <div class="card index-page-card index-page-card-hover" style="">
+                    <div class="card-header"><img src="/images/index-page-filler.jpg"/>
+                        <h3>Ты великолепен!</h3></div>
                     <div class="card-body">
                         <p class="card-text">Продолжайте работу в команде и развивайте ваши идеи и навыки вместе!</p>
                     </div>
@@ -176,8 +197,9 @@
         </div>
         <div class="row index-page-description index-page-description-specialist">
             <div class="col-md-3">
-                <div class="card index-page-card" style="">
-                    <div class="card-header"><img src="/images/index-page-filler.jpg" /><h3>Создай аккаунт и выбери свою роль</h3></div>
+                <div class="card index-page-card index-page-card-hover" style="">
+                    <div class="card-header"><img src="/images/index-page-filler.jpg"/>
+                        <h3>Создай аккаунт и выбери свою роль</h3></div>
                     <div class="card-body">
                         <p class="card-text">При выборе роли ориентируйся на имеющиеся знания и навыки. На то, чем мог
                             бы был полезен команде!</p>
@@ -185,8 +207,9 @@
                 </div>
             </div>
             <div class="col-md-3">
-                <div class="card index-page-card">
-                    <div class="card-header"><img src="/images/index-page-filler.jpg" /><h3>Ознакомься с проектами</h3></div>
+                <div class="card index-page-card index-page-card-hover">
+                    <div class="card-header"><img src="/images/index-page-filler.jpg"/>
+                        <h3>Ознакомься с проектами</h3></div>
                     <div class="card-body">
                         <p class="card-text">В разделе «Проекты» собраны имеющиеся проекты, которые нуждаются в команде,
                             с указанием стадии
@@ -195,8 +218,9 @@
                 </div>
             </div>
             <div class="col-md-3">
-                <div class="card index-page-card" style="">
-                    <div class="card-header"><img src="/images/index-page-filler.jpg" /><h3>Присоединись к проекту, который заинтересовал</h3></div>
+                <div class="card index-page-card index-page-card-hover" style="">
+                    <div class="card-header"><img src="/images/index-page-filler.jpg"/>
+                        <h3>Присоединись к проекту, который заинтересовал</h3></div>
                     <div class="card-body">
                         <p class="card-text">Просто отправь приветственное сообщение с помощью кнопки «Вступить в
                             команду» на странице просмотра
@@ -207,8 +231,9 @@
                 </div>
             </div>
             <div class="col-md-3">
-                <div class="card index-page-card" style="">
-                    <div class="card-header"><img src="/images/index-page-filler.jpg" /><h3>Вы великолепны!</h3></div>
+                <div class="card index-page-card index-page-card-hover" style="">
+                    <div class="card-header"><img src="/images/index-page-filler.jpg"/>
+                        <h3>Вы великолепны!</h3></div>
                     <div class="card-body">
                         <p class="card-text">Продолжайте работу в команде и развивайте ваши идеи и навыки вместе!</p>
                     </div>
@@ -226,7 +251,7 @@
         </div>
 
         <div class="index-page-faq margin-bottom-50">
-            <div class="card">
+            <div class="card index-page-card-hover">
                 <div class="card-body">
                     <div class="index-page-faq-item">
                         <div class="index-page-faq-q"><a href="#null">На каких условиях сотрудничают стороны?</a></div>

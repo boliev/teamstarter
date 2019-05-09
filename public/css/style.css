@@ -2687,13 +2687,13 @@ a.index-page-switchers-active {
 }
 
 .index-page-card {
-	height: 465px;
+	height: 475px;
 }
 
 .index-page-faq-q a {
 
 }
-.index-page-card:hover {
+.index-page-card-hover:hover {
 	transition: transform .3s,box-shadow .3s;
 	transition: transform .3s,box-shadow .3s,-webkit-transform .3s;
 	transition-timing-function: cubic-bezier(.25,.1,.25,1);
