@@ -2,6 +2,72 @@
 {% block title %} {{ 'title.index_page' | trans }} {% endblock %}
 {% block body %}
 
+    <div class="hidden-xs hidden-sm" style="background-color: #ffffff;">
+        <div class="row">
+            <div class="col-md-1 text-right index-banner-nav index-banner-nav-left"><i id="index-banner-nav-prev"
+                                                                                       class="fa fa-angle-left"
+                                                                                       aria-hidden="true"></i></div>
+            <div class="col-md-10 index-page-carousel">
+                <div class="owl-carousel owl-theme">
+                    <div class="index-banner-item index-banner1">
+                        <div class="index-banner-text-header index-banner-text1">TeamStarter</div>
+                        <div class="index-banner-text-row index-banner-text2">Онлайн-платформа для поиска
+                            единомышленников и интересных стартапов
+                        </div>
+                        <div class="index-banner-text-row index-banner-text3">Объединяемся в команды. Создаем проекты.
+                            <br/>Запускаем крутые стартапы.
+                        </div>
+                        <div class="index-banner-text-row index-banner-text4">Не откладывай свои идеи.<br/> Начни
+                            реализовывать их прямо сейчас!
+                        </div>
+                        {% if not app.user %}
+                            <div class="index-banner-button"><a class=""
+                                                                href="{{ path('fos_user_registration_register') }}">{{ 'join_us' | trans }}</a>
+                            </div>{% endif %}
+                    </div>
+                    <div class="index-banner-item index-banner2">
+                        <div class="index-banner-text-header index-banner-text1">TeamStarter</div>
+                        <div class="index-banner-text-row index-banner-text2">Если у тебя есть отличная идея, но нет
+                            денег на реализацию MVP
+                        </div>
+                        <div class="index-banner-text-row index-banner-text3">
+                            <ul>
+                                <li>Создай проект на TeamStarter</li>
+                                <li>Найди заинтересованных специалистов</li>
+                                <li>Собери команду с горящими глазами</li>
+                            </ul>
+                        </div>
+                        {% if not app.user %}
+                            <div class="index-banner-button"><a class=""
+                                                                href="{{ path('fos_user_registration_register') }}">Собери
+                                команду - это просто!</a></div>{% endif %}
+                    </div>
+
+                    <div class="index-banner-item index-banner3">
+                        <div class="index-banner-text-header index-banner-text1">TeamStarter</div>
+                        <div class="index-banner-text-row index-banner-text2">Если ты хочешь попробовать себя в новой
+                            роли в команде, тогда тебе точно на TeamStarter!
+                        </div>
+                        <div class="index-banner-text-row index-banner-text3">
+                            <ul>
+                                <li>Найди интересный проект</li>
+                                <li>Присоединись к нему</li>
+                                <li>Получи ценный опыт работы на настоящем боевом проекте!</li>
+                            </ul>
+                        </div>
+                        {% if not app.user %}
+                            <div class="index-banner-button"><a class=""
+                                                                href="{{ path('fos_user_registration_register') }}">{{ 'join_us' | trans }}</a>
+                            </div>{% endif %}
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1 align-middle index-banner-nav index-banner-nav-right" style="vertical-align: center"><i
+                        id="index-banner-nav-next" class="fa fa-angle-right" aria-hidden="true"></i></div>
+        </div>
+    </div>
+
     <div class="container">
 
         <div class="row margin-top-20 padding-bottom-5">
@@ -59,125 +125,94 @@
             </div>
         </div>
         <div class="index-page-switchers margin-top-10 margin-bottom-20">
-            <a id="index-page-show-po" href="#null" class="index-page-switchers-active">Хочу создать проект</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a id="index-page-show-specialist" href="#null">Хочу в команду</a>
+            <a id="index-page-show-po" href="#null" class="index-page-switchers-active">Хочу создать проект</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a
+                    id="index-page-show-specialist" href="#null">Хочу в команду</a>
         </div>
         <div class="row index-page-description index-page-description-po">
             <div class="col-md-3">
 
 
                 <div class="card index-page-card" style="">
-                    <div class="card-header"><h3>Создай аккаунт</h3></div>
+                    <div class="card-header"><img src="/images/index-page-filler.jpg" /><h3>Создай аккаунт</h3></div>
                     <div class="card-body">
-                        <p class="card-text">При создании аккаунта у вас будет возможность проставить чекбокс «Хочу найти партнера в свой
+                        <p class="card-text">При создании аккаунта у вас будет возможность проставить чекбокс «Хочу
+                            найти партнера в свой
                             проект»</p>
                     </div>
                 </div>
 
-
-{#                <h3>Создай аккаунт</h3>#}
-{#                <p>При создании аккаунта у вас будет возможность проставить чекбокс «Хочу найти партнера в свой#}
-{#                    проект»</p>#}
             </div>
             <div class="col-md-3">
-                <div class="card index-page-card" style="background-color: #42a5f5; color: #ffffff">
-                    <div class="card-header"><h3>Создай свой проект</h3></div>
+                <div class="card index-page-card">
+                    <div class="card-header"><img src="/images/index-page-filler.jpg" /><h3>Создай свой проект</h3></div>
                     <div class="card-body">
-                        <p class="card-text">После регистрации аккаунта, вы можете создать свой проект в разделе «Добавить проект» Добавить основы
+                        <p class="card-text">После регистрации аккаунта, вы можете создать свой проект в разделе
+                            «Добавить проект» Добавить основы
                             добавления проекта, например: «укажите стадию, на которой находится опубликовавший вакансию
                             стартап»</p>
-{#                        <p class="card-text">После создания, проект отправляется на модерацию. При его одобрении вы получите письмо на электронную#}
-{#                            почту. Теперь проект добавлен на teamstarter и готов к сотрудничеству! Созданные проекты можно#}
-{#                            просмотреть и отредактировать в разделе «Мои проекты»</p>#}
                     </div>
                 </div>
-
-{#                <h3>Создай свой проект</h3>#}
-{#                <p>После регистрации аккаунта, вы можете создать свой проект в разделе «Добавить проект» Добавить основы#}
-{#                    добавления проекта, например: «укажите стадию, на которой находится опубликовавший вакансию#}
-{#                    стартап»</p>#}
-{#                <p>После создания, проект отправляется на модерацию. При его одобрении вы получите письмо на электронную#}
-{#                    почту. Теперь проект добавлен на teamstarter и готов к сотрудничеству! Созданные проекты можно#}
-{#                    просмотреть и отредактировать в разделе «Мои проекты»</p>#}
             </div>
             <div class="col-md-3">
                 <div class="card index-page-card" style="">
-                    <div class="card-header" style="background-color: #42a5f5; color: #ffffff"><h3>Найди нужных специалистов и добавь их в команду проекта</h3></div>
+                    <div class="card-header"><img src="/images/index-page-filler.jpg" /><h3>Найди нужных специалистов и добавь их в команду проекта</h3></div>
                     <div class="card-body">
-                        <p class="card-text">Найти единомышленников можно в разделе «Специалисты». Там вы можете пригласить нужного специалиста в
-                            проект, написав приветственное сообщение с помощью кнопки «Предложить сотрудничество» на странице
+                        <p class="card-text">Найти единомышленников можно в разделе «Специалисты». Там вы можете
+                            пригласить нужного специалиста в
+                            проект, написав приветственное сообщение с помощью кнопки «Предложить сотрудничество» на
+                            странице
                             просмотра профиля специалиста</p>
-{#                        <p class="card-text">Также тебе будут приходить отклики от специалистов, заинтересовавшихся проектов. Просмотреть и#}
-{#                            ответить на отклики возможно в разделе «Диалоги»</p>#}
                     </div>
                 </div>
-
-{#                <h3>Найди нужных специалистов и добавь их в команду проекта</h3>#}
-{#                <p>Найти единомышленников можно в разделе «Специалисты». Там вы можете пригласить нужного специалиста в#}
-{#                    проект, написав приветственное сообщение с помощью кнопки «Предложить сотрудничество» на странице#}
-{#                    просмотра профиля специалиста</p>#}
-{#                <p>Также тебе будут приходить отклики от специалистов, заинтересовавшихся проектов. Просмотреть и#}
-{#                    ответить на отклики возможно в разделе «Диалоги»</p>#}
             </div>
             <div class="col-md-3">
                 <div class="card index-page-card" style="">
-                    <div class="card-header"><h3>Ты великолепен!</h3></div>
-                    <div class="card-body" style="background-color: #42a5f5; color: #ffffff">
+                    <div class="card-header"><img src="/images/index-page-filler.jpg" /><h3>Ты великолепен!</h3></div>
+                    <div class="card-body">
                         <p class="card-text">Продолжайте работу в команде и развивайте ваши идеи и навыки вместе!</p>
                     </div>
                 </div>
-
-{#                <h3>Ты великолепен!</h3>#}
-{#                <p>Продолжайте работу в команде и развивайте ваши идеи и навыки вместе!</p>#}
             </div>
         </div>
         <div class="row index-page-description index-page-description-specialist">
             <div class="col-md-3">
                 <div class="card index-page-card" style="">
-                    <div class="card-header"><h3>Создай аккаунт и выбери свою роль</h3></div>
+                    <div class="card-header"><img src="/images/index-page-filler.jpg" /><h3>Создай аккаунт и выбери свою роль</h3></div>
                     <div class="card-body">
-                        <p class="card-text">При выборе роли ориентируйся на имеющиеся знания и навыки. На то, чем мог бы был полезен команде!</p>
+                        <p class="card-text">При выборе роли ориентируйся на имеющиеся знания и навыки. На то, чем мог
+                            бы был полезен команде!</p>
                     </div>
                 </div>
-{#                <h3>Создай аккаунт и выбери свою роль</h3>#}
-{#                <p>При выборе роли ориентируйся на имеющиеся знания и навыки. На то, чем мог бы был полезен команде!</p>#}
             </div>
             <div class="col-md-3">
-                <div class="card index-page-card" style="background-color: #42a5f5; color: #ffffff">
-                    <div class="card-header" ><h3>Ознакомься с проектами</h3></div>
+                <div class="card index-page-card">
+                    <div class="card-header"><img src="/images/index-page-filler.jpg" /><h3>Ознакомься с проектами</h3></div>
                     <div class="card-body">
-                        <p class="card-text">В разделе «Проекты» собраны имеющиеся проекты, которые нуждаются в команде, с указанием стадии
+                        <p class="card-text">В разделе «Проекты» собраны имеющиеся проекты, которые нуждаются в команде,
+                            с указанием стадии
                             проекта и свободными ролями!</p>
                     </div>
                 </div>
-{#                <h3>Ознакомься с проектами</h3>#}
-{#                <p>В разделе «Проекты» собраны имеющиеся проекты, которые нуждаются в команде, с указанием стадии#}
-{#                    проекта и свободными ролями! </p>#}
             </div>
             <div class="col-md-3">
                 <div class="card index-page-card" style="">
-                    <div class="card-header" style="background-color: #42a5f5; color: #ffffff"><h3>Присоединись к проекту, который заинтересовал</h3></div>
+                    <div class="card-header"><img src="/images/index-page-filler.jpg" /><h3>Присоединись к проекту, который заинтересовал</h3></div>
                     <div class="card-body">
-                        <p class="card-text">Просто отправь приветственное сообщение с помощью кнопки «Вступить в команду» на странице просмотра
+                        <p class="card-text">Просто отправь приветственное сообщение с помощью кнопки «Вступить в
+                            команду» на странице просмотра
                             проекта, который наиболее подходит тебе по интересам и навыкам</p>
-                        <p class="card-text">Найти ответ от основателя проекта и пообщаться с ним возможно в разделе «Диалоги»</p>
+                        <p class="card-text">Найти ответ от основателя проекта и пообщаться с ним возможно в разделе
+                            «Диалоги»</p>
                     </div>
                 </div>
-
-{#                <h3>Присоединись к проекту, который заинтересовал</h3>#}
-{#                <p>Просто отправь приветственное сообщение с помощью кнопки «Вступить в команду» на странице просмотра#}
-{#                    проекта, который наиболее подходит тебе по интересам и навыкам</p>#}
-{#                <p>Найти ответ от основателя проекта и пообщаться с ним возможно в разделе «Диалоги»</p>#}
             </div>
             <div class="col-md-3">
                 <div class="card index-page-card" style="">
-                    <div class="card-header"><h3>Вы великолепны!</h3></div>
-                    <div class="card-body" style="background-color: #42a5f5; color: #ffffff">
+                    <div class="card-header"><img src="/images/index-page-filler.jpg" /><h3>Вы великолепны!</h3></div>
+                    <div class="card-body">
                         <p class="card-text">Продолжайте работу в команде и развивайте ваши идеи и навыки вместе!</p>
                     </div>
                 </div>
-
-{#                <h3> Вы великолепны!</h3>#}
-{#                <p>Продолжайте работу в команде и развивайте ваши идеи и навыки вместе!</p>#}
             </div>
         </div>
         <div class="row margin-top-20 padding-bottom-5">
@@ -189,41 +224,69 @@
                 </div>
             </div>
         </div>
+
         <div class="index-page-faq margin-bottom-50">
-            <div class="index-page-faq-item">
-                <div class="index-page-faq-q"><a href="#null">На каких условиях сотрудничают стороны?</a></div>
-                <div class="index-page-faq-a">Вы решаете сами, как и где вам сотрудничать и на каких условиях.
-                    Вы можете договориться об оплате труда за обмен опытом или любую другую компенсацию</div>
-            </div>
-            <div class="index-page-faq-item">
-                <div class="index-page-faq-q"><a href="#null">Как происходит коммуникация между единомышленниками?</a></div>
-                <div class="index-page-faq-a">Вы можете общаться через форму «Диалоги» на нашем сайте, выбрать любой независимый мессенджер/почту,
-                    даже встречаться онлайн</div>
-            </div>
-            <div class="index-page-faq-item">
-                <div class="index-page-faq-q"><a href="#null">Почему teamstarter, а не акселератор?</a></div>
-                <div class="index-page-faq-a">После того, как соберешь команду и запилишь версию, возможно пойти в акселератор и начинать искать
-                    инвестиции</div>
-            </div>
-            <div class="index-page-faq-item">
-                <div class="index-page-faq-q"><a href="#null">Кто будет/может искать команду для стартапа через этот сервис?</a></div>
-                <div class="index-page-faq-a"> Любой человек, обладающий базовыми (и не только) навыками и знаниями в IT-области или интересной идеей,
-                    способной в теории превратиться в успешный стартап совместными усилиями команды</div>
-            </div>
-            <div class="index-page-faq-item">
-                <div class="index-page-faq-q"><a href="#null">Какие проекты можно регистрировать на этом сервисе?</a></div>
-                <div class="index-page-faq-a">Только цензурные и интересные проекты, заинтересованные в честном сотрудничестве с единомышленниками
-                    Наша команда проверяет профили участников и проекты. Каждый участник и проект подтверждены. </div>
-            </div>
-            <div class="index-page-faq-item">
-                <div class="index-page-faq-q"><a href="#null">Как быть, если мне не ответили в ответ на предложение о сотрудничестве?</a></div>
-                <div class="index-page-faq-a">Мы надеемся на взаимное уважение участников проекта и на то, что отклики не останутся без ответов.
-                Тем не менее, мы рекомендуем учесть, что:<ul>
-                        <li> - возможно, ваше сообщение затерялось в диалогах и было не просмотрено</li>
-                        <li> - ваше сообщение было просмотрено, но по какой-то причине другой участник забыл вам ответить</li>
-                        <li> - участнику был неинтересен ваш отклик, и он посчитал нужным на него не отвечать (это «увы, конечно)</li></ul>
-                Как поступать в этом случае, решать вам. Однако, если вы действительно заинтересованы в сотрудничестве,
-                    имеет смысл попробовать написать повторно.</div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="index-page-faq-item">
+                        <div class="index-page-faq-q"><a href="#null">На каких условиях сотрудничают стороны?</a></div>
+                        <div class="index-page-faq-a">Вы решаете сами, как и где вам сотрудничать и на каких условиях.
+                            <br/>
+                            Вы можете договориться об оплате труда за обмен опытом или любую другую компенсацию
+                        </div>
+                    </div>
+                    <div class="index-page-faq-item">
+                        <div class="index-page-faq-q"><a href="#null">Как происходит коммуникация между
+                                единомышленниками?</a></div>
+                        <div class="index-page-faq-a">Вы можете общаться через форму «Диалоги» на нашем сайте, выбрать
+                            любой независимый мессенджер/почту,
+                            даже встречаться онлайн
+                        </div>
+                    </div>
+                    <div class="index-page-faq-item">
+                        <div class="index-page-faq-q"><a href="#null">Почему teamstarter, а не акселератор?</a></div>
+                        <div class="index-page-faq-a">После того, как соберешь команду и запилишь версию, возможно пойти
+                            в акселератор и начинать искать
+                            инвестиции
+                        </div>
+                    </div>
+                    <div class="index-page-faq-item">
+                        <div class="index-page-faq-q"><a href="#null">Кто будет/может искать команду для стартапа через
+                                этот сервис?</a></div>
+                        <div class="index-page-faq-a"> Любой человек, обладающий базовыми (и не только) навыками и
+                            знаниями в IT-области или интересной идеей,
+                            способной в теории превратиться в успешный стартап совместными усилиями команды
+                        </div>
+                    </div>
+                    <div class="index-page-faq-item">
+                        <div class="index-page-faq-q"><a href="#null">Какие проекты можно регистрировать на этом
+                                сервисе?</a></div>
+                        <div class="index-page-faq-a">Только цензурные и интересные проекты, заинтересованные в честном
+                            сотрудничестве с единомышленниками
+                            Наша команда проверяет профили участников и проекты. Каждый участник и проект подтверждены. 
+                        </div>
+                    </div>
+                    <div class="index-page-faq-item">
+                        <div class="index-page-faq-q"><a href="#null">Как быть, если мне не ответили в ответ на
+                                предложение о сотрудничестве?</a></div>
+                        <div class="index-page-faq-a">Мы надеемся на взаимное уважение участников проекта и на то, что
+                            отклики не останутся без ответов.
+                            Тем не менее, мы рекомендуем учесть, что:
+                            <ul>
+                                <li> - возможно, ваше сообщение затерялось в диалогах и было не просмотрено</li>
+                                <li> - ваше сообщение было просмотрено, но по какой-то причине другой участник забыл вам
+                                    ответить
+                                </li>
+                                <li> - участнику был неинтересен ваш отклик, и он посчитал нужным на него не отвечать
+                                    (это «увы, конечно)
+                                </li>
+                            </ul>
+                            Как поступать в этом случае, решать вам. Однако, если вы действительно заинтересованы в
+                            сотрудничестве,
+                            имеет смысл попробовать написать повторно.
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -233,23 +296,70 @@
 {% block javascripts %}
     <script>
         $(document).ready(function () {
-            $("#index-page-show-po").click(function(){
+            var owl = $('.owl-carousel').owlCarousel({
+                items: 1,
+                loop: true,
+                nav: false,
+                margin: 10,
+                center: true,
+                touchDrag: true,
+                dots: true,
+                autoplay: true,
+                autoplayTimeout: 10000,
+                autoplaySpeed: 500,
+                // navText : ['<i class="fa fa-angle-left" aria-hidden="true"></i>','<i class="fa fa-angle-right" aria-hidden="true"></i>'],
+                onInitialized: function () {
+                    $(".index-banner1 .index-banner-text-row").css("transform", "translatex(110px)");
+                    $(".index-banner1 .index-banner-text-header").css("transform", "translatex(110px)");
+                    $(".index-banner1 .index-banner-button").css("opacity", "1");
+                }
+            });
+
+            owl.on('changed.owl.carousel', function (event) {
+                $(".index-banner-item .index-banner-text-row").css("transform", "translatex(0px)");
+                $(".index-banner-item .index-banner-text-header").css("transform", "translatex(0px)");
+                $(".index-banner-item .index-banner-button").css("opacity", "0");
+                var page = event.item.index - 1;
+                if (page == 0) {
+                    page = 3;
+                }
+                $(".index-banner" + page + " .index-banner-text-row").css("transform", "translatex(110px)");
+                $(".index-banner" + page + " .index-banner-text-header").css("transform", "translatex(110px)");
+                $(".index-banner" + page + " .index-banner-button").css("opacity", "1");
+            });
+
+            $("#index-banner-nav-prev").click(function () {
+                owl.trigger('prev.owl.carousel');
+            });
+
+            $("#index-banner-nav-next").click(function () {
+                owl.trigger('next.owl.carousel');
+            });
+
+            $("#index-page-show-po").click(function () {
                 $("#index-page-show-specialist").removeClass('index-page-switchers-active');
                 $("#index-page-show-po").addClass('index-page-switchers-active');
                 $(".index-page-description-po").css('display', "block");
                 $(".index-page-description-specialist").css('display', "none");
             });
 
-            $("#index-page-show-specialist").click(function(){
+            $("#index-page-show-specialist").click(function () {
                 $("#index-page-show-po").removeClass('index-page-switchers-active');
                 $("#index-page-show-specialist").addClass('index-page-switchers-active');
                 $(".index-page-description-specialist").css('display', "block");
                 $(".index-page-description-po").css('display', "none");
             });
 
-            $(".index-page-faq-q").click(function(event) {
+            $(".index-page-faq-q").click(function (event) {
                 var el = $(this);
-                el.parent('.index-page-faq-item').find('.index-page-faq-a').toggle('slow');
+                var answer = el.parent('.index-page-faq-item').find('.index-page-faq-a');
+
+                if (answer.css('display') === 'none') {
+                    $(".index-page-faq-a").hide('slow');
+                    answer.show('slow');
+                } else {
+                    answer.hide('hide');
+                }
             })
         });
     </script>

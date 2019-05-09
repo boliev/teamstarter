@@ -2662,21 +2662,45 @@ a.index-page-switchers-active {
 }
 
 .index-page-faq-q a:hover {
-	border-bottom: none;
+	color: #42a5f5;
 }
 
 .index-page-faq-item {
 	margin: 10px 0px 20px 0px;
 }
-
+.index-page-card .card-header {
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-top: 0px;
+}
 .card-header h3 {
+	margin-top: 10px;
 	font-size: 16px;
+	padding-left: 10px;
+	padding-right: 10px;
+	font-weight: bold;
+	text-align: center;
 }
 
-.card-body p {
+.card-body, .card-body p {
 	font-size: 11pt;
 }
 
 .index-page-card {
-	height: 310px;
+	height: 465px;
+}
+
+.index-page-faq-q a {
+
+}
+.index-page-card:hover {
+	transition: transform .3s,box-shadow .3s;
+	transition: transform .3s,box-shadow .3s,-webkit-transform .3s;
+	transition-timing-function: cubic-bezier(.25,.1,.25,1);
+	-webkit-transform: translateY(-4px);
+	transform: translateY(-4px);
+	box-shadow: 0 4px 24px 0 rgba(0,0,0,.12);
+}
+.card-body {
+	background-color: #F0F1F3;
 }
