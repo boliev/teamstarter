@@ -1459,6 +1459,10 @@ input.btn.btn-sm.btn-default.btn-cancel:hover  {
 input.blue {
 	background-color: #42a5f5 !important;
 }
+
+span.blue {
+	color:#42a5f5;
+}
 .loging-head {
 	margin-top: 20px;
 }
@@ -2635,4 +2639,44 @@ div.index-banner-text-row ul li:before {
 	font-weight: 500;
 	color:#42a5f5;
 }
+.index-page-switchers {
+	text-align: center;
+}
 
+.index-page-description-specialist {
+	display:none;
+}
+
+a.index-page-switchers-active {
+	color: #222222;
+	text-decoration: none;
+	cursor: auto;
+}
+
+.index-page-faq-a {
+	display: none;
+}
+
+.index-page-faq-q a {
+	border-bottom: dashed #42a5f5 1px;
+}
+
+.index-page-faq-q a:hover {
+	border-bottom: none;
+}
+
+.index-page-faq-item {
+	margin: 10px 0px 20px 0px;
+}
+
+.card-header h3 {
+	font-size: 16px;
+}
+
+.card-body p {
+	font-size: 11pt;
+}
+
+.index-page-card {
+	height: 310px;
+}
