@@ -80,7 +80,7 @@
             </div>
         </div>
 
-        <div class="card index-page-card-hover">
+        <div class="card card-no-shadow">
             <div class="card-body">
                 <p><b><span class="blue">Teamstarter</span> - </b> это онлайн-платформа для поиска единомышленников и
                     интересных
@@ -103,9 +103,8 @@
                 <p>Мы подумали, что объединить всех этих людей - уже отличная идея!</p>
 
                 {% if not app.user %}
-                    <div class="index-banner-button"><a class=""
-                                                        href="{{ path('fos_user_registration_register') }}">Поэтому давайте попробуем!</a>
-                    </div>{% endif %}
+                    <a class="" href="{{ path('fos_user_registration_register') }}">Поэтому давайте попробуем!</a>
+                {% endif %}
             </div>
         </div>
 
@@ -119,7 +118,7 @@
             </div>
         </div>
 
-        <div class="card index-page-card-hover">
+        <div class="card card-no-shadow">
             <div class="card-body">
                 <p>Развивать российский рынок стартапов, помогать малому и среднему предпринимательству</p>
 
@@ -251,7 +250,7 @@
         </div>
 
         <div class="index-page-faq margin-bottom-50">
-            <div class="card index-page-card-hover">
+            <div class="card card-no-shadow">
                 <div class="card-body">
                     <div class="index-page-faq-item">
                         <div class="index-page-faq-q"><a href="#null">На каких условиях сотрудничают стороны?</a></div>
