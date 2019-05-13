@@ -2,144 +2,29 @@
 {% block title %} {{ 'title.index_page' | trans }} {% endblock %}
 {% block body %}
 
-    <div class="hidden-xs hidden-sm" style="background-color: #ffffff;">
-        <div class="row">
-            <div class="col-md-1 text-right index-banner-nav index-banner-nav-left"><i id="index-banner-nav-prev"
-                                                                                       class="fa fa-angle-left"
-                                                                                       aria-hidden="true"></i></div>
-            <div class="col-md-10 index-page-carousel">
-                <div class="owl-carousel owl-theme">
-                    <div class="index-banner-item index-banner1">
-                        <div class="index-banner-text-header index-banner-text1">TeamStarter</div>
-                        <div class="index-banner-text-row index-banner-text2">Онлайн-платформа для поиска
-                            единомышленников и интересных стартапов
-                        </div>
-                        <div class="index-banner-text-row index-banner-text3">Объединяемся в команды. Создаем проекты.
-                            <br/>Запускаем крутые стартапы.
-                        </div>
-                        <div class="index-banner-text-row index-banner-text4">Не откладывай свои идеи.<br/> Начни
-                            реализовывать их прямо сейчас!
-                        </div>
-                        {% if not app.user %}
-                            <div class="index-banner-button"><a class=""
-                                                                href="{{ path('fos_user_registration_register') }}">{{ 'join_us' | trans }}</a>
-                            </div>{% endif %}
-                    </div>
-                    <div class="index-banner-item index-banner2">
-                        <div class="index-banner-text-header index-banner-text1">TeamStarter</div>
-                        <div class="index-banner-text-row index-banner-text2">Если у тебя есть отличная идея, но нет
-                            денег на реализацию MVP
-                        </div>
-                        <div class="index-banner-text-row index-banner-text3">
-                            <ul>
-                                <li>Создай проект на TeamStarter</li>
-                                <li>Найди заинтересованных специалистов</li>
-                                <li>Собери команду с горящими глазами</li>
-                            </ul>
-                        </div>
-                        {% if not app.user %}
-                            <div class="index-banner-button"><a class=""
-                                                                href="{{ path('fos_user_registration_register') }}">Собери
-                                команду - это просто!</a></div>{% endif %}
-                    </div>
+<div class="container-full">
+    {% include 'common/index_page/carousel.html.twig' %}
 
-                    <div class="index-banner-item index-banner3">
-                        <div class="index-banner-text-header index-banner-text1">TeamStarter</div>
-                        <div class="index-banner-text-row index-banner-text2">Если ты хочешь попробовать себя в новой
-                            роли в команде, тогда тебе точно на TeamStarter!
-                        </div>
-                        <div class="index-banner-text-row index-banner-text3">
-                            <ul>
-                                <li>Найди интересный проект</li>
-                                <li>Присоединись к нему</li>
-                                <li>Получи ценный опыт работы на настоящем боевом проекте!</li>
-                            </ul>
-                        </div>
-                        {% if not app.user %}
-                            <div class="index-banner-button"><a class=""
-                                                                href="{{ path('fos_user_registration_register') }}">{{ 'join_us' | trans }}</a>
-                            </div>{% endif %}
+    <div class="container-full">
 
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-1 align-middle index-banner-nav index-banner-nav-right" style="vertical-align: center"><i
-                        id="index-banner-nav-next" class="fa fa-angle-right" aria-hidden="true"></i></div>
-        </div>
-    </div>
+        <h3 class="index-page margin-top-10 margin-bottom-10">{{ 'index_page.mission_title' | trans }}</h3>
+        <div class="index-page-mission">{{ 'index_page.mission_body' | trans | raw }}</div>
 
-    <div class="container">
-
-        <div class="row margin-top-20 padding-bottom-5">
-            <div class="col-sm-8">
-                <div class="kc-elm kc-title-wrap  left dark">
-                    <div class="title-wrapper">
-                        <h3 class="kc_title">О <span>нас</span></h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
+        <div class="index-page-area margin-top-50">
             <div class="card-body">
-                <p><b><span class="blue">Teamstarter</span> - </b> это онлайн-платформа для поиска единомышленников и
-                    интересных
-                    стартапов.</p>
-                <p>Мы знаем, что у многих людей есть крутые идеи для стартапов, которые они не могут воплотить в жизнь
-                    без
-                    крупных вложений хотя бы на специалистов (не говоря уже о маркетинге, рекламе и прочих
-                    затратах).</p>
-
-                <p>И знаем, что есть начинающие специалисты, горящие желанием получить опыт работы на боевом
-                    проекте.</p>
-
-                <p>А еще есть специалисты, которые немного заскучали на основной работе, а чем занять себя вне офиса -
-                    пока не
-                    поняли.</p>
-                <p>Которым хочется пилить какой-нибудь сторонний проект, хочется чего-то светлого и нового, но где взять
-                    и как
-                    придумать этот проект - не представляют.</p>
-
-                <p>Мы подумали, что объединить всех этих людей - уже отличная идея!</p>
-
-                {% if not app.user %}
-                    <a class="" href="{{ path('fos_user_registration_register') }}">Поэтому давайте попробуем!</a>
-                {% endif %}
-            </div>
-        </div>
-
-        <div class="row margin-top-20 padding-bottom-5">
-            <div class="col-sm-8">
-                <div class="kc-elm kc-title-wrap  left dark">
-                    <div class="title-wrapper">
-                        <h3 class="kc_title">Наша <span>миссия</span></h3>
-                    </div>
+                <h3 class="index-page margin-top-10 margin-bottom-10">{{ 'index_page.about_title' | trans }}</h3>
+                <div class="index-page-about">
+                    {{ 'index_page.about_body' | trans | raw }}
+                    {% if not app.user %}
+                        <p><a class="" href="{{ path('fos_user_registration_register') }}">Поэтому давайте
+                                попробуем!</a></p>
+                    {% endif %}
                 </div>
             </div>
         </div>
 
-        <div class="card">
-            <div class="card-body">
-                <p>Развивать российский рынок стартапов, помогать малому и среднему предпринимательству</p>
 
-                <p>Мы считаем, что можно делать крутые проекты и воплощать смелые идеи без миллионных вложений</p>
-
-                <p>Стоит только начать!</p>
-
-                <p>Это не поиск работы, это поиск команды<br/>
-                    Это не про бизнес, это про людей</p>
-            </div>
-        </div>
-
-        <div class="row margin-top-20 padding-bottom-5">
-            <div class="col-sm-8">
-                <div class="kc-elm kc-title-wrap  left dark">
-                    <div class="title-wrapper">
-                        <h3 class="kc_title">Как начать <span>пользоваться</span></h3>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <h3 class="index-page margin-top-50">Как начать пользоваться</h3>
         <div class="index-page-switchers margin-top-10 margin-bottom-20">
             <a id="index-page-show-po" href="#null" class="index-page-switchers-active">Хочу создать проект</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a
                     id="index-page-show-specialist" href="#null">Хочу в команду</a>
@@ -239,75 +124,23 @@
                 </div>
             </div>
         </div>
-        <div class="row margin-top-20 padding-bottom-5">
-            <div class="col-sm-8">
-                <div class="kc-elm kc-title-wrap  left dark">
-                    <div class="title-wrapper">
-                        <h3 class="kc_title">FAQ</h3>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="index-page-faq margin-bottom-50">
+                    <div class="index-page-area margin-top-50">
+                        <div class="card-body">
+                            <h3 class="index-page">FAQ</h3>
+                            {% include 'common/index_page/faq.html.twig' %}
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div class="index-page-faq margin-bottom-50">
-            <div class="card">
-                <div class="card-body">
-                    <div class="index-page-faq-item">
-                        <div class="index-page-faq-q"><a href="#null">На каких условиях сотрудничают стороны?</a></div>
-                        <div class="index-page-faq-a">Вы решаете сами, как и где вам сотрудничать и на каких условиях.
-                            <br/>
-                            Вы можете договориться об оплате труда за обмен опытом или любую другую компенсацию
-                        </div>
-                    </div>
-                    <div class="index-page-faq-item">
-                        <div class="index-page-faq-q"><a href="#null">Как происходит коммуникация между
-                                единомышленниками?</a></div>
-                        <div class="index-page-faq-a">Вы можете общаться через форму «Диалоги» на нашем сайте, выбрать
-                            любой независимый мессенджер/почту,
-                            даже встречаться онлайн
-                        </div>
-                    </div>
-                    <div class="index-page-faq-item">
-                        <div class="index-page-faq-q"><a href="#null">Почему teamstarter, а не акселератор?</a></div>
-                        <div class="index-page-faq-a">После того, как соберешь команду и запилишь версию, возможно пойти
-                            в акселератор и начинать искать
-                            инвестиции
-                        </div>
-                    </div>
-                    <div class="index-page-faq-item">
-                        <div class="index-page-faq-q"><a href="#null">Кто будет/может искать команду для стартапа через
-                                этот сервис?</a></div>
-                        <div class="index-page-faq-a"> Любой человек, обладающий базовыми (и не только) навыками и
-                            знаниями в IT-области или интересной идеей,
-                            способной в теории превратиться в успешный стартап совместными усилиями команды
-                        </div>
-                    </div>
-                    <div class="index-page-faq-item">
-                        <div class="index-page-faq-q"><a href="#null">Какие проекты можно регистрировать на этом
-                                сервисе?</a></div>
-                        <div class="index-page-faq-a">Только цензурные и интересные проекты, заинтересованные в честном
-                            сотрудничестве с единомышленниками
-                            Наша команда проверяет профили участников и проекты. Каждый участник и проект подтверждены. 
-                        </div>
-                    </div>
-                    <div class="index-page-faq-item">
-                        <div class="index-page-faq-q"><a href="#null">Как быть, если мне не ответили в ответ на
-                                предложение о сотрудничестве?</a></div>
-                        <div class="index-page-faq-a">Мы надеемся на взаимное уважение участников проекта и на то, что
-                            отклики не останутся без ответов.
-                            Тем не менее, мы рекомендуем учесть, что:
-                            <ul>
-                                <li> - возможно, ваше сообщение затерялось в диалогах и было не просмотрено</li>
-                                <li> - ваше сообщение было просмотрено, но по какой-то причине другой участник забыл вам
-                                    ответить
-                                </li>
-                                <li> - участнику был неинтересен ваш отклик, и он посчитал нужным на него не отвечать
-                                    (это «увы, конечно)
-                                </li>
-                            </ul>
-                            Как поступать в этом случае, решать вам. Однако, если вы действительно заинтересованы в
-                            сотрудничестве,
-                            имеет смысл попробовать написать повторно.
+            <div class="col-md-6">
+                <div class="index-page-faq margin-bottom-50">
+                    <div class="index-page-area margin-top-50">
+                        <div class="card-body">
+                            <h3 class="index-page">Проект недели</h3>
                         </div>
                     </div>
                 </div>
@@ -315,76 +148,62 @@
         </div>
     </div>
 
-{% endblock %}
+    {% endblock %}
 
-{% block javascripts %}
-    <script>
-        $(document).ready(function () {
-            var owl = $('.owl-carousel').owlCarousel({
-                items: 1,
-                loop: true,
-                nav: false,
-                margin: 10,
-                center: true,
-                touchDrag: true,
-                dots: true,
-                autoplay: true,
-                autoplayTimeout: 10000,
-                autoplaySpeed: 500,
-                // navText : ['<i class="fa fa-angle-left" aria-hidden="true"></i>','<i class="fa fa-angle-right" aria-hidden="true"></i>'],
-                onInitialized: function () {
-                    $(".index-banner1 .index-banner-text-row").css("transform", "translatex(110px)");
-                    $(".index-banner1 .index-banner-text-header").css("transform", "translatex(110px)");
-                    $(".index-banner1 .index-banner-button").css("opacity", "1");
-                }
+    {% block javascripts %}
+        <script>
+            $(document).ready(function () {
+                //carousel
+                var owl = $('.owl-carousel').owlCarousel({
+                    items: 1,
+                    loop: true,
+                    nav: false,
+                    margin: 10,
+                    center: true,
+                    touchDrag: true,
+                    dots: true,
+                    autoplay: true,
+                    autoplayTimeout: 10000,
+                    autoplaySpeed: 500,
+                    onInitialized: function () {
+                    }
+                });
+
+                $("#index-banner-nav-prev").click(function () {
+                    owl.trigger('prev.owl.carousel');
+                });
+
+                $("#index-banner-nav-next").click(function () {
+                    owl.trigger('next.owl.carousel');
+                });
+
+                // PO-Specialist switcher
+                $("#index-page-show-po").click(function () {
+                    $("#index-page-show-specialist").removeClass('index-page-switchers-active');
+                    $("#index-page-show-po").addClass('index-page-switchers-active');
+                    $(".index-page-description-po").css('display', "block");
+                    $(".index-page-description-specialist").css('display', "none");
+                });
+
+                $("#index-page-show-specialist").click(function () {
+                    $("#index-page-show-po").removeClass('index-page-switchers-active');
+                    $("#index-page-show-specialist").addClass('index-page-switchers-active');
+                    $(".index-page-description-specialist").css('display', "block");
+                    $(".index-page-description-po").css('display', "none");
+                });
+
+                // Faq
+                $(".index-page-faq-q").click(function (event) {
+                    var el = $(this);
+                    var answer = el.parent('.index-page-faq-item').find('.index-page-faq-a');
+
+                    if (answer.css('display') === 'none') {
+                        $(".index-page-faq-a").hide();
+                        answer.show();
+                    } else {
+                        answer.hide();
+                    }
+                })
             });
-
-            owl.on('changed.owl.carousel', function (event) {
-                $(".index-banner-item .index-banner-text-row").css("transform", "translatex(0px)");
-                $(".index-banner-item .index-banner-text-header").css("transform", "translatex(0px)");
-                $(".index-banner-item .index-banner-button").css("opacity", "0");
-                var page = event.item.index - 1;
-                if (page == 0) {
-                    page = 3;
-                }
-                $(".index-banner" + page + " .index-banner-text-row").css("transform", "translatex(110px)");
-                $(".index-banner" + page + " .index-banner-text-header").css("transform", "translatex(110px)");
-                $(".index-banner" + page + " .index-banner-button").css("opacity", "1");
-            });
-
-            $("#index-banner-nav-prev").click(function () {
-                owl.trigger('prev.owl.carousel');
-            });
-
-            $("#index-banner-nav-next").click(function () {
-                owl.trigger('next.owl.carousel');
-            });
-
-            $("#index-page-show-po").click(function () {
-                $("#index-page-show-specialist").removeClass('index-page-switchers-active');
-                $("#index-page-show-po").addClass('index-page-switchers-active');
-                $(".index-page-description-po").css('display', "block");
-                $(".index-page-description-specialist").css('display', "none");
-            });
-
-            $("#index-page-show-specialist").click(function () {
-                $("#index-page-show-po").removeClass('index-page-switchers-active');
-                $("#index-page-show-specialist").addClass('index-page-switchers-active');
-                $(".index-page-description-specialist").css('display', "block");
-                $(".index-page-description-po").css('display', "none");
-            });
-
-            $(".index-page-faq-q").click(function (event) {
-                var el = $(this);
-                var answer = el.parent('.index-page-faq-item').find('.index-page-faq-a');
-
-                if (answer.css('display') === 'none') {
-                    $(".index-page-faq-a").hide();
-                    answer.show();
-                } else {
-                    answer.hide();
-                }
-            })
-        });
-    </script>
-{% endblock %}
+        </script>
+    {% endblock %}

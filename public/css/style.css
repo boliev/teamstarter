@@ -84,6 +84,12 @@ a {
 	text-decoration: none;
 
 }
+
+.container-full {
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+}
 .form-control:focus,button:visited,button.active,button:hover,button:focus,input:visited,input.active,input:hover,
 input:focus,textarea:hover,textarea:focus,a:hover,a:focus,a:visited,a.active,select,select:hover, select:focus, select:visited {
 	outline: none;
@@ -2493,20 +2499,21 @@ div.pro-access-buttons {
 
 div.index-banner-button {
 	text-align: left;
-	margin-top: 60px;
-	opacity: 0;
+	margin-top: 30px;
 	transition: opacity 2s ease-out;
 }
 
 div.index-banner-text-header {
-	padding-top: 90px;
+	padding-top: 20px;
+	padding-left: 30px;
 	color: #42a5f5;
 	font-size: 36px;
 }
 
 div.index-banner-text-row {
-	font-size: 24px;
-	padding-top: 30px;
+	font-size: 15pt;
+	padding-top: 20px;
+	padding-left: 30px;
 }
 
 div.index-banner-text-row ul li:before {
@@ -2522,17 +2529,14 @@ div.index-banner-text-row ul li:before {
 	color: #fff;
 	min-width: 240px;
 	padding: 17px 20px;
-	margin: 10px;
+	margin: 10px 10px 10px 30px;
 	text-shadow: none;
-	margin-left: 110px;
 }
 
 .index-banner-button a:hover {
 	background: #205081;
 	color: #fff;
 	min-width: 240px;
-	margin: 10px;
-	margin-left: 110px;
 }
 
 .info-description span {
@@ -2669,9 +2673,8 @@ a.index-page-switchers-active {
 	margin: 10px 0px 20px 0px;
 }
 .index-page-card .card-header {
-	padding-left: 0px;
-	padding-right: 0px;
-	padding-top: 0px;
+	padding: 0px;
+	border-bottom: none;
 }
 .card-header h3 {
 	margin-top: 10px;
@@ -2682,6 +2685,9 @@ a.index-page-switchers-active {
 	text-align: center;
 }
 
+.card-header img {
+	width:100%;
+}
 .card-body, .card-body p {
 	font-size: 11pt;
 }
@@ -2702,5 +2708,37 @@ a.index-page-switchers-active {
 	box-shadow: 0 4px 24px 0 rgba(0,0,0,.12);
 }
 .card-body {
-	background-color: #F0F1F3;
+	/*background-color: #F0F1F3;*/
 }
+
+h3.index-page {
+	text-align: center;
+	font-size: 26pt;
+	font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+}
+
+.index-page-mission p {
+	text-align: center;
+	color: #555555;
+	line-height: 13pt;
+	font-size: 16pt;
+	font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+}
+
+.index-page-about p {
+	text-align: center;
+	color: #555555;
+	/*line-height: 13pt;*/
+	font-size: 12pt;
+	font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+}
+
+.index-page-area {
+	border-top: 1px solid #f1f1f1;
+	border-bottom: 1px solid #f1f1f1;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	/*background-color: #fafafa;*/
+	background: linear-gradient(45deg, #ffffff, #fafafa);
+}
+
