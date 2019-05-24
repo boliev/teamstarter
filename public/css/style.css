@@ -2269,7 +2269,7 @@ div.search-container div.form-group {
 	font-size: 12px;
 }
 
-.navbar-nav.megamenu > li {
+.inner-page-menu .navbar-nav.megamenu > li {
 	margin-right: 20px !important;
 }
 
@@ -2742,3 +2742,12 @@ h3.index-page {
 	background: linear-gradient(45deg, #ffffff, #fafafa);
 }
 
+.index-page-user-menu {
+	text-align: left;
+	padding-top: 16px;
+}
+
+.index-page-user-menu .top-user-menu .dropdown .btn,
+.index-page-user-menu .top-user-menu .dropdown .btn:focus {
+	color: #222222 !important;
+}

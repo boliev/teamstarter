@@ -30,6 +30,10 @@
     <!-- animate.css -->
     <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
     <link rel="stylesheet" href="{{ asset('css/font-monia.css') }}">
+    <!-- Rev slider -->
+    <link rel="stylesheet" href="{{ asset('js/rev-slider/css/settings.css') }}">
+    <link rel="stylesheet" href="{{ asset('js/rev-slider/css/layers.css') }}">
+    <link rel="stylesheet" href="{{ asset('js/rev-slider/css/navigation.css') }}">
     <!-- menu style -->
     <link rel="stylesheet" href="{{ asset('css/menu.css') }}">
 
@@ -53,7 +57,9 @@
 <!-- /end of head -->
 <body>
 {#<div id="preloader"></div>#}
+{% if app.request.attributes.get("_route") != 'homepage' %}
 {% include 'common/header.html.twig' %}
+{% endif %}
 <div id="content">{% block body %}{% endblock %}</div>
 
 {% include 'common/footer.html.twig' %}
@@ -74,6 +80,16 @@
 <!-- Include for counter up -->
 <script src="{{ asset('js/waypoints.min.js') }}" ></script>
 <script src="{{ asset('js/jquery.counterup.min.js') }}" ></script>
+<!-- rev slider -->
+<script src="{{ asset('js/rev-slider/js/jquery.themepunch.tools.min.js') }}" ></script>
+<script src="{{ asset('js/rev-slider/js/jquery.themepunch.revolution.min.js') }}" ></script>
+
+<script src="{{ asset('js/rev-slider/js/revolution.extension.actions.min.js') }}" ></script>
+<script src="{{ asset('js/rev-slider/js/revolution.extension.layeranimation.min.js') }}" ></script>
+<script src="{{ asset('js/rev-slider/js/revolution.extension.navigation.min.js') }}" ></script>
+<script src="{{ asset('js/rev-slider/js/revolution.extension.parallax.min.js') }}" ></script>
+<script src="{{ asset('js/rev-slider/js/revolution.extension.slideanims.min.js') }}" ></script>
+<script src="{{ asset('js/rev-slider/js/revolution.extension.video.min.js') }}" ></script>
 <!-- Include Apper Js -->
 <script src="{{ asset('js/jquery.isotope.min.js') }}" ></script>
 <!-- Include Apper Js -->
@@ -91,6 +107,7 @@
 <!-- Include script.js -->
 <script src="{{ asset('js/script.js') }}" ></script>
 <script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
+{% block javascripts %}{% endblock %}
 {% if yandex_metrika %}
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript" >
@@ -119,6 +136,5 @@
         gtag('config', '{{ google_analytics }}');
     </script>
 {% endif %}
-{% block javascripts %}{% endblock %}
 </body>
 </html>

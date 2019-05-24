@@ -3437,7 +3437,7 @@ ul.style-ul li span {
     #apus-header .header-inner .apus-search {
       position: relative;
       z-index: 9;
-      line-height: 85px;
+      line-height: 83px;
       top: 1.5px;
     }
     #apus-header .widget {
@@ -3896,9 +3896,6 @@ ul.style-ul li span {
 	.mobile-login i{
 		font-size:17px;
 		color:#000000 !important;
-	}
-	.login_button_wrapper{
-		text-align:left;
 	}
 	.modal-header h2{
 		font-size:15px;

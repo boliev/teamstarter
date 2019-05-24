@@ -1,66 +1,399 @@
-<div class="hidden-xs hidden-sm" style="background-color: #ffffff;">
-    <div class="row">
-        <div class="col-md-1 text-right index-banner-nav index-banner-nav-left"><i id="index-banner-nav-prev"
-                                                                                   class="fa fa-angle-left"
-                                                                                   aria-hidden="true"></i></div>
-        <div class="col-md-10 index-page-carousel">
-            <div class="owl-carousel owl-theme">
-                <div class="index-banner-item index-banner1">
-                    <div class="index-banner-text-header index-banner-text1">TeamStarter</div>
-                    <div class="index-banner-text-row index-banner-text2">Онлайн-платформа для поиска
-                        единомышленников и интересных стартапов
-                    </div>
-                    <div class="index-banner-text-row index-banner-text3">Объединяемся в команды. Создаем проекты.
-                        <br/>Запускаем крутые стартапы.
-                    </div>
-                    <div class="index-banner-text-row index-banner-text4">Не откладывай свои идеи.<br/> Начни
-                        реализовывать их прямо сейчас!
-                    </div>
-                    {% if not app.user %}
-                        <div class="index-banner-button">
-                            <a class="" href="{{ path('fos_user_registration_register') }}">{{ 'join_us' | trans }}</a>
+<!-- Start of slider
+    ============================================= -->
+<!-- START REVOLUTION SLIDER 5.2.5.1 auto mode -->
+<div id="rev_slider_2_1" class="rev_slider fullwidthabanner tp-overflow-hidden" style="display:none;" data-version="5.2.5.1">
+    <ul>
+        <!-- SLIDE  -->
+        <li data-index="rs-10" data-transition="fade" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off"  data-easein="default" data-easeout="default" data-masterspeed="300"  data-thumb="/images/index_banners/ban1.jpg"  data-rotate="0"  data-saveperformance="off"  data-title="Slide" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
+            <!-- MAIN IMAGE -->
+            <img src="/images/index_banners/ban1.jpg"  alt="" title="slide2"  width="1920" height="880" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="off" class="rev-slidebg" data-no-retina>
+            <!-- LAYERS -->
+            <!-- LAYER NR. 1 -->
+            <div class="tp-caption   tp-resizeme"
+                 id="slide-10-layer-1"
+                 data-x="['left','left','left','left']" data-hoffset="['283','283','30','19']"
+                 data-y="['top','top','top','top']" data-voffset="['252','252','213','135']"
+                 data-fontsize="['46','46','46','32']"
+                 data-lineheight="['46','46','46','35']"
+                 data-width="none"
+                 data-height="none"
+                 data-whitespace="nowrap"
+                 data-transform_idle="o:1;"
+                 data-transform_in="z:0;rX:0;rY:0;rZ:0;sX:0.9;sY:0.9;skX:0;skY:0;opacity:0;s:1500;e:Power3.easeInOut;"
+                 data-transform_out="opacity:0;s:300;"
+                 data-start="500"
+                 data-splitin="none"
+                 data-splitout="none"
+                 data-responsive_offset="on"
+                 style="z-index: 5; white-space: nowrap; font-size: 46px; line-height: 46px; font-weight: 800; color: rgba(34, 34, 34, 1.00);font-family:Raleway;text-transform:uppercase;">Your personal - speed </div>
+            <!-- LAYER NR. 2 -->
+            <div class="tp-caption   tp-resizeme"
+                 id="slide-10-layer-2"
+                 data-x="['left','left','left','left']" data-hoffset="['284','284','38','21']"
+                 data-y="['top','top','top','top']" data-voffset="['324','324','292','192']"
+                 data-width="none"
+                 data-height="none"
+                 data-whitespace="nowrap"
+                 data-transform_idle="o:1;"
+                 data-transform_in="opacity:0;s:300;e:Power2.easeInOut;"
+                 data-transform_out="opacity:0;s:300;"
+                 data-start="500"
+                 data-splitin="none"
+                 data-splitout="none"
+                 data-responsive_offset="on"
+                 style="z-index: 6; white-space: nowrap; font-size: 20px; line-height: 22px; font-weight: 300; color: rgba(102, 102, 102, 1.00);font-family:Lato;text-transform:uppercase;">& quality home connection </div>
+            <!-- LAYER NR. 3 -->
+            <div class="tp-caption   tp-resizeme"
+                 id="slide-10-layer-3"
+                 data-x="['left','left','left','left']" data-hoffset="['602','602','358','25']"
+                 data-y="['top','top','top','top']" data-voffset="['326','326','292','231']"
+                 data-width="none"
+                 data-height="none"
+                 data-whitespace="nowrap"
+                 data-transform_idle="o:1;"
+                 data-transform_in="opacity:0;s:300;e:Power2.easeInOut;"
+                 data-transform_out="opacity:0;s:300;"
+                 data-start="500"
+                 data-splitin="none"
+                 data-splitout="none"
+                 data-responsive_offset="on"
+                 style="z-index: 7; white-space: nowrap; font-size: 20px; line-height: 22px; font-weight: 900; color: rgba(66, 165, 245, 1.00);font-family:Lato;text-transform:uppercase;">Starting @ $ 22 / mo </div>
+            <!-- LAYER NR. 4 -->
+            <div class="tp-caption   tp-resizeme"
+                 id="slide-11-layer-4"
+                 data-x="['left','left','left','left']" data-hoffset="['285','285','33','610']"
+                 data-y="['top','top','top','top']" data-voffset="['359','359','323','174']"
+                 data-color="['rgba(34, 34, 34, 1.00)','rgba(34, 34, 34, 1.00)','rgba(255, 255, 255, 1.00)','rgba(255, 255, 255, 1.00)']"
+                 data-width="['606','606','684','684']"
+                 data-height="['223','223','224','224']"
+                 data-whitespace="normal"
+                 data-visibility="['on','on','off','off']"
+                 data-transform_idle="o:1;"
+                 data-transform_in="x:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;s:1500;e:Power3.easeInOut;"
+                 data-transform_out="opacity:0;s:300;"
+                 data-mask_in="x:0px;y:0px;"
+                 data-start="500"
+                 data-splitin="none"
+                 data-splitout="none"
+                 data-responsive_offset="on"
+                 style="z-index: 8; min-width: 606px; max-width: 606px; max-width: 223px; max-width: 223px; white-space: normal; font-size: 16px; line-height: 22px; font-weight: 400; color: rgba(34, 34, 34, 1.00);font-family:Lato;min-width:600px;">
+                <div class="tab-content">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <ul>
+                                <li>80 GB Data Limit</li>
+                                <li>Unlimited Bandwidth</li>
+                                <li>24 x 7 Service Available</li>
+                            </ul>
                         </div>
-                    {% endif %}
-                </div>
-                <div class="index-banner-item index-banner2">
-                    <div class="index-banner-text-header index-banner-text1">TeamStarter</div>
-                    <div class="index-banner-text-row index-banner-text2">Если у тебя есть отличная идея, но нет
-                        денег на реализацию MVP
+                        <div class="col-xs-6">
+                            <ul>
+                                <li>4 MBPS Speed + Night 8 MBPS</li>
+                                <li>Get Free 5GB Night Data</li>
+                                <li>No Installation charges</li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="index-banner-text-row index-banner-text3">
-                        <ul>
-                            <li>Создай проект на TeamStarter</li>
-                            <li>Найди заинтересованных специалистов</li>
-                            <li>Собери команду с горящими глазами</li>
-                        </ul>
-                    </div>
-                    {% if not app.user %}
-                        <div class="index-banner-button"><a class=""
-                                                            href="{{ path('fos_user_registration_register') }}">Собери
-                            команду - это просто!</a></div>{% endif %}
-                </div>
-
-                <div class="index-banner-item index-banner3">
-                    <div class="index-banner-text-header index-banner-text1">TeamStarter</div>
-                    <div class="index-banner-text-row index-banner-text2">Если ты хочешь попробовать себя в новой
-                        роли в команде!
-                    </div>
-                    <div class="index-banner-text-row index-banner-text3">
-                        <ul>
-                            <li>Найди интересный проект</li>
-                            <li>Присоединись к нему</li>
-                            <li>Получи ценный опыт работы на настоящем боевом проекте!</li>
-                        </ul>
-                    </div>
-                    {% if not app.user %}
-                        <div class="index-banner-button"><a class=""
-                                                            href="{{ path('fos_user_registration_register') }}">{{ 'join_us' | trans }}</a>
-                        </div>{% endif %}
-
                 </div>
             </div>
-        </div>
-        <div class="col-md-1 align-middle index-banner-nav index-banner-nav-right" style="vertical-align: center"><i
-                    id="index-banner-nav-next" class="fa fa-angle-right" aria-hidden="true"></i></div>
-    </div>
+            <!-- LAYER NR. 5 -->
+            <div class="tp-caption a-btn rev-btn "
+                 id="slide-12-layer-5"
+                 data-x="['left','left','left','center']" data-hoffset="['285','285','41','611']"
+                 data-y="['top','top','top','middle']" data-voffset="['567','567','385','145']"
+                 data-width="180"
+                 data-height="50"
+                 data-whitespace="normal"
+                 data-transform_idle="o:1;"
+                 data-transform_in="x:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;s:1500;e:Power3.easeInOut;"
+                 data-transform_out="opacity:0;s:300;"
+                 data-mask_in="x:0px;y:0px;s:inherit;e:inherit;"
+                 data-start="500"
+                 data-splitin="none"
+                 data-splitout="none"
+                 data-responsive_offset="on"
+                 data-responsive="off"
+                 style="z-index: 10; min-width: 180px; max-width: 180px; max-width: 50px; max-width: 50px; white-space: normal; color: rgba(34, 34, 34, 1.00);text-align:center;text-transform:uppercase;background-color:rgba(255, 255, 255, 1.00);padding:19px 40px 19px 40px;border-width:1px;outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;">Get Now </div>
+            <!-- LAYER NR. 6 -->
+            <div class="tp-caption a-btn rev-btn "
+                 id="slide-13-layer-6"
+                 data-x="['left','left','left','left']" data-hoffset="['562','562','41','41']"
+                 data-y="['top','top','top','top']" data-voffset="['571','571','492','492']"
+                 data-width="180"
+                 data-height="50"
+                 data-whitespace="normal"
+                 data-transform_idle="o:1;"
+                 data-transform_in="x:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;s:1500;e:Power3.easeInOut;"
+                 data-transform_out="opacity:0;s:300;"
+                 data-mask_in="x:0px;y:0px;"
+                 data-start="500"
+                 data-splitin="none"
+                 data-splitout="none"
+                 data-responsive_offset="on"
+                 data-responsive="off"
+                 style="z-index: 10; min-width: 180px; max-width: 180px; max-width: 50px; max-width: 50px; white-space: normal; color: rgba(34, 34, 34, 1.00);text-align:center;text-transform:uppercase;background-color:rgba(255, 255, 255, 1.00);padding:19px 40px 19px 40px;border-width:1px;outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;">More plans </div>
+        </li>
+        <!-- SLIDE  -->
+        <li data-index="rs-12" data-transition="fade" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off"  data-easein="default" data-easeout="default" data-masterspeed="300"  data-thumb="/images/index_banners/ban2.jpg"  data-rotate="0"  data-saveperformance="off"  data-title="Slide" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
+            <!-- MAIN IMAGE -->
+            <img src="/images/index_banners/ban2.jpg"  alt="" title="slide3"  width="1920" height="880" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="off" class="rev-slidebg" data-no-retina>
+            <!-- LAYERS -->
+            <!-- LAYER NR. 1 -->
+            <div class="tp-caption   tp-resizeme"
+                 id="slide-14-layer-1"
+                 data-x="['left','left','left','left']" data-hoffset="['283','283','30','19']"
+                 data-y="['top','top','top','top']" data-voffset="['252','252','213','135']"
+                 data-fontsize="['46','46','46','32']"
+                 data-lineheight="['46','46','46','35']"
+                 data-width="none"
+                 data-height="none"
+                 data-whitespace="nowrap"
+                 data-transform_idle="o:1;"
+                 data-transform_in="z:0;rX:0;rY:0;rZ:0;sX:0.9;sY:0.9;skX:0;skY:0;opacity:0;s:1500;e:Power3.easeInOut;"
+                 data-transform_out="opacity:0;s:300;"
+                 data-start="500"
+                 data-splitin="none"
+                 data-splitout="none"
+                 data-responsive_offset="on"
+                 style="z-index: 5; white-space: nowrap; font-size: 46px; line-height: 46px; font-weight: 800; color: rgba(34, 34, 34, 1.00);font-family:Raleway;text-transform:uppercase;">Your personal - speed </div>
+            <!-- LAYER NR. 2 -->
+            <div class="tp-caption   tp-resizeme"
+                 id="slide-15-layer-2"
+                 data-x="['left','left','left','left']" data-hoffset="['284','284','38','21']"
+                 data-y="['top','top','top','top']" data-voffset="['324','324','292','192']"
+                 data-width="none"
+                 data-height="none"
+                 data-whitespace="nowrap"
+                 data-transform_idle="o:1;"
+                 data-transform_in="opacity:0;s:300;e:Power2.easeInOut;"
+                 data-transform_out="opacity:0;s:300;"
+                 data-start="500"
+                 data-splitin="none"
+                 data-splitout="none"
+                 data-responsive_offset="on"
+                 style="z-index: 6; white-space: nowrap; font-size: 20px; line-height: 22px; font-weight: 300; color: rgba(102, 102, 102, 1.00);font-family:Lato;text-transform:uppercase;">& quality home connection </div>
+            <!-- LAYER NR. 3 -->
+            <div class="tp-caption   tp-resizeme"
+                 id="slide-16-layer-3"
+                 data-x="['left','left','left','left']" data-hoffset="['602','602','358','25']"
+                 data-y="['top','top','top','top']" data-voffset="['326','326','292','231']"
+                 data-width="none"
+                 data-height="none"
+                 data-whitespace="nowrap"
+                 data-transform_idle="o:1;"
+                 data-transform_in="opacity:0;s:300;e:Power2.easeInOut;"
+                 data-transform_out="opacity:0;s:300;"
+                 data-start="500"
+                 data-splitin="none"
+                 data-splitout="none"
+                 data-responsive_offset="on"
+                 style="z-index: 7; white-space: nowrap; font-size: 20px; line-height: 22px; font-weight: 900; color: rgba(66, 165, 245, 1.00);font-family:Lato;text-transform:uppercase;">Starting @ $ 22 / mo </div>
+            <!-- LAYER NR. 4 -->
+            <div class="tp-caption   tp-resizeme"
+                 id="slide-17-layer-4"
+                 data-x="['left','left','left','left']" data-hoffset="['285','285','33','610']"
+                 data-y="['top','top','top','top']" data-voffset="['359','359','323','174']"
+                 data-color="['rgba(34, 34, 34, 1.00)','rgba(34, 34, 34, 1.00)','rgba(255, 255, 255, 1.00)','rgba(255, 255, 255, 1.00)']"
+                 data-width="['606','606','684','684']"
+                 data-height="['223','223','224','224']"
+                 data-whitespace="normal"
+                 data-visibility="['on','on','off','off']"
+                 data-transform_idle="o:1;"
+                 data-transform_in="x:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;s:1500;e:Power3.easeInOut;"
+                 data-transform_out="opacity:0;s:300;"
+                 data-mask_in="x:0px;y:0px;"
+                 data-start="500"
+                 data-splitin="none"
+                 data-splitout="none"
+                 data-responsive_offset="on"
+                 style="z-index: 8; min-width: 606px; max-width: 606px; max-width: 223px; max-width: 223px; white-space: normal; font-size: 16px; line-height: 22px; font-weight: 400; color: rgba(34, 34, 34, 1.00);font-family:Lato;min-width:600px;">
+                <div class="tab-content">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <ul>
+                                <li>80 GB Data Limit</li>
+                                <li>Unlimited Bandwidth</li>
+                                <li>24 x 7 Service Available</li>
+                            </ul>
+                        </div>
+                        <div class="col-xs-6">
+                            <ul>
+                                <li>4 MBPS Speed + Night 8 MBPS</li>
+                                <li>Get Free 5GB Night Data</li>
+                                <li>No Installation charges</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- LAYER NR. 5 -->
+            <div class="tp-caption a-btn rev-btn "
+                 id="slide-18-layer-5"
+                 data-x="['left','left','left','center']" data-hoffset="['285','285','41','611']"
+                 data-y="['top','top','top','middle']" data-voffset="['567','567','385','145']"
+                 data-width="180"
+                 data-height="50"
+                 data-whitespace="normal"
+                 data-transform_idle="o:1;"
+                 data-transform_in="x:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;s:1500;e:Power3.easeInOut;"
+                 data-transform_out="opacity:0;s:300;"
+                 data-mask_in="x:0px;y:0px;s:inherit;e:inherit;"
+                 data-start="500"
+                 data-splitin="none"
+                 data-splitout="none"
+                 data-responsive_offset="on"
+                 data-responsive="off"
+                 style="z-index: 10; min-width: 180px; max-width: 180px; max-width: 50px; max-width: 50px; white-space: normal; color: rgba(34, 34, 34, 1.00);text-align:center;text-transform:uppercase;background-color:rgba(255, 255, 255, 1.00);padding:19px 40px 19px 40px;border-width:1px;outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;">Get Now </div>
+            <!-- LAYER NR. 6 -->
+            <div class="tp-caption a-btn rev-btn "
+                 id="slide-19-layer-6"
+                 data-x="['left','left','left','left']" data-hoffset="['562','562','41','41']"
+                 data-y="['top','top','top','top']" data-voffset="['571','571','492','492']"
+                 data-width="180"
+                 data-height="50"
+                 data-whitespace="normal"
+                 data-transform_idle="o:1;"
+                 data-transform_in="x:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;s:1500;e:Power3.easeInOut;"
+                 data-transform_out="opacity:0;s:300;"
+                 data-mask_in="x:0px;y:0px;"
+                 data-start="500"
+                 data-splitin="none"
+                 data-splitout="none"
+                 data-responsive_offset="on"
+                 data-responsive="off"
+                 style="z-index: 10; min-width: 180px; max-width: 180px; max-width: 50px; max-width: 50px; white-space: normal; color: rgba(34, 34, 34, 1.00);text-align:center;text-transform:uppercase;background-color:rgba(255, 255, 255, 1.00);padding:19px 40px 19px 40px;border-width:1px;outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;">More plans </div>
+        </li>
+        <!-- SLIDE  -->
+        <li data-index="rs-13" data-transition="fade" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off"  data-easein="default" data-easeout="default" data-masterspeed="300"  data-thumb="/images/index_banners/ban3.jpg"  data-rotate="0"  data-saveperformance="off"  data-title="Slide" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
+            <!-- MAIN IMAGE -->
+            <img src="/images/index_banners/ban3.jpg"  alt="" title="slide4"  width="1920" height="880" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="off" class="rev-slidebg" data-no-retina>
+            <!-- LAYERS -->
+            <!-- LAYER NR. 1 -->
+            <div class="tp-caption   tp-resizeme"
+                 id="slide-20-layer-1"
+                 data-x="['left','left','left','left']" data-hoffset="['283','283','30','19']"
+                 data-y="['top','top','top','top']" data-voffset="['252','252','213','135']"
+                 data-fontsize="['46','46','46','32']"
+                 data-lineheight="['46','46','46','35']"
+                 data-width="none"
+                 data-height="none"
+                 data-whitespace="nowrap"
+                 data-transform_idle="o:1;"
+                 data-transform_in="z:0;rX:0;rY:0;rZ:0;sX:0.9;sY:0.9;skX:0;skY:0;opacity:0;s:1500;e:Power3.easeInOut;"
+                 data-transform_out="opacity:0;s:300;"
+                 data-start="500"
+                 data-splitin="none"
+                 data-splitout="none"
+                 data-responsive_offset="on"
+                 style="z-index: 5; white-space: nowrap; font-size: 46px; line-height: 46px; font-weight: 800; color: rgba(34, 34, 34, 1.00);font-family:Raleway;text-transform:uppercase;">Your personal - speed </div>
+            <!-- LAYER NR. 2 -->
+            <div class="tp-caption   tp-resizeme"
+                 id="slide-21-layer-2"
+                 data-x="['left','left','left','left']" data-hoffset="['284','284','38','21']"
+                 data-y="['top','top','top','top']" data-voffset="['324','324','292','192']"
+                 data-width="none"
+                 data-height="none"
+                 data-whitespace="nowrap"
+                 data-transform_idle="o:1;"
+                 data-transform_in="opacity:0;s:300;e:Power2.easeInOut;"
+                 data-transform_out="opacity:0;s:300;"
+                 data-start="500"
+                 data-splitin="none"
+                 data-splitout="none"
+                 data-responsive_offset="on"
+                 style="z-index: 6; white-space: nowrap; font-size: 20px; line-height: 22px; font-weight: 300; color: rgba(102, 102, 102, 1.00);font-family:Lato;text-transform:uppercase;">& quality home connection </div>
+            <!-- LAYER NR. 3 -->
+            <div class="tp-caption   tp-resizeme"
+                 id="slide-22-layer-3"
+                 data-x="['left','left','left','left']" data-hoffset="['602','602','358','25']"
+                 data-y="['top','top','top','top']" data-voffset="['326','326','292','231']"
+                 data-width="none"
+                 data-height="none"
+                 data-whitespace="nowrap"
+                 data-transform_idle="o:1;"
+                 data-transform_in="opacity:0;s:300;e:Power2.easeInOut;"
+                 data-transform_out="opacity:0;s:300;"
+                 data-start="500"
+                 data-splitin="none"
+                 data-splitout="none"
+                 data-responsive_offset="on"
+                 style="z-index: 7; white-space: nowrap; font-size: 20px; line-height: 22px; font-weight: 900; color: rgba(66, 165, 245, 1.00);font-family:Lato;text-transform:uppercase;">Starting @ $ 22 / mo </div>
+            <!-- LAYER NR. 4 -->
+            <div class="tp-caption   tp-resizeme"
+                 id="slide-23-layer-4"
+                 data-x="['left','left','left','left']" data-hoffset="['285','285','33','610']"
+                 data-y="['top','top','top','top']" data-voffset="['359','359','323','174']"
+                 data-color="['rgba(34, 34, 34, 1.00)','rgba(34, 34, 34, 1.00)','rgba(255, 255, 255, 1.00)','rgba(255, 255, 255, 1.00)']"
+                 data-width="['606','606','684','684']"
+                 data-height="['223','223','224','224']"
+                 data-whitespace="normal"
+                 data-visibility="['on','on','off','off']"
+                 data-transform_idle="o:1;"
+                 data-transform_in="x:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;s:1500;e:Power3.easeInOut;"
+                 data-transform_out="opacity:0;s:300;"
+                 data-mask_in="x:0px;y:0px;"
+                 data-start="500"
+                 data-splitin="none"
+                 data-splitout="none"
+                 data-responsive_offset="on"
+                 style="z-index: 8; min-width: 606px; max-width: 606px; max-width: 223px; max-width: 223px; white-space: normal; font-size: 16px; line-height: 22px; font-weight: 400; color: rgba(34, 34, 34, 1.00);font-family:Lato;min-width:600px;">
+                <div class="tab-content">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <ul>
+                                <li>80 GB Data Limit</li>
+                                <li>Unlimited Bandwidth</li>
+                                <li>24 x 7 Service Available</li>
+                            </ul>
+                        </div>
+                        <div class="col-xs-6">
+                            <ul>
+                                <li>4 MBPS Speed + Night 8 MBPS</li>
+                                <li>Get Free 5GB Night Data</li>
+                                <li>No Installation charges</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- LAYER NR. 5 -->
+            <div class="tp-caption a-btn rev-btn "
+                 id="slide-24-layer-5"
+                 data-x="['left','left','left','center']" data-hoffset="['285','285','41','611']"
+                 data-y="['top','top','top','middle']" data-voffset="['567','567','385','145']"
+                 data-width="180"
+                 data-height="50"
+                 data-whitespace="normal"
+                 data-transform_idle="o:1;"
+                 data-transform_in="x:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;s:1500;e:Power3.easeInOut;"
+                 data-transform_out="opacity:0;s:300;"
+                 data-mask_in="x:0px;y:0px;s:inherit;e:inherit;"
+                 data-start="500"
+                 data-splitin="none"
+                 data-splitout="none"
+                 data-responsive_offset="on"
+                 data-responsive="off"
+                 style="z-index: 10; min-width: 180px; max-width: 180px; max-width: 50px; max-width: 50px; white-space: normal; color: rgba(34, 34, 34, 1.00);text-align:center;text-transform:uppercase;background-color:rgba(255, 255, 255, 1.00);padding:19px 40px 19px 40px;border-width:1px;outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;">Get Now </div>
+            <!-- LAYER NR. 6 -->
+            <div class="tp-caption a-btn rev-btn "
+                 id="slide-25-layer-6"
+                 data-x="['left','left','left','left']" data-hoffset="['562','562','41','41']"
+                 data-y="['top','top','top','top']" data-voffset="['571','571','492','492']"
+                 data-width="180"
+                 data-height="50"
+                 data-whitespace="normal"
+                 data-transform_idle="o:1;"
+                 data-transform_in="x:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;s:1500;e:Power3.easeInOut;"
+                 data-transform_out="opacity:0;s:300;"
+                 data-mask_in="x:0px;y:0px;"
+                 data-start="500"
+                 data-splitin="none"
+                 data-splitout="none"
+                 data-responsive_offset="on"
+                 data-responsive="off"
+                 style="z-index: 10; min-width: 180px; max-width: 180px; max-width: 50px; max-width: 50px; white-space: normal; color: rgba(34, 34, 34, 1.00);text-align:center;text-transform:uppercase;background-color:rgba(255, 255, 255, 1.00);padding:19px 40px 19px 40px;border-width:1px;outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;">More plans </div>
+        </li>
+    </ul>
 </div>
+<!-- End of slider
+============================================= -->
