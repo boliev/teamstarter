@@ -5,12 +5,12 @@
 3. form
 4. layout
 5. menu
-6. pages 
+6. pages
 7. post
-8. effect 
+8. effect
 9. utilities
 10. widgets layout
-11. widgets 
+11. widgets
 12. responsive
 -------------------------------------------------------------------*/
 @font-face {
@@ -2492,7 +2492,7 @@ footer .wpb_single_image:before, footer .wpb_single_image:after {
   transform: rotate(90deg);
   transform-origin: 100% 0 0;
   right: 15px;
-  background: url("/public/img/bestseller.png") no-repeat;
+  background: url("/img/bestseller.png") no-repeat;
   width: 160px;
   height: 45px;
   text-align: center;
@@ -7227,7 +7227,7 @@ ul.style-ul li span {
     }
 
 /*-----------------------------*\
-        Widget Contact 
+        Widget Contact
         \*-----------------------------*/
         .widget-infor .heding {
           font-family: "Raleway", sans-serif;
@@ -8249,6 +8249,7 @@ ul.style-ul li span {
         }
         .widget-features-box.style1 .fbox-icon {
           position: relative;
+          z-index: 4;
         }
         .widget-features-box.style1 .fbox-icon:after {
           content: "";

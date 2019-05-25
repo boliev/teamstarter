@@ -1,20 +1,20 @@
 
-/*----------------------------------------------------------------------- 
+/*-----------------------------------------------------------------------
 table of content
 -------------------------------------------------------------------------* /
 
-"Melissa - is a Ultimate Multipurpose  Premium  HTML5 Responsive Templeate by HTMLmate Team. You can use this 
+"Melissa - is a Ultimate Multipurpose  Premium  HTML5 Responsive Templeate by HTMLmate Team. You can use this
 for anykind of multi-purpose Bussiness"
 
 File:           CSS Base
 Version:        1.1
-Last change:     
+Last change:
 Author:         HTMLmate
 
 
 /* ----------------------------
-* 1 = Fonts 
-* 2 = Global 
+* 1 = Fonts
+* 2 = Global
 * 3 = Header
 * 4 = Ways of help
 * 5 = Countdown
@@ -23,28 +23,28 @@ Author:         HTMLmate
 * 8 = Can We Do
 * 9 = Video bg section
 * 10 = Latest news
-* 11 = Partner 
+* 11 = Partner
 * 12 = Footer
 * 13 = page head section
 
-/*----------------------------------------------------------------------- 
+/*-----------------------------------------------------------------------
 End of Table of Content
 -------------------------------------------------------------------------* /
 
 
-/*----------------------------------------------------------------------- 
+/*-----------------------------------------------------------------------
 fonts [*1]
 -------------------------------------------------------------------------*/
 @import url('https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i,900,900i|Raleway:400,400i,500,500i,600,600i,700,700i,800,800i,900,900i');
 
-/*----------------------------------------------------------------------- 
+/*-----------------------------------------------------------------------
 Global [*2]
 -------------------------------------------------------------------------*/
 body, html {
-    overflow-x: hidden; 
+    overflow-x: hidden;
 }
-	
-	
+
+
 * { box-sizing: border-box; }
 body {
 	margin: 0;
@@ -57,7 +57,7 @@ body {
 	color: #222222;
 	font-family: 'Lato', sans-serif;
 	-webkit-font-smoothing: antialiased;
-	
+
 }
 
 .ul-li ul {
@@ -144,7 +144,7 @@ h3 {
 	margin: 0 auto;
 	padding-bottom: 30px;
 }
-div#preloader { position: fixed; left: 0; top: 0; z-index: 999; width: 100%; height: 100%; overflow: visible; background: #ffffff url('/public/img/heart.gif') no-repeat center center; }
+div#preloader { position: fixed; left: 0; top: 0; z-index: 999; width: 100%; height: 100%; overflow: visible; background: #ffffff url('/img/heart.gif') no-repeat center center; }
 
 .btn {
 	text-transform: none;
@@ -168,18 +168,18 @@ div#preloader { position: fixed; left: 0; top: 0; z-index: 999; width: 100%; hei
  /* carousel-controls-v3 */
  /****/
  .section-content {padding: 90px 0px}
- .your-plan-section .title-wrapper {background-image: url(/public/img/1.png);}
- .service-section .title-wrapper {background-image: url(/public/img/our-service.png);}
- .love-our-network-section .title-wrapper {background-image: url(/public/img/why-love.png);}
- .our-news-section .title-wrapper {background-image: url(/public/img/our-new.png);}
- .faq-content .title-wrapper {background-image: url(/public/img/faq.png);}
- .client-say-section .title-wrapper {background-image: url(/public/img/our-clinet.png);}
+ .your-plan-section .title-wrapper {background-image: url(/img/1.png);}
+ .service-section .title-wrapper {background-image: url(/img/our-service.png);}
+ .love-our-network-section .title-wrapper {background-image: url(/img/why-love.png);}
+ .our-news-section .title-wrapper {background-image: url(/img/our-new.png);}
+ .faq-content .title-wrapper {background-image: url(/img/faq.png);}
+ .client-say-section .title-wrapper {background-image: url(/img/our-clinet.png);}
  .feature-box-section .section-content {padding-bottom: 65px;}
 
  .content-title {
  	color: #222222;
  	font-family: Raleway;
- 	font-size: 18px;
+ 	font-size: 18px;ß
  	font-weight: 800;
  	text-transform: uppercase;
  	padding-top: 35px;
@@ -323,7 +323,7 @@ div#preloader { position: fixed; left: 0; top: 0; z-index: 999; width: 100%; hei
  	top: 20px;
  }
 
- /*----------------------------------------------------------------------- 
+ /*-----------------------------------------------------------------------
 Start of pricing table
 -------------------------------------------------------------------------*/
 .kc-pricing-tables.kc-pricing-layout-2 .header-pricing .content-title .content-sub-title {
@@ -396,17 +396,17 @@ span.content-currency{
 	color: #42a5f5;
 }
 .your-plan-section {
-	background-image: url(/public/img/pricing-bg.jpg);
+	background-image: url(/img/pricing-bg.jpg);
 }
- /*----------------------------------------------------------------------- 
+ /*-----------------------------------------------------------------------
 End of pricing table
 -------------------------------------------------------------------------*/
 
- /*----------------------------------------------------------------------- 
+ /*-----------------------------------------------------------------------
 Start of free download
 ------------------------------------------------------------------------*/
 .free-download-section {
-	background: transparent url(/public/img/intro-bg.jpg) 0% 0%/auto no-repeat scroll;
+	background: transparent url(/img/intro-bg.jpg) 0% 0%/auto no-repeat scroll;
 	background-size: cover;
 }
 .tp-caption.a-btn, .a-btn {
@@ -440,7 +440,7 @@ Start of free download
 .service-section .section-content-2 {
 	padding-bottom: 100px;
 }
-.love-our-network-section .kc-elm.kc-css-294644.kc-title-wrap.dark { 
+.love-our-network-section .kc-elm.kc-css-294644.kc-title-wrap.dark {
 	padding-bottom: 70px;
 }
 .love-our-network-section .section-content {
@@ -450,11 +450,11 @@ Start of free download
 	width: 100%;
 	z-index: 0;
 }
-/*----------------------------------------------------------------------- 
+/*-----------------------------------------------------------------------
 End of free download
 -------------------------------------------------------------------------*/
 
- /*----------------------------------------------------------------------- 
+ /*-----------------------------------------------------------------------
 Satrt of service section
 -------------------------------------------------------------------------*/
 .service-section-content {
@@ -500,17 +500,17 @@ Satrt of service section
 .apus-search {
 	display: table;
 }
- /*----------------------------------------------------------------------- 
+ /*-----------------------------------------------------------------------
 End of Service section
 -------------------------------------------------------------------------*/
 
 
 
- /*----------------------------------------------------------------------- 
+ /*-----------------------------------------------------------------------
 Start of love our network
 -------------------------------------------------------------------------*/
 .love-our-network-section {
-	background: transparent url(/public/img/counter-bg.jpg) 0% 0%/auto no-repeat scroll;
+	background: transparent url(/img/counter-bg.jpg) 0% 0%/auto no-repeat scroll;
 	background-size: cover;
 }
 .kc_counter_box .counterup {
@@ -522,12 +522,12 @@ Start of love our network
 .kc_counter_box {
 	text-align: center;
 }
- /*----------------------------------------------------------------------- 
+ /*-----------------------------------------------------------------------
 End of love our network
 -------------------------------------------------------------------------*/
 
 
- /*----------------------------------------------------------------------- 
+ /*-----------------------------------------------------------------------
 Start of newsletter
 -------------------------------------------------------------------------*/
 .kc-elm.kc-css-154902.kc_text_block {
@@ -538,7 +538,7 @@ Start of newsletter
 	font-size: 26px !important;
 }
 .newslatter-section {
-	background: transparent url(/public/img/newletter-bg.jpg) 0% 0%/auto no-repeat scroll;
+	background: transparent url(/img/newletter-bg.jpg) 0% 0%/auto no-repeat scroll;
 	background-attachment: fixed;
 }
 .kc-css-46029 {
@@ -556,11 +556,11 @@ Start of newsletter
 	color: #42a5f5 !important;
 }
 
- /*----------------------------------------------------------------------- 
+ /*-----------------------------------------------------------------------
 End of newsletter
 -------------------------------------------------------------------------*/
 
- /*----------------------------------------------------------------------- 
+ /*-----------------------------------------------------------------------
 Start of our news question
 -------------------------------------------------------------------------*/
 .widget-blog .post-list .info-bottom .btn {
@@ -592,7 +592,7 @@ a:hover {
 	overflow:hidden;
 }
 
-.acc-btn { 
+.acc-btn {
 	width:100%;
 	margin:0 auto;
 	padding:10px 25px;
@@ -637,12 +637,35 @@ a:hover {
 	padding: 30px 25px;
 	display: inline-block;
 }
-/*----------------------------------------------------------------------- 
+/*-----------------------------------------------------------------------
 End of our news question
 -------------------------------------------------------------------------*/
+.owl-carousel .owl-item {
+	position: relative;
+	min-height: 1px;
+	float: left;
+	-webkit-backface-visibility: hidden;
+	-webkit-tap-highlight-color: transparent;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	padding-right: 15px;
+	padding-left: 15px;
+}
+
+.owl-carousel.owl-text-select-on .owl-item {
+	-webkit-user-select: auto;
+	-moz-user-select: auto;
+	-ms-user-select: auto;
+	user-select: auto;
+}
+
 .client-say-section {
-	background: url(/public/img/bg-testomonial.jpg) 0% 0%/auto no-repeat scroll;
-	
+	background: url(/img/bg-testomonial.jpg) 0% 0%/auto no-repeat scroll;
+	/*background: url(/images/index_banners/ban1.jpg) 0% 0%/auto no-repeat scroll;*/
+
 }
 .footer-area-section,
 .footer-area-v2-section {
@@ -773,7 +796,7 @@ End of our news question
 }
 .love-our-network-section.v-2 .kc_counter_box span.counterup,
 .love-our-network-section.v-2 .kc_counter_box h4,
-.love-our-network-section.v-3 .kc_counter_box span.counterup, 
+.love-our-network-section.v-3 .kc_counter_box span.counterup,
 .love-our-network-section.v-3 .kc_counter_box h4 {
 	color: #fff;
 }
@@ -790,7 +813,7 @@ End of our news question
 	margin-bottom: 15px;
 }
 .free-download-section.v-2 {
-	background: transparent url(/public/img/bg2.png) 0% 0%/auto no-repeat scroll;
+	background: transparent url(/img/bg2.png) 0% 0%/auto no-repeat scroll;
 }
 .free-download-section.v-2 .kc_text_block .intro .description,
 .free-download-section.v-2  .contact-info a,
@@ -803,7 +826,7 @@ End of our news question
 }
 .free-download-section.v-2 .contact-info .media:last-child {
 	border:none;
-} 
+}
 .testimonial-section .section-content {
 	padding-top: 0;
 }
@@ -835,7 +858,7 @@ End of our news question
 	background: #42a5f5;
 }
 
-.newslatter-section.v-v2 .callto-action .btn, 
+.newslatter-section.v-v2 .callto-action .btn,
 .newslatter-section.v-v2 .input-group-btn .btn {
 	background: #fff;
 	color: #333;
@@ -880,11 +903,11 @@ End of our news question
 	padding-bottom: 65px;
 }
 .apus-breadscrumb {
-	background-image: url(/public/img/newletter-bg.jpg) !important;
+	background-image: url(/img/newletter-bg.jpg) !important;
 }
 .who-we-are-section .section-content,
 .our-team-section .section-content {
-	padding-top: 80px; 
+	padding-top: 80px;
 }
 .who-we-are-content .kc-css-62333 p {
 	color: #222222;
@@ -907,7 +930,7 @@ End of our news question
 	padding-top: 60px;
 }
 .love-our-network-section.v-3 {
-	background: transparent url(/public/img/bg-count.jpg) center center/auto no-repeat scroll
+	background: transparent url(/img/bg-count.jpg) center center/auto no-repeat scroll
 }
 .why-choose-us.v2 .kc-elm.kc-css-522062.kc_text_block {
 	padding-bottom: 40px;
@@ -939,7 +962,7 @@ End of our news question
 .video-tour-section {
 	background-color: #fafafa;
 	overflow: visible;
-}  
+}
 .video-tour-section .kc-css-943344 {
 	margin-bottom: -345px;
 }
@@ -947,7 +970,7 @@ End of our news question
 	margin-top: 230px;
 }
 .your-personal-section {
-	background: transparent url(/public/img/bg-count.jpg) 50% 50%/auto no-repeat scroll;
+	background: transparent url(/img/bg-count.jpg) 50% 50%/auto no-repeat scroll;
 	overflow: visible;
 
 }
@@ -1002,7 +1025,7 @@ End of our news question
 	background: none
 }
 .your-plan-section.v3 {
-	background: transparent url(/public/img/pricing-2.jpg) 0% 0%/cover no-repeat scroll;
+	background: transparent url(/img/pricing-2.jpg) 0% 0%/cover no-repeat scroll;
 }
 .your-plan-section.v3 .title-wrapper .kc_title,
 .your-plan-section.v3 .title-wrapper .kc_title span {
@@ -1016,8 +1039,8 @@ End of our news question
 	background: rgba(255, 255, 255, 0.10);
 }
 .your-plan-section.v3  .content-title,
-.your-plan-section.v3 .content-currency, 
-.your-plan-section.v3 .content-price, 
+.your-plan-section.v3 .content-currency,
+.your-plan-section.v3 .content-price,
 .your-plan-section.v3 .content-duration,
 .your-plan-section.v3 .kc-css-835772 .content-desc li {
 	color: #ffffff;
@@ -1220,13 +1243,13 @@ button.btn.btn-primary.text-capitalize.active {
 .widget .widget-title, .widget .widgettitle, .widget .widget-heading {
 	margin: 0 0 25px !important;
 }
-.blog-page-side-bar .post-list .entry-title, .style-chess .entry-title, 
+.blog-page-side-bar .post-list .entry-title, .style-chess .entry-title,
 #faq-blog .post-list .entry-title, .style-chess .entry-title {
 	font-weight: 500;
 	font-size: 14px;
 	margin: 0;
 }
-.blog-page-side-bar .post, 
+.blog-page-side-bar .post,
 #faq-blog .post {
 	padding: 25px 0 15px;
 }
@@ -1256,7 +1279,7 @@ button.btn.btn-primary.text-capitalize.active {
 }
 .blog-quate {
 	background-color: #42a5f5;
-	padding: 50px; 
+	padding: 50px;
 	position: relative;
 }
 .blog-quate  blockquote {
@@ -1317,7 +1340,7 @@ button.btn.btn-primary.text-capitalize.active {
 	background-color: #fff;
 }
 #faq-blog #commentform textarea::-webkit-input-placeholder,
-#faq-blog #commentform input::-webkit-input-placeholder { 
+#faq-blog #commentform input::-webkit-input-placeholder {
 	color: #fff;
 }
 .ques-form:after {
@@ -1369,7 +1392,7 @@ button.btn.btn-primary.text-capitalize.active {
 
 /* Add Animation */
 @-webkit-keyframes animatetop {
-	from {top:-300px; opacity:0} 
+	from {top:-300px; opacity:0}
 	to {top:0; opacity:1}
 }
 
@@ -2295,6 +2318,10 @@ div.bootstrap-tagsinput ul.dropdown-menu a.dropdown-item {
 	text-align: center;
 }
 
+.index-page .kc_text_block {
+	text-align: left;
+}
+
 #content {
 	padding: 0px;
 	margin: 0px;
@@ -2750,4 +2777,19 @@ h3.index-page {
 .index-page-user-menu .top-user-menu .dropdown .btn,
 .index-page-user-menu .top-user-menu .dropdown .btn:focus {
 	color: #222222 !important;
+}
+
+.index-page-tabs a {
+	color: #ffffff;
+}
+.index-page-tabs li.current a {
+	color: #333;
+}
+
+.index-page .index-page-post {
+	padding: 35px 0px;
+}
+
+.index-page .owl-theme .owl-nav{
+	display: none;
 }

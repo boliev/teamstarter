@@ -73,12 +73,12 @@ function getCookie(cname) {
 }
 
 
-(function ($) { 
+(function ($) {
     'use strict';
     $('.tab ul.tabs').addClass('active').find('> li:eq(0)').addClass('current');
 
-    $('.tab ul.tabs li a').on('click' , function () { 
-        var tab = $(this).closest('.tab'), 
+    $('.tab ul.tabs li a').on('click' , function () {
+        var tab = $(this).closest('.tab'),
         index = $(this).closest('li').index();
 
         tab.find('ul.tabs > li').removeClass('current');
@@ -318,9 +318,9 @@ $( document ).ready(function() {
     $('[data-toggle="offcanvas"], .btn-offcanvas').on('click', function (e) {
         e.stopPropagation();
         $('#wrapper-container').toggleClass('active');
-        $('#apus-mobile-menu').toggleClass('active');           
+        $('#apus-mobile-menu').toggleClass('active');
     });
-    
+
     $('body').click(function() {
         if ($('#wrapper-container').hasClass('active')) {
             $('#wrapper-container').toggleClass('active');
@@ -365,12 +365,12 @@ window.onclick = function(event) {
 	//show hide login form js
 	$('#search_button').on("click", function(e) {
 		$('#search_open').slideToggle();
-		e.stopPropagation(); 
+		e.stopPropagation();
 	});
 
 	$(document).on("click", function(e){
-		if(!(e.target.closest('#search_open'))){	
-			$("#search_open").slideUp();   		
+		if(!(e.target.closest('#search_open'))){
+			$("#search_open").slideUp();
 		}
    });
 

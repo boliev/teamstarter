@@ -2,6 +2,7 @@
 {% block title %} {{ 'title.index_page' | trans }} {% endblock %}
 {% block body %}
 
+    <div class="index-page">
     <div id="preloader"></div>
     <div id="apus-header-mobile" class="header-mobile hidden-lg hidden-md clearfix">
         <div class="container">
@@ -111,7 +112,7 @@
                                             <div class="fbox-img">
                                                 <div class="fbox-icon">
                                                     <div class="inner">
-                                                        <i class="fa fa-clock-o" aria-hidden="true"></i>
+                                                        <i class="far fa-clock" aria-hidden="true"></i>
                                                     </div>
                                                 </div>
                                             </div>
@@ -388,7 +389,7 @@
                     <div class="service-tab row">
                         <div class="tab">
                             <!-- tab-title -->
-                            <ul class="tabs col-md-3 col-sm-6 active text-uppercase">
+                            <ul class="tabs index-page-tabs col-md-3 col-sm-6 active text-uppercase">
                                 <li class="current"><a href="#"><i class="mn-icon-978"></i>Best Selling Plans</a></li>
                                 <li class=""><a href="#"><i class="mn-icon-786"></i>Broadband</a></li>
                                 <li class=""><a href="#"><i class="mn-icon-780"></i>Wifi Zone</a></li>
@@ -399,7 +400,7 @@
                             <!-- / tabs -->
                             <div class="col-md-4 col-sm-6">
                                 <div class="service-pic">
-                                    <img src="assets/img/tab-contetn-bg.jpg" alt="image">
+                                    <img src="/img/tab-contetn-bg.jpg" alt="image">
                                 </div>
                             </div>
                             <div class="tab_content col-md-5 col-sm-12 padding-top-54">
@@ -596,12 +597,12 @@
                                         <div class="layout-blog style-grid">
                                             <div class="row">
                                                 <div class="col-md-12 col-sm-6">
-                                                    <article class="post post-list post-1988 type-post status-publish format-standard has-post-thumbnail hentry category-digital category-hosting category-internet category-uncategorized tag-broadband tag-digital tag-internet">
+                                                    <article class="post index-page-post post-list post-1988 type-post status-publish format-standard has-post-thumbnail hentry category-digital category-hosting category-internet category-uncategorized tag-broadband tag-digital tag-internet">
                                                         <div class="row">
                                                             <div class="col-md-5">
                                                                 <figure class="entry-thumb effect-v6">
                                                                     <a class="post-thumbnail" href="#" aria-hidden="true">
-                                                                        <img src="assets/img/blog1-300x300xc.jpg" alt="">
+                                                                        <img src="/img/blog1-300x300xc.jpg" alt="">
                                                                     </a>
                                                                 </figure>
                                                             </div>
@@ -626,12 +627,12 @@
                                                     </article>
                                                 </div>
                                                 <div class="col-md-12 col-sm-6">
-                                                    <article class="post post-list post-184 type-post status-publish format-standard has-post-thumbnail hentry category-hosting category-internet category-server category-support category-uncategorized tag-hosting tag-server tag-support">
+                                                    <article class="post index-page-post post-list post-184 type-post status-publish format-standard has-post-thumbnail hentry category-hosting category-internet category-server category-support category-uncategorized tag-hosting tag-server tag-support">
                                                         <div class="row">
                                                             <div class="col-md-5">
                                                                 <figure class="entry-thumb effect-v6">
                                                                     <a class="post-thumbnail" href="#" aria-hidden="true">
-                                                                        <img src="assets/img/people-coffee-notes-tea-300x300xc.jpg" alt="">
+                                                                        <img src="/img/people-coffee-notes-tea-300x300xc.jpg" alt="">
                                                                     </a>
                                                                 </figure>
                                                             </div>
@@ -791,7 +792,7 @@
                 <!-- /title -->
                 <div class="client-say-content">
                     <div class="client-say-slide widget widget-testimonials style-layout-1">
-                        <div class="testimonials-body">
+                        <div class="testimonials-body owl-carousel">
                             <div class="testimonials-profile style1">
                                 <div class="media">
                                     <div class="media-body">
@@ -808,7 +809,7 @@
                                     <div class="media-right">
                                         <div class="testimonial-avatar ">
                                             <div class="image-wrapper image-loaded">
-                                                <img src="assets/img/user1.jpg" data-src="assets/img/user1.jpg" alt="" class="unveil-image" data-pin-nopin="true">
+                                                <img src="/img/user1.jpg" data-src="/img/user1.jpg" alt="" class="unveil-image" data-pin-nopin="true">
                                             </div>
                                         </div>
                                     </div>
@@ -819,7 +820,7 @@
                                     <div class="media-left">
                                         <div class="testimonial-avatar ">
                                             <div class="image-wrapper image-loaded">
-                                                <img src="assets/img/user1.jpg" data-src="assets/img/user1.jpg" alt="" class="unveil-image" data-pin-nopin="true">
+                                                <img src="/img/user1.jpg" data-src="/img/user1.jpg" alt="" class="unveil-image" data-pin-nopin="true">
                                             </div>
                                         </div>
                                     </div>
@@ -852,7 +853,7 @@
                                     <div class="media-right">
                                         <div class="testimonial-avatar ">
                                             <div class="image-wrapper image-loaded">
-                                                <img src="assets/img/user1.jpg" data-src="assets/img/user1.jpg" alt="" class="unveil-image" data-pin-nopin="true">
+                                                <img src="/img/user1.jpg" data-src="/img/user1.jpg" alt="" class="unveil-image" data-pin-nopin="true">
                                             </div>
                                         </div>
                                     </div>
@@ -866,36 +867,6 @@
     </section>
     <!-- End of of our client say
     ============================================= -->
-    <!-- Start of partner slide
-    ============================================= -->
-    <div id="partner-slide" class="partner-slide-section">
-        <div class="container">
-            <div class="row section-content">
-                <div class="partner-sllide-content">
-                    <div class="partner-img">
-                        <img src="assets/img/brand-1.jpg" alt="">
-                    </div>
-                    <div class="partner-img">
-                        <img src="assets/img/brand-2.jpg" alt="">
-                    </div>
-                    <div class="partner-img">
-                        <img src="assets/img/brand-3.jpg" alt="">
-                    </div>
-                    <div class="partner-img">
-                        <img src="assets/img/brand-4.jpg" alt="">
-                    </div>
-                    <div class="partner-img">
-                        <img src="assets/img/brand-5.jpg" alt="">
-                    </div>
-                    <div class="partner-img">
-                        <img src="assets/img/brand-6.jpg" alt="">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End of partner slide
-    ============================================= -->
     <!-- start of footer section
     ============================================= -->
     <footer>
@@ -907,7 +878,7 @@
                             <div class="col-sm-2">
                                 <div class="footer-logo">
                                     <div class="kc-elm kc-css-239827 kc_shortcode kc_single_image">
-                                        <figure><img src="assets/img/f-logo.png" class="" alt=""></figure>
+                                        <figure><img src="/img/f-logo.png" class="" alt=""></figure>
                                     </div>
                                 </div>
                             </div>
@@ -937,69 +908,14 @@
                                 </div>
                             </div>
                             <!-- /col-sm-7 -->
-                            <div class="col-sm-3">
-                                <div class="search-form">
-                                    <form action="#" method="get">
-                                        <div class="input-group">
-                                            <input type="text" placeholder="Search" name="s" class="apus-search form-control input-sm">
-                                            <span class="input-group-btn">
-                                       <button type="submit" class="btn"><i class="fa fa-search"></i></button>
-                                    </span>
-                                        </div>
-                                        <input type="hidden" name="post_type" value="page" class="post_type">
-                                    </form>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
         <!-- /footer-area -->
-        <div class="copy-right">
-            <div class="container">
-                <div class="row">
-                    <div class="copy-right-area">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="kc-elm kc-css-971029 kc_text_block">
-                                    <p>© Copyright 2016 <a href="#">Noanet by HTML</a> | All Rights Reserved.</p>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="widget widget-social pull-right">
-                                    <div class="widget-content">
-                                        <ul class="social list-inline">
-                                            <li>
-                                                <a href="#" title="">
-                                                    <i class="mn-icon-1405"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" title="">
-                                                    <i class="mn-icon-1406"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" title="">
-                                                    <i class="mn-icon-1407"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" title="">
-                                                    <i class="mn-icon-1408"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </footer>
+    </div>
 
 {% endblock %}
 
