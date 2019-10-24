@@ -98,6 +98,22 @@ class TestSpecialistCreator
     }
 
     /**
+     * @param string $email
+     *
+     * @throws \Exception
+     */
+    public function createAll()
+    {
+        $specialists = json_decode(file_get_contents($this->dataDirectory.'specialists.json'), true);
+        foreach ($specialists as $specialist) {
+            $user = $this->createTestUser($specialist);
+            $this->entityManager->persist($user);
+        }
+
+        $this->entityManager->flush();
+    }
+
+    /**
      * @param array $userData
      *
      * @return User

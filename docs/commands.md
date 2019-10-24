@@ -1,6 +1,7 @@
 # Symfony console
 
 `bin/console test:specialists:add vboliev+1@teamstarter.ru` Добавить тестового пользователя some@mail.ru (Должен быть описан в `src/Testing/data/specialists.json`).
+`bin/console test:all-specialists:add` Добавить всех тестовых пользователей из файла `src/Testing/data/specialists.json`.
 
 `bin/console projects:index` Поисковая индексация всех проектов
 
